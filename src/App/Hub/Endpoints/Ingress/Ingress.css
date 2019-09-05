@@ -1,0 +1,75 @@
+.hub-ingress____buttons {
+  margin-bottom: 20px;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: row;
+}
+.hub-ingress____button {
+  margin-right: 10px;
+  width: 250px;
+}
+
+.hub-ingress__url__container {
+  padding: 5px;
+}
+.hub-ingress__url {
+  padding-bottom: 10px;
+  margin-bottom: 7px;
+  width: 415px;
+  margin-left: 50px;
+}
+.hub-ingress__url__status__container {
+  margin-top: 5px;
+}
+.hub-ingress__ip__row {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  border-bottom: 2px solid #eee;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+}
+.hub-ingress__ip__controls {
+}
+.hub-ingress__ip__fields {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+}
+.hub-ingress__ip__remove {
+  margin: 10px;
+  margin-top: 18px;
+  fill: #c33;
+}
+.hub-ingress__ip__address__container {
+  margin: 5px;
+}
+.hub-ingress__ip__address {
+  width: 250px;
+}
+.hub-ingress__ip__port__container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin: 0px 5px;
+  padding: 5px;
+  background: #f4f4f4;
+  border-radius: 5px;
+}
+.hub-ingress__ip__port {
+  width: 150px;
+}
+.hub-ingress__ip__port-add {
+  margin-left: 5px;
+}
+.hub-ingress__ip__port-remove {
+  margin-left: 5px;
+  fill: #c33;
+}
+
+.hub-ingress__status__container {
+  margin-left: 5px;
+}

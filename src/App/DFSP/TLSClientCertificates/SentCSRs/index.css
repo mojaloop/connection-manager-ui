@@ -1,0 +1,19 @@
+.dfsp-sent-csrs {
+}
+.dfsp-sent-csrs__filter {
+  margin-bottom: 20px;
+}
+
+.dfsp-sent-csrs__certificate-validation {
+  width: 400px;
+  margin-bottom: 10px;
+}
+
+.dfsp-sent-csrs__external-ca__message-box {
+  margin: 0px;
+  width: auto;
+}
+
+.dfsp-sent-csrs__external-ca__message-box .message-box__icon {
+  margin: 0px;
+}

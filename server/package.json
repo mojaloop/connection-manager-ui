@@ -1,0 +1,26 @@
+{
+  "name": "connection_manager_server",
+  "version": "1.1.1",
+  "description": "Connection Manager web app server",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/modusintegration/tsp.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/modusintegration/tsp/issues"
+  },
+  "homepage": "https://github.com/modusintegration/tsp#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.16.4",
+    "otplib": "^11.0.1",
+    "speakeasy": "^2.0.0"
+  }
+}

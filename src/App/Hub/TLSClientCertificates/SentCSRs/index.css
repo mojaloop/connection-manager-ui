@@ -1,0 +1,11 @@
+.hub-sent-csrs {
+  position: relative;
+}
+.hub-sent-csrs__filter {
+  margin-bottom: 20px;
+}
+
+.hub-sent-csrs__certificate-validation {
+  width: 400px;
+  margin-bottom: 10px;
+}

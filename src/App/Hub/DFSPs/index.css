@@ -1,0 +1,11 @@
+.hub__dfsps {
+  margin-top: 20px;
+}
+
+.hub__dfsps__list {
+  margin-top: 20px;
+}
+.hub__dfsps__security-group.element-datalist__item-cell {
+  color: #666;
+  font-family: monospace;
+}

@@ -1,0 +1,27 @@
+.hub__hub-sc {
+  margin-top: 10px;
+}
+.hub__hub-sc__submit__container {
+  margin: 10px 0px;
+}
+.hub__hub-sc__submit {
+  width: 200px;
+}
+
+.hub__hub-sc__certificate-validation {
+  width: 400px;
+  margin: 10px 0px;
+}
+
+.hub__hub-sc__certificate-item {
+  margin-bottom: 20px;
+}
+.hub__hub-sc__root-certificate,
+.hub__hub-sc__intermediate-chain,
+.hub__hub-sc__server-certificate {
+  width: 400px;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  margin-bottom: 20px;
+}

@@ -1,0 +1,26 @@
+.dfsp__dfsp-sc {
+  margin-top: 10px;
+}
+.dfsp__dfsp-sc__submit__container {
+  margin: 10px 0px;
+}
+.dfsp__dfsp-sc__submit {
+  width: 200px;
+}
+
+.dfsp__dfsp-sc__certificate-validation {
+  width: 400px;
+  margin: 10px 0px;
+}
+.dfsp__dfsp-sc__certificate-item {
+  margin-bottom: 20px;
+}
+.dfsp__dfsp-sc__root-certificate,
+.dfsp__dfsp-sc__intermediate-chain,
+.dfsp__dfsp-sc__server-certificate {
+  width: 400px;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  margin-bottom: 20px;
+}

@@ -1,0 +1,62 @@
+.egress____buttons {
+  margin-bottom: 20px;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: row;
+}
+.egress____button {
+  margin-right: 10px;
+  width: 250px;
+}
+.egress__ip__row {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  border-bottom: 2px solid #eee;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+}
+.egress__ip__controls {
+}
+.egress__ip__fields {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+}
+.egress__ip__remove {
+  margin: 10px;
+  margin-top: 18px;
+  fill: #c33;
+}
+.egress__ip__address__container {
+  margin: 5px;
+}
+.egress__ip__address {
+  width: 250px;
+}
+.egress__ip__port__container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin: 0px 5px;
+  padding: 5px;
+  background: #f4f4f4;
+  border-radius: 5px;
+}
+.egress__ip__port {
+  width: 150px;
+}
+.egress__ip__port-add {
+  margin-left: 5px;
+}
+.egress__ip__port-remove {
+  margin-left: 5px;
+  fill: #c33;
+}
+
+.egress__status__container {
+  margin-left: 5px;
+}

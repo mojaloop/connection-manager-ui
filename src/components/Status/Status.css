@@ -1,0 +1,35 @@
+.status__info {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-size: 12px;
+}
+.status__info__label {
+  flex: 0 0 auto;
+}
+.status__info__led {
+  flex: 0 0 auto;
+  width: 10px;
+  height: 10px;
+  border-radius: 5px;
+  margin: 0px 5px;
+}
+.status__info__led--gray {
+  background: #cccccc;
+}
+.status__info__led--yellow {
+  background: #ffd900;
+}
+.status__info__led--green {
+  background: #17bc65;
+}
+.status__info__led--blue {
+  background: #4fc7e7;
+}
+.status__info__led--red {
+  background: #e74f4f;
+}
+.status__info__text {
+  flex: 0 0 auto;
+  opacity: 0.8;
+}

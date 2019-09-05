@@ -1,0 +1,19 @@
+#dfsp {
+  min-width: 0px;
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+}
+#dfsp__menu {
+  min-width: 0px;
+  flex: 0 0 180px;
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid #ddd;
+}
+#dfsp__content {
+  min-width: 0px;
+  flex: 1 1 auto;
+  padding: 20px;
+}

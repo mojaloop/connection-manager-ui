@@ -1,0 +1,7 @@
+.hub__hub-dfsp-csrs__upload-modal__certificate,
+.hub__hub-dfsp-csrs__upload-modal__ca-id {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  margin-bottom: 20px;
+}

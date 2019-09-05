@@ -1,0 +1,7 @@
+<svg viewBox="0 0 26 26">
+  <path d="M22 4v18H4V4h18m1-1H3v20h20V3z" />
+  <path d="M15 3h1v20h-1zM8 17h3v1H8zm1-6h1v6H9z" />
+  <path d="M8 11h2v1H8z" />
+  <circle cx="9" cy="9" r="1" />
+  <path d="M16 4h6v18h-6z" class="cls-2" />
+</svg>;

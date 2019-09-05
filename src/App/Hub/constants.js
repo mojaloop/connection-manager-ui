@@ -1,0 +1,22 @@
+const STATES = {
+  UNSET: 'UNSET',
+  NEW: 'NEW',
+  CONFIRMED: 'CONFIRMED',
+};
+
+const DIRECTIONS = {
+  INGRESS: 'INGRESS',
+  EGRESS: 'EGRESS',
+};
+
+const TYPES = {
+  IP: 'IP',
+  URL: 'URL',
+};
+
+const VALIDATION_STATES = {
+  VALID: 'VALID',
+  INVALID: 'INVALID',
+};
+
+export { STATES, DIRECTIONS, TYPES, VALIDATION_STATES };

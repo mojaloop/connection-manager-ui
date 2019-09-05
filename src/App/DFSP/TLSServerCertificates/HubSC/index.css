@@ -1,0 +1,22 @@
+.dfsp__hub-sc {
+  margin-top: 10px;
+}
+
+.dfsp__hub-sc__certificate-validation {
+  width: 400px;
+  margin: 10px 0px;
+}
+
+.dfsp__hub-sc__certificate-item {
+  margin-bottom: 20px;
+}
+
+.dfsp__hub-sc__root-certificate,
+.dfsp__hub-sc__intermediate-chain,
+.dfsp__hub-sc__server-certificate {
+  width: 400px;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  margin-bottom: 20px;
+}

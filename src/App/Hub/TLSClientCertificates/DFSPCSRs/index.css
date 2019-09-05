@@ -1,0 +1,8 @@
+.hub-dfsp-csrs {
+  position: relative;
+}
+
+.hub-dfsp-csrs__certificate-validation {
+  width: 400px;
+  margin-bottom: 10px;
+}

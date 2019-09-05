@@ -1,0 +1,60 @@
+.hub__csr {
+  margin-top: 10px;
+}
+.hub__csr__submit {
+  width: 200px;
+  margin-bottom: 20px;
+}
+.hub__csr__dfsp,
+.hub__csr__csr-type,
+.hub__csr__csr-common-name,
+.hub__csr__csr-email,
+.hub__csr__csr-organization,
+.hub__csr__csr-organization-unit,
+.hub__csr__csr-locality,
+.hub__csr__csr-state,
+.hub__csr__csr-country,
+.hub__csr__csr-file {
+  width: 400px;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  margin-bottom: 20px;
+}
+.hub__csr__sections {
+  font-size: 1.6rem;
+  font-family: ubuntu;
+  margin-bottom: 10px;
+}
+.hub__csr__section-subtitle {
+  font-size: 1.4rem;
+  font-family: ubuntu;
+  margin-bottom: 10px;
+}
+.hub__csr__dns__add,
+.hub__csr__ip__add {
+  margin: 10px 0px;
+}
+.hub__csr__dns__row,
+.hub__csr__ip__row {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  border-bottom: 2px solid #eee;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+}
+.hub__csr__dns__remove,
+.hub__csr__ip__remove {
+  height: 45px;
+  width: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  fill: #c33;
+}
+.hub__csr__dns__value,
+.hub__csr__ip__value {
+  width: 355px;
+}

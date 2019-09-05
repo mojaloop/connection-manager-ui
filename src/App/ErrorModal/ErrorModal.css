@@ -1,0 +1,15 @@
+.error-modal__content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.error-modal__icon {
+  fill: #c33;
+  stroke: #c33;
+}
+
+.error-modal__message {
+  font-size: 18px;
+  margin: 30px 0px 10px;
+}

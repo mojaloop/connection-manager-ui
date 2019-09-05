@@ -1,0 +1,18 @@
+.endpoint__entry {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  margin-bottom: 10px;
+}
+.endpoint__entry__detail {
+  margin: 0px 5px;
+  margin-right: 10px;
+}
+.endpoint__entry__title {
+  font-weight: bold;
+}
+.endpoint__entry__value {
+  margin-left: 5px;
+  font-family: monospace;
+}

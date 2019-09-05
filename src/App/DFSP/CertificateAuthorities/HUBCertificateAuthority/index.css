@@ -1,0 +1,10 @@
+.dfsp__hub-ca {
+  margin-top: 10px;
+}
+.dfsp__hub-ca__root-certificate {
+  width: 400px;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  margin-bottom: 20px;
+}

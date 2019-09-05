@@ -1,0 +1,14 @@
+[
+  {
+    "id": "MTN CI",
+    "envId": 1,
+    "name": "MTN CI",
+    "securityGroup": "Application/DFSP:MTN CI"
+  },
+  {
+    "id": "Orange CI",
+    "envId": 1,
+    "name": "Orange CI",
+    "securityGroup": "Application/DFSP:Orange CI"
+  }
+]

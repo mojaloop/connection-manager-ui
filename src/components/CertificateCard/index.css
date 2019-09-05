@@ -1,0 +1,70 @@
+.certificate-card {
+  border: 2px solid #eee;
+  margin-bottom: 10px;
+}
+.certificate-card--animated {
+  opacity: 0;
+  transform: translateY(10px);
+  animation-direction: normal;
+  animation-duration: 0.2s;
+  animation-fill-mode: forwards;
+  animation-iteration-count: 1;
+  animation-name: certificateCardFadeIn;
+  animation-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+.certificate-card__header {
+  background: #f8f8f8;
+  padding: 15px;
+  display: flex;
+  border-bottom: 2px solid #eee;
+}
+.certificate-card__header__details {
+  flex: 1 1 auto;
+}
+.certificate-card__header__details__primary {
+  font-weight: bold;
+  font-size: 17px;
+  margin-bottom: 3px;
+}
+.certificate-card__header__details__secondary {
+  font-weight: bold;
+  font-size: 14px;
+  margin-bottom: 3px;
+}
+.certificate-card__header__controls {
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+}
+.certificate-card__header__controls__button {
+  margin-left: 10px;
+}
+.certificate-card__content {
+  padding: 15px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-direction: column;
+}
+
+.certificate-card__footer {
+  padding: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.certificate-card__footer__button {
+  margin-right: 10px;
+}
+
+@keyframes certificateCardFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+}

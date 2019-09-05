@@ -1,0 +1,12 @@
+.file-controls {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  margin-bottom: 6px;
+  margin-left: 10px;
+}
+
+.file-controls__button {
+  margin-right: 5px;
+  width: 100px;
+}

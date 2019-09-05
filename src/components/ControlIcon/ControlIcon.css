@@ -1,0 +1,28 @@
+.control__icon {
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 100%;
+}
+.control__icon__container--button {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.control__icon__container--button {
+  cursor: pointer;
+  padding: 3px;
+  border-radius: 30px;
+  opacity: 0.8;
+}
+.control__icon__container--button:hover {
+  background: rgba(0, 0, 0, 0.05);
+  opacity: 1;
+}
+.control__icon__container--disabled {
+  fill: #ccc;
+}

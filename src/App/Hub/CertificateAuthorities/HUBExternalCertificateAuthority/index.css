@@ -1,0 +1,80 @@
+.hub__hub-external-ca {
+  margin-top: 10px;
+}
+.hub__hub-external-ca__info-message {
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 10px 0px;
+  background: #f8f8f8;
+  padding: 5px;
+  border-radius: 5px;
+}
+.hub__hub-external-ca__info-message__text {
+  margin-left: 5px;
+  font-size: 12px;
+  color: #333;
+}
+
+.hub__hub-external-ca__certificate-validation {
+  width: 400px;
+  margin: 10px 0px;
+}
+.hub__hub-external-ca__root-certificate,
+.hub__hub-external-ca__intermediate-chain,
+.hub__hub-external-ca__name {
+  width: 400px;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  margin-bottom: 20px;
+}
+
+.hub__hub-external-ca__certificates {
+  margin-top: 10px;
+}
+
+.hub__hub-external-ca__certificates__filter {
+  margin-bottom: 20px;
+}
+
+.hub__hub-external-ca__certificates__certificate {
+  border-bottom: 2px solid #eee;
+  padding: 20px 0px;
+}
+.hub__hub-external-ca__certificates__title {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-family: ubuntu;
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+}
+.hub__hub-external-ca__certificates__name {
+  font-weight: bold;
+}
+.hub__hub-external-ca__certificates__spacing {
+  width: 15px;
+  text-align: center;
+}
+.hub__hub-external-ca__certificates__environment {
+  font-size: 1.2rem;
+}
+
+.hub__hub-external-ca__certificates__certificate-validation {
+  width: 400px;
+  margin: 10px 0px;
+}
+
+.hub__hub-external-ca__certificates__certificate-item {
+  margin-bottom: 20px;
+}
+
+.hub__hub-external-ca__certificates__root-certificate,
+.hub__hub-external-ca__certificates__intermediate-chain {
+  width: 400px;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  margin-bottom: 20px;
+}

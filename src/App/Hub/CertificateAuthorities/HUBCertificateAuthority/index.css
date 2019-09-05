@@ -1,0 +1,70 @@
+.hub__hub-ca {
+  margin-top: 10px;
+}
+.hub__hub-ca__submit__container {
+  margin: 10px 0px;
+}
+.hub__hub-ca__submit {
+  width: 200px;
+}
+.hub__hub-ca__info-message {
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 10px 0px;
+  background: #f8f8f8;
+  padding: 5px;
+  border-radius: 5px;
+}
+.hub__hub-ca__info-message__text {
+  margin-left: 5px;
+  font-size: 12px;
+  color: #333;
+}
+.hub__hub-ca__root-certificate,
+.hub__hub-ca__common-name,
+.hub__hub-ca__organization,
+.hub__hub-ca__organization-unit,
+.hub__hub-ca__country,
+.hub__hub-ca__state,
+.hub__hub-ca__locality {
+  width: 400px;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  margin-bottom: 20px;
+}
+
+.hub__ca__sections {
+  font-size: 1.6rem;
+  font-family: ubuntu;
+  margin-bottom: 10px;
+}
+.hub__ca__section-subtitle {
+  font-size: 1.4rem;
+  font-family: ubuntu;
+  margin-bottom: 10px;
+}
+.hub__ca__host__add {
+  margin: 10px 0px;
+}
+.hub__ca__host__row {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  border-bottom: 2px solid #eee;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+}
+.hub__ca__host__remove {
+  height: 45px;
+  width: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  fill: #c33;
+}
+.hub__ca__host__value {
+  width: 355px;
+}

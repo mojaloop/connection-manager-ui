@@ -1,0 +1,49 @@
+{
+  "name": "connection-manager-ui",
+  "version": "1.6.4",
+  "private": true,
+  "dependencies": {
+    "asn1js": "^2.0.22",
+    "babel-polyfill": "^6.26.0",
+    "connected-react-router": "^6.3.2",
+    "fetch-mock": "^7.3.3",
+    "highlight.js": "^9.15.6",
+    "history": "^4.9.0",
+    "lodash": "^4.17.11",
+    "modusbox-ui-components": "https://modusbox-release-artifacts.s3.amazonaws.com/ui-components/modusbox-ui-components-1.15.37.tgz",
+    "moment": "^2.24.0",
+    "moment-timezone": "^0.5.25",
+    "pkijs": "^2.1.76",
+    "prettier": "^1.17.0",
+    "pvutils": "^1.0.17",
+    "qrcode": "^1.4.1",
+    "react": "^16.8.5",
+    "react-app-rewired": "^2.1.1",
+    "react-dom": "^16.8.5",
+    "react-redux": "^6.0.1",
+    "react-router-dom": "^5.0.0",
+    "react-scripts": "2.1.8",
+    "redux": "^4.0.1",
+    "redux-actions": "^2.6.5",
+    "redux-thunk": "^2.3.0",
+    "reselect": "^4.0.0",
+    "svg-sprite-loader": "^4.1.3",
+    "vkbeautify": "^0.99.3"
+  },
+  "scripts": {
+    "prettier": "prettier --write 'src/**/*.{css,js}'",
+    "start": "react-app-rewired start",
+    "build": "react-app-rewired build",
+    "test": "react-app-rewired test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
+}

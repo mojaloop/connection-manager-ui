@@ -1,0 +1,45 @@
+.hub__dfsp-ca {
+  position: relative;
+  margin-top: 10px;
+}
+
+.hub__dfsp-ca__dfsp {
+  border-bottom: 2px solid #eee;
+  padding: 20px 0px;
+}
+.hub__dfsp-ca__dfsp__title {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-family: ubuntu;
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+}
+.hub__dfsp-ca__dfsp__name {
+  font-weight: bold;
+}
+.hub__dfsp-ca__dfsp__spacing {
+  width: 15px;
+  text-align: center;
+}
+.hub__dfsp-ca__dfsp__environment {
+  font-size: 1.2rem;
+}
+.hub__dfsp-ca__dfsp__certificate-validation {
+  width: 400px;
+  margin: 10px 0px;
+}
+
+.hub__dfsp-ca__dfsp__root-certificate {
+  width: 400px;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  margin-bottom: 20px;
+}
+.hub__dfsp-ca__dfsp__intermediate-chain {
+  width: 400px;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+}

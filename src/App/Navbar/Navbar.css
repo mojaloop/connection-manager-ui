@@ -1,0 +1,47 @@
+#navbar {
+  flex: 0 0 55px;
+  width: 100%;
+  background: #987;
+  webkit-user-select: none;
+  user-select: none;
+  height: 55px;
+  width: 100%;
+  z-index: 1030;
+  position: fixed;
+  top: 0;
+  background: linear-gradient(269.81deg, #043865 0.01%, #02182b 100%);
+  border-bottom: 5px solid #4fc7e7;
+  display: flex;
+  align-items: center;
+}
+
+#navbar__controls {
+  flex: 0 0 auto;
+}
+#navbar__link {
+  margin-left: 30px;
+  color: #fff;
+  font-size: 17px;
+  font-family: ubuntu;
+}
+#navbar__user {
+  flex: 1 1 auto;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding-right: 20px;
+}
+#navbar__user__icon {
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  height: 30px;
+  width: 30px;
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: 20px;
+  margin: 0px 20px;
+}
+#navbar__user__name {
+  color: #fff;
+  cursor: pointer;
+}

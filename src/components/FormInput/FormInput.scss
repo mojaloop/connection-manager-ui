@@ -1,0 +1,67 @@
+/* forminputs */
+.forminput-input {
+  width: 100%;
+}
+
+.forminput-checkbox {
+  margin-bottom: 10px;
+}
+.forminput__input-message {
+  height: 15px;
+  font-size: 11px;
+  line-height: 15px;
+  color: #999;
+  span {
+    display: block;
+    animation: fadeInInputMessage 0.3s ease-out;
+  }
+}
+.forminput__label-box {
+  height: 19px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+}
+.forminput__label-icon {
+  margin-right: 2px;
+  margin-bottom: 1px;
+}
+.forminput-timepicker,
+.forminput-input,
+.forminput-checkbox {
+  label {
+    -webkit-font-smoothing: antialiased;
+  }
+  .input-base {
+    display: block;
+  }
+
+  &.locked {
+    .input-base input,
+    .select-input,
+    .datetime {
+      border-color: #f4f4f4 !important;
+      background: #f4f4f4 !important;
+    }
+  }
+}
+
+/* MODAL CSS MODIFIERS */
+.element-modal__body:not(.element-modal__body--tabbed) .forminput-input {
+  margin-left: 0;
+  width: auto;
+  flex-grow: 1;
+}
+.element-modal__body.element-modal__body--tabbed .forminput-input {
+  flex-grow: 0;
+}
+
+@keyframes fadeInInputMessage {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

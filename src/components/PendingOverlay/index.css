@@ -1,0 +1,14 @@
+.pending-overlay {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  background: rgba(255, 255, 255, 0.8);
+  z-index: 100000;
+  left: 0;
+  top: 0;
+  justify-content: center;
+  padding-top: 200px;
+}
+.pending-overlay__spinner {
+}

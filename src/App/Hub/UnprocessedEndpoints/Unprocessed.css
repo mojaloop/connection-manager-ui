@@ -1,0 +1,63 @@
+.unprocessed-dfsp-endpoints__filter {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.unprocessed-dfsp-endpoints__content {
+}
+
+.unprocessed-dfsp-endpoints__no-items {
+  font-size: 20px;
+  text-align: center;
+  color: #666;
+  margin: 20px;
+}
+
+.unprocessed-dfsp-endpoints__row {
+  border: 1px solid #ddd;
+  margin-bottom: 10px;
+}
+
+.unprocessed-dfsp-endpoints__header {
+  background: #f8f8f8;
+  padding: 15px;
+}
+.unprocessed-dfsp-endpoints__header__names {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  margin-bottom: 5px;
+}
+.unprocessed-dfsp-endpoints__dfsp-name {
+  font-weight: bold;
+  font-size: 16px;
+  margin-right: 10px;
+}
+.unprocessed-dfsp-endpoints__environment-name {
+  font-size: 16px;
+}
+
+.unprocessed-dfsp-endpoints__body {
+  display: flex;
+  flex-direction: row;
+  padding: 10px;
+}
+.unprocessed-dfsp-endpoints__body__section {
+  flex: 0 0 50%;
+  padding: 20px;
+}
+.unprocessed-dfsp-endpoints__body__section__title {
+  font-weight: bold;
+  margin-bottom: 10px;
+  padding-bottom: 5px;
+}
+
+.unprocessed-dfsp-endpoints__footer {
+  display: flex;
+  flex-direction: row;
+}
+.unprocessed-dfsp-endpoints__footer__section {
+  flex: 0 0 50%;
+  padding: 20px;
+}

@@ -1,0 +1,13 @@
+.dfsp-modal__content {
+  border-bottom: 2px solid #eee;
+  padding: 20px 0px;
+}
+
+.dfsp-modal__dfsp-id,
+.dfsp-modal__dfsp-name {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  margin-bottom: 20px;
+}
