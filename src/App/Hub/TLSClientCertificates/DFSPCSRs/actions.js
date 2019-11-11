@@ -90,5 +90,5 @@ export const submitCertificateHubDfspCsr = () => async (dispatch, getState) => {
 };
 
 export const downloadHubDfspCsrCertificate = (certificate, dfspName, cn, extension) => (dispatch, getState) => {
-  downloadFile(certificate, `${dfspName}-${cn}-${extension}.csr`);
+  downloadFile(certificate, `${dfspName}-${cn}-${extension}`);
 };

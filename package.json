@@ -1,6 +1,6 @@
 {
   "name": "connection-manager-ui",
-  "version": "1.6.4",
+  "version": "1.6.7",
   "private": true,
   "dependencies": {
     "asn1js": "^2.0.22",
