@@ -64,6 +64,14 @@ const endpoints = {
     service: services.connectionManager,
     url: ({ environmentId }) => `/environments/${environmentId}/dfsps`,
   },
+  dfsp: {
+    service: services.connectionManager,
+    url: ({ environmentId, dfspId }) => `/environments/${environmentId}/dfsps/${dfspId}`,
+  },
+  monetaryZones: {
+    service: services.connectionManager,
+    url: () => `/monetaryzones`,
+  },
   egressIps: {
     service: services.connectionManager,
     url: ({ environmentId, dfspId }) => `/environments/${environmentId}/dfsps/${dfspId}/endpoints/egress/ips`,

@@ -2,24 +2,30 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Modal, FormInput } from 'components';
 import {
+  getMonetaryZoneOptions,
   getHubDfspModalName,
   getHubDfspModalId,
+  getHubDfspModalMonetaryZoneId,
   getHubDfspModalValidationResult,
   getIsHubDfspModalVisible,
+  getIsExistingDfsp,
   getIsHubDfspModalSubmitEnabled,
-  getIsHubDfspCreatePending,
+  getIsHubDfspModalSubmitPending,
 } from './selectors';
-import { closeHubDfspModal, submitHubDfspModal, setHubDfspModalName, setHubDfspModalId } from './actions';
+import { closeHubDfspModal, submitHubDfspModal, setHubDfspModalName, setHubDfspModalId, setHubDfspModalMonetaryZone } from './actions';
 
 import './index.css';
 
 const stateProps = state => ({
   dfspName: getHubDfspModalName(state),
   dfspId: getHubDfspModalId(state),
+  dfspMonetaryZoneId: getHubDfspModalMonetaryZoneId(state),
+  monetaryZoneOptions: getMonetaryZoneOptions(state),
   validation: getHubDfspModalValidationResult(state),
   isVisible: getIsHubDfspModalVisible(state),
+  isExistingDfsp: getIsExistingDfsp(state),
   isSubmitEnabled: getIsHubDfspModalSubmitEnabled(state),
-  isSubmitPending: getIsHubDfspCreatePending(state),
+  isSubmitPending: getIsHubDfspModalSubmitPending(state),
 });
 
 const actionProps = dispatch => ({
@@ -27,17 +33,22 @@ const actionProps = dispatch => ({
   onSubmit: () => dispatch(submitHubDfspModal()),
   onNameChange: name => dispatch(setHubDfspModalName(name)),
   onIdChange: id => dispatch(setHubDfspModalId(id)),
+  onMonetaryZoneChange: zone => dispatch(setHubDfspModalMonetaryZone(zone)),
 });
 
 const DFSPModal = ({
   dfspName,
   dfspId,
+  dfspMonetaryZoneId,
+  monetaryZoneOptions,
   validation,
+  isExistingDfsp,
   isVisible,
   isSubmitEnabled,
   isSubmitPending,
   onNameChange,
   onIdChange,
+  onMonetaryZoneChange,
   onClose,
   onSubmit,
 }) => {
@@ -69,9 +80,20 @@ const DFSPModal = ({
           <FormInput
             type="text"
             label="ID"
+            disabled={isExistingDfsp}
             onChange={onIdChange}
             value={dfspId}
             validation={validation.fields.dfspId}
+          />
+        </div>
+        <div className="dfsp-modal__dfsp-monetary-zone">
+          <FormInput
+            type="select"
+            options={monetaryZoneOptions}
+            label="Monetary Zone"
+            onChange={onMonetaryZoneChange}
+            value={dfspMonetaryZoneId}
+            validation={validation.fields.monetaryZoneId}
           />
         </div>
       </div>

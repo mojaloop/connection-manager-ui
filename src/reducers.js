@@ -6,6 +6,7 @@ import auth from 'Auth/reducers';
 import totp from 'Auth/TOTP/reducers';
 import passwordChange from 'Auth/PasswordChange/reducers';
 import app from 'App/reducers';
+import monetaryZones from 'App/MonetaryZones/reducers';
 
 import hubEgress from 'App/Hub/Endpoints/Egress/reducers';
 import hubIngress from 'App/Hub/Endpoints/Ingress/reducers';
@@ -46,6 +47,7 @@ const reducers = (history, isAuthEnabled) =>
       password: passwordChange,
     }),
     app,
+    monetaryZones,
     dfsp: combineReducers({
       dfsp,
       endpoints: combineReducers({

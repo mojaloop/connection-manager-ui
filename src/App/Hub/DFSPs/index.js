@@ -1,20 +1,23 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Button, DataList } from 'components';
+import { Button, ControlIcon, DataList } from 'components';
 import { getDfsps, getIsDfspsReadPending } from 'App/selectors';
+import { getMonetaryZones } from 'App/MonetaryZones/selectors';
 import DFSPModal from './DFSPModal';
-import { showHubDfspModal } from './DFSPModal/actions';
+import { openNewHubDfspModal, openExistingHubDfspModal } from './DFSPModal/actions';
 import './index.css';
 
 const stateProps = state => ({
   dfsps: getDfsps(state),
+  monetaryZones: getMonetaryZones(state),
   isDfspsPending: getIsDfspsReadPending(state),
 });
 const actionProps = dispatch => ({
-  onAddClick: () => dispatch(showHubDfspModal()),
+  onAddClick: () => dispatch(openNewHubDfspModal()),
+  onEditClick: dfsp => dispatch(openExistingHubDfspModal(dfsp)),
 });
 
-const DFSPs = ({ dfsps, isDfspsPending, onAddClick }) => {
+const DFSPs = ({ dfsps, monetaryZones, isDfspsPending, onAddClick, onEditClick }) => {
   const columns = [
     {
       label: 'Id',
@@ -30,6 +33,33 @@ const DFSPs = ({ dfsps, isDfspsPending, onAddClick }) => {
       label: 'Security Group',
       key: 'securityGroup',
       className: 'hub__dfsps__security-group',
+    },
+    {
+      label: 'Monetary Zone',
+      key: 'monetaryZoneId',
+      func: (id) => {
+        const zone = monetaryZones.find(zone => zone.monetaryZoneId === id);
+        if (zone) {
+          return `${zone.monetaryZoneId} - ${zone.name}`;
+        }
+        return null;
+      }
+    },
+    {
+      label: '',
+      key: 'id',
+      sortable: false,
+      searchable: false,
+      func: (_, dfsp, index) => (
+        <ControlIcon
+          icon="edit-small"
+          size={16}
+          tooltip={`Edit ${dfsp.name}`}
+          onClick={() => onEditClick(dfsp)}
+          tooltipPosition="left"
+        />
+      ),
+      className: 'icon-column',
     },
   ];
   return (

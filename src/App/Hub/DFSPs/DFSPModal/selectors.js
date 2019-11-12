@@ -1,15 +1,30 @@
 import { createSelector } from 'reselect';
 import find from 'lodash/find';
+import * as testers from 'utils/testers';
 import { getIsValid, toValidationResult } from 'modusbox-ui-components/dist/redux-validation';
-import { getHubDfspModalValidators } from './validators';
-import { getDfsps } from 'App/selectors';
 import { createPendingSelector } from 'modusbox-ui-components/dist/redux-fetch';
+import { getDfsps } from 'App/selectors';
+import { getMonetaryZones } from 'App/MonetaryZones/selectors';
+import { getHubDfspModalValidators } from './validators';
+
+const buildDfspModel = (name, dfspId, monetaryZoneId) => ({ name, dfspId, monetaryZoneId });
 
 export const getHubDfspModalName = state => state.hub.dfspModal.hubDfspName;
 export const getHubDfspModalDefaultId = state => state.hub.dfspModal.hubDfspDefaultId;
+export const getHubDfspModalMonetaryZoneId = state => state.hub.dfspModal.hubDfspMonetaryZoneId;
 export const getIsHubDfspModalOverrideIdSet = state => state.hub.dfspModal.isHubDfspOverrideIdSet;
 export const getHubDfspModalOverrideId = state => state.hub.dfspModal.hubDfspOverrideId;
 export const getIsHubDfspModalVisible = state => state.hub.dfspModal.isHubDfspModalVisible;
+export const getPreviousHubDfspModalName = state => state.hub.dfspModal.previousHubDfspName;
+export const getPreviousHubDfspModalId = state => state.hub.dfspModal.previousHubDfspId;
+export const getPreviousHubDfspModalMonetaryZoneId = state => state.hub.dfspModal.previousHubDfspMonetaryZoneId;
+
+export const getIsExistingDfsp = createSelector(getPreviousHubDfspModalId, id =>  id !== undefined);
+
+export const getMonetaryZoneOptions = createSelector(getMonetaryZones, zones => zones.map(zone => ({
+  label: zone.name,
+  value: zone.monetaryZoneId,
+})));
 
 export const getHubDfspModalId = createSelector(
   getHubDfspModalDefaultId,
@@ -21,13 +36,15 @@ export const getHubDfspModalId = createSelector(
 const getHubDfspModalIsNameUnique = createSelector(
   getDfsps,
   getHubDfspModalName,
-  (dfsps, name) => !find(dfsps, { name })
+  getPreviousHubDfspModalName, 
+  (dfsps, name, previousName) => !find(dfsps, dfsp => dfsp.name === name && previousName !== dfsp.name)
 );
 
 const getHubDfspModalIsIdUnique = createSelector(
   getDfsps,
   getHubDfspModalId,
-  (dfsps, id) => !find(dfsps, { id })
+  getPreviousHubDfspModalId,
+  (dfsps, id, previousId) => !find(dfsps, dfsp => dfsp.id === id && previousId !== dfsp.id)
 );
 
 const getHubDfspModalValidation = createSelector(
@@ -41,7 +58,15 @@ const getHubDfspModalValidation = createSelector(
 export const getHubDfspModalModel = createSelector(
   getHubDfspModalName,
   getHubDfspModalId,
-  (name, dfspId) => ({ name, dfspId })
+  getHubDfspModalMonetaryZoneId,
+  buildDfspModel,
+);
+
+export const getPreviousHubDfspModalModel = createSelector(
+  getPreviousHubDfspModalName,
+  getPreviousHubDfspModalId,
+  getPreviousHubDfspModalMonetaryZoneId,
+  buildDfspModel,
 );
 
 export const getHubDfspModalValidationResult = createSelector(
@@ -55,9 +80,22 @@ const isModelValid = createSelector(
   getIsValid
 );
 
+const isModelChanged = createSelector(
+  getPreviousHubDfspModalModel,
+  getHubDfspModalModel,
+  testers.isNotEqual
+);
+
 export const getIsHubDfspModalSubmitEnabled = createSelector(
   isModelValid,
-  isValid => isValid === true
+  isModelChanged,
+  testers.getAllAre(true)
 );
 
 export const getIsHubDfspCreatePending = createPendingSelector('dfsps.create');
+export const getIsHubDfspUpdatePending = createPendingSelector('dfsp.update');
+export const getIsHubDfspModalSubmitPending = createSelector(
+  getIsHubDfspCreatePending,
+  getIsHubDfspUpdatePending,
+  testers.getAnyIs(true)
+);

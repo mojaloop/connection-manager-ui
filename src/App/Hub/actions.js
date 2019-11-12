@@ -1,6 +1,7 @@
 import { createAction } from 'redux-actions';
 import { push } from 'connected-react-router';
 import { getEnvironmentId } from 'App/selectors';
+import { storeMonetaryZones } from 'App/MonetaryZones/actions';
 import { resetHubEgress, storeHubEgressIps } from './Endpoints/Egress/actions';
 import { resetHubIngress, storeHubEndpoints } from './Endpoints/Ingress/actions';
 import { resetHubUnprocessed, storeUnprocessedEndpoints } from './UnprocessedEndpoints/actions';
@@ -50,6 +51,7 @@ export const initHub = () => async (dispatch, getState) => {
     dispatch(storeHubDfspCas());
     dispatch(storeHubDfspCsrs());
     dispatch(storeHubDfspSCServerCertificates());
+    dispatch(storeMonetaryZones());
   }
 
   dispatch(unsetHubLoading());
