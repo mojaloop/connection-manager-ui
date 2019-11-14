@@ -52,7 +52,7 @@ const boot = async () => {
   const store = configureStore(history, { isDevelopment, isAuthEnabled });
 
   store.dispatch(setAppConfig({ apiUrl, loginUrl }));
-  
+
   ReactDOM.render(<Root store={store} />, document.getElementById('root'));
 
   if (isDevelopment) {

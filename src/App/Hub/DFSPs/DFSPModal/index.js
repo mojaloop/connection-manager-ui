@@ -12,7 +12,13 @@ import {
   getIsHubDfspModalSubmitEnabled,
   getIsHubDfspModalSubmitPending,
 } from './selectors';
-import { closeHubDfspModal, submitHubDfspModal, setHubDfspModalName, setHubDfspModalId, setHubDfspModalMonetaryZone } from './actions';
+import {
+  closeHubDfspModal,
+  submitHubDfspModal,
+  setHubDfspModalName,
+  setHubDfspModalId,
+  setHubDfspModalMonetaryZone,
+} from './actions';
 
 import './index.css';
 

@@ -13,15 +13,15 @@ const initialHubDfspModel = {
   id: undefined,
   name: '',
   monetaryZoneId: undefined,
-}
+};
 
 const initialState = {
   previousHubDfspMonetaryZoneId: initialHubDfspModel.monetaryZoneId,
   previousHubDfspName: initialHubDfspModel.name,
   previousHubDfspId: initialHubDfspModel.id,
-  hubDfspMonetaryZoneId:initialHubDfspModel.monetaryZoneId,
-  hubDfspName:initialHubDfspModel.name,
-  hubDfspOverrideId:initialHubDfspModel.id,
+  hubDfspMonetaryZoneId: initialHubDfspModel.monetaryZoneId,
+  hubDfspName: initialHubDfspModel.name,
+  hubDfspOverrideId: initialHubDfspModel.id,
   hubDfspDefaultId: undefined,
   isHubDfspOverrideIdSet: false,
   isHubDfspModalVisible: false,
@@ -41,7 +41,7 @@ const HubDfspModal = handleActions(
         hubDfspName: model.name,
         hubDfspOverrideId: model.id,
         isHubDfspOverrideIdSet: action.payload !== undefined,
-      }
+      };
     },
     [SET_HUB_DFSP_MODAL_NAME]: (state, action) => ({
       ...state,

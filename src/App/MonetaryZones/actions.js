@@ -11,7 +11,7 @@ export const setMonetaryZonesError = createAction(SET_MONETARY_ZONES_ERROR);
 export const unsetMonetaryZones = createAction(UNSET_MONETARY_ZONES);
 
 export const storeMonetaryZones = environmentId => async dispatch => {
-  const { data, status } = await dispatch(api.monetaryZones.read({ }));
+  const { data, status } = await dispatch(api.monetaryZones.read({}));
   if (is200(status)) {
     dispatch(setMonetaryZones(data));
   } else {

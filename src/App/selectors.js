@@ -50,6 +50,11 @@ export const getDfspName = createSelector(
   dfsp => get(dfsp, 'name')
 );
 
+export const getDfspMonetaryZoneId = createSelector(
+  getDfsp,
+  dfsp => get(dfsp, 'monetaryZoneId')
+);
+
 export const getIsDfspsReadPending = createPendingSelector('dfsps.read');
 export const getErrorModalContent = createSelector(
   getErrorModalPayload,

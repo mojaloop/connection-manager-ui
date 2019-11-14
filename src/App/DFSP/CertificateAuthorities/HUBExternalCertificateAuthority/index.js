@@ -42,7 +42,8 @@ const actionProps = dispatch => ({
   onRootCertificateViewClick: cert => dispatch(showDfspHubExternalCaRootCertificateModal(cert)),
   onRootCertificateDownloadClick: (cert, name) => dispatch(downloadDfspHubExternalCaRootCertificate({ cert, name })),
   onRootCertificateModalCloseClick: () => dispatch(hideDfspHubExternalCaRootCertificateModal()),
-  onIntermediateChainDownloadClick: (cert, name) => dispatch(downloadDfspHubExternalCaIntermediateChain({ cert, name })),
+  onIntermediateChainDownloadClick: (cert, name) =>
+    dispatch(downloadDfspHubExternalCaIntermediateChain({ cert, name })),
   onIntermediateChainViewClick: cert => dispatch(showDfspHubExternalCaIntermediateChainModal(cert)),
   onIntermediateChainModalCloseClick: () => dispatch(hideDfspHubExternalCaIntermediateChainModal()),
 });

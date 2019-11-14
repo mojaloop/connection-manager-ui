@@ -37,13 +37,13 @@ const DFSPs = ({ dfsps, monetaryZones, isDfspsPending, onAddClick, onEditClick }
     {
       label: 'Monetary Zone',
       key: 'monetaryZoneId',
-      func: (id) => {
+      func: id => {
         const zone = monetaryZones.find(zone => zone.monetaryZoneId === id);
         if (zone) {
           return `${zone.monetaryZoneId} - ${zone.name}`;
         }
         return null;
-      }
+      },
     },
     {
       label: '',

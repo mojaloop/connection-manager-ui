@@ -38,7 +38,6 @@ export const submitHubDfspModal = () => async (dispatch, getState) => {
     result = await dispatch(api.dfsps.create({ environmentId, body: model }));
   }
 
-
   if (is20x(result.status)) {
     dispatch(storeDFSPs(environmentId));
     dispatch(resetHubDfspModal());
@@ -48,10 +47,9 @@ export const submitHubDfspModal = () => async (dispatch, getState) => {
 export const openNewHubDfspModal = () => async (dispatch, getState) => {
   dispatch(setHubDfspModel());
   dispatch(showHubDfspModal());
-}
+};
 
-export const openExistingHubDfspModal = (dfspModel) => async (dispatch, getState) => {
+export const openExistingHubDfspModal = dfspModel => async (dispatch, getState) => {
   dispatch(setHubDfspModel(dfspModel));
   dispatch(showHubDfspModal());
-  
-}
+};

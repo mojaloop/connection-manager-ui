@@ -19,12 +19,19 @@ export const getPreviousHubDfspModalName = state => state.hub.dfspModal.previous
 export const getPreviousHubDfspModalId = state => state.hub.dfspModal.previousHubDfspId;
 export const getPreviousHubDfspModalMonetaryZoneId = state => state.hub.dfspModal.previousHubDfspMonetaryZoneId;
 
-export const getIsExistingDfsp = createSelector(getPreviousHubDfspModalId, id =>  id !== undefined);
+export const getIsExistingDfsp = createSelector(
+  getPreviousHubDfspModalId,
+  id => id !== undefined
+);
 
-export const getMonetaryZoneOptions = createSelector(getMonetaryZones, zones => zones.map(zone => ({
-  label: zone.name,
-  value: zone.monetaryZoneId,
-})));
+export const getMonetaryZoneOptions = createSelector(
+  getMonetaryZones,
+  zones =>
+    zones.map(zone => ({
+      label: zone.name,
+      value: zone.monetaryZoneId,
+    }))
+);
 
 export const getHubDfspModalId = createSelector(
   getHubDfspModalDefaultId,
@@ -36,7 +43,7 @@ export const getHubDfspModalId = createSelector(
 const getHubDfspModalIsNameUnique = createSelector(
   getDfsps,
   getHubDfspModalName,
-  getPreviousHubDfspModalName, 
+  getPreviousHubDfspModalName,
   (dfsps, name, previousName) => !find(dfsps, dfsp => dfsp.name === name && previousName !== dfsp.name)
 );
 
@@ -59,14 +66,14 @@ export const getHubDfspModalModel = createSelector(
   getHubDfspModalName,
   getHubDfspModalId,
   getHubDfspModalMonetaryZoneId,
-  buildDfspModel,
+  buildDfspModel
 );
 
 export const getPreviousHubDfspModalModel = createSelector(
   getPreviousHubDfspModalName,
   getPreviousHubDfspModalId,
   getPreviousHubDfspModalMonetaryZoneId,
-  buildDfspModel,
+  buildDfspModel
 );
 
 export const getHubDfspModalValidationResult = createSelector(

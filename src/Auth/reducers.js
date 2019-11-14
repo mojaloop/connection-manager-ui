@@ -16,8 +16,7 @@ import {
   UNSET_AUTH_QR_PROPS,
 } from './actions';
 
-const auth = (isAuthEnabled) => {
-
+const auth = isAuthEnabled => {
   const initialState = {
     isDisabled: isDevelopment ? !!getItem('auth_disabled') : !isAuthEnabled,
     isPending: false,
@@ -119,5 +118,5 @@ const auth = (isAuthEnabled) => {
     initialState
   );
   return Auth;
-}
+};
 export default auth;

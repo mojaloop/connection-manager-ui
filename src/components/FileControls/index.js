@@ -2,7 +2,7 @@ import React from 'react';
 import { Button } from 'components';
 import './index.css';
 
-const FileControls = ({ onViewClick, onDownloadClick }) => (
+const FileControls = ({ onViewClick, onDownloadClick, downloadDisabled }) => (
   <div className="file-controls">
     {onViewClick && (
       <Button
@@ -23,6 +23,7 @@ const FileControls = ({ onViewClick, onDownloadClick }) => (
         noFill
         size="m"
         onClick={onDownloadClick}
+        disabled={downloadDisabled}
       />
     )}
   </div>

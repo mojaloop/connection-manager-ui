@@ -1,9 +1,5 @@
 import { handleActions } from 'redux-actions';
-import {
-  SET_MONETARY_ZONES,
-  SET_MONETARY_ZONES_ERROR,
-  UNSET_MONETARY_ZONES,
-} from './actions';
+import { SET_MONETARY_ZONES, SET_MONETARY_ZONES_ERROR, UNSET_MONETARY_ZONES } from './actions';
 
 const initialState = {
   monetaryZones: [],
@@ -12,7 +8,6 @@ const initialState = {
 
 const App = handleActions(
   {
-    
     [SET_MONETARY_ZONES]: (state, action) => ({
       ...state,
       monetaryZones: action.payload,

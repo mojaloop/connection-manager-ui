@@ -3,6 +3,7 @@ import {
   RESET_DFSPS_JWS,
   SET_DFSPS_JWS_ERROR,
   SET_DFSPS_JWS_FILTER,
+  SET_DFSPS_JWS_SAME_MONETARY_ZONE,
   SET_DFSPS_JWS_CERTIFICATES,
   SHOW_DFSPS_JWS_JWS_CERTIFICATE_MODAL,
   HIDE_DFSPS_JWS_JWS_CERTIFICATE_MODAL,
@@ -13,6 +14,7 @@ import {
 const initialState = {
   dfspsJWSError: undefined,
   dfspsJWSFilter: '',
+  dfspsSameMonetaryZone: false,
   dfspsJWSCertificates: [],
   dfspsJWSJwsCertificateModalContent: undefined,
   isDfspsJWSJwsCertificateModalVisible: false,
@@ -30,6 +32,10 @@ const DfspsJWS = handleActions(
     [SET_DFSPS_JWS_FILTER]: (state, action) => ({
       ...state,
       dfspsJWSFilter: action.payload || '',
+    }),
+    [SET_DFSPS_JWS_SAME_MONETARY_ZONE]: (state, action) => ({
+      ...state,
+      dfspsSameMonetaryZone: action.payload,
     }),
     [SET_DFSPS_JWS_CERTIFICATES]: (state, action) => ({
       // the server sends null for a non-existing certificate

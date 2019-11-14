@@ -4,6 +4,7 @@ import {
   CertificateInfo,
   CertificateModal,
   CertificateValidation,
+  Checkbox,
   FileControls,
   FormInput,
   MessageBox,
@@ -14,6 +15,7 @@ import { getEnvironmentName } from 'App/selectors';
 import {
   storeDfspsJWSCertificates,
   setDfspsJWSFilter,
+  setDfspsJWSSameMonetaryZone,
   downloadDfspsJWSJwsCertificate,
   showDfspsJWSJwsCertificateModal,
   hideDfspsJWSJwsCertificateModal,
@@ -24,11 +26,13 @@ import {
 import {
   getDfspsJWSError,
   getDfspsJWSFilter,
+  getDfspsJWSSameMonetaryZone,
   getFilteredDfspsJWSCertificatesByDfsp,
   getDfspsJWSJwsCertificateModalContent,
   getIsDfspsJWSJwsCertificateModalVisible,
   getDfspsJWSIntermediateChainModalContent,
   getIsDfspsJWSIntermediateChainModalVisible,
+  getIsSameMonetaryZoneFilterEnabled,
   getIsDfspsJWSPending,
 } from './selectors';
 
@@ -38,10 +42,12 @@ const stateProps = state => ({
   environmentName: getEnvironmentName(state),
   error: getDfspsJWSError(state),
   filter: getDfspsJWSFilter(state),
+  sameMonetaryZone: getDfspsJWSSameMonetaryZone(state),
   certificatesByDfsp: getFilteredDfspsJWSCertificatesByDfsp(state),
   isJwsCertificateModalVisible: getIsDfspsJWSJwsCertificateModalVisible(state),
   jwsCertificateModalContent: getDfspsJWSJwsCertificateModalContent(state),
   isIntermediateChainModalVisible: getIsDfspsJWSIntermediateChainModalVisible(state),
+  isSameMonetaryZoneFilterEnabled: getIsSameMonetaryZoneFilterEnabled(state),
   intermediateChainModalContent: getDfspsJWSIntermediateChainModalContent(state),
   isDfspsJWSPending: getIsDfspsJWSPending(state),
 });
@@ -49,6 +55,7 @@ const stateProps = state => ({
 const actionProps = dispatch => ({
   onMount: () => dispatch(storeDfspsJWSCertificates()),
   onFilterChange: value => dispatch(setDfspsJWSFilter(value)),
+  onSameMonetaryZoneChange: value => dispatch(setDfspsJWSSameMonetaryZone(value)),
   onJwsCertificateViewClick: cert => dispatch(showDfspsJWSJwsCertificateModal(cert)),
   onJwsCertificateDownloadClick: (cert, dfspName) => dispatch(downloadDfspsJWSJwsCertificate({ cert, dfspName })),
   onJwsCertificateModalCloseClick: () => dispatch(hideDfspsJWSJwsCertificateModal()),
@@ -61,13 +68,16 @@ const DFSPsJWS = ({
   environmentName,
   error,
   filter,
+  sameMonetaryZone,
   certificatesByDfsp,
   jwsCertificateModalContent,
   intermediateChainModalContent,
   isJwsCertificateModalVisible,
   isIntermediateChainModalVisible,
+  isSameMonetaryZoneFilterEnabled,
   isDfspsJWSPending,
   onFilterChange,
+  onSameMonetaryZoneChange,
   onJwsCertificateViewClick,
   onJwsCertificateDownloadClick,
   onJwsCertificateModalCloseClick,
@@ -91,6 +101,14 @@ const DFSPsJWS = ({
     <div className="dfsp__dfsps-jws">
       <div className="dfsp__dfsps-jws__filter">
         <TextField placeholder="Search DFSP JWS Certificates" value={filter} onChange={onFilterChange} />
+      </div>
+      <div className="dfsp__dfsps-jws__filter">
+        <Checkbox
+          checked={sameMonetaryZone}
+          onChange={onSameMonetaryZoneChange}
+          disabled={!isSameMonetaryZoneFilterEnabled}
+          label="Show only in the same monetary zone"
+        />
       </div>
 
       <DFSPsCertificates
@@ -146,6 +164,7 @@ const DFSPsCertificates = ({
       intermediateChainInfo,
       validations,
       validationState,
+      isDownloadEnabled,
     } = certificate;
     const header = (
       <div className="dfsp__dfsps-jws__title">
@@ -183,6 +202,7 @@ const DFSPsCertificates = ({
                   <FileControls
                     onViewClick={() => onJwsCertificateViewClick(jwsCertificate)}
                     onDownloadClick={() => onJwsCertificateDownloadClick(jwsCertificate, dfspName)}
+                    downloadDisabled={!isDownloadEnabled}
                   />
                 )}
               </div>
