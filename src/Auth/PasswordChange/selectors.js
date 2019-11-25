@@ -1,6 +1,6 @@
 import { createSelector } from 'reselect';
-import { getIsValid, toValidationResult } from 'modusbox-ui-components/dist/redux-validation';
-import { createPendingSelector } from 'modusbox-ui-components/dist/redux-fetch';
+import { getIsValid, toValidationResult } from '@modusbox/modusbox-ui-components/dist/redux-validation';
+import { createPendingSelector } from '@modusbox/modusbox-ui-components/dist/redux-fetch';
 import { getPasswordChangeValidation } from './validators';
 
 export const getPasswordChangeOldPassword = state => state.auth.password.oldPassword;

@@ -300,7 +300,7 @@ const DNS = ({ index, value, validation, onChange, onRemove }) => (
       className="hub__csr__dns__remove"
       size={20}
       tooltip={'Remove DNS'}
-      kind="error"
+      kind="danger"
       onClick={onRemove}
     />
     <div className="hub__csr__dns__value">
@@ -316,7 +316,7 @@ const IP = ({ index, value, validation, onChange, onRemove }) => (
       className="hub__csr__ip__remove"
       size={20}
       tooltip={'Remove IP'}
-      kind="error"
+      kind="danger"
       onClick={onRemove}
     />
     <div className="hub__csr__ip__value">

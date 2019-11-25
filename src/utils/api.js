@@ -1,4 +1,4 @@
-import { buildFetchActions } from 'modusbox-ui-components/dist/redux-fetch';
+import { buildFetchActions } from '@modusbox/modusbox-ui-components/dist/redux-fetch';
 
 const handleError = (error, status, state) => {
   if (status === 401) {

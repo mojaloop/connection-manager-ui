@@ -110,8 +110,25 @@ p {
   -moz-osx-font-smoothing: grayscale;
 }
 
-.element-datalist__header-cell.icon-column,
-.element-datalist__item-cell.icon-column {
+.el-datalist__header-cell.icon-column,
+.el-datalist__item-cell.icon-column {
   flex: 0 0 40px;
   justify-content: center;
+}
+
+
+.forminput-input {
+  flex-basis: 100%;
+  width: 100%;
+  margin: 0px;
+}
+.forminput__input-message {
+  height: 0px;
+}
+.forminput-checkbox {
+  margin: 0px;
+}
+
+.forminput__row {
+  flex-basis: 100%;
 }

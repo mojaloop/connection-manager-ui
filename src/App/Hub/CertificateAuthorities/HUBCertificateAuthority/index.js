@@ -116,7 +116,7 @@ const HubCertificateAuthority = ({
     return (
       <MessageBox
         icon="warning-sign"
-        kind="error"
+        kind="danger"
         message="There was an error while loading the certificates"
         center
         size={30}
@@ -251,7 +251,7 @@ const HOST = ({ index, value, validation, onChange, onRemove }) => (
       className="hub__ca__host__remove"
       size={20}
       tooltip="Remove Host"
-      kind="error"
+      kind="danger"
       onClick={onRemove}
     />
     <div className="hub__ca__host__value">

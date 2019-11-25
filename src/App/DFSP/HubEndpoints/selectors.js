@@ -1,6 +1,6 @@
 import { createSelector } from 'reselect';
 import sortBy from 'lodash/sortBy';
-import { createPendingSelector } from 'modusbox-ui-components/dist/redux-fetch';
+import { createPendingSelector } from '@modusbox/modusbox-ui-components/dist/redux-fetch';
 import * as testers from 'utils/testers';
 import { DIRECTIONS, TYPES } from '../constants';
 

@@ -4,8 +4,8 @@ import {
   createPendingSelector,
   createPendingCollectionSelector,
   getPendingByParameter,
-} from 'modusbox-ui-components/dist/redux-fetch';
-import { getIsValid, toValidationResult } from 'modusbox-ui-components/dist/redux-validation';
+} from '@modusbox/modusbox-ui-components/dist/redux-fetch';
+import { getIsValid, toValidationResult } from '@modusbox/modusbox-ui-components/dist/redux-validation';
 import { getDfsps } from 'App/selectors';
 import { getHubExternalCaCertificates } from '../../CertificateAuthorities/HUBExternalCertificateAuthority/selectors';
 import { getHubDfspCsrsCertificateModalUploadValidation } from './validators';

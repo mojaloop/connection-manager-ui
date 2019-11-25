@@ -1,5 +1,5 @@
 import { createSelector } from 'reselect';
-import { createPendingSelector } from 'modusbox-ui-components/dist/redux-fetch';
+import { createPendingSelector } from '@modusbox/modusbox-ui-components/dist/redux-fetch';
 import * as testers from 'utils/testers';
 
 export const getDfspJWSError = state => state.dfsp.jws.dfsp.dfspJWSError;

@@ -1,21 +1,17 @@
 {
   "name": "connection-manager-ui",
-  "version": "1.6.9",
+  "version": "1.6.10",
   "private": true,
   "dependencies": {
-    "asn1js": "^2.0.22",
+    "@modusbox/modusbox-ui-components": "1.16.25",
     "babel-polyfill": "^6.26.0",
     "connected-react-router": "^6.3.2",
     "fetch-mock": "^7.3.3",
-    "highlight.js": "^9.15.6",
     "history": "^4.9.0",
     "lodash": "^4.17.11",
-    "modusbox-ui-components": "https://modusbox-release-artifacts.s3.amazonaws.com/ui-components/modusbox-ui-components-1.15.37.tgz",
     "moment": "^2.24.0",
     "moment-timezone": "^0.5.25",
-    "pkijs": "^2.1.76",
     "prettier": "^1.17.0",
-    "pvutils": "^1.0.17",
     "qrcode": "^1.4.1",
     "react": "^16.8.5",
     "react-app-rewired": "^2.1.1",
@@ -27,8 +23,7 @@
     "redux-actions": "^2.6.5",
     "redux-thunk": "^2.3.0",
     "reselect": "^4.0.0",
-    "svg-sprite-loader": "^4.1.3",
-    "vkbeautify": "^0.99.3"
+    "svg-sprite-loader": "^4.1.3"
   },
   "scripts": {
     "prettier": "prettier --write 'src/**/*.{css,js}'",

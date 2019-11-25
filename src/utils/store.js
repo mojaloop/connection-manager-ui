@@ -1,7 +1,7 @@
 import { createStore, applyMiddleware, compose } from 'redux';
 import { routerMiddleware } from 'connected-react-router';
 import ReduxThunk from 'redux-thunk';
-import fetchMiddleware from 'modusbox-ui-components/dist/redux-fetch';
+import fetchMiddleware from '@modusbox/modusbox-ui-components/dist/redux-fetch';
 import reducers from '../reducers';
 
 export default function configureStore(history, config) {

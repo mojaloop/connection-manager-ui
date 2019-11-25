@@ -1,4 +1,4 @@
-import { createValidation, createValidator, vd } from 'modusbox-ui-components/dist/redux-validation';
+import { createValidation, createValidator, vd } from '@modusbox/modusbox-ui-components/dist/redux-validation';
 
 const uniqueNameValidator = (name, isUnique) =>
   createValidator('DFSP name must be unique', () => (name !== undefined ? isUnique : false));

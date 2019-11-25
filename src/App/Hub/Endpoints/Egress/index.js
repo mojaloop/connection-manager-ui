@@ -69,7 +69,7 @@ const Egress = ({
     return (
       <MessageBox
         icon="warning-sign"
-        kind="error"
+        kind="danger"
         message="There was an error while loading the endpoints"
         center
         size={30}
@@ -136,15 +136,16 @@ const EgressIp = ({
   onRemoveIp,
 }) => (
   <div className="hub-egress__ip__row">
-    <ControlIcon
-      icon="close-small"
-      className="hub-egress__ip__remove"
-      size={20}
-      tooltip={index === 0 ? 'The first IP cannot be removed' : 'Remove IP'}
-      kind="error"
-      onClick={() => onRemoveIp(index)}
-      disabled={index === 0}
-    />
+    <div className="hub-egress__ip__remove">
+      <ControlIcon
+        icon="close-small"
+        size={20}
+        tooltip={index === 0 ? 'The first IP cannot be removed' : 'Remove IP'}
+        kind="danger"
+        onClick={() => onRemoveIp(index)}
+        disabled={index === 0}
+      />
+    </div>
     <div className="hub-egress__ip__controls">
       <div className="hub-egress__ip__fields">
         <div className="hub-egress__ip__address__container">
@@ -170,15 +171,16 @@ const EgressIp = ({
               />
             </div>
             {portIndex > 0 && (
-              <ControlIcon
-                icon="close-small"
-                className="hub-egress__ip__port-remove"
-                size={16}
-                tooltip="Remove Port"
-                kind="error"
-                onClick={() => onRemovePort(portIndex, index)}
-                disabled={portIndex === 0}
-              />
+              <div className="hub-egress__ip__port-remove">
+                <ControlIcon
+                  icon="close-small"
+                  size={16}
+                  tooltip="Remove Port"
+                  kind="danger"
+                  onClick={() => onRemovePort(portIndex, index)}
+                  disabled={portIndex === 0}
+                />
+              </div>
             )}
           </div>
         ))}

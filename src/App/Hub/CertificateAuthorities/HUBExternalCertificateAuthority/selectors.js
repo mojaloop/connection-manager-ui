@@ -1,6 +1,6 @@
 import { createSelector } from 'reselect';
-import { createPendingSelector } from 'modusbox-ui-components/dist/redux-fetch';
-import { toValidationResult, getIsValid } from 'modusbox-ui-components/dist/redux-validation';
+import { createPendingSelector } from '@modusbox/modusbox-ui-components/dist/redux-fetch';
+import { toValidationResult, getIsValid } from '@modusbox/modusbox-ui-components/dist/redux-validation';
 import * as testers from 'utils/testers';
 import { getHubExternalCaValidators } from './validators';
 

@@ -1,6 +1,6 @@
 import { createSelector } from 'reselect';
 import find from 'lodash/find';
-import { createPendingSelector } from 'modusbox-ui-components/dist/redux-fetch';
+import { createPendingSelector } from '@modusbox/modusbox-ui-components/dist/redux-fetch';
 import { getDfspHubExternalCaCertificates } from '../../CertificateAuthorities/HUBExternalCertificateAuthority/selectors';
 
 export const getDfspSentCsrsError = state => state.dfsp.tls.client.csrs.dfspSentCsrsError;

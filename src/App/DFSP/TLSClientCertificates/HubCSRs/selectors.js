@@ -4,7 +4,7 @@ import {
   createPendingSelector,
   createPendingCollectionSelector,
   getPendingByParameter,
-} from 'modusbox-ui-components/dist/redux-fetch';
+} from '@modusbox/modusbox-ui-components/dist/redux-fetch';
 import { STATES } from '../constants';
 
 export const getDfspHubCsrsError = state => state.dfsp.tls.client.hub.dfspHubCsrsError;

@@ -1,6 +1,5 @@
 import React from 'react';
-import { Modal } from 'components';
-import ContentReader from 'components/ContentReader';
+import { Modal, ContentReader } from 'components';
 
 const CertificateModal = ({ onClose, title, content }) => (
   <Modal title={title} onClose={onClose} primaryAction="Close" width="800px" flex>

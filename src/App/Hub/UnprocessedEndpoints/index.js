@@ -70,7 +70,7 @@ const UnprocessedContent = ({
     return (
       <MessageBox
         icon="warning-sign"
-        kind="error"
+        kind="danger"
         message="There was an error while loading the endpoints"
         center
         size={30}

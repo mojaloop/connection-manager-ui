@@ -36,7 +36,7 @@ const PasswordChange = ({
 }) => (
   <div className="auth">
     <div className="auth__form">
-      {isAuthFailed && <MessageBox icon="warning-sign" kind="error" message={error} size={16} fontSize={14} />}
+      {isAuthFailed && <MessageBox icon="warning-sign" kind="danger" message={error} size={16} fontSize={14} />}
 
       <div className="auth__form__password">
         <FormInput

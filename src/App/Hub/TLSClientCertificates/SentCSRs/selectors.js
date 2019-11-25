@@ -4,7 +4,7 @@ import {
   createPendingSelector,
   createPendingCollectionSelector,
   getPendingByParameter,
-} from 'modusbox-ui-components/dist/redux-fetch';
+} from '@modusbox/modusbox-ui-components/dist/redux-fetch';
 import { getDfsps } from 'App/selectors';
 import { STATES } from '../constants';
 

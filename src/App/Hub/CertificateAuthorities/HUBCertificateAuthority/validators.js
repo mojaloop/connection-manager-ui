@@ -1,4 +1,4 @@
-import { createValidation, vd } from 'modusbox-ui-components/dist/redux-validation';
+import { createValidation, vd } from '@modusbox/modusbox-ui-components/dist/redux-validation';
 import { hostValidator } from 'App/validators';
 
 const getHubCaNameValidation = () => ({

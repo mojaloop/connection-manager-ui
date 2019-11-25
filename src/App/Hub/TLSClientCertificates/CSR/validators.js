@@ -1,4 +1,4 @@
-import { createValidation, createOptionalValidation, vd } from 'modusbox-ui-components/dist/redux-validation';
+import { createValidation, createOptionalValidation, vd } from '@modusbox/modusbox-ui-components/dist/redux-validation';
 import { DNSValidator, IPAddressValidator } from 'App/validators';
 
 const getHubCsrSubjectValidation = () => ({

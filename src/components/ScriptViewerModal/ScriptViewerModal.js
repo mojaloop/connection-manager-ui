@@ -1,6 +1,5 @@
 import React from 'react';
-import { Button, Modal } from 'src/components';
-import ContentReader from 'src/components/ContentReader';
+import { Button, Modal, ContentReader } from 'src/components';
 
 class ScriptViewerModal extends React.Component {
   constructor(props) {

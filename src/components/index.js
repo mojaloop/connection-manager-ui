@@ -1,14 +1,11 @@
 // Modusbox UI components
-import 'modusbox-ui-components/dist/index.css';
+import '@modusbox/modusbox-ui-components/dist/index.css';
 
 import CertificateCard from './CertificateCard';
 import CertificateInfo from './CertificateInfo';
 import CertificateModal from './CertificateModal';
 import CertificateValidation from './CertificateValidation';
-import ControlIcon from './ControlIcon';
-import MessageBox from './MessageBox';
 import FileControls from './FileControls';
-import FormInput from './FormInput';
 import PendingOverlay from './PendingOverlay';
 import Status from './Status';
 
@@ -16,14 +13,18 @@ import {
   Button,
   Checkbox,
   Column,
+  ContentReader,
+  ControlIcon,
   DataList,
   DatePicker,
   FileUploader,
+  FormInput,
   Heading,
   Icon,
   Menu,
   MenuSection,
   MenuItem,
+  MessageBox,
   Modal,
   ModalTabsLayout,
   Navbar,
@@ -40,7 +41,7 @@ import {
   TextField,
   Toast,
   Tooltip,
-} from 'modusbox-ui-components/dist/index';
+} from '@modusbox/modusbox-ui-components/dist/index';
 
 export {
   Button,
@@ -48,6 +49,7 @@ export {
   CertificateInfo,
   CertificateModal,
   CertificateValidation,
+  ContentReader,
   Checkbox,
   Column,
   ControlIcon,

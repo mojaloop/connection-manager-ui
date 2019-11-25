@@ -100,7 +100,7 @@ const HubExternalUploadCertificateAuthority = ({
     return (
       <MessageBox
         icon="warning-sign"
-        kind="error"
+        kind="danger"
         message="There was an error while loading the certificates"
         center
         size={30}

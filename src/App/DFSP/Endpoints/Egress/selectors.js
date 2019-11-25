@@ -1,8 +1,8 @@
 import { createSelector } from 'reselect';
 import isEqual from 'lodash/isEqual';
 import find from 'lodash/find';
-import { validate, getIsValid } from 'modusbox-ui-components/dist/redux-validation';
-import { createPendingSelector } from 'modusbox-ui-components/dist/redux-fetch';
+import { validate, getIsValid } from '@modusbox/modusbox-ui-components/dist/redux-validation';
+import { createPendingSelector } from '@modusbox/modusbox-ui-components/dist/redux-fetch';
 import * as testers from 'utils/testers';
 import { STATES } from '../constants';
 import { getEgressAddressValidation, getEgressPortValidation } from './validators';

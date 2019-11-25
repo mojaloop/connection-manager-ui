@@ -1,4 +1,4 @@
-import { createPendingSelector } from 'modusbox-ui-components/dist/redux-fetch';
+import { createPendingSelector } from '@modusbox/modusbox-ui-components/dist/redux-fetch';
 
 export const getDfspHubExternalCaError = state => state.dfsp.ca.hubExternal.dfspHubExternalCaError;
 export const getDfspHubExternalCaCertificates = state => state.dfsp.ca.hubExternal.dfspHubExternalCertificates;
