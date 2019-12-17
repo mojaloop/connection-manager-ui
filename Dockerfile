@@ -1,8 +1,9 @@
-FROM node:8.15-jessie
+FROM node:10.13-alpine
 # First part, build the app
 WORKDIR /app
-COPY package*.json /app/
-RUN npm install
+COPY package.json /app/
+COPY yarn.lock /app/
+RUN yarn install
 
 COPY ./ /app/
 
@@ -20,7 +21,7 @@ ENV REACT_APP_VERSION=$REACT_APP_VERSION
 ARG REACT_APP_COMMIT
 ENV REACT_APP_COMMIT=$REACT_APP_COMMIT
 
-RUN npm run build
+RUN yarn run build
 
 # Second part, copy the build and server the app using a node express server
 
