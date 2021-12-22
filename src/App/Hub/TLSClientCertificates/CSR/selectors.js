@@ -69,7 +69,7 @@ export const getHubCsrManualModel = createSelector(
   (subject, dnss, ips) => ({
     subject: {
       CN: subject.commonName,
-      emailAddress: subject.email,
+      E: subject.email,
       O: subject.organization,
       OU: subject.organizationUnit,
       ST: subject.state,
