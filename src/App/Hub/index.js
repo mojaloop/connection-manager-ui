@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { withRouter, Route } from 'react-router-dom';
 import { Heading, ScrollBox, Spinner } from 'components';
 
-import { getEnvironmentName } from 'App/selectors';
 import { getIsHubLoading } from './selectors';
 import { initHub } from './actions';
 
@@ -17,7 +16,6 @@ import DFSPs from './DFSPs';
 import './Hub.css';
 
 const stateProps = state => ({
-  environmentName: getEnvironmentName(state),
   isHubLoading: getIsHubLoading(state),
 });
 
@@ -45,7 +43,7 @@ class HubWrapper extends PureComponent {
 }
 const HubLoader = () => <Spinner center size="m" />;
 
-const Hub = ({ environmentName }) => (
+const Hub = () => (
   <div id="hub">
     <div id="hub__menu">
       <Menu />
@@ -53,7 +51,6 @@ const Hub = ({ environmentName }) => (
     <ScrollBox>
       <div id="hub__content">
         <Heading size="3">Hub Name</Heading>
-        <Heading size="4">{environmentName}</Heading>
         <Route path="/hub/endpoints" component={Endpoints} />
         <Route path="/hub/unprocessed" component={UnprocessedEndpoints} />
         <Route path="/hub/ca" component={CertificateAuthorities} />

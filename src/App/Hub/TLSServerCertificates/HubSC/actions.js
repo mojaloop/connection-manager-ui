@@ -4,7 +4,6 @@ import api from 'utils/api';
 import { is200, is404 } from 'utils/http';
 import { downloadFile } from 'utils/html';
 import { showSuccessToast, showErrorModal } from 'App/actions';
-import { getEnvironmentId, getEnvironmentName } from 'App/selectors';
 import {
   getHubSCRootCertificate,
   getHubSCIntermediateChain,
@@ -53,8 +52,7 @@ export const showHubSCServerCertificateModal = createAction(SHOW_HUB_SC_SERVER_C
 export const hideHubSCServerCertificateModal = createAction(HIDE_HUB_SC_SERVER_CERTIFICATE_MODAL);
 
 export const storeHubSCServerCertificate = () => async (dispatch, getState) => {
-  const environmentId = getEnvironmentId(getState());
-  const { data, status } = await dispatch(api.hubServerCerts.read({ environmentId }));
+  const { data, status } = await dispatch(api.hubServerCerts.read());
 
   if (is200(status) || is404(status)) {
     dispatch(setHubSCRootCertificate(get(data, 'rootCertificate')));
@@ -71,7 +69,6 @@ export const storeHubSCServerCertificate = () => async (dispatch, getState) => {
 };
 
 export const submitHubSCServerCertificate = () => async (dispatch, getState) => {
-  const environmentId = getEnvironmentId(getState());
   const rootCertificate = getHubSCRootCertificate(getState());
   const intermediateChain = getHubSCIntermediateChain(getState());
   const serverCertificate = getHubSCServerCertificate(getState());
@@ -79,9 +76,9 @@ export const submitHubSCServerCertificate = () => async (dispatch, getState) => 
   let status;
   let data;
   if (getIsHubSCEditingExisitingModel(getState())) {
-    ({ status, data } = await dispatch(api.hubServerCerts.update({ environmentId, body })));
+    ({ status, data } = await dispatch(api.hubServerCerts.update({ body })));
   } else {
-    ({ status, data } = await dispatch(api.hubServerCerts.create({ environmentId, body })));
+    ({ status, data } = await dispatch(api.hubServerCerts.create({ body })));
   }
   if (is200(status)) {
     dispatch(showSuccessToast());
@@ -99,19 +96,16 @@ export const submitHubSCServerCertificate = () => async (dispatch, getState) => 
 };
 
 export const downloadHubSCRootCertificate = () => (dispatch, getState) => {
-  const environmentName = getEnvironmentName(getState());
   const rootCertificate = getHubSCRootCertificate(getState());
-  downloadFile(rootCertificate, `${environmentName}-root.pem`);
+  downloadFile(rootCertificate, `root.pem`);
 };
 
 export const downloadHubSCIntermediateChain = () => (dispatch, getState) => {
-  const environmentName = getEnvironmentName(getState());
   const intermediateChain = getHubSCIntermediateChain(getState());
-  downloadFile(intermediateChain, `${environmentName}-intermediates.pem`);
+  downloadFile(intermediateChain, `intermediates.pem`);
 };
 
 export const downloadHubSCServerCertificate = () => (dispatch, getState) => {
-  const environmentName = getEnvironmentName(getState());
   const rootCertificate = getHubSCServerCertificate(getState());
-  downloadFile(rootCertificate, `${environmentName}-server.pem`);
+  downloadFile(rootCertificate, `server.pem`);
 };

@@ -1,6 +1,5 @@
 import { fetchMock, MATCHED } from 'fetch-mock';
 import prepareStore, { getStore } from 'tests/store';
-import environments from 'tests/resources/environments.json';
 import dfsps from 'tests/resources/dfsps.json';
 
 import {
@@ -15,7 +14,7 @@ import {
 
 import {
   getDfspHubExternalCaError,
-  getDfspHubExternalCaCertificates,
+  getDfspHubExternalCaCertificate,
   getIsDfspHubExternalCaRootCertificateModalVisible,
   getIsDfspHubExternalCaIntermediateChainModalVisible,
   getIsDfspHubExternalCaReadPending,
@@ -75,7 +74,7 @@ describe('Test the HUB EXTERNAL CA thunk actions', () => {
   ];
 
   beforeEach(async () => {
-    const store = prepareStore({ environments, environmentId: environments[0].id, dfsps, dfspId: dfsps[0].id });
+    const store = prepareStore({ dfsps, dfspId: dfsps[0].id });
     ({ dispatch, getState } = store);
 
     fetchMock.restore();
@@ -85,9 +84,9 @@ describe('Test the HUB EXTERNAL CA thunk actions', () => {
     fetchMock.get('end:/cas', fetchResponse);
     await dispatch(storeDfspHubExternalCas());
     expect(fetchMock.calls(MATCHED)).toHaveLength(1);
-    expect(getDfspHubExternalCaCertificates(getState())).toHaveLength(1);
+    expect(getDfspHubExternalCaCertificate(getState())).toHaveLength(1);
 
-    const [certificate] = getDfspHubExternalCaCertificates(getState());
+    const [certificate] = getDfspHubExternalCaCertificate(getState());
     expect(certificate.rootCertificate).toBe('ROOT_CERT');
     expect(certificate.intermediateChain).toBe('CHAIN');
     expect(certificate.name).toBe('test');
@@ -113,7 +112,7 @@ describe('Test the api pending selectors', () => {
   };
 
   beforeEach(async () => {
-    const store = prepareStore({ environments, environmentId: environments[0].id, dfsps, dfspId: dfsps[0].id });
+    const store = prepareStore({ dfsps, dfspId: dfsps[0].id });
     ({ dispatch, getState } = store);
 
     fetchMock.restore();

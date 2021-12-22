@@ -9,7 +9,6 @@ import {
   FileControls,
   FormInput,
 } from 'components';
-import { getEnvironmentName } from 'App/selectors';
 import {
   changeDfspSCRootCertificate,
   downloadDfspSCRootCertificate,
@@ -46,7 +45,6 @@ import {
 import './index.css';
 
 const stateProps = state => ({
-  environmentName: getEnvironmentName(state),
   error: getDfspSCError(state),
   rootCertificate: getDfspSCRootCertificate(state),
   intermediateChain: getDfspSCIntermediateChain(state),
@@ -81,7 +79,6 @@ const actionProps = dispatch => ({
 });
 
 const DfspSC = ({
-  environmentName,
   error,
   rootCertificate,
   intermediateChain,
@@ -150,7 +147,7 @@ const DfspSC = ({
             onChange={onServerCertificateChange}
             elementWidth="400px"
             value={serverCertificate || null}
-            fileName={`${environmentName}-server.pem`}
+            fileName={`server.pem`}
             pending={isReadPending}
             required
           />
@@ -173,7 +170,7 @@ const DfspSC = ({
             onChange={onRootCertificateChange}
             elementWidth="400px"
             value={rootCertificate || null}
-            fileName={`${environmentName}-root.pem`}
+            fileName={`root.pem`}
             pending={isReadPending}
           />
           {rootCertificate && (
@@ -191,7 +188,7 @@ const DfspSC = ({
             parseFileAsText
             onChange={onIntermediateChainChange}
             value={intermediateChain || null}
-            fileName={`${environmentName}-intermediates.pem`}
+            fileName={`intermediates.pem`}
             pending={isReadPending}
             elementWidth="400px"
           />

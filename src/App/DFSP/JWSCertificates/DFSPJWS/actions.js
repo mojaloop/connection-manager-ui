@@ -4,7 +4,7 @@ import api from 'utils/api';
 import { is200, is404 } from 'utils/http';
 import { downloadFile } from 'utils/html';
 import { showSuccessToast, showErrorModal } from 'App/actions';
-import { getEnvironmentId, getEnvironmentName, getDfspId } from 'App/selectors';
+import { getDfspId } from 'App/selectors';
 import { getDfspJWSJwsCertificate, getDfspJWSIntermediateChain, getIsDfspJWSEditingExisitingModel } from './selectors';
 
 export const RESET_DFSP_JWS = 'DFSP JWS / Reset';
@@ -38,9 +38,8 @@ export const showDfspJWSIntermediateChainModal = createAction(SHOW_DFSP_JWS_INTE
 export const hideDfspJWSIntermediateChainModal = createAction(HIDE_DFSP_JWS_INTERMEDIATE_CHAIN_MODAL);
 
 export const storeDfspJWSCertificates = () => async (dispatch, getState) => {
-  const environmentId = getEnvironmentId(getState());
   const dfspId = getDfspId(getState());
-  const { data, status } = await dispatch(api.dfspJWSCerts.read({ environmentId, dfspId }));
+  const { data, status } = await dispatch(api.dfspJWSCerts.read({ dfspId }));
   if (is200(status) || is404(status)) {
     dispatch(setDfspJWSJwsCertificate(get(data, 'jwsCertificate')));
     dispatch(setDfspJWSIntermediateChain(get(data, 'intermediateChain')));
@@ -54,7 +53,6 @@ export const storeDfspJWSCertificates = () => async (dispatch, getState) => {
 };
 
 export const submitDfspJWSCertificates = () => async (dispatch, getState) => {
-  const environmentId = getEnvironmentId(getState());
   const dfspId = getDfspId(getState());
   const jwsCertificate = getDfspJWSJwsCertificate(getState());
   const intermediateChain = getDfspJWSIntermediateChain(getState());
@@ -62,9 +60,9 @@ export const submitDfspJWSCertificates = () => async (dispatch, getState) => {
   let status;
   let data;
   if (getIsDfspJWSEditingExisitingModel(getState())) {
-    ({ status, data } = await dispatch(api.dfspJWSCerts.update({ environmentId, dfspId, body })));
+    ({ status, data } = await dispatch(api.dfspJWSCerts.update({ dfspId, body })));
   } else {
-    ({ status, data } = await dispatch(api.dfspJWSCerts.create({ environmentId, dfspId, body })));
+    ({ status, data } = await dispatch(api.dfspJWSCerts.create({ dfspId, body })));
   }
   if (is200(status)) {
     dispatch(showSuccessToast());
@@ -80,13 +78,11 @@ export const submitDfspJWSCertificates = () => async (dispatch, getState) => {
 };
 
 export const downloadDfspJWSJwsCertificate = () => (dispatch, getState) => {
-  const environmentName = getEnvironmentName(getState());
   const jwsCertificate = getDfspJWSJwsCertificate(getState());
-  downloadFile(jwsCertificate, `${environmentName}-root.pem`);
+  downloadFile(jwsCertificate, `root.pem`);
 };
 
 export const downloadDfspJWSIntermediateChain = () => (dispatch, getState) => {
-  const environmentName = getEnvironmentName(getState());
   const intermediateChain = getDfspJWSIntermediateChain(getState());
-  downloadFile(intermediateChain, `${environmentName}-intermediates.pem`);
+  downloadFile(intermediateChain, `intermediates.pem`);
 };

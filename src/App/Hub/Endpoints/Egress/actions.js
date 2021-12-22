@@ -2,7 +2,6 @@ import { createAction } from 'redux-actions';
 import api from 'utils/api';
 import { is200, is204 } from 'utils/http';
 import { showSuccessToast, showErrorModal } from 'App/actions';
-import { getEnvironmentId } from 'App/selectors';
 import { getIpsOperations } from './selectors';
 import { apiToIpModel, ipToApiModel } from './models';
 
@@ -29,8 +28,7 @@ export const removeHubEgressPort = createAction(REMOVE_HUB_EGRESS_PORT);
 export const undoHubEgressChanges = createAction(UNDO_HUB_EGRESS_CHANGES);
 
 export const storeHubEgressIps = () => async (dispatch, getState) => {
-  const environmentId = getEnvironmentId(getState());
-  const { data, status } = await dispatch(api.hubEgressIps.read({ environmentId }));
+  const { data, status } = await dispatch(api.hubEgressIps.read());
   if (is200(status)) {
     const ips = data.map(apiToIpModel);
     dispatch(setHubEgressIps(ips));
@@ -40,17 +38,16 @@ export const storeHubEgressIps = () => async (dispatch, getState) => {
 };
 
 export const submitHubEgressIps = () => async (dispatch, getState) => {
-  const environmentId = getEnvironmentId(getState());
   const ipsOperations = getIpsOperations(getState());
 
   const createActions = ipsOperations.create.map(ip =>
-    dispatch(api.hubEgressIps.create({ environmentId, body: ipToApiModel(ip) }))
+    dispatch(api.hubEgressIps.create({ body: ipToApiModel(ip) }))
   );
   const updateActions = ipsOperations.update.map(ip =>
-    dispatch(api.hubEgressIp.update({ environmentId, ipId: ip.id, body: ipToApiModel(ip) }))
+    dispatch(api.hubEgressIp.update({ ipId: ip.id, body: ipToApiModel(ip) }))
   );
   const deleteActions = ipsOperations.delete.map(ip =>
-    dispatch(api.hubEgressIp.delete({ environmentId, ipId: ip.id }))
+    dispatch(api.hubEgressIp.delete({ ipId: ip.id }))
   );
 
   const results = await Promise.all([...createActions, ...updateActions, ...deleteActions]);

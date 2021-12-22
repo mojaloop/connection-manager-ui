@@ -2,7 +2,6 @@ import { createAction } from 'redux-actions';
 import api from 'utils/api';
 import { is200 } from 'utils/http';
 import find from 'lodash/find';
-import { getEnvironmentId } from 'App/selectors';
 import { showSuccessToast, showErrorModal } from 'App/actions';
 import { getHubUnprocessedEndpointsByDFSP } from './selectors';
 
@@ -23,8 +22,7 @@ const apiToUnprocessedModel = item => ({
 });
 
 export const storeUnprocessedEndpoints = () => async (dispatch, getState) => {
-  const environmentId = getEnvironmentId(getState());
-  const { data, status } = await dispatch(api.unprocessedEndpoints.read({ environmentId }));
+  const { data, status } = await dispatch(api.unprocessedEndpoints.read());
   if (is200(status)) {
     const endpoints = data.map(apiToUnprocessedModel);
     dispatch(setHubUnprocessedEndpoints(endpoints));
@@ -35,13 +33,12 @@ export const storeUnprocessedEndpoints = () => async (dispatch, getState) => {
 
 export const submitUnprocessedEndpoints = selection => async (dispatch, getState) => {
   const { dfspId, direction } = selection;
-  const environmentId = getEnvironmentId(getState());
   const endpoints = getHubUnprocessedEndpointsByDFSP(getState());
   const endpointsByDfspId = find(endpoints, { dfspId });
   const endpointsByDirection = endpointsByDfspId[direction];
 
   const ids = endpointsByDirection.filter(endpoint => endpoint.checked).map(endpoint => endpoint.id);
-  const apiCalls = ids.map(endpointId => dispatch(api.confirmEndpoint.create({ environmentId, dfspId, endpointId })));
+  const apiCalls = ids.map(endpointId => dispatch(api.confirmEndpoint.create({ dfspId, endpointId })));
 
   const results = await Promise.all(apiCalls);
   if (results.every(({ status }) => is200(status))) {

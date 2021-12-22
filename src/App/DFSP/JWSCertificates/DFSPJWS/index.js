@@ -9,7 +9,6 @@ import {
   FormInput,
   MessageBox,
 } from 'components';
-import { getEnvironmentName } from 'App/selectors';
 import {
   changeDfspJWSJwsCertificate,
   downloadDfspJWSJwsCertificate,
@@ -38,7 +37,6 @@ import {
 import './index.css';
 
 const stateProps = state => ({
-  environmentName: getEnvironmentName(state),
   error: getDfspJWSError(state),
   jwsCertificate: getDfspJWSJwsCertificate(state),
   intermediateChain: getDfspJWSIntermediateChain(state),
@@ -65,7 +63,6 @@ const actionProps = dispatch => ({
 });
 
 const DfspJWS = ({
-  environmentName,
   error,
   jwsCertificate,
   intermediateChain,
@@ -126,7 +123,7 @@ const DfspJWS = ({
             onChange={onJwsCertificateChange}
             elementWidth="400px"
             value={jwsCertificate || null}
-            fileName={`${environmentName}-jws.pem`}
+            fileName={`jws.pem`}
             required
           />
           {jwsCertificate && (
@@ -144,7 +141,7 @@ const DfspJWS = ({
             parseFileAsText
             onChange={onIntermediateChainChange}
             value={intermediateChain || null}
-            fileName={`${environmentName}-intermediates.pem`}
+            fileName={`intermediates.pem`}
             elementWidth="400px"
           />
           {intermediateChain && (

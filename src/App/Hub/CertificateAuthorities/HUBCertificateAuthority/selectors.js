@@ -14,9 +14,9 @@ export const getHubCaCountry = state => state.hub.ca.hub.hubCaCountry;
 export const getHubCaHosts = state => state.hub.ca.hub.hubCaHosts;
 export const getHubCaRootCertificate = state => state.hub.ca.hub.hubCaRootCertificate;
 export const getHubCaRootCertificateInfo = state => state.hub.ca.hub.hubCaRootCertificateInfo;
-export const getIsHubCaRootCertificateModalVisible = state => state.hub.ca.hub.isHubCaRootCertificateModalVisible;
+export const getIsHubCaModalVisible = state => state.hub.ca.hub.isHubCaModalVisible;
 
-export const getIsHubCaPending = createPendingSelector('hubCas.create');
+export const getIsHubCaPending = createPendingSelector('hubCa.create');
 
 export const getIsHubCaMissing = createSelector(
   getHubCaRootCertificate,
@@ -82,7 +82,7 @@ export const getHubCaModel = createSelector(
     default: {
       expiry: '43800h',
       usages: ['signing', 'key encipherment', 'client auth'],
-      signature_algorithm: 'SHA256withRSA',
+      signature_algorithm: 'SHA256WithRSA',
     },
     csr: {
       hosts,

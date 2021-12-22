@@ -2,7 +2,7 @@ import { createAction } from 'redux-actions';
 import api from 'utils/api';
 import { is200, is404 } from 'utils/http';
 import { downloadFile } from 'utils/html';
-import { getEnvironmentId, getDfspName } from 'App/selectors';
+import { getDfspName } from 'App/selectors';
 import { getDfspHubCaRootCertificate } from './selectors';
 
 export const RESET_DFSP_HUB_CA = 'DFSP HUB CA / Reset';
@@ -18,11 +18,10 @@ export const showDfspHubCaRootCertificateModal = createAction(SHOW_DFSP_HUB_CA_R
 export const hideDfspHubCaRootCertificateModal = createAction(HIDE_DFSP_HUB_CA_ROOT_CERTIFICATE_MODAL);
 
 export const storeDfspHubCa = () => async (dispatch, getState) => {
-  const environmentId = getEnvironmentId(getState());
-  const { data, status } = await dispatch(api.hubCa.read({ environmentId }));
+  const { data, status } = await dispatch(api.hubCa.read());
   if (is200(status)) {
-    const { certificate } = data;
-    dispatch(setDfspHubCaRootCertificate(certificate));
+    const { rootCertificate } = data;
+    dispatch(setDfspHubCaRootCertificate(rootCertificate));
   } else if (!is404(status)) {
     dispatch(setDfspHubCaError(data));
   }

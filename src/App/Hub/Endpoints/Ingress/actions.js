@@ -2,7 +2,6 @@ import { createAction } from 'redux-actions';
 import api from 'utils/api';
 import { is200, is204 } from 'utils/http';
 import { showSuccessToast, showErrorModal } from 'App/actions';
-import { getEnvironmentId } from 'App/selectors';
 import { getUrlsOperations, getIpsOperations } from './selectors';
 
 import { apiToIpModel, apiToUrlModel, ipToApiModel, urlToApiModel } from './models';
@@ -36,8 +35,7 @@ export const removeHubIngressPort = createAction(REMOVE_HUB_INGRESS_PORT);
 export const undoHubIngressChanges = createAction(UNDO_HUB_INGRESS_CHANGES);
 
 export const storeHubIngressUrls = () => async (dispatch, getState) => {
-  const environmentId = getEnvironmentId(getState());
-  const { data, status } = await dispatch(api.hubIngressUrls.read({ environmentId }));
+  const { data, status } = await dispatch(api.hubIngressUrls.read());
   if (is200(status)) {
     const urls = data.map(apiToUrlModel);
     dispatch(setHubIngressUrls(urls));
@@ -46,8 +44,7 @@ export const storeHubIngressUrls = () => async (dispatch, getState) => {
   }
 };
 export const storeHubIngressIps = () => async (dispatch, getState) => {
-  const environmentId = getEnvironmentId(getState());
-  const { data, status } = await dispatch(api.hubIngressIps.read({ environmentId }));
+  const { data, status } = await dispatch(api.hubIngressIps.read());
   if (is200(status)) {
     const ips = data.map(apiToIpModel);
     dispatch(setHubIngressIps(ips));
@@ -61,28 +58,26 @@ export const storeHubEndpoints = () => async (dispatch, getState) => {
 };
 
 export const submitHubIngressEndpoints = () => async (dispatch, getState) => {
-  const environmentId = getEnvironmentId(getState());
-
   const urlsOperations = getUrlsOperations(getState());
   const ipsOperations = getIpsOperations(getState());
 
   const createUrlsActions = urlsOperations.create.map(url =>
-    dispatch(api.hubIngressUrls.create({ environmentId, body: urlToApiModel(url) }))
+    dispatch(api.hubIngressUrls.create({ body: urlToApiModel(url) }))
   );
   const updateUrlsActions = urlsOperations.update.map(url =>
-    dispatch(api.hubIngressUrl.update({ environmentId, urlId: url.id, body: urlToApiModel(url) }))
+    dispatch(api.hubIngressUrl.update({ urlId: url.id, body: urlToApiModel(url) }))
   );
   const deleteUrlsActions = urlsOperations.delete.map(url =>
-    dispatch(api.hubIngressUrl.delete({ environmentId, urlId: url.id }))
+    dispatch(api.hubIngressUrl.delete({ urlId: url.id }))
   );
   const createIpsActions = ipsOperations.create.map(ip =>
-    dispatch(api.hubIngressIps.create({ environmentId, body: ipToApiModel(ip) }))
+    dispatch(api.hubIngressIps.create({ body: ipToApiModel(ip) }))
   );
   const updateIpsActions = ipsOperations.update.map(ip =>
-    dispatch(api.hubIngressIp.update({ environmentId, ipId: ip.id, body: ipToApiModel(ip) }))
+    dispatch(api.hubIngressIp.update({ ipId: ip.id, body: ipToApiModel(ip) }))
   );
   const deleteIpsActions = ipsOperations.delete.map(ip =>
-    dispatch(api.hubIngressIp.delete({ environmentId, ipId: ip.id }))
+    dispatch(api.hubIngressIp.delete({ ipId: ip.id }))
   );
 
   const results = await Promise.all([

@@ -8,13 +8,9 @@ import {
   HIDE_TOAST,
   SHOW_ERROR_MODAL,
   HIDE_ERROR_MODAL,
-  SET_ENVIRONMENTS,
-  SET_ENVIRONMENTS_ERROR,
-  SET_ENVIRONMENT_ID,
   SET_DFSPS,
   SET_DFSPS_ERROR,
   SET_DFSP_ID,
-  UNSET_ENVIRONMENT_ID,
   UNSET_DFSPS,
 } from './actions';
 
@@ -25,10 +21,6 @@ const initialState = {
   isSuccessToastVisible: false,
   isErrorModalVisible: false,
   errorModalPayload: undefined,
-  environments: [],
-  environmentsError: undefined,
-  environmentsLoaded: false,
-  environmentId: undefined,
   dfsps: [],
   dfspsError: undefined,
   dfspId: undefined,
@@ -66,19 +58,6 @@ const App = handleActions(
       isErrorModalVisible: false,
       errorModalPayload: undefined,
     }),
-    [SET_ENVIRONMENTS]: (state, action) => ({
-      ...state,
-      environments: action.payload,
-      environmentsLoaded: true,
-    }),
-    [SET_ENVIRONMENTS_ERROR]: (state, action) => ({
-      ...state,
-      environmentsError: action.payload,
-    }),
-    [SET_ENVIRONMENT_ID]: (state, action) => ({
-      ...state,
-      environmentId: action.payload,
-    }),
     [SET_DFSPS]: (state, action) => ({
       ...state,
       dfsps: action.payload,
@@ -90,10 +69,6 @@ const App = handleActions(
     [SET_DFSP_ID]: (state, action) => ({
       ...state,
       dfspId: action.payload,
-    }),
-    [UNSET_ENVIRONMENT_ID]: (state, action) => ({
-      ...state,
-      environmentId: undefined,
     }),
     [UNSET_DFSPS]: (state, action) => ({
       ...state,

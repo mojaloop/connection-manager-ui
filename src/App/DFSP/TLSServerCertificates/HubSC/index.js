@@ -9,7 +9,6 @@ import {
   MessageBox,
 } from 'components';
 import { withMount } from 'utils/hocs';
-import { getEnvironmentName } from 'App/selectors';
 import {
   storeDfspHubSCServerCertificate,
   downloadDfspHubSCRootCertificate,
@@ -41,7 +40,6 @@ import {
 import './index.css';
 
 const stateProps = state => ({
-  environmentName: getEnvironmentName(state),
   error: getDfspHubSCError(state),
   rootCertificate: getDfspHubSCRootCertificate(state),
   intermediateChain: getDfspHubSCIntermediateChain(state),
@@ -71,7 +69,6 @@ const actionProps = dispatch => ({
 });
 
 const HubSC = ({
-  environmentName,
   error,
   rootCertificate,
   intermediateChain,
@@ -119,7 +116,7 @@ const HubSC = ({
             type="text"
             label="Server Certificate"
             elementWidth="400px"
-            value={serverCertificate ? `${environmentName}-hub-server.pem` : 'Unavailable'}
+            value={serverCertificate ? `hub-server.pem` : 'Unavailable'}
             icon={serverCertificate && 'documents'}
             pending={isDfspHubSCPending}
             disabled
@@ -140,7 +137,7 @@ const HubSC = ({
             type="text"
             label="Root Certificate"
             elementWidth="400px"
-            value={rootCertificate ? `${environmentName}-hub-root.pem` : 'Unavailable'}
+            value={rootCertificate ? `hub-root.pem` : 'Unavailable'}
             icon={rootCertificate && 'documents'}
             pending={isDfspHubSCPending}
             disabled
@@ -158,7 +155,7 @@ const HubSC = ({
             type="text"
             label="Intermediate Chain"
             pending={isDfspHubSCPending}
-            value={intermediateChain ? `${environmentName}-hub-intermediates.pem` : 'Unavailable'}
+            value={intermediateChain ? `hub-intermediates.pem` : 'Unavailable'}
             icon={intermediateChain && 'documents'}
             elementWidth="400px"
             disabled

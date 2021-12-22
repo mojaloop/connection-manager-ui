@@ -2,7 +2,7 @@ import { createAction } from 'redux-actions';
 import api from 'utils/api';
 import { is200, is204 } from 'utils/http';
 import { showSuccessToast, showErrorModal } from 'App/actions';
-import { getEnvironmentId, getDfspId } from 'App/selectors';
+import { getDfspId } from 'App/selectors';
 import { getIpsOperations } from './selectors';
 import { apiToIpModel, ipToApiModel } from './models';
 
@@ -29,9 +29,8 @@ export const removeDfspEgressPort = createAction(REMOVE_DFSP_EGRESS_PORT);
 export const undoDfspEgressChanges = createAction(UNDO_DFSP_EGRESS_CHANGES);
 
 export const storeDfspEgressIps = () => async (dispatch, getState) => {
-  const environmentId = getEnvironmentId(getState());
   const dfspId = getDfspId(getState());
-  const { data, status } = await dispatch(api.egressIps.read({ environmentId, dfspId }));
+  const { data, status } = await dispatch(api.egressIps.read({ dfspId }));
   if (is200(status)) {
     const ips = data.map(apiToIpModel);
     dispatch(setDfspEgressIps(ips));
@@ -41,18 +40,17 @@ export const storeDfspEgressIps = () => async (dispatch, getState) => {
 };
 
 export const submitDfspEgressIps = () => async (dispatch, getState) => {
-  const environmentId = getEnvironmentId(getState());
   const dfspId = getDfspId(getState());
   const ipsOperations = getIpsOperations(getState());
 
   const createActions = ipsOperations.create.map(ip =>
-    dispatch(api.egressIps.create({ environmentId, dfspId, body: ipToApiModel(ip) }))
+    dispatch(api.egressIps.create({ dfspId, body: ipToApiModel(ip) }))
   );
   const updateActions = ipsOperations.update.map(ip =>
-    dispatch(api.egressIp.update({ environmentId, dfspId, ipId: ip.id, body: ipToApiModel(ip) }))
+    dispatch(api.egressIp.update({ dfspId, ipId: ip.id, body: ipToApiModel(ip) }))
   );
   const deleteActions = ipsOperations.delete.map(ip =>
-    dispatch(api.egressIp.delete({ environmentId, dfspId, ipId: ip.id }))
+    dispatch(api.egressIp.delete({ dfspId, ipId: ip.id }))
   );
 
   const results = await Promise.all([...createActions, ...updateActions, ...deleteActions]);

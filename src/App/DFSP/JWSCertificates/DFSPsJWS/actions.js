@@ -3,7 +3,6 @@ import find from 'lodash/find';
 import api from 'utils/api';
 import { is200 } from 'utils/http';
 import { downloadFile } from 'utils/html';
-import { getEnvironmentId } from 'App/selectors';
 import { getOtherDfsps } from 'App/DFSP/selectors';
 
 export const RESET_DFSPS_JWS = 'DFSPs JWS / Reset';
@@ -26,9 +25,8 @@ export const showDfspsJWSIntermediateChainModal = createAction(SHOW_DFSPS_JWS_IN
 export const hideDfspsJWSIntermediateChainModal = createAction(HIDE_DFSPS_JWS_INTERMEDIATE_CHAIN_MODAL);
 
 export const storeDfspsJWSCertificates = () => async (dispatch, getState) => {
-  const environmentId = getEnvironmentId(getState());
   const otherDfsps = getOtherDfsps(getState());
-  const { data, status } = await dispatch(api.dfspsJWSCerts.read({ environmentId }));
+  const { data, status } = await dispatch(api.dfspsJWSCerts.read());
   if (is200(status)) {
     const certificates = data.filter(certificate => find(otherDfsps, { id: certificate.dfspId }));
     dispatch(setDfspsJWSCertificates(certificates));

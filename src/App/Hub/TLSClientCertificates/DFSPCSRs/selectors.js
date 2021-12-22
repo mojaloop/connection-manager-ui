@@ -7,7 +7,7 @@ import {
 } from '@modusbox/modusbox-ui-components/dist/redux-fetch';
 import { getIsValid, toValidationResult } from '@modusbox/modusbox-ui-components/dist/redux-validation';
 import { getDfsps } from 'App/selectors';
-import { getHubExternalCaCertificates } from '../../CertificateAuthorities/HUBExternalCertificateAuthority/selectors';
+import { getHubExternalCaCertificate } from '../../CertificateAuthorities/HUBExternalCertificateAuthority/selectors';
 import { getHubDfspCsrsCertificateModalUploadValidation } from './validators';
 import { STATES } from '../constants';
 
@@ -30,7 +30,7 @@ const findCaById = (id, cas) => find(cas, { id });
 const getHubDfspCsrsCertificatesByDfsp = createSelector(
   getHubDfspCsrsCertificates,
   getDfsps,
-  getHubExternalCaCertificates,
+  getHubExternalCaCertificate,
   (csrs, dfsps, cas) =>
     csrs.map(csr => {
       const dfsp = find(dfsps, { id: csr.dfspId });

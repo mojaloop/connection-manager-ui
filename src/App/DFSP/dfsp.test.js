@@ -1,6 +1,5 @@
 import { fetchMock } from 'fetch-mock';
 import prepareStore, { getStore, historyMock } from 'tests/store';
-import environments from 'tests/resources/environments.json';
 import dfsps from 'tests/resources/dfsps.json';
 
 import { setDfspLoading, unsetDfspLoading, initDfsp } from './actions';
@@ -37,7 +36,7 @@ describe('Test the dfsp thunk actions', () => {
   });
 
   it('Should redirect to root when environment is not set', async () => {
-    const store = prepareStore({ environments, dfsps, url: '/test' });
+    const store = prepareStore({ dfsps, url: '/test' });
     ({ dispatch, getState } = store);
     await dispatch(initDfsp());
     expect(historyMock.push).toHaveBeenCalledWith('/');
@@ -46,7 +45,7 @@ describe('Test the dfsp thunk actions', () => {
   });
 
   it('Should initialize the DFSP app', async () => {
-    const store = prepareStore({ environments, dfsps, dfspId: dfsps[0].id });
+    const store = prepareStore({ dfsps, dfspId: dfsps[0].id });
     ({ dispatch, getState } = store);
     await dispatch(initDfsp());
     expect(historyMock.push).not.toHaveBeenCalled();

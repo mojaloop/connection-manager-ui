@@ -3,7 +3,7 @@ import api from 'utils/api';
 import { is200 } from 'utils/http';
 import { downloadFile } from 'utils/html';
 import { showSuccessToast, showErrorModal } from 'App/actions';
-import { getEnvironmentId, getDfspId, getDfspName } from 'App/selectors';
+import { getDfspId, getDfspName } from 'App/selectors';
 import { getDfspCaRootCertificate, getDfspCaIntermediateChain } from './selectors';
 
 export const RESET_DFSP_CA = 'DFSP CA / Reset';
@@ -33,9 +33,8 @@ export const showDfspCaIntermediateChainModal = createAction(SHOW_DFSP_CA_INTERM
 export const hideDfspCaIntermediateChainModal = createAction(HIDE_DFSP_CA_INTERMEDIATE_CHAIN_MODAL);
 
 export const storeDfspCa = () => async (dispatch, getState) => {
-  const environmentId = getEnvironmentId(getState());
   const dfspId = getDfspId(getState());
-  const { data, status } = await dispatch(api.dfspCa.read({ environmentId, dfspId }));
+  const { data, status } = await dispatch(api.dfspCa.read({ dfspId }));
   if (is200(status)) {
     const { rootCertificate, intermediateChain, validations, validationState } = data;
     dispatch(setDfspCaRootCert(rootCertificate));
@@ -48,7 +47,6 @@ export const storeDfspCa = () => async (dispatch, getState) => {
 };
 
 export const submitDfspCa = () => async (dispatch, getState) => {
-  const environmentId = getEnvironmentId(getState());
   const dfspId = getDfspId(getState());
   const rootCertificate = getDfspCaRootCertificate(getState());
   const intermediateChain = getDfspCaIntermediateChain(getState());
@@ -56,7 +54,7 @@ export const submitDfspCa = () => async (dispatch, getState) => {
     rootCertificate,
     intermediateChain,
   };
-  const { status, data } = await dispatch(api.dfspCa.create({ environmentId, dfspId, body }));
+  const { status, data } = await dispatch(api.dfspCa.create({ dfspId, body }));
   if (is200(status)) {
     dispatch(showSuccessToast());
     dispatch(setDfspCaRootCert(data.rootCertificate));

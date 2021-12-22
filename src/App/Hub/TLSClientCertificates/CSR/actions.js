@@ -2,7 +2,6 @@ import { createAction } from 'redux-actions';
 import api from 'utils/api';
 import { is200 } from 'utils/http';
 import { showSuccessToast, showErrorModal } from 'App/actions';
-import { getEnvironmentId } from 'App/selectors';
 import { getHubCsrCertificate, getHubCsrCsrType, getHubCsrManualModel, getHubCsrDfspId } from './selectors';
 import { CSR_TYPES } from './constants';
 
@@ -47,7 +46,6 @@ export const showHubCsrModal = createAction(SHOW_HUB_CSR_CERTIFICATE_MODAL);
 export const hideHubCsrModal = createAction(HIDE_HUB_CSR_CERTIFICATE_MODAL);
 
 export const submitHubCsr = () => async (dispatch, getState) => {
-  const environmentId = getEnvironmentId(getState());
   const dfspId = getHubCsrDfspId(getState());
   const csrType = getHubCsrCsrType(getState());
   let status;
@@ -56,10 +54,10 @@ export const submitHubCsr = () => async (dispatch, getState) => {
   if (csrType === CSR_TYPES.FILE) {
     const hubCSR = getHubCsrCertificate(getState());
     const body = { hubCSR };
-    ({ data, status } = await dispatch(api.outboundEnrollments.create({ environmentId, dfspId, body })));
+    ({ data, status } = await dispatch(api.outboundEnrollments.create({ dfspId, body })));
   } else {
     const body = getHubCsrManualModel(getState());
-    ({ data, status } = await dispatch(api.outboundEnrollmentCsr.create({ environmentId, dfspId, body })));
+    ({ data, status } = await dispatch(api.outboundEnrollmentCsr.create({ dfspId, body })));
   }
 
   if (is200(status)) {

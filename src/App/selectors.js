@@ -8,41 +8,15 @@ export const getIsAppLoading = state => state.app.isAppLoading;
 export const getIsSuccessToastVisible = state => state.app.isSuccessToastVisible;
 export const getIsErrorModalVisible = state => state.app.isErrorModalVisible;
 export const getErrorModalPayload = state => state.app.errorModalPayload;
-export const getEnvironments = state => state.app.environments;
-export const getEnvironmentsError = state => state.app.environmentsError;
-export const getEnvironmentsLoaded = state => state.app.environmentsLoaded;
-export const getEnvironmentId = state => state.app.environmentId;
 export const getDfsps = state => state.app.dfsps;
 export const getDfspsError = state => state.app.dfspsError;
 export const getDfspId = state => state.app.dfspId;
 export const getLoginUrl = state => state.app.config.loginUrl;
 
-export const getIsAppLoadingFailed = createSelector(
-  getIsAppLoading,
-  getEnvironments,
-  getEnvironmentsError,
-  getEnvironmentsLoaded,
-  (isLoading, environments, environmentsError, environmentsLoaded) => {
-    const hasNoEnvironments = isLoading === false && environments.length === 0 && environmentsLoaded === true;
-    return hasNoEnvironments || environmentsError !== undefined;
-  }
-);
-
-const getEnvironment = createSelector(
-  getEnvironments,
-  getEnvironmentId,
-  (environments, id) => find(environments, { id })
-);
-
 const getDfsp = createSelector(
   getDfsps,
   getDfspId,
   (dfsps, id) => find(dfsps, { id })
-);
-
-export const getEnvironmentName = createSelector(
-  getEnvironment,
-  environment => get(environment, 'name')
 );
 
 export const getDfspName = createSelector(

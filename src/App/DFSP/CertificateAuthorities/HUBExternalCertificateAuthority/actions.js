@@ -1,12 +1,11 @@
 import { createAction } from 'redux-actions';
 import api from 'utils/api';
-import { is200 } from 'utils/http';
+import { is200, is404 } from 'utils/http';
 import { downloadFile } from 'utils/html';
-import { getEnvironmentId } from 'App/selectors';
 
 export const RESET_DFSP_HUB_EXTERNAL_CA = 'DFSP HUB EXTERNAL CA / Reset';
 export const SET_DFSP_HUB_EXTERNAL_CA_ERROR = 'DFSP HUB EXTERNAL CA / Set Root Cert Error';
-export const SET_DFSP_HUB_EXTERNAL_CA_CERTIFICATES = 'DFSP HUB EXTERNAL CA / Set Certificates';
+export const SET_DFSP_HUB_EXTERNAL_CA_CERTIFICATE = 'DFSP HUB EXTERNAL CA / Set Certificate';
 export const SHOW_DFSP_HUB_EXTERNAL_CA_ROOT_CERTIFICATE_MODAL = 'DFSP HUB EXTERNAL CA / Show Root Certificate Modal';
 export const HIDE_DFSP_HUB_EXTERNAL_CA_ROOT_CERTIFICATE_MODAL = 'DFSP HUB EXTERNAL CA / Hide Root Certificate Modal';
 export const SHOW_DFSP_HUB_EXTERNAL_CA_INTERMEDIATE_CHAIN_MODAL =
@@ -16,7 +15,7 @@ export const HIDE_DFSP_HUB_EXTERNAL_CA_INTERMEDIATE_CHAIN_MODAL =
 
 export const resetDfspHubExternalCa = createAction(RESET_DFSP_HUB_EXTERNAL_CA);
 export const setDfspHubExternalCaError = createAction(SET_DFSP_HUB_EXTERNAL_CA_ERROR);
-export const setDfspHubExternalCaCertificates = createAction(SET_DFSP_HUB_EXTERNAL_CA_CERTIFICATES);
+export const setDfspHubExternalCaCertificate = createAction(SET_DFSP_HUB_EXTERNAL_CA_CERTIFICATE);
 export const showDfspHubExternalCaRootCertificateModal = createAction(SHOW_DFSP_HUB_EXTERNAL_CA_ROOT_CERTIFICATE_MODAL);
 export const hideDfspHubExternalCaRootCertificateModal = createAction(HIDE_DFSP_HUB_EXTERNAL_CA_ROOT_CERTIFICATE_MODAL);
 export const showDfspHubExternalCaIntermediateChainModal = createAction(
@@ -27,10 +26,9 @@ export const hideDfspHubExternalCaIntermediateChainModal = createAction(
 );
 
 export const storeDfspHubExternalCas = () => async (dispatch, getState) => {
-  const environmentId = getEnvironmentId(getState());
-  const { data, status } = await dispatch(api.hubExternalCas.read({ environmentId }));
-  if (is200(status)) {
-    dispatch(setDfspHubExternalCaCertificates(data));
+  const { data, status } = await dispatch(api.hubCa.read());
+  if (is200(status) || is404(status)) {
+    dispatch(setDfspHubExternalCaCertificate(data));
   } else {
     dispatch(setDfspHubExternalCaError(data));
   }

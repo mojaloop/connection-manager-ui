@@ -3,7 +3,7 @@ import api from 'utils/api';
 import { is200, is404 } from 'utils/http';
 import { downloadFile } from 'utils/html';
 import { showSuccessToast, showErrorModal } from 'App/actions';
-import { getEnvironmentId, getDfsps } from 'App/selectors';
+import { getDfsps } from 'App/selectors';
 import {
   getHubDfspCsrsCertificateModalUploadModel,
   getHubDfspCsrsCertificateUploadModalDfspId,
@@ -36,10 +36,9 @@ export const setHubDfspsCsrsCertificateUploadModalCertificate = createAction(
 export const setHubDfspsCsrsCertificateUploadModalCaId = createAction(SET_HUB_DFSP_CSR_CERTIFICATE_UPLOAD_MODAL_CA_ID);
 
 export const storeHubDfspCsrs = () => async (dispatch, getState) => {
-  const environmentId = getEnvironmentId(getState());
   const dfsps = getDfsps(getState());
   const results = await Promise.all(
-    dfsps.map(dfsp => dispatch(api.inboundEnrollments.read({ environmentId, dfspId: dfsp.id })))
+    dfsps.map(dfsp => dispatch(api.inboundEnrollments.read({ dfspId: dfsp.id })))
   );
 
   if (results.every(({ status }) => is200(status) || is404(status))) {
@@ -62,8 +61,7 @@ export const storeHubDfspCsrs = () => async (dispatch, getState) => {
 };
 
 export const submitCASignHubDfspCsr = (dfspId, enrollmentId) => async (dispatch, getState) => {
-  const environmentId = getEnvironmentId(getState());
-  const { data, status } = await dispatch(api.inboundEnrollmentSign.create({ environmentId, dfspId, enrollmentId }));
+  const { data, status } = await dispatch(api.inboundEnrollmentSign.create({ dfspId, enrollmentId }));
   if (is200(status)) {
     dispatch(showSuccessToast());
     dispatch(storeHubDfspCsrs());
@@ -76,9 +74,8 @@ export const submitCertificateHubDfspCsr = () => async (dispatch, getState) => {
   const model = getHubDfspCsrsCertificateModalUploadModel(getState());
   const dfspId = getHubDfspCsrsCertificateUploadModalDfspId(getState());
   const enrollmentId = getHubDfspCsrsCertificateUploadModalEnrollmentId(getState());
-  const environmentId = getEnvironmentId(getState());
   const { data, status } = await dispatch(
-    api.inboundEnrollmentCertificate.create({ environmentId, dfspId, enrollmentId, body: model })
+    api.inboundEnrollmentCertificate.create({ dfspId, enrollmentId, body: model })
   );
   if (is200(status)) {
     dispatch(showSuccessToast());

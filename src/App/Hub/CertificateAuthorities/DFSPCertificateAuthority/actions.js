@@ -3,7 +3,7 @@ import get from 'lodash/get';
 import api from 'utils/api';
 import { is200, is404 } from 'utils/http';
 import { downloadFile } from 'utils/html';
-import { getEnvironmentId, getDfsps } from 'App/selectors';
+import { getDfsps } from 'App/selectors';
 
 export const RESET_HUB_DFSP_CAS = 'HUB DFSP CAS / Reset';
 export const SET_HUB_DFSP_CAS_ERROR = 'HUB DFSP CAS / Set Root Cert Error';
@@ -23,9 +23,8 @@ export const showHubDfspCasIntermediateChainModal = createAction(SHOW_HUB_DFSP_C
 export const hideHubDfspCasIntermediateChainModal = createAction(HIDE_HUB_DFSP_CAS_INTERMEDIATE_CHAIN_MODAL);
 
 export const storeHubDfspCas = () => async (dispatch, getState) => {
-  const environmentId = getEnvironmentId(getState());
   const dfsps = getDfsps(getState());
-  const results = await Promise.all(dfsps.map(dfsp => dispatch(api.dfspCa.read({ environmentId, dfspId: dfsp.id }))));
+  const results = await Promise.all(dfsps.map(dfsp => dispatch(api.dfspCa.read({ dfspId: dfsp.id }))));
   if (results.every(({ status }) => is200(status) || is404(status))) {
     const certificates = results.reduce((prev, curr, index) => {
       prev.push({

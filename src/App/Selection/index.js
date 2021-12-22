@@ -3,57 +3,32 @@ import { connect } from 'react-redux';
 import './Selection.css';
 import { Spinner } from 'components';
 import { withMount } from 'utils/hocs';
-import { selectHub, selectDFSP, selectEnvironment, clearEnvironment } from './actions';
-import { getIsDfspsReadPending, getDfsps, getEnvironments, getEnvironmentName } from 'App/selectors';
+import { selectHub, selectDFSP } from './actions';
+import { getIsDfspsReadPending, getDfsps } from 'App/selectors';
 import { getIsAuthDisabled } from 'Auth/selectors';
 
 const stateProps = state => ({
   dfsps: getDfsps(state),
-  environments: getEnvironments(state),
-  environmentName: getEnvironmentName(state),
   isDfspsPending: getIsDfspsReadPending(state),
   isAuthDisabled: getIsAuthDisabled(state),
 });
 const actionProps = dispatch => ({
-  onMount: () => dispatch(clearEnvironment()),
   onHubClick: () => dispatch(selectHub()),
   onDFSPClick: id => dispatch(selectDFSP(id)),
-  onEnvironmentClick: id => dispatch(selectEnvironment(id)),
 });
 
 const Selection = ({
   dfsps,
-  environments,
-  environmentName,
   isDfspsPending,
   isAuthDisabled,
   onHubClick,
   onDFSPClick,
-  onEnvironmentClick,
 }) => {
-  if (!environmentName) {
-    return <EnvironmentSelection environments={environments} onEnvironmentClick={onEnvironmentClick} />;
-  }
   if (isAuthDisabled) {
     return <AppSelection isPending={isDfspsPending} dfsps={dfsps} onHubClick={onHubClick} onDFSPClick={onDFSPClick} />;
   }
   return <Spinner size={20} center />;
 };
-
-const EnvironmentSelection = ({ environments, onEnvironmentClick }) => (
-  <div className="selection">
-    <div className="selection__row">
-      {environments.map((environment, index) => (
-        <SelectionItem
-          key={index}
-          onClick={() => onEnvironmentClick(environment.id)}
-          type="Environment"
-          label={environment.name}
-        />
-      ))}
-    </div>
-  </div>
-);
 
 const AppSelection = ({ isPending, dfsps, onHubClick, onDFSPClick }) => {
   if (isPending) {

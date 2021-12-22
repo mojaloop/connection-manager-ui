@@ -1,6 +1,5 @@
 import { fetchMock, MATCHED } from 'fetch-mock';
 import prepareStore, { getStore } from 'tests/store';
-import environments from 'tests/resources/environments.json';
 import dfsps from 'tests/resources/dfsps.json';
 
 import {
@@ -57,7 +56,7 @@ describe('Test the dfsp ca thunk actions', () => {
   };
 
   beforeEach(async () => {
-    const store = prepareStore({ environments, environmentId: environments[0].id, dfsps, dfspId: dfsps[0].id });
+    const store = prepareStore({ dfsps, dfspId: dfsps[0].id });
     ({ dispatch, getState } = store);
 
     fetchMock.restore();

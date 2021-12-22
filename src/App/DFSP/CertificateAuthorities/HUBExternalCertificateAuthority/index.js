@@ -18,7 +18,7 @@ import {
 } from './actions';
 import {
   getDfspHubExternalCaError,
-  getDfspHubExternalCaCertificates,
+  getDfspHubExternalCaCertificate,
   getIsDfspHubExternalCaRootCertificateModalVisible,
   getDfspHubExternalCaRootCertificateModalContent,
   getIsDfspHubExternalCaIntermediateChainModalVisible,
@@ -30,7 +30,7 @@ import './index.css';
 
 const stateProps = state => ({
   error: getDfspHubExternalCaError(state),
-  certificates: getDfspHubExternalCaCertificates(state),
+  certificate: getDfspHubExternalCaCertificate(state),
   isRootCertificateModalVisible: getIsDfspHubExternalCaRootCertificateModalVisible(state),
   isIntermediateChainModalVisible: getIsDfspHubExternalCaIntermediateChainModalVisible(state),
   rootCertificateModalContent: getDfspHubExternalCaRootCertificateModalContent(state),
@@ -50,7 +50,7 @@ const actionProps = dispatch => ({
 
 const DfspHubExternalUploadCertificateAuthority = ({
   error,
-  certificates,
+  certificate,
   isRootCertificateModalVisible,
   isIntermediateChainModalVisible,
   rootCertificateModalContent,
@@ -94,8 +94,8 @@ const DfspHubExternalUploadCertificateAuthority = ({
         />
       )}
 
-      <ExtexnarlCaCertificates
-        certificates={certificates}
+      <ExternalCaCertificate
+        certificate={certificate}
         isPending={isDfspHubExternalCaReadPending}
         onRootCertificateViewClick={onRootCertificateViewClick}
         onRootCertificateDownloadClick={onRootCertificateDownloadClick}
@@ -106,15 +106,15 @@ const DfspHubExternalUploadCertificateAuthority = ({
   );
 };
 
-const ExtexnarlCaCertificates = ({
-  certificates,
+const ExternalCaCertificate = ({
+  certificate,
   isPending,
   onRootCertificateViewClick,
   onRootCertificateDownloadClick,
   onIntermediateChainViewClick,
   onIntermediateChainDownloadClick,
 }) => {
-  if (!certificates.length) {
+  if (!certificate) {
     return (
       <MessageBox
         icon="info-small"
@@ -126,71 +126,69 @@ const ExtexnarlCaCertificates = ({
       />
     );
   }
-  return certificates.map(certificate => {
-    const {
-      name,
-      rootCertificate,
-      intermediateChain,
-      rootCertificateInfo,
-      intermediateChainInfo,
-      validations,
-      validationState,
-    } = certificate;
+  const {
+    rootCertificate,
+    intermediateChain,
+    rootCertificateInfo,
+    intermediateChainInfo,
+    validations,
+    validationState,
+  } = certificate;
+  const name = rootCertificateInfo.subject.CN;
 
-    return (
-      <div key={name} className="dfsp__hub-external-ca__certificates__certificate">
-        <div className="dfsp__hub-external-ca__certificates__title">
-          <span className="dfsp__hub-external-ca__certificates__name">{name}</span>
-        </div>
-
-        <div className="dfsp__hub-external-ca__certificates__certificate-validation" key="validation">
-          <CertificateValidation validations={validations} state={validationState} type="certificate" />
-        </div>
-
-        <div className="dfsp__hub-external-ca__certificates__certificate-item" key="root">
-          <div className="dfsp__hub-external-ca__certificates__root-certificate">
-            <FormInput
-              type="text"
-              label="Root Certificate"
-              elementWidth="400px"
-              value={rootCertificate ? `${name}-root-cert.pem` : 'No File Provided'}
-              icon={rootCertificate && 'documents'}
-              pending={isPending}
-              disabled
-            />
-            {rootCertificate && (
-              <FileControls
-                onViewClick={() => onRootCertificateViewClick(rootCertificate)}
-                onDownloadClick={() => onRootCertificateDownloadClick(rootCertificate, name)}
-              />
-            )}
-          </div>
-          {rootCertificateInfo && <CertificateInfo certInfo={rootCertificateInfo} />}
-        </div>
-
-        <div className="dfsp__hub-external-ca__certificates__certificate-item" key="chain">
-          <div className="dfsp__hub-external-ca__certificates__intermediate-chain">
-            <FormInput
-              type="text"
-              label="Intermediate Chain"
-              pending={isPending}
-              value={intermediateChain ? `${name}-intermediates.pem` : 'No File Provided'}
-              icon={intermediateChain && 'documents'}
-              elementWidth="400px"
-              disabled
-            />
-            {intermediateChain && (
-              <FileControls
-                onViewClick={() => onIntermediateChainViewClick(intermediateChain)}
-                onDownloadClick={() => onIntermediateChainDownloadClick(intermediateChain, name)}
-              />
-            )}
-          </div>
-          {intermediateChainInfo && <CertificateInfo certInfo={intermediateChainInfo} />}
-        </div>
+  return (
+    <div key={name} className="dfsp__hub-external-ca__certificates__certificate">
+      <div className="dfsp__hub-external-ca__certificates__title">
+        <span className="dfsp__hub-external-ca__certificates__name">{name}</span>
       </div>
-    );
-  });
+
+      <div className="dfsp__hub-external-ca__certificates__certificate-validation" key="validation">
+        <CertificateValidation validations={validations} state={validationState} type="certificate" />
+      </div>
+
+      <div className="dfsp__hub-external-ca__certificates__certificate-item" key="root">
+        <div className="dfsp__hub-external-ca__certificates__root-certificate">
+          <FormInput
+            type="text"
+            label="Root Certificate"
+            elementWidth="400px"
+            value={rootCertificate ? `${name}-root-cert.pem` : 'No File Provided'}
+            icon={rootCertificate && 'documents'}
+            pending={isPending}
+            disabled
+          />
+          {rootCertificate && (
+            <FileControls
+              onViewClick={() => onRootCertificateViewClick(rootCertificate)}
+              onDownloadClick={() => onRootCertificateDownloadClick(rootCertificate, name)}
+            />
+          )}
+        </div>
+        {rootCertificateInfo && <CertificateInfo certInfo={rootCertificateInfo} />}
+      </div>
+
+      <div className="dfsp__hub-external-ca__certificates__certificate-item" key="chain">
+        <div className="dfsp__hub-external-ca__certificates__intermediate-chain">
+          <FormInput
+            type="text"
+            label="Intermediate Chain"
+            pending={isPending}
+            value={intermediateChain ? `${name}-intermediates.pem` : 'No File Provided'}
+            icon={intermediateChain && 'documents'}
+            elementWidth="400px"
+            disabled
+          />
+          {intermediateChain && (
+            <FileControls
+              onViewClick={() => onIntermediateChainViewClick(intermediateChain)}
+              onDownloadClick={() => onIntermediateChainDownloadClick(intermediateChain, name)}
+            />
+          )}
+        </div>
+        {intermediateChainInfo && <CertificateInfo certInfo={intermediateChainInfo} />}
+      </div>
+    </div>
+  );
 };
 
 export default connect(

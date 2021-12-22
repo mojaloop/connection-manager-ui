@@ -2,7 +2,7 @@ import { handleActions } from 'redux-actions';
 import {
   RESET_HUB_EXTERNAL_CA,
   SET_HUB_EXTERNAL_CA_ERROR,
-  SET_HUB_EXTERNAL_CA_CERTIFICATES,
+  SET_HUB_EXTERNAL_CA_CERTIFICATE,
   SET_HUB_EXTERNAL_CA_ROOT_CERTIFICATE,
   SET_HUB_EXTERNAL_CA_INTERMEDIATE_CHAIN,
   SET_HUB_EXTERNAL_CA_NAME,
@@ -15,7 +15,7 @@ import {
 
 const initialState = {
   hubExternalCaError: undefined,
-  hubExternalCertificates: [],
+  hubExternalCertificates: undefined,
   hubExternalCaRootCert: undefined,
   hubExternalCaIntermediateChain: undefined,
   hubExternalCaName: undefined,
@@ -32,9 +32,9 @@ const HubExternalCa = handleActions(
       ...state,
       hubExternalCaError: action.payload,
     }),
-    [SET_HUB_EXTERNAL_CA_CERTIFICATES]: (state, action) => ({
+    [SET_HUB_EXTERNAL_CA_CERTIFICATE]: (state, action) => ({
       ...state,
-      hubExternalCertificates: action.payload,
+      hubExternalCertificate: action.payload,
     }),
     [SET_HUB_EXTERNAL_CA_ROOT_CERTIFICATE]: (state, action) => ({
       ...state,

@@ -1,18 +1,10 @@
 import getStore, { historyMock } from './getStore';
 
-import { setEnvironments, setEnvironmentId, setDfsps, setDfspId } from 'App/actions';
+import { setDfsps, setDfspId } from 'App/actions';
 
-const prepareStore = ({ url, environments, environmentId, dfsps, dfspId }) => {
+const prepareStore = ({ url, dfsps, dfspId }) => {
   // Create the store
   const store = getStore();
-
-  if (environments) {
-    store.dispatch(setEnvironments(environments));
-  }
-
-  if (environmentId) {
-    store.dispatch(setEnvironmentId(environmentId));
-  }
 
   if (dfsps) {
     store.dispatch(setDfsps(dfsps));

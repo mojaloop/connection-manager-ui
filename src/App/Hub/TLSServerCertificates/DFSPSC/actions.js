@@ -2,7 +2,6 @@ import { createAction } from 'redux-actions';
 import api from 'utils/api';
 import { is200, is404 } from 'utils/http';
 import { downloadFile } from 'utils/html';
-import { getEnvironmentId } from 'App/selectors';
 
 export const RESET_HUB_DFSP_SC = 'HUB DFSP SC / Reset';
 export const SET_HUB_DFSP_SC_ERROR = 'HUB DFSP SC / Set Root Cert Error';
@@ -25,8 +24,7 @@ export const showHubDfspSCServerCertificateModal = createAction(SHOW_HUB_DFSP_SC
 export const hideHubDfspSCServerCertificateModal = createAction(HIDE_HUB_DFSP_SC_SERVER_CERTIFICATE_MODAL);
 
 export const storeHubDfspSCServerCertificates = () => async (dispatch, getState) => {
-  const environmentId = getEnvironmentId(getState());
-  const { data, status } = await dispatch(api.dfspsServerCerts.read({ environmentId }));
+  const { data, status } = await dispatch(api.dfspsServerCerts.read());
   if (is200(status) || is404(status)) {
     dispatch(setHubDfspSCCertificates(data));
   } else {

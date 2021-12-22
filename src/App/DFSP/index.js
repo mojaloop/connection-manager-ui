@@ -11,12 +11,11 @@ import TLSServerCertificates from './TLSServerCertificates';
 import JWSCertificates from './JWSCertificates';
 import './DFSP.css';
 
-import { getEnvironmentName, getDfspName } from 'App/selectors';
+import { getDfspName } from 'App/selectors';
 import { getIsDfspLoading } from './selectors';
 import { initDfsp } from './actions';
 
 const stateProps = state => ({
-  environmentName: getEnvironmentName(state),
   dfspName: getDfspName(state),
   isDfspLoading: getIsDfspLoading(state),
 });
@@ -46,7 +45,7 @@ class DFSPWrapper extends PureComponent {
 
 const DFSPLoader = () => <Spinner center size="m" />;
 
-const DFSP = ({ dfspName, environmentName }) => (
+const DFSP = ({ dfspName }) => (
   <div id="dfsp">
     <div id="dfsp__menu">
       <Menu />
@@ -54,7 +53,6 @@ const DFSP = ({ dfspName, environmentName }) => (
     <ScrollBox>
       <div id="dfsp__content">
         <Heading size="3">{dfspName}</Heading>
-        <Heading size="4">{environmentName}</Heading>
         <Route path="/dfsp/endpoints" component={Endpoints} />
         <Route path="/dfsp/hubEndpoints" component={HubEndpoints} />
         <Route path="/dfsp/ca" component={CertificateAuthorities} />

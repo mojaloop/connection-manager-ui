@@ -2,7 +2,7 @@ import { handleActions } from 'redux-actions';
 import {
   RESET_DFSP_HUB_EXTERNAL_CA,
   SET_DFSP_HUB_EXTERNAL_CA_ERROR,
-  SET_DFSP_HUB_EXTERNAL_CA_CERTIFICATES,
+  SET_DFSP_HUB_EXTERNAL_CA_CERTIFICATE,
   SHOW_DFSP_HUB_EXTERNAL_CA_ROOT_CERTIFICATE_MODAL,
   HIDE_DFSP_HUB_EXTERNAL_CA_ROOT_CERTIFICATE_MODAL,
   SHOW_DFSP_HUB_EXTERNAL_CA_INTERMEDIATE_CHAIN_MODAL,
@@ -28,7 +28,7 @@ const DfspHubExternalCa = handleActions(
       ...state,
       dfspHubExternalCaError: action.payload,
     }),
-    [SET_DFSP_HUB_EXTERNAL_CA_CERTIFICATES]: (state, action) => ({
+    [SET_DFSP_HUB_EXTERNAL_CA_CERTIFICATE]: (state, action) => ({
       ...state,
       dfspHubExternalCertificates: action.payload,
     }),

@@ -56,17 +56,13 @@ const endpoints = {
     service: services.connectionManager,
     url: '/logout',
   },
-  environments: {
-    service: services.connectionManager,
-    url: '/environments',
-  },
   dfsps: {
     service: services.connectionManager,
-    url: ({ environmentId }) => `/environments/${environmentId}/dfsps`,
+    url: () => `/dfsps`,
   },
   dfsp: {
     service: services.connectionManager,
-    url: ({ environmentId, dfspId }) => `/environments/${environmentId}/dfsps/${dfspId}`,
+    url: ({ dfspId }) => `/dfsps/${dfspId}`,
   },
   monetaryZones: {
     service: services.connectionManager,
@@ -74,135 +70,127 @@ const endpoints = {
   },
   egressIps: {
     service: services.connectionManager,
-    url: ({ environmentId, dfspId }) => `/environments/${environmentId}/dfsps/${dfspId}/endpoints/egress/ips`,
+    url: ({ dfspId }) => `/dfsps/${dfspId}/endpoints/egress/ips`,
   },
   egressIp: {
     service: services.connectionManager,
-    url: ({ environmentId, dfspId, ipId }) =>
-      `/environments/${environmentId}/dfsps/${dfspId}/endpoints/egress/ips/${ipId}`,
+    url: ({ dfspId, ipId }) =>
+      `/dfsps/${dfspId}/endpoints/egress/ips/${ipId}`,
   },
   ingressIps: {
     service: services.connectionManager,
-    url: ({ environmentId, dfspId }) => `/environments/${environmentId}/dfsps/${dfspId}/endpoints/ingress/ips`,
+    url: ({ dfspId }) => `/dfsps/${dfspId}/endpoints/ingress/ips`,
   },
   ingressIp: {
     service: services.connectionManager,
-    url: ({ environmentId, dfspId, ipId }) =>
-      `/environments/${environmentId}/dfsps/${dfspId}/endpoints/ingress/ips/${ipId}`,
+    url: ({ dfspId, ipId }) =>
+      `/dfsps/${dfspId}/endpoints/ingress/ips/${ipId}`,
   },
   ingressUrls: {
     service: services.connectionManager,
-    url: ({ environmentId, dfspId }) => `/environments/${environmentId}/dfsps/${dfspId}/endpoints/ingress/urls`,
+    url: ({ dfspId }) => `/dfsps/${dfspId}/endpoints/ingress/urls`,
   },
   ingressUrl: {
     service: services.connectionManager,
-    url: ({ environmentId, dfspId, urlId }) =>
-      `/environments/${environmentId}/dfsps/${dfspId}/endpoints/ingress/urls/${urlId}`,
+    url: ({ dfspId, urlId }) =>
+      `/dfsps/${dfspId}/endpoints/ingress/urls/${urlId}`,
   },
   hubEgressIps: {
     service: services.connectionManager,
-    url: ({ environmentId }) => `/environments/${environmentId}/hub/endpoints/egress/ips`,
+    url: () => `/hub/endpoints/egress/ips`,
   },
   hubEgressIp: {
     service: services.connectionManager,
-    url: ({ environmentId, ipId }) => `/environments/${environmentId}/hub/endpoints/egress/ips/${ipId}`,
+    url: ({ ipId }) => `/hub/endpoints/egress/ips/${ipId}`,
   },
   hubIngressIps: {
     service: services.connectionManager,
-    url: ({ environmentId }) => `/environments/${environmentId}/hub/endpoints/ingress/ips`,
+    url: () => `/hub/endpoints/ingress/ips`,
   },
   hubIngressIp: {
     service: services.connectionManager,
-    url: ({ environmentId, ipId }) => `/environments/${environmentId}/hub/endpoints/ingress/ips/${ipId}`,
+    url: ({ ipId }) => `/hub/endpoints/ingress/ips/${ipId}`,
   },
   hubIngressUrls: {
     service: services.connectionManager,
-    url: ({ environmentId }) => `/environments/${environmentId}/hub/endpoints/ingress/urls`,
+    url: () => `/hub/endpoints/ingress/urls`,
   },
   hubIngressUrl: {
     service: services.connectionManager,
-    url: ({ environmentId, urlId }) => `/environments/${environmentId}/hub/endpoints/ingress/urls/${urlId}`,
+    url: ({ urlId }) => `/hub/endpoints/ingress/urls/${urlId}`,
   },
   unprocessedEndpoints: {
     service: services.connectionManager,
-    url: ({ environmentId }) => `/environments/${environmentId}/dfsps/endpoints/unprocessed`,
+    url: () => `/dfsps/endpoints/unprocessed`,
   },
   confirmEndpoint: {
     service: services.connectionManager,
-    url: ({ environmentId, dfspId, endpointId }) =>
-      `/environments/${environmentId}/dfsps/${dfspId}/endpoints/${endpointId}/confirmation`,
+    url: ({ dfspId, endpointId }) =>
+      `/dfsps/${dfspId}/endpoints/${endpointId}/confirmation`,
   },
   hubEndpoints: {
     service: services.connectionManager,
-    url: ({ environmentId }) => `/environments/${environmentId}/hub/endpoints`,
+    url: () => `/hub/endpoints`,
   },
   dfspCa: {
     service: services.connectionManager,
-    url: ({ environmentId, dfspId }) => `/environments/${environmentId}/dfsps/${dfspId}/ca`,
-  },
-  hubCas: {
-    service: services.connectionManager,
-    url: ({ environmentId }) => `/environments/${environmentId}/cas`,
+    url: ({ dfspId }) => `/dfsps/${dfspId}/ca`,
   },
   hubCa: {
     service: services.connectionManager,
-    url: ({ environmentId }) => `/environments/${environmentId}/ca/rootCert`,
-  },
-  hubExternalCas: {
-    service: services.connectionManager,
-    url: ({ environmentId }) => `/environments/${environmentId}/hub/cas`,
+    url: () => `/hub/ca`,
   },
   inboundEnrollments: {
     service: services.connectionManager,
-    url: ({ environmentId, dfspId }) => `/environments/${environmentId}/dfsps/${dfspId}/enrollments/inbound`,
+    url: ({ dfspId }) => `/dfsps/${dfspId}/enrollments/inbound`,
   },
   inboundEnrollmentSign: {
     service: services.connectionManager,
-    url: ({ environmentId, dfspId, enrollmentId }) =>
-      `/environments/${environmentId}/dfsps/${dfspId}/enrollments/inbound/${enrollmentId}/sign`,
+    url: ({ dfspId, enrollmentId }) =>
+      `/dfsps/${dfspId}/enrollments/inbound/${enrollmentId}/sign`,
   },
   inboundEnrollmentCertificate: {
     service: services.connectionManager,
-    url: ({ environmentId, dfspId, enrollmentId }) =>
-      `/environments/${environmentId}/dfsps/${dfspId}/enrollments/inbound/${enrollmentId}/certificate`,
+    url: ({ dfspId, enrollmentId }) =>
+      `/dfsps/${dfspId}/enrollments/inbound/${enrollmentId}/certificate`,
   },
   outboundEnrollments: {
     service: services.connectionManager,
-    url: ({ environmentId, dfspId }) => `/environments/${environmentId}/dfsps/${dfspId}/enrollments/outbound`,
+    url: ({ dfspId }) => `/dfsps/${dfspId}/enrollments/outbound`,
   },
   outboundEnrollmentCsr: {
     service: services.connectionManager,
-    url: ({ environmentId, dfspId }) => `/environments/${environmentId}/dfsps/${dfspId}/enrollments/outbound/csr`,
+    url: ({ dfspId }) => `/dfsps/${dfspId}/enrollments/outbound/csr`,
   },
   outboundEnrollmentCertificate: {
     service: services.connectionManager,
-    url: ({ environmentId, dfspId, enrollmentId }) =>
-      `/environments/${environmentId}/dfsps/${dfspId}/enrollments/outbound/${enrollmentId}/certificate`,
+    url: ({ dfspId, enrollmentId }) =>
+      `/dfsps/${dfspId}/enrollments/outbound/${enrollmentId}/certificate`,
   },
   outboundEnrollmentValidate: {
     service: services.connectionManager,
-    url: ({ environmentId, dfspId, enrollmentId }) =>
-      `/environments/${environmentId}/dfsps/${dfspId}/enrollments/outbound/${enrollmentId}/validate`,
+    url: ({ dfspId, enrollmentId }) =>
+      `/dfsps/${dfspId}/enrollments/outbound/${enrollmentId}/validate`,
   },
   hubServerCerts: {
     service: services.connectionManager,
-    url: ({ environmentId }) => `/environments/${environmentId}/hub/servercerts`,
+    url: () => `/hub/servercerts`,
   },
   dfspsServerCerts: {
     service: services.connectionManager,
-    url: ({ environmentId, dfspId }) => `/environments/${environmentId}/dfsps/servercerts`,
+    url: ({ dfspId }) => `/dfsps/servercerts`,
   },
   dfspServerCerts: {
     service: services.connectionManager,
-    url: ({ environmentId, dfspId }) => `/environments/${environmentId}/dfsps/${dfspId}/servercerts`,
+    url: ({ dfspId }) => `/dfsps/${dfspId}/servercerts`,
   },
   dfspsJWSCerts: {
     service: services.connectionManager,
-    url: ({ environmentId }) => `/environments/${environmentId}/dfsps/jwscerts`,
+    url: () => `/dfsps/jwscerts`,
   },
   dfspJWSCerts: {
     service: services.connectionManager,
-    url: ({ environmentId, dfspId }) => `/environments/${environmentId}/dfsps/${dfspId}/jwscerts`,
+    url: ({ dfspId }) => `/dfsps/${dfspId}/jwscerts`,
   },
 };
 

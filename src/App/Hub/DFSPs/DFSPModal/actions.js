@@ -1,7 +1,6 @@
 import { createAction } from 'redux-actions';
 import api from 'utils/api';
 import { is20x } from 'utils/http';
-import { getEnvironmentId } from 'App/selectors';
 import { storeDFSPs } from 'App/actions';
 import { getIsExistingDfsp, getHubDfspModalModel } from './selectors';
 
@@ -28,18 +27,17 @@ export const closeHubDfspModal = () => (dispatch, getState) => {
 
 export const submitHubDfspModal = () => async (dispatch, getState) => {
   const model = getHubDfspModalModel(getState());
-  const environmentId = getEnvironmentId(getState());
   const isExistingDfsp = getIsExistingDfsp(getState());
   let result;
 
   if (isExistingDfsp) {
-    result = await dispatch(api.dfsp.update({ environmentId, dfspId: model.dfspId, body: model }));
+    result = await dispatch(api.dfsp.update({ dfspId: model.dfspId, body: model }));
   } else {
-    result = await dispatch(api.dfsps.create({ environmentId, body: model }));
+    result = await dispatch(api.dfsps.create({ body: model }));
   }
 
   if (is20x(result.status)) {
-    dispatch(storeDFSPs(environmentId));
+    dispatch(storeDFSPs());
     dispatch(resetHubDfspModal());
   }
 };

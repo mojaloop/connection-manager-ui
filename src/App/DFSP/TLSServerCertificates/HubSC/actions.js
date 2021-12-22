@@ -3,7 +3,6 @@ import get from 'lodash/get';
 import api from 'utils/api';
 import { is200, is404 } from 'utils/http';
 import { downloadFile } from 'utils/html';
-import { getEnvironmentId, getEnvironmentName } from 'App/selectors';
 import { getDfspHubSCRootCertificate, getDfspHubSCIntermediateChain, getDfspHubSCServerCertificate } from './selectors';
 
 export const RESET_DFSP_HUB_SC = 'DFSP HUB SC / Reset';
@@ -41,8 +40,7 @@ export const showDfspHubSCServerCertificateModal = createAction(SHOW_DFSP_HUB_SC
 export const hideDfspHubSCServerCertificateModal = createAction(HIDE_DFSP_HUB_SC_SERVER_CERTIFICATE_MODAL);
 
 export const storeDfspHubSCServerCertificate = () => async (dispatch, getState) => {
-  const environmentId = getEnvironmentId(getState());
-  const { data, status } = await dispatch(api.hubServerCerts.read({ environmentId }));
+  const { data, status } = await dispatch(api.hubServerCerts.read());
   if (is200(status)) {
     dispatch(setDfspHubSCRootCertificate(get(data, 'rootCertificate')));
     dispatch(setDfspHubSCIntermediateChain(get(data, 'intermediateChain')));
@@ -58,19 +56,16 @@ export const storeDfspHubSCServerCertificate = () => async (dispatch, getState) 
 };
 
 export const downloadDfspHubSCRootCertificate = () => (dispatch, getState) => {
-  const environmentName = getEnvironmentName(getState());
   const rootCertificate = getDfspHubSCRootCertificate(getState());
-  downloadFile(rootCertificate, `${environmentName}-hub-root.pem`);
+  downloadFile(rootCertificate, `hub-root.pem`);
 };
 
 export const downloadDfspHubSCIntermediateChain = () => (dispatch, getState) => {
-  const environmentName = getEnvironmentName(getState());
   const intermediateChain = getDfspHubSCIntermediateChain(getState());
-  downloadFile(intermediateChain, `${environmentName}-hub-intermediates.pem`);
+  downloadFile(intermediateChain, `hub-intermediates.pem`);
 };
 
 export const downloadDfspHubSCServerCertificate = () => (dispatch, getState) => {
-  const environmentName = getEnvironmentName(getState());
   const serverCertificate = getDfspHubSCServerCertificate(getState());
-  downloadFile(serverCertificate, `${environmentName}-hub-root.pem`);
+  downloadFile(serverCertificate, `hub-root.pem`);
 };

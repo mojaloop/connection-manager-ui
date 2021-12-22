@@ -10,7 +10,6 @@ import {
   Icon,
   MessageBox,
 } from 'components';
-import { getEnvironmentName } from 'App/selectors';
 import {
   setHubCaCommonName,
   setHubCaOrganization,
@@ -22,9 +21,9 @@ import {
   addHubCaHost,
   removeHubCaHost,
   submitHubCa,
-  downloadHubCaRootCertificate,
-  showHubCaRootCertificateModal,
-  hideHubCaRootCertificateModal,
+  downloadHubCa,
+  showHubCaModal,
+  hideHubCaModal,
 } from './actions';
 import {
   getHubCaError,
@@ -40,14 +39,13 @@ import {
   getIsHubCaSubmitEnabled,
   getHubCaRootCertificate,
   getHubCaRootCertificateInfo,
-  getIsHubCaRootCertificateModalVisible,
+  getIsHubCaModalVisible,
   getIsHubCaPending,
 } from './selectors';
 
 import './index.css';
 
 const stateProps = state => ({
-  environmentName: getEnvironmentName(state),
   error: getHubCaError(state),
   commonName: getHubCaCommonName(state),
   organization: getHubCaOrganization(state),
@@ -61,7 +59,7 @@ const stateProps = state => ({
   isSubmitEnabled: getIsHubCaSubmitEnabled(state),
   rootCertificate: getHubCaRootCertificate(state),
   rootCertificateInfo: getHubCaRootCertificateInfo(state),
-  isRootCertificateModalVisible: getIsHubCaRootCertificateModalVisible(state),
+  isRootCertificateModalVisible: getIsHubCaModalVisible(state),
   isHubCaPending: getIsHubCaPending(state),
 });
 
@@ -76,13 +74,12 @@ const actionProps = dispatch => ({
   onHostAddClick: () => dispatch(addHubCaHost()),
   onHostRemoveClick: index => dispatch(removeHubCaHost(index)),
   onCreateHubRootCertificateClick: () => dispatch(submitHubCa()),
-  onRootCertificateViewClick: () => dispatch(showHubCaRootCertificateModal()),
-  onRootCertificateDownloadClick: () => dispatch(downloadHubCaRootCertificate()),
-  onRootCertificateModalCloseClick: () => dispatch(hideHubCaRootCertificateModal()),
+  onRootCertificateViewClick: () => dispatch(showHubCaModal()),
+  onRootCertificateDownloadClick: () => dispatch(downloadHubCa()),
+  onRootCertificateModalCloseClick: () => dispatch(hideHubCaModal()),
 });
 
 const HubCertificateAuthority = ({
-  environmentName,
   error,
   commonName,
   organization,
@@ -138,7 +135,7 @@ const HubCertificateAuthority = ({
           type="text"
           label="Root Certificate"
           elementWidth="400px"
-          value={rootCertificate ? `${environmentName}-root.pem` : 'No Certificate Created Yet'}
+          value={rootCertificate ? `root.pem` : 'No Certificate Created Yet'}
           icon={rootCertificate && 'documents'}
           disabled
         />

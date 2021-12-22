@@ -9,7 +9,6 @@ import {
   MessageBox,
 } from 'components';
 import { withMount } from 'utils/hocs';
-import { getEnvironmentName } from 'App/selectors';
 import {
   storeHubDfspSCServerCertificates,
   downloadHubDfspSCRootCertificate,
@@ -37,7 +36,6 @@ import {
 import './index.css';
 
 const stateProps = state => ({
-  environmentName: getEnvironmentName(state),
   error: getHubDfspSCError(state),
   certificatesByDfsp: getDfspCertificatesByDfsp(state),
   isRootCertificateModalVisible: getIsHubDfspSCRootCertificateModalVisible(state),
@@ -65,7 +63,6 @@ const actionProps = dispatch => ({
 });
 
 const DFSPSC = ({
-  environmentName,
   error,
   certificatesByDfsp,
   rootCertificateModalContent,
@@ -121,7 +118,6 @@ const DFSPSC = ({
             <div className="hub__dfsp-sc__dfsp__title">
               <span className="hub__dfsp-sc__dfsp__name">{dfspName}</span>
               <span className="hub__dfsp-sc__dfsp__spacing"> - </span>
-              <span className="hub__dfsp-sc__dfsp__environment">{environmentName}</span>
             </div>
 
             <div className="hub__dfsp-sc__dfsp__certificate-validation" key="validation">

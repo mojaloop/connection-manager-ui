@@ -1,7 +1,7 @@
 import { createSelector } from 'reselect';
 import find from 'lodash/find';
 import { createPendingSelector } from '@modusbox/modusbox-ui-components/dist/redux-fetch';
-import { getDfspHubExternalCaCertificates } from '../../CertificateAuthorities/HUBExternalCertificateAuthority/selectors';
+import { getDfspHubExternalCaCertificate } from '../../CertificateAuthorities/HUBExternalCertificateAuthority/selectors';
 
 export const getDfspSentCsrsError = state => state.dfsp.tls.client.csrs.dfspSentCsrsError;
 export const getDfspSentCsrsFilter = state => state.dfsp.tls.client.csrs.dfspSentCsrsFilter;
@@ -16,7 +16,7 @@ export const getDfspSentCsrsCertificateModalTitle = state =>
 const findCaById = (id, cas) => find(cas, { id });
 
 export const getFilteredDfspSentCsrsCertificates = createSelector(
-  getDfspHubExternalCaCertificates,
+  getDfspHubExternalCaCertificate,
   getDfspSentCsrsCertificates,
   getDfspSentCsrsFilter,
   (cas, certificates, filter) => {

@@ -2,7 +2,7 @@ import { createAction } from 'redux-actions';
 import api from 'utils/api';
 import { is200, is204 } from 'utils/http';
 import { showSuccessToast, showErrorModal } from 'App/actions';
-import { getEnvironmentId, getDfspId } from 'App/selectors';
+import { getDfspId } from 'App/selectors';
 import { getUrlsOperations, getIpsOperations } from './selectors';
 import { apiToIpModel, apiToUrlModel, ipToApiModel, urlToApiModel } from './models';
 
@@ -35,9 +35,8 @@ export const removeDfspIngressPort = createAction(REMOVE_DFSP_INGRESS_PORT);
 export const undoDfspIngressChanges = createAction(UNDO_DFSP_INGRESS_CHANGES);
 
 export const storeDfspIngressUrls = () => async (dispatch, getState) => {
-  const environmentId = getEnvironmentId(getState());
   const dfspId = getDfspId(getState());
-  const { data, status } = await dispatch(api.ingressUrls.read({ environmentId, dfspId }));
+  const { data, status } = await dispatch(api.ingressUrls.read({ dfspId }));
   if (is200(status)) {
     const urls = data.map(apiToUrlModel);
     dispatch(setDfspIngressUrls(urls));
@@ -46,9 +45,8 @@ export const storeDfspIngressUrls = () => async (dispatch, getState) => {
   }
 };
 export const storeDfspIngressIps = () => async (dispatch, getState) => {
-  const environmentId = getEnvironmentId(getState());
   const dfspId = getDfspId(getState());
-  const { data, status } = await dispatch(api.ingressIps.read({ environmentId, dfspId }));
+  const { data, status } = await dispatch(api.ingressIps.read({ dfspId }));
   if (is200(status)) {
     const ips = data.map(apiToIpModel);
     dispatch(setDfspIngressIps(ips));
@@ -62,28 +60,27 @@ export const storeDfspEndpoints = () => async (dispatch, getState) => {
 };
 
 export const submitDfspIngressEndpoints = () => async (dispatch, getState) => {
-  const environmentId = getEnvironmentId(getState());
   const dfspId = getDfspId(getState());
   const urlsOperations = getUrlsOperations(getState());
   const ipsOperations = getIpsOperations(getState());
 
   const createUrlsActions = urlsOperations.create.map(url =>
-    dispatch(api.ingressUrls.create({ environmentId, dfspId, body: urlToApiModel(url) }))
+    dispatch(api.ingressUrls.create({ dfspId, body: urlToApiModel(url) }))
   );
   const updateUrlsActions = urlsOperations.update.map(url =>
-    dispatch(api.ingressUrl.update({ environmentId, dfspId, urlId: url.id, body: urlToApiModel(url) }))
+    dispatch(api.ingressUrl.update({ dfspId, urlId: url.id, body: urlToApiModel(url) }))
   );
   const deleteUrlsActions = urlsOperations.delete.map(url =>
-    dispatch(api.ingressUrl.delete({ environmentId, dfspId, urlId: url.id }))
+    dispatch(api.ingressUrl.delete({ dfspId, urlId: url.id }))
   );
   const createIpsActions = ipsOperations.create.map(ip =>
-    dispatch(api.ingressIps.create({ environmentId, dfspId, body: ipToApiModel(ip) }))
+    dispatch(api.ingressIps.create({ dfspId, body: ipToApiModel(ip) }))
   );
   const updateIpsActions = ipsOperations.update.map(ip =>
-    dispatch(api.ingressIp.update({ environmentId, dfspId, ipId: ip.id, body: ipToApiModel(ip) }))
+    dispatch(api.ingressIp.update({ dfspId, ipId: ip.id, body: ipToApiModel(ip) }))
   );
   const deleteIpsActions = ipsOperations.delete.map(ip =>
-    dispatch(api.ingressIp.delete({ environmentId, dfspId, ipId: ip.id }))
+    dispatch(api.ingressIp.delete({ dfspId, ipId: ip.id }))
   );
 
   const results = await Promise.all([

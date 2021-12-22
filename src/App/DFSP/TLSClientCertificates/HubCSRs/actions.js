@@ -4,7 +4,7 @@ import { is200 } from 'utils/http';
 import { downloadFile, loadFile } from 'utils/html';
 import { isCertificate } from 'utils/certificate';
 import { showSuccessToast, showErrorModal } from 'App/actions';
-import { getEnvironmentId, getEnvironmentName, getDfspId } from 'App/selectors';
+import { getDfspId } from 'App/selectors';
 
 export const RESET_DFSP_HUB_CSR = 'DFSP HUB CSRs / Reset';
 export const SET_DFSP_HUB_CSR_ERROR = 'DFSP HUB CSRs / Set Root Cert Error';
@@ -19,9 +19,8 @@ export const showDfspHubCsrsCertificateModal = createAction(SHOW_DFSP_HUB_CSR_CE
 export const hideDfspHubCsrsCertificateModal = createAction(HIDE_DFSP_HUB_CSR_CERTIFICATE_MODAL);
 
 export const storeDfspHubCsrs = () => async (dispatch, getState) => {
-  const environmentId = getEnvironmentId(getState());
   const dfspId = getDfspId(getState());
-  const { data, status } = await dispatch(api.outboundEnrollments.read({ environmentId, dfspId }));
+  const { data, status } = await dispatch(api.outboundEnrollments.read({ dfspId }));
 
   if (is200(status)) {
     dispatch(setDfspHubCsrsCertificates(data));
@@ -45,11 +44,10 @@ export const submitCertificateDfspHubCsr = enrollmentId => async (dispatch, getS
     return;
   }
 
-  const environmentId = getEnvironmentId(getState());
   const dfspId = getDfspId(getState());
   const body = { certificate };
   const { data, status } = await dispatch(
-    api.outboundEnrollmentCertificate.create({ environmentId, dfspId, enrollmentId, body })
+    api.outboundEnrollmentCertificate.create({ dfspId, enrollmentId, body })
   );
   if (is200(status)) {
     dispatch(showSuccessToast());
@@ -60,6 +58,5 @@ export const submitCertificateDfspHubCsr = enrollmentId => async (dispatch, getS
 };
 
 export const downloadDfspSentCsrCertificate = (certificate, cn, extension) => (dispatch, getState) => {
-  const environmentName = getEnvironmentName(getState());
-  downloadFile(certificate, `${environmentName}-${cn}${extension}`);
+  downloadFile(certificate, `${cn}${extension}`);
 };

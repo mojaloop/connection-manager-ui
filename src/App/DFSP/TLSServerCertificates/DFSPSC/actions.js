@@ -4,7 +4,7 @@ import api from 'utils/api';
 import { is200, is404 } from 'utils/http';
 import { downloadFile } from 'utils/html';
 import { showSuccessToast, showErrorModal } from 'App/actions';
-import { getEnvironmentId, getEnvironmentName, getDfspId } from 'App/selectors';
+import { getDfspId } from 'App/selectors';
 import {
   getDfspSCRootCertificate,
   getDfspSCIntermediateChain,
@@ -53,9 +53,8 @@ export const showDfspSCServerCertificateModal = createAction(SHOW_DFSP_SC_SERVER
 export const hideDfspSCServerCertificateModal = createAction(HIDE_DFSP_SC_SERVER_CERTIFICATE_MODAL);
 
 export const storeDfspSCServerCertificate = () => async (dispatch, getState) => {
-  const environmentId = getEnvironmentId(getState());
   const dfspId = getDfspId(getState());
-  const { data, status } = await dispatch(api.dfspServerCerts.read({ environmentId, dfspId }));
+  const { data, status } = await dispatch(api.dfspServerCerts.read({ dfspId }));
   if (is200(status) || is404(status)) {
     dispatch(setDfspSCRootCertificate(get(data, 'rootCertificate')));
     dispatch(setDfspSCIntermediateChain(get(data, 'intermediateChain')));
@@ -71,7 +70,6 @@ export const storeDfspSCServerCertificate = () => async (dispatch, getState) => 
 };
 
 export const submitDfspSCServerCertificate = () => async (dispatch, getState) => {
-  const environmentId = getEnvironmentId(getState());
   const dfspId = getDfspId(getState());
   const rootCertificate = getDfspSCRootCertificate(getState());
   const intermediateChain = getDfspSCIntermediateChain(getState());
@@ -80,9 +78,9 @@ export const submitDfspSCServerCertificate = () => async (dispatch, getState) =>
   let status;
   let data;
   if (getIsDfspSCEditingExisitingModel(getState())) {
-    ({ status, data } = await dispatch(api.dfspServerCerts.update({ environmentId, dfspId, body })));
+    ({ status, data } = await dispatch(api.dfspServerCerts.update({ dfspId, body })));
   } else {
-    ({ status, data } = await dispatch(api.dfspServerCerts.create({ environmentId, dfspId, body })));
+    ({ status, data } = await dispatch(api.dfspServerCerts.create({ dfspId, body })));
   }
   if (is200(status)) {
     dispatch(showSuccessToast());
@@ -100,19 +98,16 @@ export const submitDfspSCServerCertificate = () => async (dispatch, getState) =>
 };
 
 export const downloadDfspSCRootCertificate = () => (dispatch, getState) => {
-  const environmentName = getEnvironmentName(getState());
   const rootCertificate = getDfspSCRootCertificate(getState());
-  downloadFile(rootCertificate, `${environmentName}-root.pem`);
+  downloadFile(rootCertificate, `root.pem`);
 };
 
 export const downloadDfspSCIntermediateChain = () => (dispatch, getState) => {
-  const environmentName = getEnvironmentName(getState());
   const intermediateChain = getDfspSCIntermediateChain(getState());
-  downloadFile(intermediateChain, `${environmentName}-intermediates.pem`);
+  downloadFile(intermediateChain, `intermediates.pem`);
 };
 
 export const downloadDfspSCServerCertificate = () => (dispatch, getState) => {
-  const environmentName = getEnvironmentName(getState());
   const rootCertificate = getDfspSCServerCertificate(getState());
-  downloadFile(rootCertificate, `${environmentName}-server.pem`);
+  downloadFile(rootCertificate, `server.pem`);
 };

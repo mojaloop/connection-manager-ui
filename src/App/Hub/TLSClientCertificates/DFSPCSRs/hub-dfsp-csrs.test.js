@@ -1,6 +1,5 @@
 import { fetchMock, MATCHED } from 'fetch-mock';
 import prepareStore, { getStore } from 'tests/store';
-import environments from 'tests/resources/environments.json';
 import dfsps from 'tests/resources/dfsps.json';
 import { sleep } from 'utils/async';
 
@@ -94,7 +93,7 @@ describe('Test the hub dfsp csrs thunk actions', () => {
   ];
 
   beforeEach(async () => {
-    const store = prepareStore({ environments, environmentId: environments[0].id, dfsps });
+    const store = prepareStore({ dfsps });
     ({ dispatch, getState } = store);
 
     fetchMock.restore();
@@ -155,7 +154,7 @@ describe('Test the api pending selectors', () => {
   ];
 
   beforeEach(async () => {
-    const store = prepareStore({ environments, environmentId: environments[0].id, dfsps });
+    const store = prepareStore({ dfsps });
     ({ dispatch, getState } = store);
 
     fetchMock.restore();

@@ -1,6 +1,5 @@
 import { fetchMock } from 'fetch-mock';
 import prepareStore, { getStore, historyMock } from 'tests/store';
-import environments from 'tests/resources/environments.json';
 
 import { setHubLoading, unsetHubLoading, initHub } from './actions';
 
@@ -36,7 +35,7 @@ describe('Test the hub thunk actions', () => {
   });
 
   it('Should redirect to root when environment is not set', async () => {
-    const store = prepareStore({ environments, url: '/test' });
+    const store = prepareStore({ url: '/test' });
     ({ dispatch, getState } = store);
     await dispatch(initHub());
     expect(historyMock.push).toHaveBeenCalledWith('/');
@@ -45,7 +44,7 @@ describe('Test the hub thunk actions', () => {
   });
 
   it('Should initialize the hub app', async () => {
-    const store = prepareStore({ environments, environmentId: environments[0].id });
+    const store = prepareStore();
     ({ dispatch, getState } = store);
     await dispatch(initHub());
     expect(historyMock.push).not.toHaveBeenCalled();

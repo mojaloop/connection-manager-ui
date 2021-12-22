@@ -11,7 +11,6 @@ import {
   TextField,
 } from 'components';
 import { withMount } from 'utils/hocs';
-import { getEnvironmentName } from 'App/selectors';
 import {
   storeDfspsJWSCertificates,
   setDfspsJWSFilter,
@@ -39,7 +38,6 @@ import {
 import './index.css';
 
 const stateProps = state => ({
-  environmentName: getEnvironmentName(state),
   error: getDfspsJWSError(state),
   filter: getDfspsJWSFilter(state),
   sameMonetaryZone: getDfspsJWSSameMonetaryZone(state),
@@ -65,7 +63,6 @@ const actionProps = dispatch => ({
 });
 
 const DFSPsJWS = ({
-  environmentName,
   error,
   filter,
   sameMonetaryZone,
@@ -112,7 +109,6 @@ const DFSPsJWS = ({
       </div>
 
       <DFSPsCertificates
-        environmentName={environmentName}
         certificates={certificatesByDfsp}
         isDfspsJWSPending={isDfspsJWSPending}
         onJwsCertificateViewClick={onJwsCertificateViewClick}
@@ -140,7 +136,6 @@ const DFSPsJWS = ({
 };
 
 const DFSPsCertificates = ({
-  environmentName,
   certificates,
   isDfspsJWSPending,
   onJwsCertificateViewClick,
@@ -170,7 +165,6 @@ const DFSPsCertificates = ({
       <div className="dfsp__dfsps-jws__title">
         <span className="dfsp__dfsps-jws__name">{dfspName}</span>
         <span className="dfsp__dfsps-jws__spacing"> - </span>
-        <span className="dfsp__dfsps-jws__environment">{environmentName}</span>
       </div>
     );
     return (

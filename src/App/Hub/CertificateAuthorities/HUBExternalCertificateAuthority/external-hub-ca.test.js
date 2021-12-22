@@ -1,6 +1,5 @@
 import { fetchMock, MATCHED } from 'fetch-mock';
 import prepareStore, { getStore } from 'tests/store';
-import environments from 'tests/resources/environments.json';
 
 import {
   resetHubExternalCa,
@@ -11,13 +10,13 @@ import {
   hideHubExternalCaRootCertificateModal,
   showHubExternalCaIntermediateChainModal,
   hideHubExternalCaIntermediateChainModal,
-  storeHubExternalCas,
+  storeHubExternalCa,
   submitHubExternalCa,
 } from './actions';
 
 import {
   getHubExternalCaError,
-  getHubExternalCaCertificates,
+  getHubExternalCaCertificate,
   getHubExternalCaRootCertificate,
   getHubExternalCaIntermediateChain,
   getHubExternalCaName,
@@ -92,7 +91,7 @@ describe('Test the HUB EXTERNAL CA thunk actions', () => {
   ];
 
   beforeEach(async () => {
-    const store = prepareStore({ environments, environmentId: environments[0].id });
+    const store = prepareStore();
     ({ dispatch, getState } = store);
 
     fetchMock.restore();
@@ -100,11 +99,11 @@ describe('Test the HUB EXTERNAL CA thunk actions', () => {
 
   it('Should store the HUB EXTERNAL CA', async () => {
     fetchMock.get('end:/cas', fetchResponse);
-    await dispatch(storeHubExternalCas());
+    await dispatch(storeHubExternalCa());
     expect(fetchMock.calls(MATCHED)).toHaveLength(1);
-    expect(getHubExternalCaCertificates(getState())).toHaveLength(1);
+    expect(getHubExternalCaCertificate(getState())).not.toBe(undefined);
 
-    const [certificate] = getHubExternalCaCertificates(getState());
+    const [certificate] = getHubExternalCaCertificate(getState());
     expect(certificate.rootCertificate).toBe('ROOT_CERT');
     expect(certificate.intermediateChain).toBe('CHAIN');
     expect(certificate.name).toBe('test');
@@ -114,7 +113,7 @@ describe('Test the HUB EXTERNAL CA thunk actions', () => {
 
   it('Should set the error when read operation is not successful', async () => {
     fetchMock.get('end:/cas', 500);
-    await dispatch(storeHubExternalCas());
+    await dispatch(storeHubExternalCa());
     expect(fetchMock.calls(MATCHED)).toHaveLength(1);
     expect(getHubExternalCaError(getState()).status).toBe(500);
     expect(getHubExternalCaError(getState()).error).toBe(undefined);
@@ -148,7 +147,7 @@ describe('Test the api pending selectors', () => {
   };
 
   beforeEach(async () => {
-    const store = prepareStore({ environments, environmentId: environments[0].id });
+    const store = prepareStore();
     ({ dispatch, getState } = store);
 
     fetchMock.restore();

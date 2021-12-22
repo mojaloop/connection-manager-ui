@@ -5,7 +5,7 @@ import * as testers from 'utils/testers';
 import { getHubExternalCaValidators } from './validators';
 
 export const getHubExternalCaError = state => state.hub.ca.external.hubExternalCaError;
-export const getHubExternalCaCertificates = state => state.hub.ca.external.hubExternalCertificates;
+export const getHubExternalCaCertificate = state => state.hub.ca.external.hubExternalCertificate;
 export const getHubExternalCaRootCertificate = state => state.hub.ca.external.hubExternalCaRootCert;
 export const getHubExternalCaIntermediateChain = state => state.hub.ca.external.hubExternalCaIntermediateChain;
 export const getHubExternalCaName = state => state.hub.ca.external.hubExternalCaName;
@@ -19,8 +19,8 @@ export const getHubExternalCaIntermediateChainModalContent = state =>
   state.hub.ca.external.hubExternalCaIntermediateChainModalContent;
 
 export const getIsHubExternalCasMissing = createSelector(
-  getHubExternalCaCertificates,
-  certificates => certificates.length === 0
+  getHubExternalCaCertificate,
+  certificate => certificate !== undefined
 );
 
 const buildHubExternalCaModel = (rootCertificate, intermediateChain, name) => ({
@@ -38,8 +38,11 @@ export const getHubExternalCaModel = createSelector(
 
 const getHubExternalCaNameInUniq = createSelector(
   getHubExternalCaName,
-  getHubExternalCaCertificates,
-  (name, certificates) => certificates.every(certificate => certificate.name !== name)
+  getHubExternalCaCertificate,
+  // TODO: Need to refactor this logic. Since CA's are now overwritten
+  //       Since a participant can only have one, just return true.
+  //       This used to check that a CA's name was unique.
+  (name, certificates) => true
 );
 
 const getHubExternalCaValidation = createSelector(

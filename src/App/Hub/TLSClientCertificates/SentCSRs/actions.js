@@ -3,7 +3,7 @@ import api from 'utils/api';
 import { is200 } from 'utils/http';
 import { downloadFile } from 'utils/html';
 import { showSuccessToast, showErrorModal } from 'App/actions';
-import { getDfsps, getEnvironmentId, getEnvironmentName } from 'App/selectors';
+import { getDfsps } from 'App/selectors';
 
 export const RESET_HUB_SENT_CSRS = 'Hub Sent CSRs / Reset';
 export const SET_HUB_SENT_CSRS_FILTER = 'Hub Sent CSRs / Set Filter';
@@ -20,10 +20,9 @@ export const showHubSentCsrsCertificateModal = createAction(SHOW_HUB_SENT_CSRS_C
 export const hideHubSentCsrsCertificateModal = createAction(HIDE_HUB_SENT_CSRS_CERTIFICATE_MODAL);
 
 export const storeHubSentCsrs = () => async (dispatch, getState) => {
-  const environmentId = getEnvironmentId(getState());
   const dfsps = getDfsps(getState());
   const results = await Promise.all(
-    dfsps.map(dfsp => dispatch(api.outboundEnrollments.read({ environmentId, dfspId: dfsp.id })))
+    dfsps.map(dfsp => dispatch(api.outboundEnrollments.read({ dfspId: dfsp.id })))
   );
   if (results.every(({ status }) => is200(status))) {
     const csrs = results.reduce(
@@ -44,8 +43,7 @@ export const storeHubSentCsrs = () => async (dispatch, getState) => {
 };
 
 export const validateHubSentCsrCertificate = (dfspId, enrollmentId) => async (dispatch, getState) => {
-  const environmentId = getEnvironmentId(getState());
-  const { status } = await dispatch(api.outboundEnrollmentValidate.create({ environmentId, dfspId, enrollmentId }));
+  const { status } = await dispatch(api.outboundEnrollmentValidate.create({ dfspId, enrollmentId }));
   if (is200(status)) {
     dispatch(showSuccessToast());
     dispatch(storeHubSentCsrs());
@@ -55,6 +53,5 @@ export const validateHubSentCsrCertificate = (dfspId, enrollmentId) => async (di
 };
 
 export const downloadHubSentCsrCertificate = (certificate, dfspName = undefined, extension) => (dispatch, getState) => {
-  const environmentName = getEnvironmentName(getState());
-  downloadFile(certificate, `${environmentName}-${dfspName || ''}${extension}`);
+  downloadFile(certificate, `${dfspName || ''}${extension}`);
 };

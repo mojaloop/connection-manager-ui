@@ -9,7 +9,6 @@ import {
   PendingOverlay,
 } from 'components';
 import { withMount } from 'utils/hocs';
-import { getEnvironmentName } from 'App/selectors';
 import {
   storeHubDfspCas,
   downloadHubDfspCaRootCertificate,
@@ -32,7 +31,6 @@ import {
 import './index.css';
 
 const stateProps = state => ({
-  environmentName: getEnvironmentName(state),
   error: getHubDfspCasError(state),
   certificatesByDfsp: getDfspCertificatesByDfsp(state),
   isRootCertificateModalVisible: getIsHubDfspCasRootCertificateModalVisible(state),
@@ -54,7 +52,6 @@ const actionProps = dispatch => ({
 });
 
 const DFSPCertificateAuthority = ({
-  environmentName,
   error,
   certificatesByDfsp,
   isRootCertificateModalVisible,
@@ -96,7 +93,6 @@ const DFSPCertificateAuthority = ({
               <div className="hub__dfsp-ca__dfsp__title">
                 <span className="hub__dfsp-ca__dfsp__name">{dfspName}</span>
                 <span className="hub__dfsp-ca__dfsp__spacing"> - </span>
-                <span className="hub__dfsp-ca__dfsp__environment">{environmentName}</span>
               </div>
             );
             return (

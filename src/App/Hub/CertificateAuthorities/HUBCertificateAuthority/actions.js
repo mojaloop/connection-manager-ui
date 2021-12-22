@@ -3,7 +3,6 @@ import api from 'utils/api';
 import { is200, is404 } from 'utils/http';
 import { downloadFile } from 'utils/html';
 import { showSuccessToast, showErrorModal } from 'App/actions';
-import { getEnvironmentId, getEnvironmentName } from 'App/selectors';
 import { getHubCaModel, getHubCaRootCertificate } from './selectors';
 
 export const RESET_HUB_CA = 'HUB CA / Reset';
@@ -33,27 +32,27 @@ export const setHubCaCountry = createAction(SET_HUB_CA_COUNTRY);
 export const changeHubCaHost = createAction(CHANGE_HUB_CA_HOST);
 export const addHubCaHost = createAction(ADD_HUB_CA_HOST);
 export const removeHubCaHost = createAction(REMOVE_HUB_CA_HOST);
-export const setHubCaRootCertificate = createAction(SET_HUB_CA_ROOT_CERTIFICATE);
-export const setHubCaRootCertificateInfo = createAction(SET_HUB_CA_ROOT_CERTIFICATE_INFO);
-export const showHubCaRootCertificateModal = createAction(SHOW_HUB_CA_ROOT_CERTIFICATE_MODAL);
-export const hideHubCaRootCertificateModal = createAction(HIDE_HUB_CA_ROOT_CERTIFICATE_MODAL);
+export const setHubCa = createAction(SET_HUB_CA_ROOT_CERTIFICATE);
+export const setHubCaInfo = createAction(SET_HUB_CA_ROOT_CERTIFICATE_INFO);
+export const showHubCaModal = createAction(SHOW_HUB_CA_ROOT_CERTIFICATE_MODAL);
+export const hideHubCaModal = createAction(HIDE_HUB_CA_ROOT_CERTIFICATE_MODAL);
 
 export const storeHubCa = () => async (dispatch, getState) => {
-  const environmentId = getEnvironmentId(getState());
-  const { data, status } = await dispatch(api.hubCa.read({ environmentId }));
+  const { data, status } = await dispatch(api.hubCa.read());
   if (is200(status) || is404(status)) {
-    const { certificate, certInfo } = data;
-    dispatch(setHubCaRootCertificate(certificate));
-    dispatch(setHubCaRootCertificateInfo(certInfo));
+    if (data.type === 'INTERNAL') {
+      const { rootCertificate, rootCertificateInfo } = data;
+      dispatch(setHubCa(rootCertificate));
+      dispatch(setHubCaInfo(rootCertificateInfo));
+    }
   } else {
     dispatch(setHubCaError(data));
   }
 };
 
 export const submitHubCa = () => async (dispatch, getState) => {
-  const environmentId = getEnvironmentId(getState());
   const body = getHubCaModel(getState());
-  const { status, data } = await dispatch(api.hubCas.create({ environmentId, body }));
+  const { status, data } = await dispatch(api.hubCa.create({ body }));
   if (is200(status)) {
     dispatch(showSuccessToast());
     dispatch(storeHubCa());
@@ -62,8 +61,7 @@ export const submitHubCa = () => async (dispatch, getState) => {
   }
 };
 
-export const downloadHubCaRootCertificate = () => (dispatch, getState) => {
-  const environmentName = getEnvironmentName(getState());
-  const rootCertificate = getHubCaRootCertificate(getState());
-  downloadFile(rootCertificate, `${environmentName}-root.pem`);
+export const downloadHubCa = () => (dispatch, getState) => {
+  const chain = getHubCaRootCertificate(getState());
+  downloadFile(chain, `ca_chain.pem`);
 };

@@ -9,16 +9,11 @@ import {
   hideToast,
   showErrorModal,
   hideErrorModal,
-  setEnvironments,
-  setEnvironmentsError,
-  setEnvironmentId,
   setDfsps,
   setDfspsError,
   setDfspId,
-  storeEnvironments,
   storeDFSPs,
   initApp,
-  initEnvironment,
   showSuccessToast,
 } from './actions';
 
@@ -27,28 +22,13 @@ import {
   getIsSuccessToastVisible,
   getIsErrorModalVisible,
   getErrorModalContent,
-  getEnvironments,
-  getEnvironmentsError,
-  getEnvironmentId,
   getDfsps,
   getDfspsError,
   getDfspId,
-  getIsAppLoadingFailed,
-  getEnvironmentName,
   getDfspName,
   getIsDfspsReadPending,
 } from './selectors';
 
-const environmentItems = [
-  {
-    id: '1',
-    name: 'test',
-  },
-  {
-    id: '2',
-    name: 'dev',
-  },
-];
 const dfspItems = [
   {
     id: 'MTN CI',
@@ -107,31 +87,6 @@ describe('Test the app actions', () => {
     expect(getErrorModalContent(getState())).toBeUndefined();
   });
 
-  it('Should set the environments', () => {
-    dispatch(setEnvironments(environmentItems));
-    const environments = getEnvironments(getState());
-    expect(environments).toHaveLength(environmentItems.length);
-    expect(environments[0].id).toBe(environmentItems[0].id);
-    expect(environments[0].name).toBe(environmentItems[0].name);
-  });
-
-  it('Should set the environments error', () => {
-    dispatch(setEnvironmentsError('ERROR'));
-    const environmentsError = getEnvironmentsError(getState());
-    expect(environmentsError).toBe('ERROR');
-  });
-
-  it('Should set the environment Id', () => {
-    dispatch(setEnvironmentId(environmentItems[0].id));
-    expect(getEnvironmentId(getState())).toBe(environmentItems[0].id);
-  });
-
-  it('Should get the environment name', () => {
-    dispatch(setEnvironments(environmentItems));
-    dispatch(setEnvironmentId(environmentItems[0].id));
-    expect(getEnvironmentName(getState())).toBe(environmentItems[0].name);
-  });
-
   it('Should set the dfsps', () => {
     dispatch(setDfsps(dfspItems));
     const dfsps = getDfsps(getState());
@@ -160,24 +115,6 @@ describe('Test the app actions', () => {
     expect(getIsDfspsReadPending(getState())).toBe(true);
   });
 
-  it('Should store the environments', async () => {
-    fetchMock.get('end:/environments', environmentItems);
-    await dispatch(storeEnvironments());
-
-    expect(fetchMock.calls(MATCHED)).toHaveLength(1);
-    expect(getEnvironments(getState())).toHaveLength(2);
-    expect(getEnvironmentsError(getState())).toBeUndefined();
-  });
-
-  it('Should set the environment error when call fails', async () => {
-    fetchMock.get('end:/environments', 500);
-    await dispatch(storeEnvironments());
-
-    expect(fetchMock.calls(MATCHED)).toHaveLength(1);
-    expect(getEnvironments(getState())).toHaveLength(0);
-    expect(getEnvironmentsError(getState())).toBeDefined();
-  });
-
   it('Should store the dfsps', async () => {
     fetchMock.get('end:/1/dfsps', dfspItems);
     await dispatch(storeDFSPs('1'));
@@ -203,7 +140,6 @@ describe('Test the app thunk actions', () => {
     ({ dispatch, getState } = store);
 
     fetchMock.restore();
-    fetchMock.get('end:/environments', environmentItems);
     fetchMock.get('end:/1/dfsps', dfspItems);
   });
 
@@ -219,14 +155,6 @@ describe('Test the app thunk actions', () => {
   it('Should initialize the app', async () => {
     await dispatch(initApp());
     expect(getIsAppLoading(getState())).toBe(false);
-    expect(getEnvironments(getState())).not.toHaveLength(0);
-  });
-
-  it('Should initialize the environment', async () => {
-    await dispatch(initEnvironment('1'));
-    expect(fetchMock.calls(MATCHED)).toHaveLength(1);
-    expect(getEnvironmentId(getState())).toBe('1');
-    expect(getDfsps(getState())).not.toHaveLength(0);
   });
 });
 
@@ -236,19 +164,6 @@ describe('Test the the app load failed', () => {
     ({ dispatch, getState } = store);
 
     fetchMock.restore();
-    fetchMock.get('end:/environments', environmentItems);
     fetchMock.get('end:/1/dfsps', dfspItems);
-  });
-
-  it('Should be failed when is not loading and there are no environments', () => {
-    dispatch(unsetAppLoading());
-    dispatch(setEnvironments([]));
-    expect(getIsAppLoadingFailed(getState())).toBe(true);
-  });
-
-  it('Should be failed when is not loading and there was an environment api call failed', () => {
-    dispatch(unsetAppLoading());
-    dispatch(setEnvironmentsError('ERROR'));
-    expect(getIsAppLoadingFailed(getState())).toBe(true);
   });
 });

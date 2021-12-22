@@ -14,14 +14,12 @@ import './App.css';
 import { initApp, hideErrorModal } from './actions';
 import {
   getIsAppLoading,
-  getIsAppLoadingFailed,
   getIsSuccessToastVisible,
   getIsErrorModalVisible,
   getErrorModalContent,
 } from './selectors';
 
 const AppLoader = () => <Spinner center size="m" />;
-const AppError = () => <div id="app_error">There was an error while reading the environments</div>;
 
 class App extends PureComponent {
   render() {
@@ -52,7 +50,6 @@ class App extends PureComponent {
 
 const stateProps = state => ({
   isAppLoading: getIsAppLoading(state),
-  isAppLoadingFailed: getIsAppLoadingFailed(state),
   isSuccessToastVisible: getIsSuccessToastVisible(state),
   isErrorModalVisible: getIsErrorModalVisible(state),
   errorModalContent: getErrorModalContent(state),
@@ -69,8 +66,6 @@ class AppWrapper extends PureComponent {
   render() {
     if (this.props.isAppLoading) {
       return <AppLoader />;
-    } else if (this.props.isAppLoadingFailed) {
-      return <AppError />;
     }
     return <App {...this.props} />;
   }

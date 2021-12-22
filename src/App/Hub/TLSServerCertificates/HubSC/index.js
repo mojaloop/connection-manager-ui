@@ -9,7 +9,6 @@ import {
   FormInput,
   MessageBox,
 } from 'components';
-import { getEnvironmentName } from 'App/selectors';
 import {
   changeHubSCRootCertificate,
   downloadHubSCRootCertificate,
@@ -45,7 +44,6 @@ import {
 import './index.css';
 
 const stateProps = state => ({
-  environmentName: getEnvironmentName(state),
   error: getHubSCError(state),
   rootCertificate: getHubSCRootCertificate(state),
   intermediateChain: getHubSCIntermediateChain(state),
@@ -79,7 +77,6 @@ const actionProps = dispatch => ({
 });
 
 const HubSC = ({
-  environmentName,
   error,
   rootCertificate,
   intermediateChain,
@@ -147,7 +144,7 @@ const HubSC = ({
             onChange={onServerCertificateChange}
             elementWidth="400px"
             value={serverCertificate || null}
-            fileName={`${environmentName}-server.pem`}
+            fileName={`server.pem`}
             required
           />
           {serverCertificate && (
@@ -169,7 +166,7 @@ const HubSC = ({
             onChange={onRootCertificateChange}
             elementWidth="400px"
             value={rootCertificate || null}
-            fileName={`${environmentName}-root.pem`}
+            fileName={`root.pem`}
           />
           {rootCertificate && (
             <FileControls onViewClick={onRootCertificateViewClick} onDownloadClick={onRootCertificateDownloadClick} />
@@ -186,7 +183,7 @@ const HubSC = ({
             parseFileAsText
             onChange={onIntermediateChainChange}
             value={intermediateChain || null}
-            fileName={`${environmentName}-intermediates.pem`}
+            fileName={`intermediates.pem`}
             elementWidth="400px"
           />
           {intermediateChain && (

@@ -1,6 +1,5 @@
 import { fetchMock, MATCHED } from 'fetch-mock';
 import prepareStore, { getStore } from 'tests/store';
-import environments from 'tests/resources/environments.json';
 
 import {
   resetHubCa,
@@ -14,10 +13,10 @@ import {
   changeHubCaHost,
   addHubCaHost,
   removeHubCaHost,
-  setHubCaRootCertificate,
-  setHubCaRootCertificateInfo,
-  showHubCaRootCertificateModal,
-  hideHubCaRootCertificateModal,
+  setHubCa,
+  setHubCaInfo,
+  showHubCaModal,
+  hideHubCaModal,
   storeHubCa,
   submitHubCa,
 } from './actions';
@@ -33,7 +32,7 @@ import {
   getHubCaHosts,
   getHubCaRootCertificate,
   getHubCaRootCertificateInfo,
-  getIsHubCaRootCertificateModalVisible,
+  getIsHubCaModalVisible,
   getHubCaModel,
   getIsHubCaPending,
   getHubCaModelValidationResult,
@@ -65,12 +64,12 @@ describe('Test the hub ca actions', () => {
   });
 
   it('Should set the root cert', () => {
-    dispatch(setHubCaRootCertificate('ROOT_CERT'));
+    dispatch(setHubCa('ROOT_CERT'));
     expect(getHubCaRootCertificate(getState())).toBe('ROOT_CERT');
   });
 
   it('Should set the root cert info', () => {
-    dispatch(setHubCaRootCertificateInfo({}));
+    dispatch(setHubCaInfo({}));
     expect(getHubCaRootCertificateInfo(getState())).toEqual({});
   });
 
@@ -126,13 +125,13 @@ describe('Test the hub ca actions', () => {
   });
 
   it('Should show the root certificate modal', () => {
-    dispatch(showHubCaRootCertificateModal());
-    expect(getIsHubCaRootCertificateModalVisible(getState())).toBe(true);
+    dispatch(showHubCaModal());
+    expect(getIsHubCaModalVisible(getState())).toBe(true);
   });
 
   it('Should hide the root certificate modal', () => {
-    dispatch(hideHubCaRootCertificateModal());
-    expect(getIsHubCaRootCertificateModalVisible(getState())).toBe(false);
+    dispatch(hideHubCaModal());
+    expect(getIsHubCaModalVisible(getState())).toBe(false);
   });
 });
 
@@ -142,7 +141,7 @@ describe('Test the hub ca thunk actions', () => {
   };
 
   beforeEach(async () => {
-    const store = prepareStore({ environments, environmentId: environments[0].id });
+    const store = prepareStore();
     ({ dispatch, getState } = store);
 
     fetchMock.restore();
@@ -185,7 +184,7 @@ describe('Test the api pending selectors', () => {
   };
 
   beforeEach(async () => {
-    const store = prepareStore({ environments, environmentId: environments[0].id });
+    const store = prepareStore();
     ({ dispatch, getState } = store);
 
     fetchMock.restore();
@@ -278,7 +277,7 @@ describe('Test the model and validation', () => {
     dispatch(setHubCaCommonName('CN'));
     dispatch(setHubCaOrganization('ORG'));
     dispatch(changeHubCaHost({ index: 0, value: 'test' }));
-    dispatch(setHubCaRootCertificate('ROOT_CERT'));
+    dispatch(setHubCa('ROOT_CERT'));
     expect(getIsHubCaSubmitEnabled(getState())).toBe(false);
   });
 

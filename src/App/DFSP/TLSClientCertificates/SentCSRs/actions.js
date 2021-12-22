@@ -2,7 +2,7 @@ import { createAction } from 'redux-actions';
 import api from 'utils/api';
 import { is200 } from 'utils/http';
 import { downloadFile } from 'utils/html';
-import { getEnvironmentId, getDfspId, getDfspName } from 'App/selectors';
+import { getDfspId, getDfspName } from 'App/selectors';
 
 export const RESET_DFSP_SENT_CSRS = 'DFSP Sent CSRs / Reset';
 export const SET_DFSP_SENT_CSRS_FILTER = 'DFSP Sent CSRs / Set Filter';
@@ -19,9 +19,8 @@ export const showDfspSentCsrsCertificateModal = createAction(SHOW_DFSP_SENT_CSRS
 export const hideDfspSentCsrsCertificateModal = createAction(HIDE_DFSP_SENT_CSRS_CERTIFICATE_MODAL);
 
 export const storeDfspSentCsrs = () => async (dispatch, getState) => {
-  const environmentId = getEnvironmentId(getState());
   const dfspId = getDfspId(getState());
-  const { data, status } = await dispatch(api.inboundEnrollments.read({ environmentId, dfspId }));
+  const { data, status } = await dispatch(api.inboundEnrollments.read({ dfspId }));
 
   if (is200(status)) {
     dispatch(setDfspSentCsrsCertificates(data));
