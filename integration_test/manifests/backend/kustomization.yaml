@@ -1,0 +1,7 @@
+resources:
+- github.com/partiallyordered/mojaloop-kustomize/base/nginx-ingress-controller?ref=ee2ffcc2588dcefda74ed6b4f2e47a7388f67f4e
+- ing.yaml
+
+configMapGenerator: []
+
+patches: []

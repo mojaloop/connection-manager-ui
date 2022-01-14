@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "resolveJsonModule": true,
+    "outDir": "dist",
+    "noImplicitAny": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "noImplicitThis": true,
+    "strict": true,
+    "lib": ["esnext", "dom"],
+    "jsx": "react",
+    "allowJs": false,
+    "inlineSourceMap": true,
+    "inlineSources": true,
+    "types": ["node"]
+  }
+}

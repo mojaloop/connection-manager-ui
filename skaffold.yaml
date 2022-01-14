@@ -1,0 +1,25 @@
+apiVersion: skaffold/v2beta19
+kind: Config
+metadata:
+  name: mojaloop-kustomize
+# We only use profiles here because it seems impossible to delete the default build command in a
+# profile, but we don't want to build the portal image if we're only interested in deploying the
+# backend.
+profiles:
+- name: backend
+  deploy:
+    statusCheckDeadlineSeconds: 600
+    kustomize:
+      paths:
+      - integration_test/manifests/backend
+- name: integration-test
+  build:
+    artifacts:
+    - image: ghcr.io/mojaloop/connection-manager-ui
+      docker:
+        dockerfile: Dockerfile
+  deploy:
+    statusCheckDeadlineSeconds: 600
+    kustomize:
+      paths:
+      - integration_test

@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: connection-manager-ui
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: connection-manager-ui
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: connection-manager-ui
+    spec:
+      containers:
+      - name: app
+        image: ghcr.io/mojaloop/connection-manager-ui:v1.4.1
+        ports:
+        - containerPort: 8080
+        env:
+          - name: API_BASE_URL
+            value: /connection-manager-api
+          - name: AUTH_ENABLED
+            value: 'FALSE'

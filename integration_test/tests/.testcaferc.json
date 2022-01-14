@@ -1,0 +1,14 @@
+{
+  "skipJsErrors": true,
+  "reporter": {
+    "name": "html",
+    "output": "report.html"
+  },
+  "src": "src/tests/*.test.ts",
+  "compilerOptions": {
+    "typescript": {
+      "customCompilerModulePath": "../ts4",
+      "configPath": "tsconfig.json"
+    }
+  }
+}
