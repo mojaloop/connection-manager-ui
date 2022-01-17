@@ -1,12 +1,13 @@
+set -euxo pipefail
 # Init vault and save keys
 kubectl exec vault-0 -- vault operator init -key-shares=1 -key-threshold=1 -format=json > cluster-keys.json
 
 # Store key and unseal vault
-VAULT_UNSEAL_KEY=$(cat cluster-keys.json | jq -r '.unseal_keys_b64[]')
+VAULT_UNSEAL_KEY=$(jq -r '.unseal_keys_b64[]' cluster-keys.json)
 kubectl exec vault-0 -- sh -c "vault operator unseal $VAULT_UNSEAL_KEY"
 
 # Store root key and login
-VAULT_ROOT_KEY=$(cat cluster-keys.json | jq -r ".root_token")
+VAULT_ROOT_KEY=$(jq -r '.root_token'  cluster-keys.json)
 kubectl exec vault-0 -- sh -c "vault login $VAULT_ROOT_KEY"
 
 kubectl exec vault-0 -- sh -c "vault auth enable approle"

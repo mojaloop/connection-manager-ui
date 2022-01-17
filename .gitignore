@@ -23,3 +23,4 @@ yarn-debug.log*
 yarn-error.log*
 .env
 report.html
+cluster-keys.json
