@@ -20,14 +20,10 @@ const actionProps = dispatch => ({
 const Selection = ({
   dfsps,
   isDfspsPending,
-  isAuthDisabled,
   onHubClick,
   onDFSPClick,
 }) => {
-  if (isAuthDisabled) {
-    return <AppSelection isPending={isDfspsPending} dfsps={dfsps} onHubClick={onHubClick} onDFSPClick={onDFSPClick} />;
-  }
-  return <Spinner size={20} center />;
+  return <AppSelection isPending={isDfspsPending} dfsps={dfsps} onHubClick={onHubClick} onDFSPClick={onDFSPClick} />;
 };
 
 const AppSelection = ({ isPending, dfsps, onHubClick, onDFSPClick }) => {
