@@ -1,6 +1,6 @@
 {
   "name": "connection-manager-ui",
-  "version": "1.6.14",
+  "version": "1.6.15",
   "private": true,
   "dependencies": {
     "@modusbox/modusbox-ui-components": "1.16.25",

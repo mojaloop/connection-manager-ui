@@ -57,7 +57,7 @@ const DFSPs = ({ dfsps, monetaryZones, isDfspsPending, onAddClick, onEditClick, 
           icon="upload-small"
           size={16}
           tooltip={`Onboard ${dfsp.name}`}
-          onClick={() => onEditClick(dfsp)}
+          onClick={() => onOnboardClick(dfsp)}
           tooltipPosition="left"
         />
       ),
