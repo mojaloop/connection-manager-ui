@@ -6,6 +6,7 @@ import { getMonetaryZones } from 'App/MonetaryZones/selectors';
 import DFSPModal from './DFSPModal';
 import { openNewHubDfspModal, openExistingHubDfspModal } from './DFSPModal/actions';
 import './index.css';
+import { onboardDFSP } from './actions';
 
 const stateProps = state => ({
   dfsps: getDfsps(state),
@@ -15,9 +16,10 @@ const stateProps = state => ({
 const actionProps = dispatch => ({
   onAddClick: () => dispatch(openNewHubDfspModal()),
   onEditClick: dfsp => dispatch(openExistingHubDfspModal(dfsp)),
+  onOnboardClick: dfsp => dispatch(onboardDFSP(dfsp)),
 });
 
-const DFSPs = ({ dfsps, monetaryZones, isDfspsPending, onAddClick, onEditClick }) => {
+const DFSPs = ({ dfsps, monetaryZones, isDfspsPending, onAddClick, onEditClick, onOnboardClick }) => {
   const columns = [
     {
       label: 'Id',
@@ -44,6 +46,22 @@ const DFSPs = ({ dfsps, monetaryZones, isDfspsPending, onAddClick, onEditClick }
         }
         return null;
       },
+    },
+    {
+      label: '',
+      key: 'id',
+      sortable: false,
+      searchable: false,
+      func: (_, dfsp) => (
+        <ControlIcon
+          icon="upload-small"
+          size={16}
+          tooltip={`Onboard ${dfsp.name}`}
+          onClick={() => onEditClick(dfsp)}
+          tooltipPosition="left"
+        />
+      ),
+      className: 'icon-column',
     },
     {
       label: '',

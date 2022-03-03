@@ -140,6 +140,11 @@ const endpoints = {
     service: services.connectionManager,
     url: () => `/hub/ca`,
   },
+  onboard: {
+    service: services.connectionManager,
+    url: ({ dfspId }) =>
+      `/dfsps/${dfspId}/onboard`,
+  },
   inboundEnrollments: {
     service: services.connectionManager,
     url: ({ dfspId }) => `/dfsps/${dfspId}/enrollments/inbound`,
