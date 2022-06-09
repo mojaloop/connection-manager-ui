@@ -147,7 +147,7 @@ const endpoints = {
   },
   inboundEnrollments: {
     service: services.connectionManager,
-    url: ({ dfspId }) => `/dfsps/${dfspId}/enrollments/inbound`,
+    url: ({ dfspId }) => `/dfsps/${dfspId}/enrollments/inbound?state=CSR_LOADED`,
   },
   inboundEnrollmentSign: {
     service: services.connectionManager,
