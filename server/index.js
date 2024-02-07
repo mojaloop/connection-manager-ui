@@ -8,6 +8,8 @@ app.get('/config', function (req, res) {
   let config = {
     API_BASE_URL: process.env.API_BASE_URL,
     AUTH_ENABLED: process.env.AUTH_ENABLED,
+    CHECK_SESSION_URL: process.env.CHECK_SESSION_URL,
+    LOGIN_URL: process.env.LOGIN_URL,
   };
   console.log('connection-manager-ui server: /config called, returning: ', config);
   res.send(config);

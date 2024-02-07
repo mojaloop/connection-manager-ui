@@ -148,5 +148,14 @@ Simply open the browser console and run the commands
 - To disable authentication `auth(false)`
 - To enable authentication `auth(true)`
 
+## Using external authentication
+
+Set the environment variables, before running the server (or Docker image):
+
+- `CHECK_SESSION_URL`: URL to check if the session is still valid
+- `LOGIN_URL`: - URL to redirect to when the session is not valid
+
+These will override the in-app login form and redirect to the provided URL.
+
 :warning: **NOTE**
 It is suggested to clear local storage and cookies after enabling and disabling authentication. It will help starting a fresh session.

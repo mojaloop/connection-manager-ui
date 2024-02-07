@@ -1,13 +1,15 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { Spinner } from 'components';
-import { getIsAuthDisabled, getJwt, getExpiration, getLoggedUsername } from 'Auth/selectors';
-import { logout } from 'Auth/actions';
-import { getLoginUrl } from 'App/selectors';
+import { getIsAuthDisabled, getJwt, getSession, getExpiration, getLoggedUsername } from 'Auth/selectors';
+import { logout, check } from 'Auth/actions';
+import { getLoginUrl, checkSession } from 'App/selectors';
 
 const stateProps = state => ({
+  checkSession: checkSession(state),
   isAuthDisabled: getIsAuthDisabled(state),
   jwt: getJwt(state),
+  session: getSession(state),
   expiration: getExpiration(state),
   loginUrl: getLoginUrl(state),
   username: getLoggedUsername(state),
@@ -15,6 +17,7 @@ const stateProps = state => ({
 
 const actionProps = dispatch => ({
   onLogoutClick: () => dispatch(logout()),
+  check: () => dispatch(check()),
 });
 
 function withAuth(Component, fnName) {
@@ -28,6 +31,7 @@ function withAuth(Component, fnName) {
 
       this.redirectIfUnauthenticated = this.redirectIfUnauthenticated.bind(this);
       this.redirectIfExpired = this.redirectIfExpired.bind(this);
+      this.check = props.check;
     }
 
     componentWillMount() {
@@ -52,17 +56,20 @@ function withAuth(Component, fnName) {
         this.redirectIfExpired();
       }
     }
-    redirectIfUnauthenticated() {
-      const { isAuthDisabled, jwt, loginUrl } = this.props;
+    async redirectIfUnauthenticated() {
+      const { isAuthDisabled, jwt, loginUrl, session, checkSession } = this.props;
       if (isAuthDisabled) {
         return;
       }
-      if (!jwt) {
+      if (checkSession) {
+        if (!session) this.check();
+      } else if (!jwt) {
         window.location.assign(loginUrl);
         return;
       }
     }
     redirectIfExpired() {
+      if (this.props.checkSession) return;
       const { isAuthDisabled, expiration, loginUrl } = this.props;
       if (isAuthDisabled) {
         return;
@@ -73,7 +80,7 @@ function withAuth(Component, fnName) {
       }
     }
     render() {
-      if (!this.props.isAuthDisabled && !this.props.jwt) {
+      if (!this.props.isAuthDisabled && !this.props.jwt && !this.props.session) {
         return <Spinner center size="m" />;
       }
       return <Component {...this.props} />;

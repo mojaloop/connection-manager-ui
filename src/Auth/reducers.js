@@ -7,6 +7,7 @@ import {
   SET_AUTH_DISABLED,
   SET_AUTH_PENDING,
   SET_AUTH_TOKEN,
+  SET_SESSION,
   SET_AUTH_ERROR,
   SET_AUTH_QR_PROPS,
   CHANGE_USERNAME,
@@ -25,6 +26,7 @@ const auth = isAuthEnabled => {
     // load from the localstorage for refresh purposes
     expiration: getItem('expiration'),
     jwt: getItem('auth_token'),
+    session: undefined,
     QRProps: {
       secret: undefined,
       issuer: undefined,
@@ -53,6 +55,11 @@ const auth = isAuthEnabled => {
       [SET_AUTH_PENDING]: (state, action) => ({
         ...state,
         isPending: action.payload,
+        isFailed: false,
+      }),
+      [SET_SESSION]: (state, action) => ({
+        ...state,
+        session: action.payload,
         isFailed: false,
       }),
       [SET_AUTH_TOKEN]: (state, action) => {

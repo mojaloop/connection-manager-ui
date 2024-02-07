@@ -12,6 +12,7 @@ export const getDfsps = state => state.app.dfsps;
 export const getDfspsError = state => state.app.dfspsError;
 export const getDfspId = state => state.app.dfspId;
 export const getLoginUrl = state => state.app.config.loginUrl;
+export const checkSession = state => state.app.config.checkSession;
 
 const getDfsp = createSelector(
   getDfsps,
