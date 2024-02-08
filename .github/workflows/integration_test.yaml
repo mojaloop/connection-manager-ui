@@ -80,7 +80,7 @@ jobs:
     - name: Run tests
       working-directory: integration_test/tests
       run: |-
-        CONNECTION_MANAGER_ENDPOINT="http://localhost:3000" npm run test:headless
+        CONNECTION_MANAGER_ENDPOINT="http://127.0.0.1:3000" npm run test:headless
 
     - name: Archive test report
       if: ${{ always() }}
