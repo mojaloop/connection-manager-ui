@@ -10,6 +10,7 @@ export const getIsAuthDisabled = state => state.auth.login.isDisabled;
 export const getIsAuthFailed = state => state.auth.login.isFailed;
 export const getAuthError = state => state.auth.login.error;
 export const getJwt = state => state.auth.login.jwt;
+export const getSession = state => state.auth.login.session;
 export const getQRProps = state => state.auth.login.QRProps;
 export const getExpiration = state => state.auth.login.expiration;
 

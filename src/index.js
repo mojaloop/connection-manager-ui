@@ -24,9 +24,6 @@ const history = createBrowserHistory({
   basename: '/',
 });
 
-// Please note this is a local url, handled by the app ( see Route below ). It is not the /api/login endpoint
-const loginUrl = `${window.location.protocol}//${window.location.host}/login`;
-
 const NotFound = () => <div> View Not Found </div>;
 
 const Root = ({ store }) => (
@@ -46,12 +43,12 @@ const Root = ({ store }) => (
 export default Root;
 
 const boot = async () => {
-  const { isAuthEnabled, apiBaseUrl } = await getConfig();
+  const { isAuthEnabled, apiBaseUrl, checkSession, loginUrl = `${window.location.protocol}//${window.location.host}/login`} = await getConfig();
   const apiUrl = `${apiBaseUrl}/api`;
 
   const store = configureStore(history, { isDevelopment, isAuthEnabled });
 
-  store.dispatch(setAppConfig({ apiUrl, loginUrl }));
+  store.dispatch(setAppConfig({ apiUrl, loginUrl, checkSession }));
 
   ReactDOM.render(<Root store={store} />, document.getElementById('root'));
 

@@ -1,7 +1,8 @@
 import { createAction } from 'redux-actions';
 import { push } from 'connected-react-router';
 import api from 'utils/api';
-import { is200, is401, is500 } from 'utils/http';
+import { is200, is401, is500, is20x } from 'utils/http';
+import { getLoginUrl } from 'App/selectors';
 import { getUsername, getPassword } from './selectors';
 import { AUTH_MESSAGES } from './constants';
 
@@ -9,6 +10,7 @@ export const SET_AUTH_ENABLED = 'Auth / Enable';
 export const SET_AUTH_DISABLED = 'Auth / Disable';
 export const SET_AUTH_PENDING = 'Auth / Set Pending';
 export const SET_AUTH_TOKEN = 'Auth / Set Token';
+export const SET_SESSION = 'Auth / Set Session';
 export const SET_AUTH_ERROR = 'Auth / Set Error';
 export const SET_AUTH_QR_PROPS = 'Totp / Set QR Props';
 export const CHANGE_USERNAME = 'Auth / Change Username';
@@ -21,6 +23,7 @@ export const setAuthEnabled = createAction(SET_AUTH_ENABLED);
 export const setAuthDisabled = createAction(SET_AUTH_DISABLED);
 export const setAuthPending = createAction(SET_AUTH_PENDING);
 export const setAuthToken = createAction(SET_AUTH_TOKEN);
+export const setSession = createAction(SET_SESSION);
 export const setAuthError = createAction(SET_AUTH_ERROR);
 export const setAuthQRProps = createAction(SET_AUTH_QR_PROPS);
 export const changeUsername = createAction(CHANGE_USERNAME);
@@ -73,4 +76,14 @@ export const logout = () => async (dispatch, getState) => {
   await dispatch(api.logout.create());
   dispatch(unsetAuthToken());
   dispatch(push('/login'));
+};
+
+export const check = () => async (dispatch, getState) => {
+  const { status, data } = await dispatch(api.checkSession.read({ }));
+  console.log({status, data});
+  if (is20x(status)) {
+    dispatch(setSession(true));
+  } else {
+    window.location.assign(getLoginUrl(getState()));
+  }
 };

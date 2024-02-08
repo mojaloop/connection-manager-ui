@@ -1,4 +1,5 @@
 import { buildFetchActions } from '@modusbox/modusbox-ui-components/dist/redux-fetch';
+import { checkSession } from 'App/selectors';
 
 const handleError = (error, status, state) => {
   if (status === 401) {
@@ -33,6 +34,9 @@ const services = {
     sendAsJson: true,
     parseAsJson: true,
   },
+  checkSession: {
+    getApplicationUrl: checkSession,
+  }
 };
 
 const endpoints = {
@@ -197,6 +201,10 @@ const endpoints = {
     service: services.connectionManager,
     url: ({ dfspId }) => `/dfsps/${dfspId}/jwscerts`,
   },
+  checkSession: {
+    service: services.checkSession,
+    url: () => ''
+  }
 };
 
 const apis = buildFetchActions(endpoints);

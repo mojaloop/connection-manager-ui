@@ -7,3 +7,12 @@ module.exports = function override(config, env) {
 
   return config;
 }
+
+module.exports.devServer = function(configFunction) {
+  return function(proxy, allowedHost) {
+    const config = configFunction(proxy, allowedHost);
+    if (!config.proxy) config.proxy = {};
+    config.proxy['/config'] = 'http://localhost:8080';
+    return config;
+  };
+};
