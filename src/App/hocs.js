@@ -56,7 +56,7 @@ function withAuth(Component, fnName) {
         this.redirectIfExpired();
       }
     }
-    async redirectIfUnauthenticated() {
+    redirectIfUnauthenticated() {
       const { isAuthDisabled, jwt, loginUrl, session, checkSession } = this.props;
       if (isAuthDisabled) {
         return;
