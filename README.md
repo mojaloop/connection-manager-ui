@@ -154,6 +154,7 @@ Set the environment variables, before running the server (or Docker image):
 
 - `CHECK_SESSION_URL`: URL to check if the session is still valid
 - `LOGIN_URL`: - URL to redirect to when the session is not valid
+- `LOGIN_PROVIDER`: - The name of the login provider. When specified, the app will redirect to the login provider URL.
 
 These will override the in-app login form and redirect to the provided URL.
 

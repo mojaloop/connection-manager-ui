@@ -10,6 +10,7 @@ app.get('/config', function (req, res) {
     AUTH_ENABLED: process.env.AUTH_ENABLED,
     CHECK_SESSION_URL: process.env.CHECK_SESSION_URL,
     LOGIN_URL: process.env.LOGIN_URL,
+    LOGIN_PROVIDER: process.env.LOGIN_PROVIDER,
   };
   console.log('connection-manager-ui server: /config called, returning: ', config);
   res.send(config);

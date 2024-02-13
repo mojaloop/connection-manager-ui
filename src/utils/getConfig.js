@@ -7,16 +7,18 @@ const getConfig = async () => {
   let isAuthEnabled = true;
   let checkSession;
   let loginUrl;
+  let loginProvider;
   const infos = [`fetching ${protocol}//${host}/config`];
 
   try {
     const response = await fetch(`${protocol}//${host}/config`);
-    const { AUTH_ENABLED, API_BASE_URL, CHECK_SESSION_URL, LOGIN_URL } = await response.json();
+    const { AUTH_ENABLED, API_BASE_URL, CHECK_SESSION_URL, LOGIN_URL, LOGIN_PROVIDER } = await response.json();
 
     isAuthEnabled = AUTH_ENABLED ? AUTH_ENABLED !== 'FALSE' : isAuthEnabled;
     apiBaseUrl = API_BASE_URL ? API_BASE_URL : apiBaseUrl;
     checkSession = CHECK_SESSION_URL;
     loginUrl = LOGIN_URL;
+    loginProvider = LOGIN_PROVIDER;
 
     infos.push({ AUTH_ENABLED, API_BASE_URL });
     infos.push(`- after processing config, apiBaseUrl: ${apiBaseUrl}`);
@@ -28,7 +30,7 @@ const getConfig = async () => {
 
   console.info(...infos);
 
-  return { apiBaseUrl, isAuthEnabled, checkSession, loginUrl };
+  return { apiBaseUrl, isAuthEnabled, checkSession, loginUrl, loginProvider };
 };
 
 export default getConfig;

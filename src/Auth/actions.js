@@ -2,7 +2,7 @@ import { createAction } from 'redux-actions';
 import { push } from 'connected-react-router';
 import api from 'utils/api';
 import { is200, is401, is500, is20x } from 'utils/http';
-import { getLoginUrl } from 'App/selectors';
+import { getLoginUrl, getLoginProvider } from 'App/selectors';
 import { getUsername, getPassword } from './selectors';
 import { AUTH_MESSAGES } from './constants';
 
@@ -84,6 +84,38 @@ export const check = () => async (dispatch, getState) => {
   if (is20x(status)) {
     dispatch(setSession(true));
   } else {
-    window.location.assign(getLoginUrl(getState()));
+    const state = getState();
+    const loginUrl = getLoginUrl(state);
+    const loginProvider = getLoginProvider(state);
+    if (!loginProvider) {
+      window.location.assign(loginUrl);
+      return;
+    }
+    fetch(loginUrl, {headers: {accept: 'application/json'}})
+      .then(response => response.json())
+      .then(({ui: {method, action, nodes}, ui}) => {
+        const form = document.createElement("form");
+        form.method = method;
+        form.action = action;
+        let submit = false;
+
+        nodes.forEach(({attributes: {type, name, node_type, value}}) => {
+          if (name === 'provider' && value !== loginProvider) return;
+          const element = document.createElement(node_type);
+          if (name === 'provider') submit = element;
+          element.type = type;
+          element.value = value;
+          element.name = name;
+          form.appendChild(element);
+        })
+
+        if (submit) {
+          document.body.appendChild(form);
+          submit.click();
+        } else {
+          window.location.assign(loginUrl);
+        }
+      })
+      .catch(console.error)
   }
 };
