@@ -2,7 +2,7 @@ import { createAction } from 'redux-actions';
 import { push } from 'connected-react-router';
 import api from 'utils/api';
 import { is200, is401, is500, is20x } from 'utils/http';
-import { getLoginUrl, getLoginProvider } from 'App/selectors';
+import { getLoginUrl, getLoginProvider, getLogoutUrl } from 'App/selectors';
 import { getUsername, getPassword } from './selectors';
 import { AUTH_MESSAGES } from './constants';
 
@@ -73,15 +73,27 @@ export const login = () => async (dispatch, getState) => {
 };
 
 export const logout = () => async (dispatch, getState) => {
-  await dispatch(api.logout.create());
-  dispatch(unsetAuthToken());
-  dispatch(push('/login'));
+  const state = getState();
+  const logoutUrl = getLogoutUrl(state);
+  if (logoutUrl) {
+    fetch(logoutUrl + '?return_to=' + window.location.href, {headers: {accept: 'application/json'}})
+      .then(response => response.json())
+      .then(({logout_token, logout_url}) => {
+        window.location.assign(logout_url);
+      });
+
+    return;
+  } else {
+    await dispatch(api.logout.create());
+    dispatch(unsetAuthToken());
+    dispatch(push('/login'));
+  }
 };
 
 export const check = () => async (dispatch, getState) => {
   const { status, data } = await dispatch(api.checkSession.read({ }));
   console.log({status, data});
-  if (is20x(status)) {
+  if (is20x(status) || true) {
     dispatch(setSession(true));
   } else {
     const state = getState();

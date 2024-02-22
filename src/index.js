@@ -43,12 +43,12 @@ const Root = ({ store }) => (
 export default Root;
 
 const boot = async () => {
-  const { isAuthEnabled, apiBaseUrl, checkSession, loginProvider, loginUrl = `${window.location.protocol}//${window.location.host}/login`} = await getConfig();
+  const { isAuthEnabled, apiBaseUrl, checkSession, loginProvider, loginUrl = `${window.location.protocol}//${window.location.host}/login`, logoutUrl} = await getConfig();
   const apiUrl = `${apiBaseUrl}/api`;
 
   const store = configureStore(history, { isDevelopment, isAuthEnabled });
 
-  store.dispatch(setAppConfig({ apiUrl, loginProvider, loginUrl, checkSession }));
+  store.dispatch(setAppConfig({ apiUrl, loginProvider, loginUrl, logoutUrl, checkSession }));
 
   ReactDOM.render(<Root store={store} />, document.getElementById('root'));
 
