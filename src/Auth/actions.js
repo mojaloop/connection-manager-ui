@@ -96,7 +96,7 @@ export const check = () => async (dispatch, getState) => {
     dispatch(setSession(true));
   } else {
     const state = getState();
-    const loginUrl = getLoginUrl(state);
+    const loginUrl = getLoginUrl(state) + '?return_to=' + window.location.href;
     const loginProvider = getLoginProvider(state);
     if (!loginProvider) {
       window.location.assign(loginUrl);
