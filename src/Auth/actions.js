@@ -91,9 +91,8 @@ export const logout = () => async (dispatch, getState) => {
 };
 
 export const check = () => async (dispatch, getState) => {
-  const { status, data } = await dispatch(api.checkSession.read({ }));
-  console.log({status, data});
-  if (is20x(status) || true) {
+  const { status } = await dispatch(api.checkSession.read({ }));
+  if (is20x(status)) {
     dispatch(setSession(true));
   } else {
     const state = getState();
