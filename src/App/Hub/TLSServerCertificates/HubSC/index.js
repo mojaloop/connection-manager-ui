@@ -220,7 +220,4 @@ const HubSC = ({
     </div>
   );
 };
-export default connect(
-  stateProps,
-  actionProps
-)(HubSC);
+export default connect(stateProps, actionProps)(HubSC);

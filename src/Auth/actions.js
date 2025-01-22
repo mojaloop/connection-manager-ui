@@ -76,9 +76,9 @@ export const logout = () => async (dispatch, getState) => {
   const state = getState();
   const logoutUrl = getLogoutUrl(state);
   if (logoutUrl) {
-    fetch(logoutUrl, {headers: {accept: 'application/json'}})
+    fetch(logoutUrl, { headers: { accept: 'application/json' } })
       .then(response => response.json())
-      .then(({logout_token, logout_url}) => {
+      .then(({ logout_token, logout_url }) => {
         window.location.assign(logout_url);
       });
 
@@ -91,7 +91,7 @@ export const logout = () => async (dispatch, getState) => {
 };
 
 export const check = () => async (dispatch, getState) => {
-  const { status } = await dispatch(api.checkSession.read({ }));
+  const { status } = await dispatch(api.checkSession.read({}));
   if (is20x(status)) {
     dispatch(setSession(true));
   } else {
@@ -102,15 +102,15 @@ export const check = () => async (dispatch, getState) => {
       window.location.assign(loginUrl);
       return;
     }
-    fetch(loginUrl, {headers: {accept: 'application/json'}})
+    fetch(loginUrl, { headers: { accept: 'application/json' } })
       .then(response => response.json())
-      .then(({ui: {method, action, nodes}, ui}) => {
-        const form = document.createElement("form");
+      .then(({ ui: { method, action, nodes }, ui }) => {
+        const form = document.createElement('form');
         form.method = method;
         form.action = action;
         let submit = false;
 
-        nodes.forEach(({attributes: {type, name, node_type, value}}) => {
+        nodes.forEach(({ attributes: { type, name, node_type, value } }) => {
           if (name === 'provider' && value !== loginProvider) return;
           const element = document.createElement(node_type);
           if (name === 'provider') submit = element;
@@ -118,7 +118,7 @@ export const check = () => async (dispatch, getState) => {
           element.value = value;
           element.name = name;
           form.appendChild(element);
-        })
+        });
 
         if (submit) {
           document.body.appendChild(form);
@@ -127,6 +127,6 @@ export const check = () => async (dispatch, getState) => {
           window.location.assign(loginUrl);
         }
       })
-      .catch(console.error)
+      .catch(console.error);
   }
 };

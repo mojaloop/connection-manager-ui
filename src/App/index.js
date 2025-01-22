@@ -12,12 +12,7 @@ import Hub from './Hub';
 import './App.css';
 
 import { initApp, hideErrorModal } from './actions';
-import {
-  getIsAppLoading,
-  getIsSuccessToastVisible,
-  getIsErrorModalVisible,
-  getErrorModalContent,
-} from './selectors';
+import { getIsAppLoading, getIsSuccessToastVisible, getIsErrorModalVisible, getErrorModalContent } from './selectors';
 
 const AppLoader = () => <Spinner center size="m" />;
 
@@ -71,10 +66,7 @@ class AppWrapper extends PureComponent {
   }
 }
 
-const ConnectedApp = connect(
-  stateProps,
-  actionProps
-)(AppWrapper);
+const ConnectedApp = connect(stateProps, actionProps)(AppWrapper);
 
 export default withAuth(ConnectedApp);
 

@@ -5,8 +5,10 @@
   "dependencies": {
     "@modusbox/modusbox-ui-components": "1.16.25",
     "babel-polyfill": "^6.26.0",
+    "babel-preset-react-app": "^10.0.1",
     "connected-react-router": "^6.3.2",
     "fetch-mock": "^7.3.3",
+    "gensync": "^1.0.0-beta.2",
     "history": "^4.9.0",
     "lodash": "^4.17.11",
     "moment": "^2.24.0",
@@ -40,5 +42,8 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "resolutions": {
+    "node-sass": "npm:sass"
+  }
 }

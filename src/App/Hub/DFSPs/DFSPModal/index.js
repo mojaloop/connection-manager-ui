@@ -108,7 +108,4 @@ const DFSPModal = ({
 };
 // validation={validation.fields.dfspName}
 
-export default connect(
-  stateProps,
-  actionProps
-)(DFSPModal);
+export default connect(stateProps, actionProps)(DFSPModal);

@@ -19,18 +19,13 @@ export const getPreviousHubDfspModalName = state => state.hub.dfspModal.previous
 export const getPreviousHubDfspModalId = state => state.hub.dfspModal.previousHubDfspId;
 export const getPreviousHubDfspModalMonetaryZoneId = state => state.hub.dfspModal.previousHubDfspMonetaryZoneId;
 
-export const getIsExistingDfsp = createSelector(
-  getPreviousHubDfspModalId,
-  id => id !== undefined
-);
+export const getIsExistingDfsp = createSelector(getPreviousHubDfspModalId, id => id !== undefined);
 
-export const getMonetaryZoneOptions = createSelector(
-  getMonetaryZones,
-  zones =>
-    zones.map(zone => ({
-      label: zone.name,
-      value: zone.monetaryZoneId,
-    }))
+export const getMonetaryZoneOptions = createSelector(getMonetaryZones, zones =>
+  zones.map(zone => ({
+    label: zone.name,
+    value: zone.monetaryZoneId,
+  }))
 );
 
 export const getHubDfspModalId = createSelector(
@@ -82,22 +77,11 @@ export const getHubDfspModalValidationResult = createSelector(
   toValidationResult
 );
 
-const isModelValid = createSelector(
-  getHubDfspModalValidationResult,
-  getIsValid
-);
+const isModelValid = createSelector(getHubDfspModalValidationResult, getIsValid);
 
-const isModelChanged = createSelector(
-  getPreviousHubDfspModalModel,
-  getHubDfspModalModel,
-  testers.isNotEqual
-);
+const isModelChanged = createSelector(getPreviousHubDfspModalModel, getHubDfspModalModel, testers.isNotEqual);
 
-export const getIsHubDfspModalSubmitEnabled = createSelector(
-  isModelValid,
-  isModelChanged,
-  testers.getAllAre(true)
-);
+export const getIsHubDfspModalSubmitEnabled = createSelector(isModelValid, isModelChanged, testers.getAllAre(true));
 
 export const getIsHubDfspCreatePending = createPendingSelector('dfsps.create');
 export const getIsHubDfspUpdatePending = createPendingSelector('dfsp.update');

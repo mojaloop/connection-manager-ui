@@ -22,17 +22,14 @@ export const getHubHasUnvalidatedDfspCsrs = createSelector(
   csrs => csrs.filter(csr => [STATES.CERT_SIGNED].includes(csr.state)).length > 0
 );
 
-const getHubSentCsrsCertificatesByDfsp = createSelector(
-  getHubSentCsrsCertificates,
-  getDfsps,
-  (csrs, dfsps) =>
-    csrs.map(csr => {
-      const dfsp = find(dfsps, { id: csr.dfspId });
-      return {
-        ...csr,
-        dfspName: dfsp.name,
-      };
-    })
+const getHubSentCsrsCertificatesByDfsp = createSelector(getHubSentCsrsCertificates, getDfsps, (csrs, dfsps) =>
+  csrs.map(csr => {
+    const dfsp = find(dfsps, { id: csr.dfspId });
+    return {
+      ...csr,
+      dfspName: dfsp.name,
+    };
+  })
 );
 
 export const getFilteredHubSentCsrsCertificatesByDFSP = createSelector(

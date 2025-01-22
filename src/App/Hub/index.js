@@ -62,8 +62,5 @@ const Hub = () => (
   </div>
 );
 
-const ConneectedHUB = connect(
-  stateProps,
-  actionProps
-)(HubWrapper);
+const ConneectedHUB = connect(stateProps, actionProps)(HubWrapper);
 export default withRouter(ConneectedHUB);

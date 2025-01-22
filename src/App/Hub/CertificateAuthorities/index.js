@@ -46,7 +46,4 @@ const CertificateAuthorities = ({ isHubCaMissing, isHubExternalCasMissing }) => 
   </div>
 );
 
-export default connect(
-  stateProps,
-  null
-)(CertificateAuthorities);
+export default connect(stateProps, null)(CertificateAuthorities);

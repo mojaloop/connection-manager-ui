@@ -167,7 +167,4 @@ const DfspJWS = ({
     </div>
   );
 };
-export default connect(
-  stateProps,
-  actionProps
-)(DfspJWS);
+export default connect(stateProps, actionProps)(DfspJWS);

@@ -91,7 +91,4 @@ const DFSPs = ({ dfsps, monetaryZones, isDfspsPending, onAddClick, onEditClick, 
   );
 };
 
-export default connect(
-  stateProps,
-  actionProps
-)(DFSPs);
+export default connect(stateProps, actionProps)(DFSPs);

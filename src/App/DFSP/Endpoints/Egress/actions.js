@@ -49,9 +49,7 @@ export const submitDfspEgressIps = () => async (dispatch, getState) => {
   const updateActions = ipsOperations.update.map(ip =>
     dispatch(api.egressIp.update({ dfspId, ipId: ip.id, body: ipToApiModel(ip) }))
   );
-  const deleteActions = ipsOperations.delete.map(ip =>
-    dispatch(api.egressIp.delete({ dfspId, ipId: ip.id }))
-  );
+  const deleteActions = ipsOperations.delete.map(ip => dispatch(api.egressIp.delete({ dfspId, ipId: ip.id })));
 
   const results = await Promise.all([...createActions, ...updateActions, ...deleteActions]);
 

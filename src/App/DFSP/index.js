@@ -64,8 +64,5 @@ const DFSP = ({ dfspName }) => (
   </div>
 );
 
-const ConneectedDFSP = connect(
-  stateProps,
-  actionProps
-)(DFSPWrapper);
+const ConneectedDFSP = connect(stateProps, actionProps)(DFSPWrapper);
 export default withRouter(ConneectedDFSP);

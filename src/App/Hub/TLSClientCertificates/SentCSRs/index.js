@@ -231,7 +231,4 @@ const SentCSR = ({
 
 const MountedSentCSRs = withMount(SentCSRsContainer, 'onMount');
 
-export default connect(
-  stateProps,
-  actionProps
-)(MountedSentCSRs);
+export default connect(stateProps, actionProps)(MountedSentCSRs);

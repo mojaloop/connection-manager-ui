@@ -224,7 +224,4 @@ const IngressIp = ({
 
 const MountedIngress = withMount(Ingress, 'onMount');
 
-export default connect(
-  stateProps,
-  actionProps
-)(MountedIngress);
+export default connect(stateProps, actionProps)(MountedIngress);

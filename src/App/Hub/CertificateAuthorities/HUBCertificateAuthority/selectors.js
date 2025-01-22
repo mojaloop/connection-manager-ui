@@ -18,10 +18,7 @@ export const getIsHubCaModalVisible = state => state.hub.ca.hub.isHubCaModalVisi
 
 export const getIsHubCaPending = createPendingSelector('hubCa.create');
 
-export const getIsHubCaMissing = createSelector(
-  getHubCaRootCertificate,
-  testers.isNil
-);
+export const getIsHubCaMissing = createSelector(getHubCaRootCertificate, testers.isNil);
 
 const buildCaModel = (commonName, organization, organizationUnit, locality, state, country) => ({
   commonName,
@@ -54,20 +51,10 @@ export const getHubCaModelValidationResult = createSelector(
   toValidationResult
 );
 
-const getAreHubCaHostsValid = createSelector(
-  getHubCaHostsValidationResult,
-  results => results.every(getIsValid)
-);
+const getAreHubCaHostsValid = createSelector(getHubCaHostsValidationResult, results => results.every(getIsValid));
 
-const getIsHubCaModelValid = createSelector(
-  getHubCaModelValidationResult,
-  getIsValid
-);
-const getIsHubCaFormValid = createSelector(
-  getIsHubCaModelValid,
-  getAreHubCaHostsValid,
-  testers.getAllAre(true)
-);
+const getIsHubCaModelValid = createSelector(getHubCaModelValidationResult, getIsValid);
+const getIsHubCaFormValid = createSelector(getIsHubCaModelValid, getAreHubCaHostsValid, testers.getAllAre(true));
 
 export const getIsHubCaSubmitEnabled = createSelector(
   getIsHubCaFormValid,
@@ -75,31 +62,27 @@ export const getIsHubCaSubmitEnabled = createSelector(
   (isValid, hasCertificate) => isValid && !hasCertificate
 );
 
-export const getHubCaModel = createSelector(
-  getHubCaNameModel,
-  getHubCaHosts,
-  (nameModel, hosts) => ({
-    default: {
-      expiry: '43800h',
-      usages: ['signing', 'key encipherment', 'client auth'],
-      signature_algorithm: 'SHA256WithRSA',
-    },
-    csr: {
-      hosts,
-      names: [
-        {
-          CN: nameModel.commonName,
-          O: nameModel.organization,
-          OU: nameModel.organizationUnit,
-          C: nameModel.country,
-          ST: nameModel.state,
-          L: nameModel.locality,
-        },
-      ],
-      key: {
-        size: 4096,
-        algo: 'rsa',
+export const getHubCaModel = createSelector(getHubCaNameModel, getHubCaHosts, (nameModel, hosts) => ({
+  default: {
+    expiry: '43800h',
+    usages: ['signing', 'key encipherment', 'client auth'],
+    signature_algorithm: 'SHA256WithRSA',
+  },
+  csr: {
+    hosts,
+    names: [
+      {
+        CN: nameModel.commonName,
+        O: nameModel.organization,
+        OU: nameModel.organizationUnit,
+        C: nameModel.country,
+        ST: nameModel.state,
+        L: nameModel.locality,
       },
+    ],
+    key: {
+      size: 4096,
+      algo: 'rsa',
     },
-  })
-);
+  },
+}));

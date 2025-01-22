@@ -226,7 +226,4 @@ const DfspSC = ({
     </div>
   );
 };
-export default connect(
-  stateProps,
-  actionProps
-)(DfspSC);
+export default connect(stateProps, actionProps)(DfspSC);

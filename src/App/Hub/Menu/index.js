@@ -37,8 +37,5 @@ const MenuStructure = ({ companyId, pathname, icons, onChange }) => {
 const RouterMenu = ({ icons, location, history }) => (
   <MenuStructure pathname={location.pathname} onChange={history.push} icons={icons} />
 );
-const ConnectedRouter = connect(
-  stateProps,
-  null
-)(RouterMenu);
+const ConnectedRouter = connect(stateProps, null)(RouterMenu);
 export default withRouter(ConnectedRouter);

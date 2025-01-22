@@ -217,7 +217,4 @@ const DFSPSC = ({
 
 const MountedDFSPsSC = withMount(DFSPSC, 'onMount');
 
-export default connect(
-  stateProps,
-  actionProps
-)(MountedDFSPsSC);
+export default connect(stateProps, actionProps)(MountedDFSPsSC);

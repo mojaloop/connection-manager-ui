@@ -13,7 +13,14 @@ const getConfig = async () => {
 
   try {
     const response = await fetch(`${protocol}//${host}/config`);
-    const { AUTH_ENABLED, API_BASE_URL, CHECK_SESSION_URL, LOGIN_URL, LOGIN_PROVIDER, LOGOUT_URL } = await response.json();
+    const {
+      AUTH_ENABLED,
+      API_BASE_URL,
+      CHECK_SESSION_URL,
+      LOGIN_URL,
+      LOGIN_PROVIDER,
+      LOGOUT_URL,
+    } = await response.json();
 
     isAuthEnabled = AUTH_ENABLED ? AUTH_ENABLED !== 'FALSE' : isAuthEnabled;
     apiBaseUrl = API_BASE_URL ? API_BASE_URL : apiBaseUrl;

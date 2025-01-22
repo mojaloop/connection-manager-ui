@@ -280,7 +280,4 @@ const ExternalCaCertificate = ({
   );
 };
 
-export default connect(
-  stateProps,
-  actionProps
-)(HubExternalUploadCertificateAuthority);
+export default connect(stateProps, actionProps)(HubExternalUploadCertificateAuthority);

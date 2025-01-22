@@ -79,9 +79,7 @@ export const submitDfspIngressEndpoints = () => async (dispatch, getState) => {
   const updateIpsActions = ipsOperations.update.map(ip =>
     dispatch(api.ingressIp.update({ dfspId, ipId: ip.id, body: ipToApiModel(ip) }))
   );
-  const deleteIpsActions = ipsOperations.delete.map(ip =>
-    dispatch(api.ingressIp.delete({ dfspId, ipId: ip.id }))
-  );
+  const deleteIpsActions = ipsOperations.delete.map(ip => dispatch(api.ingressIp.delete({ dfspId, ipId: ip.id })));
 
   const results = await Promise.all([
     ...createUrlsActions,

@@ -21,9 +21,7 @@ export const hideHubSentCsrsCertificateModal = createAction(HIDE_HUB_SENT_CSRS_C
 
 export const storeHubSentCsrs = () => async (dispatch, getState) => {
   const dfsps = getDfsps(getState());
-  const results = await Promise.all(
-    dfsps.map(dfsp => dispatch(api.outboundEnrollments.read({ dfspId: dfsp.id })))
-  );
+  const results = await Promise.all(dfsps.map(dfsp => dispatch(api.outboundEnrollments.read({ dfspId: dfsp.id }))));
   if (results.every(({ status }) => is200(status))) {
     const csrs = results.reduce(
       (prev, curr, index) => [

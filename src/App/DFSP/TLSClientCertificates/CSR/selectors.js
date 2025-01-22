@@ -7,7 +7,4 @@ export const getIsDfspCsrModalVisible = state => state.dfsp.tls.client.csr.isDfs
 
 export const getIsDfspCsrSubmitPending = createPendingSelector('inboundEnrollments.create');
 
-export const getIsDfspCsrSubmitEnabled = createSelector(
-  getDfspCsrCertificate,
-  testers.isNotNil
-);
+export const getIsDfspCsrSubmitEnabled = createSelector(getDfspCsrCertificate, testers.isNotNil);

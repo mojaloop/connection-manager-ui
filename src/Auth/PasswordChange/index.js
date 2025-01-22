@@ -100,7 +100,4 @@ const actionProps = dispatch => ({
   onPasswordChangeClick: () => dispatch(changePassword()),
 });
 
-export default connect(
-  stateProps,
-  actionProps
-)(PasswordChange);
+export default connect(stateProps, actionProps)(PasswordChange);

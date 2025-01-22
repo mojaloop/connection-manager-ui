@@ -13,10 +13,7 @@ export const getHubUnprocessedEndpointsError = state => state.hub.unprocessed.hu
 export const getUnprocessedEndpointsFilter = state => state.hub.unprocessed.unprocessedEndpointsFilter;
 export const getConfirming = state => state.hub.unprocessed.confirming;
 
-export const getHubHasUnprocessedEndpoints = createSelector(
-  getHubUnprocessedEndpoints,
-  testers.isNotEmptyCollection
-);
+export const getHubHasUnprocessedEndpoints = createSelector(getHubUnprocessedEndpoints, testers.isNotEmptyCollection);
 
 export const getHubUnprocessedEndpointsByDFSP = createSelector(
   getHubUnprocessedEndpoints,
@@ -66,10 +63,8 @@ export const getHubUnprocessedEndpointsByDFSP = createSelector(
   }
 );
 
-export const getDfspNamesByDFSP = createSelector(
-  getHubUnprocessedEndpointsByDFSP,
-  getDfsps,
-  (dfspEndpoints, dfsps) => dfspEndpoints.map(endpoints => null)
+export const getDfspNamesByDFSP = createSelector(getHubUnprocessedEndpointsByDFSP, getDfsps, (dfspEndpoints, dfsps) =>
+  dfspEndpoints.map(endpoints => null)
 );
 
 const getIsunprocessedEndpointsReadPending = createPendingSelector('unprocessedEndpoints.read');

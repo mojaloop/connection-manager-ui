@@ -40,15 +40,11 @@ export const storeHubEgressIps = () => async (dispatch, getState) => {
 export const submitHubEgressIps = () => async (dispatch, getState) => {
   const ipsOperations = getIpsOperations(getState());
 
-  const createActions = ipsOperations.create.map(ip =>
-    dispatch(api.hubEgressIps.create({ body: ipToApiModel(ip) }))
-  );
+  const createActions = ipsOperations.create.map(ip => dispatch(api.hubEgressIps.create({ body: ipToApiModel(ip) })));
   const updateActions = ipsOperations.update.map(ip =>
     dispatch(api.hubEgressIp.update({ ipId: ip.id, body: ipToApiModel(ip) }))
   );
-  const deleteActions = ipsOperations.delete.map(ip =>
-    dispatch(api.hubEgressIp.delete({ ipId: ip.id }))
-  );
+  const deleteActions = ipsOperations.delete.map(ip => dispatch(api.hubEgressIp.delete({ ipId: ip.id })));
 
   const results = await Promise.all([...createActions, ...updateActions, ...deleteActions]);
 

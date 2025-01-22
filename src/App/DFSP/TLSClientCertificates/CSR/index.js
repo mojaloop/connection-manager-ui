@@ -65,7 +65,4 @@ const CSR = ({
   );
 };
 
-export default connect(
-  stateProps,
-  actionProps
-)(CSR);
+export default connect(stateProps, actionProps)(CSR);
