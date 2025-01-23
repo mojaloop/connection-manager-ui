@@ -1,8 +1,8 @@
 import { createSelector } from 'reselect';
 import find from 'lodash/find';
 import * as testers from 'utils/testers';
-import { getIsValid, toValidationResult } from '@modusbox/modusbox-ui-components/dist/redux-validation';
-import { createPendingSelector } from '@modusbox/modusbox-ui-components/dist/redux-fetch';
+import { getIsValid, toValidationResult } from '@pm4ml/mojaloop-payment-manager-ui-components-legacy/dist/redux-validation';
+import { createPendingSelector } from '@pm4ml/mojaloop-payment-manager-ui-components-legacy/dist/redux-fetch';
 import { getDfsps } from 'App/selectors';
 import { getMonetaryZones } from 'App/MonetaryZones/selectors';
 import { getHubDfspModalValidators } from './validators';

@@ -1,4 +1,4 @@
-import { buildFetchActions } from '@modusbox/modusbox-ui-components/dist/redux-fetch';
+import { buildFetchActions } from '@pm4ml/mojaloop-payment-manager-ui-components-legacy/dist/redux-fetch';
 import { checkSession } from 'App/selectors';
 
 const handleError = (error, status, state) => {

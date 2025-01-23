@@ -1,7 +1,7 @@
 import { createSelector } from 'reselect';
 import get from 'lodash/get';
-import { getIsValid, toValidationResult } from '@modusbox/modusbox-ui-components/dist/redux-validation';
-import { createPendingSelector } from '@modusbox/modusbox-ui-components/dist/redux-fetch';
+import { getIsValid, toValidationResult } from '@pm4ml/mojaloop-payment-manager-ui-components-legacy/dist/redux-validation';
+import { createPendingSelector } from '@pm4ml/mojaloop-payment-manager-ui-components-legacy/dist/redux-fetch';
 import { getAuthValidation } from './validators';
 
 export const getUsername = state => state.auth.login.username;

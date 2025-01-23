@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 import { connectRouter } from 'connected-react-router';
-import { reducers as api } from '@modusbox/modusbox-ui-components/dist/redux-fetch';
+import { reducers as api } from '@pm4ml/mojaloop-payment-manager-ui-components-legacy/dist/redux-fetch';
 
 import auth from 'Auth/reducers';
 import totp from 'Auth/TOTP/reducers';

@@ -2,9 +2,9 @@ import { createSelector } from 'reselect';
 import find from 'lodash/find';
 import {
   createPendingSelector,
-  createPendingCollectionSelector,
+  createCollectionSelector,
   getPendingByParameter,
-} from '@modusbox/modusbox-ui-components/dist/redux-fetch';
+} from '@pm4ml/mojaloop-payment-manager-ui-components-legacy/dist/redux-fetch';
 import { getDfsps } from 'App/selectors';
 import { STATES } from '../constants';
 
@@ -39,12 +39,12 @@ export const getFilteredHubSentCsrsCertificatesByDFSP = createSelector(
 );
 
 export const getIsHubSentCsrsPending = createPendingSelector('outboundEnrollments.read');
-export const getIsHubSentCsrsValidateCertificatePendingCollection = createPendingCollectionSelector(
+export const getIsHubSentCsrsValidateCertificatePendingCollection = createCollectionSelector(
   'outboundEnrollmentValidate.create'
 );
 export const getIsHubSentCsrsValidateCertificatePendingByDfspId = createSelector(
   getFilteredHubSentCsrsCertificatesByDFSP,
-  getIsHubSentCsrsValidateCertificatePendingCollection,
+  // getIsHubSentCsrsValidateCertificatePendingCollection,
   (csrs, collection) => {
     const getByCsrId = getPendingByParameter('enrollmentId');
     return csrs

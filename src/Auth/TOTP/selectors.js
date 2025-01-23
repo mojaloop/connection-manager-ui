@@ -1,6 +1,6 @@
 import { createSelector } from 'reselect';
-import { getIsValid, toValidationResult } from '@modusbox/modusbox-ui-components/dist/redux-validation';
-import { createPendingSelector } from '@modusbox/modusbox-ui-components/dist/redux-fetch';
+import { getIsValid, toValidationResult } from '@pm4ml/mojaloop-payment-manager-ui-components-legacy/dist/redux-validation';
+import { createPendingSelector } from '@pm4ml/mojaloop-payment-manager-ui-components-legacy/dist/redux-fetch';
 import { getTotpValidation } from './validators';
 
 export const getIsQrScanAcknowledged = state => state.auth.totp.isQrScanAcknowledged;

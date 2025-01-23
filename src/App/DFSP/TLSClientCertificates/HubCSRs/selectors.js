@@ -2,9 +2,9 @@ import { createSelector } from 'reselect';
 
 import {
   createPendingSelector,
-  createPendingCollectionSelector,
+  createCollectionSelector,
   getPendingByParameter,
-} from '@modusbox/modusbox-ui-components/dist/redux-fetch';
+} from '@pm4ml/mojaloop-payment-manager-ui-components-legacy/dist/redux-fetch';
 import { STATES } from '../constants';
 
 export const getDfspHubCsrsError = state => state.dfsp.tls.client.hub.dfspHubCsrsError;
@@ -21,12 +21,12 @@ export const getDfspHasUnsignedHubCsrs = createSelector(
 );
 
 export const getIsDfspHubCsrsPending = createPendingSelector('outboundEnrollments.read');
-export const getDfspHubCsrCertificateSigningPendingCollection = createPendingCollectionSelector(
+export const getDfspHubCsrCertificateSigningPendingCollection = createCollectionSelector(
   'outboundEnrollmentCertificate.create'
 );
 export const getIsDfspHubCsrCertificateSigningPendingByEnrollmentId = createSelector(
   getDfspHubCsrsCertificates,
-  getDfspHubCsrCertificateSigningPendingCollection,
+  // getDfspHubCsrCertificateSigningPendingCollection,
   (csrs, collection) => {
     const getByCsrId = getPendingByParameter('enrollmentId');
     return csrs
