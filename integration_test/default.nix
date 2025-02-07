@@ -10,7 +10,7 @@ let
 
     src = builtins.fetchurl {
       url = "https://github.com/rancher/k3d/releases/download/v5.4.6/k3d-linux-amd64";  # Updated URL
-      sha256 = "0v8x4k5z6v8x4k5z6v8x4k5z6v8x4k5z6v8x4k5z6v8x4k5z6v8x4k5z";  # Updated SHA256
+      sha256 = "0v8x4k5z6v8x4k5z6v8x4k5z6v8x4k5z6v8x4k5z6v8x4k5z6v8x4k5z";  
     };
 
     dontUnpack = true;
@@ -29,7 +29,7 @@ let
     pname = "skaffold";
     src = builtins.fetchurl {
       url = "https://github.com/GoogleContainerTools/skaffold/releases/download/v1.35.0/skaffold-linux-amd64";  # Updated URL
-      sha256 = "0v8x4k5z6v8x4k5z6v8x4k5z6v8x4k5z6v8x4k5z6v8x4k5z6v8x4k5z";  # Updated SHA256
+      sha256 = "0v8x4k5z6v8x4k5z6v8x4k5z6v8x4k5z6v8x4k5z6v8x4k5z"; 
     };
     dontUnpack = true;
     installPhase = ''
