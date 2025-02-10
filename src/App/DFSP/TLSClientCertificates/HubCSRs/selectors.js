@@ -4,7 +4,7 @@ import {
   createPendingSelector,
   createPendingCollectionSelector,
   getPendingByParameter,
-} from '@modusbox/modusbox-ui-components/dist/redux-fetch';
+} from '@pm4ml/mojaloop-payment-manager-ui-components-legacy/dist/redux-fetch';
 import { STATES } from '../constants';
 
 export const getDfspHubCsrsError = state => state.dfsp.tls.client.hub.dfspHubCsrsError;

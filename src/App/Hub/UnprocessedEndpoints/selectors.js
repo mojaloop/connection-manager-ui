@@ -3,7 +3,7 @@ import groupBy from 'lodash/groupBy';
 import sortBy from 'lodash/sortBy';
 import find from 'lodash/find';
 import get from 'lodash/get';
-import { createPendingSelector } from '@modusbox/modusbox-ui-components/dist/redux-fetch';
+import { createPendingSelector } from '@pm4ml/mojaloop-payment-manager-ui-components-legacy/dist/redux-fetch';
 import * as testers from 'utils/testers';
 import { DIRECTIONS, TYPES } from '../constants';
 import { getDfsps } from 'App/selectors';

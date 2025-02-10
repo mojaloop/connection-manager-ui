@@ -1,7 +1,7 @@
 import { createStore, applyMiddleware } from 'redux';
 import ReduxThunk from 'redux-thunk';
 import { routerMiddleware } from 'connected-react-router';
-import fetchMiddleware from '@modusbox/modusbox-ui-components/dist/redux-fetch';
+import fetchMiddleware from '@pm4ml/mojaloop-payment-manager-ui-components-legacy/dist/redux-fetch';
 import history from '../dummy/history';
 import reducer from 'reducers';
 
