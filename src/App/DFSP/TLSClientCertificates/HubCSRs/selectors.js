@@ -2,7 +2,7 @@ import { createSelector } from 'reselect';
 
 import {
   createPendingSelector,
-  createPendingCollectionSelector,
+  createCollectionSelector,
   getPendingByParameter,
 } from '@pm4ml/mojaloop-payment-manager-ui-components-legacy/dist/redux-fetch';
 import { STATES } from '../constants';
@@ -21,7 +21,7 @@ export const getDfspHasUnsignedHubCsrs = createSelector(
 );
 
 export const getIsDfspHubCsrsPending = createPendingSelector('outboundEnrollments.read');
-export const getDfspHubCsrCertificateSigningPendingCollection = createPendingCollectionSelector(
+export const getDfspHubCsrCertificateSigningPendingCollection = createCollectionSelector(
   'outboundEnrollmentCertificate.create'
 );
 export const getIsDfspHubCsrCertificateSigningPendingByEnrollmentId = createSelector(

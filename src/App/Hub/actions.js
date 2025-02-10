@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { createAction } from 'redux-actions';
 import { push } from 'connected-react-router';
 import { storeMonetaryZones } from 'App/MonetaryZones/actions';

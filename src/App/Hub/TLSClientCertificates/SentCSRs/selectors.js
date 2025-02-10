@@ -2,7 +2,7 @@ import { createSelector } from 'reselect';
 import find from 'lodash/find';
 import {
   createPendingSelector,
-  createPendingCollectionSelector,
+  createCollectionSelector,
   getPendingByParameter,
 } from '@pm4ml/mojaloop-payment-manager-ui-components-legacy/dist/redux-fetch';
 import { getDfsps } from 'App/selectors';
@@ -42,7 +42,7 @@ export const getFilteredHubSentCsrsCertificatesByDFSP = createSelector(
 );
 
 export const getIsHubSentCsrsPending = createPendingSelector('outboundEnrollments.read');
-export const getIsHubSentCsrsValidateCertificatePendingCollection = createPendingCollectionSelector(
+export const getIsHubSentCsrsValidateCertificatePendingCollection = createCollectionSelector(
   'outboundEnrollmentValidate.create'
 );
 export const getIsHubSentCsrsValidateCertificatePendingByDfspId = createSelector(
