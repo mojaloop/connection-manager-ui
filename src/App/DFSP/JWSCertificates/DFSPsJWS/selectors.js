@@ -1,6 +1,6 @@
 import { createSelector } from 'reselect';
 import find from 'lodash/find';
-import { createPendingSelector } from '@modusbox/modusbox-ui-components/dist/redux-fetch';
+import { createPendingSelector } from '@pm4ml/mojaloop-payment-manager-ui-components-legacy/dist/redux-fetch';
 import { getDfspMonetaryZoneId } from 'App/selectors';
 import { getOtherDfsps } from 'App/DFSP/selectors';
 

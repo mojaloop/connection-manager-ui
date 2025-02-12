@@ -1,5 +1,5 @@
 // Modusbox UI components
-import '@modusbox/modusbox-ui-components/dist/index.css';
+import '@pm4ml/mojaloop-payment-manager-ui-components-legacy/dist/index.css';
 
 import CertificateCard from './CertificateCard';
 import CertificateInfo from './CertificateInfo';
@@ -41,7 +41,7 @@ import {
   TextField,
   Toast,
   Tooltip,
-} from '@modusbox/modusbox-ui-components/dist/index';
+} from '@pm4ml/mojaloop-payment-manager-ui-components-legacy/dist/index';
 
 export {
   Button,

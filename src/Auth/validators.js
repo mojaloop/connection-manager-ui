@@ -1,4 +1,4 @@
-import { createValidation, vd } from '@modusbox/modusbox-ui-components/dist/redux-validation';
+import { createValidation, vd } from '@pm4ml/mojaloop-payment-manager-ui-components-legacy/dist/redux-validation';
 
 const getAuthValidation = () => ({
   username: createValidation([vd.isRequired]),

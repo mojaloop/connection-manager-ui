@@ -34,6 +34,12 @@ jobs:
     - name: Install helm
       run: sudo snap install helm --classic
 
+    - name: Download and install Google Chrome
+      run: |-
+        wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+        sudo dpkg -i google-chrome-stable_current_amd64.deb
+        sudo apt-get -f install
+
     - name: Start cluster
       run: minikube start --driver=docker --kubernetes-version=v1.21.5
 

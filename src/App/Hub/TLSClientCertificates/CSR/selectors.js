@@ -1,7 +1,7 @@
 import { createSelector } from 'reselect';
 import * as testers from 'utils/testers';
-import { createPendingSelector } from '@modusbox/modusbox-ui-components/dist/redux-fetch';
-import { getIsValid, toValidationResult, validate } from '@modusbox/modusbox-ui-components/dist/redux-validation';
+import { createPendingSelector } from '@pm4ml/mojaloop-payment-manager-ui-components-legacy/dist/redux-fetch';
+import { getIsValid, toValidationResult, validate } from '@pm4ml/mojaloop-payment-manager-ui-components-legacy/dist/redux-validation';
 import { getDfsps } from 'App/selectors';
 import { getIsHubCaMissing } from 'App/Hub/CertificateAuthorities/HUBCertificateAuthority/selectors';
 import { getHubSentCsrsCertificates } from 'App/Hub/TLSClientCertificates/SentCSRs/selectors';

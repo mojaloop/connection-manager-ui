@@ -1,4 +1,4 @@
-import { createPendingSelector } from '@modusbox/modusbox-ui-components/dist/redux-fetch';
+import { createPendingSelector } from '@pm4ml/mojaloop-payment-manager-ui-components-legacy/dist/redux-fetch';
 export const getDfspHubSCError = state => state.dfsp.tls.server.hub.dfspHubSCError;
 export const getDfspHubSCRootCertificate = state => state.dfsp.tls.server.hub.dfspHubSCRootCertificate;
 export const getDfspHubSCIntermediateChain = state => state.dfsp.tls.server.hub.dfspHubSCIntermediateChain;
