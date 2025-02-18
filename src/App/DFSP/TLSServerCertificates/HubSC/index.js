@@ -197,7 +197,4 @@ const HubSC = ({
 
 const MountedHubSC = withMount(HubSC, 'onMount');
 
-export default connect(
-  stateProps,
-  actionProps
-)(MountedHubSC);
+export default connect(stateProps, actionProps)(MountedHubSC);

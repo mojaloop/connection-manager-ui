@@ -84,7 +84,4 @@ const DfspHubEndpointsSection = ({ title, endpoints }) => (
 );
 
 const MountedDfspHubEndpoints = withMount(DfspHubEndpoints, 'onMount');
-export default connect(
-  stateProps,
-  actionProps
-)(MountedDfspHubEndpoints);
+export default connect(stateProps, actionProps)(MountedDfspHubEndpoints);

@@ -179,7 +179,4 @@ const UnprocessedEndpointsSection = ({ title, endpoints, isSubmitEnabled, onChan
 );
 
 const MountedUnprocessedEndpoints = withMount(Unprocessed, 'onMount');
-export default connect(
-  stateProps,
-  actionProps
-)(MountedUnprocessedEndpoints);
+export default connect(stateProps, actionProps)(MountedUnprocessedEndpoints);

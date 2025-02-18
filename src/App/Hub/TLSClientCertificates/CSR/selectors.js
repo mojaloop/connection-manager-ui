@@ -22,26 +22,17 @@ export const getHubCsrDnss = state => state.hub.tls.client.csr.hubCsrDnss;
 export const getHubCsrIps = state => state.hub.tls.client.csr.hubCsrIps;
 export const getIsHubCsrModalVisible = state => state.hub.tls.client.csr.isHubCsrModalVisible;
 
-export const getHubCsrDfspsOptions = createSelector(
-  getDfsps,
-  getHubSentCsrsCertificates,
-  (dfsps, csrs) =>
-    dfsps.map(dfsp => ({
-      label: dfsp.name,
-      value: dfsp.id,
-      hasCsrs: csrs.some(csr => csr.dfspId === dfsp.id),
-    }))
+export const getHubCsrDfspsOptions = createSelector(getDfsps, getHubSentCsrsCertificates, (dfsps, csrs) =>
+  dfsps.map(dfsp => ({
+    label: dfsp.name,
+    value: dfsp.id,
+    hasCsrs: csrs.some(csr => csr.dfspId === dfsp.id),
+  }))
 );
 
-const getIsHubCsrsHubCaAvailable = createSelector(
-  getIsHubCaMissing,
-  isMissing => !isMissing
-);
+const getIsHubCsrsHubCaAvailable = createSelector(getIsHubCaMissing, isMissing => !isMissing);
 
-export const getCsrTypeOptions = createSelector(
-  getIsHubCsrsHubCaAvailable,
-  buildCsrTypeOptions
-);
+export const getCsrTypeOptions = createSelector(getIsHubCsrsHubCaAvailable, buildCsrTypeOptions);
 
 export const getHubCsrSubjectModel = createSelector(
   getHubCsrCommonName,
@@ -95,24 +86,13 @@ export const getHubCsrDnssValidationResult = createSelector(
   getHubCsrDNSValidation,
   (dnss, dnsValidation) => dnss.map(dns => validate(dns, dnsValidation))
 );
-export const getHubCsrIpsValidationResult = createSelector(
-  getHubCsrIps,
-  getHubCsrIPValidation,
-  (ips, ipValidation) => ips.map(ip => validate(ip, ipValidation))
+export const getHubCsrIpsValidationResult = createSelector(getHubCsrIps, getHubCsrIPValidation, (ips, ipValidation) =>
+  ips.map(ip => validate(ip, ipValidation))
 );
 
-const getIsHubCsrSubjectValid = createSelector(
-  getHubCsrSubjectValidationResult,
-  getIsValid
-);
-const getIsHubCsrDnssValid = createSelector(
-  getHubCsrDnssValidationResult,
-  results => results.every(getIsValid)
-);
-const getIsHubCsrIpsValid = createSelector(
-  getHubCsrIpsValidationResult,
-  results => results.every(getIsValid)
-);
+const getIsHubCsrSubjectValid = createSelector(getHubCsrSubjectValidationResult, getIsValid);
+const getIsHubCsrDnssValid = createSelector(getHubCsrDnssValidationResult, results => results.every(getIsValid));
+const getIsHubCsrIpsValid = createSelector(getHubCsrIpsValidationResult, results => results.every(getIsValid));
 
 const getIsHubCsrManualCertificateValid = createSelector(
   getIsHubCsrSubjectValid,
@@ -121,10 +101,7 @@ const getIsHubCsrManualCertificateValid = createSelector(
   testers.getAllAre(true)
 );
 
-const getIsHubCsrFileCertificateValid = createSelector(
-  getHubCsrCertificate,
-  testers.isNotNil
-);
+const getIsHubCsrFileCertificateValid = createSelector(getHubCsrCertificate, testers.isNotNil);
 
 const getIsHubCsrFormValid = createSelector(
   getHubCsrCsrType,
@@ -138,10 +115,7 @@ const getIsHubCsrFormValid = createSelector(
   }
 );
 
-const getIsHubDfspIdDefined = createSelector(
-  getHubCsrDfspId,
-  testers.isNotNil
-);
+const getIsHubDfspIdDefined = createSelector(getHubCsrDfspId, testers.isNotNil);
 
 export const getIsHubCsrSubmitEnabled = createSelector(
   getIsHubDfspIdDefined,

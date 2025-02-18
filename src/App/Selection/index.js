@@ -17,12 +17,7 @@ const actionProps = dispatch => ({
   onDFSPClick: id => dispatch(selectDFSP(id)),
 });
 
-const Selection = ({
-  dfsps,
-  isDfspsPending,
-  onHubClick,
-  onDFSPClick,
-}) => {
+const Selection = ({ dfsps, isDfspsPending, onHubClick, onDFSPClick }) => {
   return <AppSelection isPending={isDfspsPending} dfsps={dfsps} onHubClick={onHubClick} onDFSPClick={onDFSPClick} />;
 };
 
@@ -52,7 +47,4 @@ const SelectionItem = ({ className = '', onClick, type, label }) => (
 );
 
 const MountedSelection = withMount(Selection, 'onMount');
-export default connect(
-  stateProps,
-  actionProps
-)(MountedSelection);
+export default connect(stateProps, actionProps)(MountedSelection);

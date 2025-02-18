@@ -16,16 +16,12 @@ export const getHubDfspCasIntermediateChainModalContent = state =>
 
 export const getIsHubDfspCasPending = createPendingSelector('dfspCa.read');
 
-export const getDfspCertificatesByDfsp = createSelector(
-  getHubDfspCasCertificates,
-  getDfsps,
-  (certificates, dfsps) => {
-    return dfsps.map(dfsp => {
-      const certificate = find(certificates, { dfspId: dfsp.id });
-      return {
-        ...certificate,
-        dfspName: dfsp.name,
-      };
-    });
-  }
-);
+export const getDfspCertificatesByDfsp = createSelector(getHubDfspCasCertificates, getDfsps, (certificates, dfsps) => {
+  return dfsps.map(dfsp => {
+    const certificate = find(certificates, { dfspId: dfsp.id });
+    return {
+      ...certificate,
+      dfspName: dfsp.name,
+    };
+  });
+});

@@ -191,7 +191,4 @@ const ExternalCaCertificate = ({
   );
 };
 
-export default connect(
-  stateProps,
-  actionProps
-)(DfspHubExternalUploadCertificateAuthority);
+export default connect(stateProps, actionProps)(DfspHubExternalUploadCertificateAuthority);

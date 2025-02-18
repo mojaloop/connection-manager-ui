@@ -85,7 +85,4 @@ const actionProps = dispatch => ({
 
 const MountedAuth = withMount(Auth, 'onMount');
 
-export default connect(
-  stateProps,
-  actionProps
-)(MountedAuth);
+export default connect(stateProps, actionProps)(MountedAuth);

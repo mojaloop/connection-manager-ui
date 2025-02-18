@@ -87,9 +87,6 @@ function withAuth(Component, fnName) {
     }
   }
 
-  return connect(
-    stateProps,
-    actionProps
-  )(authHoc);
+  return connect(stateProps, actionProps)(authHoc);
 }
 export { withAuth };

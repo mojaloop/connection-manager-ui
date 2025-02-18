@@ -330,7 +330,4 @@ const DFSPCSR = ({
 };
 
 const MountedDFSPsCSRS = withMount(DFSPCSRsContainer, 'onMount');
-export default connect(
-  stateProps,
-  actionProps
-)(MountedDFSPsCSRS);
+export default connect(stateProps, actionProps)(MountedDFSPsCSRS);

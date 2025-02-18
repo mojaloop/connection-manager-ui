@@ -24,9 +24,6 @@ export const getValidationResult = createSelector(
   toValidationResult
 );
 
-export const getIsPasswordChangeSubmitEnabled = createSelector(
-  getValidationResult,
-  getIsValid
-);
+export const getIsPasswordChangeSubmitEnabled = createSelector(getValidationResult, getIsValid);
 
 export const getIsPasswordChangePending = createPendingSelector('passwordChange.create');

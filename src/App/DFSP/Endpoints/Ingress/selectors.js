@@ -14,11 +14,7 @@ export const getIngressIps = state => state.dfsp.endpoints.dfsp.ingress.ingressI
 export const getIngressUrlsError = state => state.dfsp.endpoints.dfsp.ingress.ingressUrlsError;
 export const getIngressIpsError = state => state.dfsp.endpoints.dfsp.ingress.ingressIpsError;
 
-export const getIngressError = createSelector(
-  getIngressUrlsError,
-  getIngressIpsError,
-  testers.getAnyIsDefined
-);
+export const getIngressError = createSelector(getIngressUrlsError, getIngressIpsError, testers.getAnyIsDefined);
 
 export const getIngressUrlsValidationResult = createSelector(
   getIngressUrls,
@@ -37,27 +33,17 @@ export const getIngressIpsValidationResult = createSelector(
     }))
 );
 
-export const getIsIngressUrlsValid = createSelector(
-  getIngressUrlsValidationResult,
-  results => results.every(getIsValid)
+export const getIsIngressUrlsValid = createSelector(getIngressUrlsValidationResult, results =>
+  results.every(getIsValid)
 );
 
-export const getIsIngressIpsValid = createSelector(
-  getIngressIpsValidationResult,
-  results => results.every(result => getIsValid(result.address) && result.ports.every(getIsValid))
+export const getIsIngressIpsValid = createSelector(getIngressIpsValidationResult, results =>
+  results.every(result => getIsValid(result.address) && result.ports.every(getIsValid))
 );
 
-const getIsIngressUrlsChanged = createSelector(
-  getPreviousIngressUrls,
-  getIngressUrls,
-  testers.isNotEqual
-);
+const getIsIngressUrlsChanged = createSelector(getPreviousIngressUrls, getIngressUrls, testers.isNotEqual);
 
-const getIsIngressIpsChanged = createSelector(
-  getPreviousIngressIps,
-  getIngressIps,
-  testers.isNotEqual
-);
+const getIsIngressIpsChanged = createSelector(getPreviousIngressIps, getIngressIps, testers.isNotEqual);
 
 export const getIsIngressChanged = createSelector(
   getIsIngressUrlsChanged,
@@ -94,24 +80,16 @@ export const getIsIngressSubmitPending = createSelector(
   testers.getAnyIs(true)
 );
 
-export const getIpsOperations = createSelector(
-  getIngressIps,
-  getPreviousIngressIps,
-  (ips, previousIps) => ({
-    create: ips.filter(ip => ip.state === STATES.UNSET),
-    update: ips.filter(ip => ip.state !== STATES.UNSET).filter(ip => !isEqual(find(previousIps, { id: ip.id }), ip)),
-    delete: previousIps.filter(ip => !find(ips, { id: ip.id })),
-  })
-);
+export const getIpsOperations = createSelector(getIngressIps, getPreviousIngressIps, (ips, previousIps) => ({
+  create: ips.filter(ip => ip.state === STATES.UNSET),
+  update: ips.filter(ip => ip.state !== STATES.UNSET).filter(ip => !isEqual(find(previousIps, { id: ip.id }), ip)),
+  delete: previousIps.filter(ip => !find(ips, { id: ip.id })),
+}));
 
-export const getUrlsOperations = createSelector(
-  getIngressUrls,
-  getPreviousIngressUrls,
-  (urls, previousUrls) => ({
-    create: urls.filter(url => url.state === STATES.UNSET),
-    update: urls
-      .filter(url => url.state !== STATES.UNSET)
-      .filter(url => !isEqual(find(previousUrls, { id: url.id }), url)),
-    delete: previousUrls.filter(url => !find(urls, { id: url.id })),
-  })
-);
+export const getUrlsOperations = createSelector(getIngressUrls, getPreviousIngressUrls, (urls, previousUrls) => ({
+  create: urls.filter(url => url.state === STATES.UNSET),
+  update: urls
+    .filter(url => url.state !== STATES.UNSET)
+    .filter(url => !isEqual(find(previousUrls, { id: url.id }), url)),
+  delete: previousUrls.filter(url => !find(urls, { id: url.id })),
+}));

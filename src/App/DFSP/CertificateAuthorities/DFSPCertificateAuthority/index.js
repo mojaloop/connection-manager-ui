@@ -143,7 +143,4 @@ const DFSPCertificateAuthority = ({
     </div>
   );
 };
-export default connect(
-  stateProps,
-  actionProps
-)(DFSPCertificateAuthority);
+export default connect(stateProps, actionProps)(DFSPCertificateAuthority);

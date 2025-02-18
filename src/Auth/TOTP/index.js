@@ -158,7 +158,4 @@ const actionProps = dispatch => ({
 });
 
 const MountedTOTP = withMount(TOTP, 'onMount');
-export default connect(
-  stateProps,
-  actionProps
-)(MountedTOTP);
+export default connect(stateProps, actionProps)(MountedTOTP);

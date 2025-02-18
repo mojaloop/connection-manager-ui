@@ -40,20 +40,10 @@ export const getHubSCModel = createSelector(
   getHubSCServerCertificate,
   buildHubSCModel
 );
-const getIsHubSCModelChanged = createSelector(
-  getPreviousHubSCModel,
-  getHubSCModel,
-  testers.isNotEqual
-);
-const getIsHubSCServerCertificateValid = createSelector(
-  getHubSCServerCertificate,
-  testers.isNotNil
-);
+const getIsHubSCModelChanged = createSelector(getPreviousHubSCModel, getHubSCModel, testers.isNotEqual);
+const getIsHubSCServerCertificateValid = createSelector(getHubSCServerCertificate, testers.isNotNil);
 
-export const getIsHubSCEditingExisitingModel = createSelector(
-  getPreviousHubSCServerCertificate,
-  testers.isNotNil
-);
+export const getIsHubSCEditingExisitingModel = createSelector(getPreviousHubSCServerCertificate, testers.isNotNil);
 export const getIsHubSCSubmitEnabled = createSelector(
   getIsHubSCServerCertificateValid,
   getIsHubSCModelChanged,

@@ -196,7 +196,4 @@ const HubCSR = ({
 );
 
 const MountedHubCSRs = withMount(HubCSRs, 'onMount');
-export default connect(
-  stateProps,
-  actionProps
-)(MountedHubCSRs);
+export default connect(stateProps, actionProps)(MountedHubCSRs);

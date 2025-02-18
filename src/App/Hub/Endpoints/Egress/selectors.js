@@ -22,15 +22,10 @@ export const getEgressIpsValidationResult = createSelector(
     }))
 );
 
-export const getIsEgressChanged = createSelector(
-  getPreviousEgressIps,
-  getEgressIps,
-  testers.isNotEqual
-);
+export const getIsEgressChanged = createSelector(getPreviousEgressIps, getEgressIps, testers.isNotEqual);
 
-export const getIsEgressIpsValid = createSelector(
-  getEgressIpsValidationResult,
-  results => results.every(result => getIsValid(result.address) && result.ports.every(getIsValid))
+export const getIsEgressIpsValid = createSelector(getEgressIpsValidationResult, results =>
+  results.every(result => getIsValid(result.address) && result.ports.every(getIsValid))
 );
 
 export const getIsEgressIpsSubmitEnabled = createSelector(
@@ -52,12 +47,8 @@ export const getIsEgressSubmitPending = createSelector(
   testers.getAnyIs(true)
 );
 
-export const getIpsOperations = createSelector(
-  getEgressIps,
-  getPreviousEgressIps,
-  (ips, previousIps) => ({
-    create: ips.filter(ip => ip.state === STATES.UNSET),
-    update: ips.filter(ip => ip.state !== STATES.UNSET).filter(ip => !isEqual(find(previousIps, { id: ip.id }), ip)),
-    delete: previousIps.filter(ip => !find(ips, { id: ip.id })),
-  })
-);
+export const getIpsOperations = createSelector(getEgressIps, getPreviousEgressIps, (ips, previousIps) => ({
+  create: ips.filter(ip => ip.state === STATES.UNSET),
+  update: ips.filter(ip => ip.state !== STATES.UNSET).filter(ip => !isEqual(find(previousIps, { id: ip.id }), ip)),
+  delete: previousIps.filter(ip => !find(ips, { id: ip.id })),
+}));

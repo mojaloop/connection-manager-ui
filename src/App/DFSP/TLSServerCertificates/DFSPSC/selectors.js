@@ -40,20 +40,10 @@ export const getDfspSCModel = createSelector(
   getDfspSCServerCertificate,
   buildDfspSCModel
 );
-const getIsDfspSCModelChanged = createSelector(
-  getPreviousDfspSCModel,
-  getDfspSCModel,
-  testers.isNotEqual
-);
-const getIsDfspSCServerCertificateValid = createSelector(
-  getDfspSCServerCertificate,
-  testers.isNotNil
-);
+const getIsDfspSCModelChanged = createSelector(getPreviousDfspSCModel, getDfspSCModel, testers.isNotEqual);
+const getIsDfspSCServerCertificateValid = createSelector(getDfspSCServerCertificate, testers.isNotNil);
 
-export const getIsDfspSCEditingExisitingModel = createSelector(
-  getPreviousDfspSCServerCertificate,
-  testers.isNotNil
-);
+export const getIsDfspSCEditingExisitingModel = createSelector(getPreviousDfspSCServerCertificate, testers.isNotNil);
 export const getIsDfspSCSubmitEnabled = createSelector(
   getIsDfspSCServerCertificateValid,
   getIsDfspSCModelChanged,

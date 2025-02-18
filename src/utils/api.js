@@ -36,7 +36,7 @@ const services = {
   },
   checkSession: {
     getApplicationUrl: checkSession,
-  }
+  },
 };
 
 const endpoints = {
@@ -78,8 +78,7 @@ const endpoints = {
   },
   egressIp: {
     service: services.connectionManager,
-    url: ({ dfspId, ipId }) =>
-      `/dfsps/${dfspId}/endpoints/egress/ips/${ipId}`,
+    url: ({ dfspId, ipId }) => `/dfsps/${dfspId}/endpoints/egress/ips/${ipId}`,
   },
   ingressIps: {
     service: services.connectionManager,
@@ -87,8 +86,7 @@ const endpoints = {
   },
   ingressIp: {
     service: services.connectionManager,
-    url: ({ dfspId, ipId }) =>
-      `/dfsps/${dfspId}/endpoints/ingress/ips/${ipId}`,
+    url: ({ dfspId, ipId }) => `/dfsps/${dfspId}/endpoints/ingress/ips/${ipId}`,
   },
   ingressUrls: {
     service: services.connectionManager,
@@ -96,8 +94,7 @@ const endpoints = {
   },
   ingressUrl: {
     service: services.connectionManager,
-    url: ({ dfspId, urlId }) =>
-      `/dfsps/${dfspId}/endpoints/ingress/urls/${urlId}`,
+    url: ({ dfspId, urlId }) => `/dfsps/${dfspId}/endpoints/ingress/urls/${urlId}`,
   },
   hubEgressIps: {
     service: services.connectionManager,
@@ -129,8 +126,7 @@ const endpoints = {
   },
   confirmEndpoint: {
     service: services.connectionManager,
-    url: ({ dfspId, endpointId }) =>
-      `/dfsps/${dfspId}/endpoints/${endpointId}/confirmation`,
+    url: ({ dfspId, endpointId }) => `/dfsps/${dfspId}/endpoints/${endpointId}/confirmation`,
   },
   hubEndpoints: {
     service: services.connectionManager,
@@ -146,8 +142,7 @@ const endpoints = {
   },
   onboard: {
     service: services.connectionManager,
-    url: ({ dfspId }) =>
-      `/dfsps/${dfspId}/onboard`,
+    url: ({ dfspId }) => `/dfsps/${dfspId}/onboard`,
   },
   inboundEnrollments: {
     service: services.connectionManager,
@@ -155,13 +150,11 @@ const endpoints = {
   },
   inboundEnrollmentSign: {
     service: services.connectionManager,
-    url: ({ dfspId, enrollmentId }) =>
-      `/dfsps/${dfspId}/enrollments/inbound/${enrollmentId}/sign`,
+    url: ({ dfspId, enrollmentId }) => `/dfsps/${dfspId}/enrollments/inbound/${enrollmentId}/sign`,
   },
   inboundEnrollmentCertificate: {
     service: services.connectionManager,
-    url: ({ dfspId, enrollmentId }) =>
-      `/dfsps/${dfspId}/enrollments/inbound/${enrollmentId}/certificate`,
+    url: ({ dfspId, enrollmentId }) => `/dfsps/${dfspId}/enrollments/inbound/${enrollmentId}/certificate`,
   },
   outboundEnrollments: {
     service: services.connectionManager,
@@ -173,13 +166,11 @@ const endpoints = {
   },
   outboundEnrollmentCertificate: {
     service: services.connectionManager,
-    url: ({ dfspId, enrollmentId }) =>
-      `/dfsps/${dfspId}/enrollments/outbound/${enrollmentId}/certificate`,
+    url: ({ dfspId, enrollmentId }) => `/dfsps/${dfspId}/enrollments/outbound/${enrollmentId}/certificate`,
   },
   outboundEnrollmentValidate: {
     service: services.connectionManager,
-    url: ({ dfspId, enrollmentId }) =>
-      `/dfsps/${dfspId}/enrollments/outbound/${enrollmentId}/validate`,
+    url: ({ dfspId, enrollmentId }) => `/dfsps/${dfspId}/enrollments/outbound/${enrollmentId}/validate`,
   },
   hubServerCerts: {
     service: services.connectionManager,
@@ -203,8 +194,8 @@ const endpoints = {
   },
   checkSession: {
     service: services.checkSession,
-    url: () => ''
-  }
+    url: () => '',
+  },
 };
 
 const apis = buildFetchActions(endpoints);

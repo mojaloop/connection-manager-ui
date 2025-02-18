@@ -170,7 +170,4 @@ const DFSPCertificateAuthority = ({
 
 const MountedDFSPCertificateAuthority = withMount(DFSPCertificateAuthority, 'onMount');
 
-export default connect(
-  stateProps,
-  actionProps
-)(MountedDFSPCertificateAuthority);
+export default connect(stateProps, actionProps)(MountedDFSPCertificateAuthority);

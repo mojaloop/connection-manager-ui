@@ -16,41 +16,28 @@ export const getLogoutUrl = state => state.app.config.logoutUrl;
 export const getLoginProvider = state => state.app.config.loginProvider;
 export const checkSession = state => state.app.config.checkSession;
 
-const getDfsp = createSelector(
-  getDfsps,
-  getDfspId,
-  (dfsps, id) => find(dfsps, { id })
-);
+const getDfsp = createSelector(getDfsps, getDfspId, (dfsps, id) => find(dfsps, { id }));
 
-export const getDfspName = createSelector(
-  getDfsp,
-  dfsp => get(dfsp, 'name')
-);
+export const getDfspName = createSelector(getDfsp, dfsp => get(dfsp, 'name'));
 
-export const getDfspMonetaryZoneId = createSelector(
-  getDfsp,
-  dfsp => get(dfsp, 'monetaryZoneId')
-);
+export const getDfspMonetaryZoneId = createSelector(getDfsp, dfsp => get(dfsp, 'monetaryZoneId'));
 
 export const getIsDfspsReadPending = createPendingSelector('dfsps.read');
-export const getErrorModalContent = createSelector(
-  getErrorModalPayload,
-  payload => {
-    if (payload === undefined) {
-      return undefined;
-    } else if (typeof payload === 'string') {
-      return payload;
-    } else if (typeof payload === 'object') {
-      if (payload.hasOwnProperty('status') && payload.hasOwnProperty('data')) {
-        if (is422(payload.status)) {
-          return 'The was an error processing the request content';
-        } else if (is400(payload.status)) {
-          return get(payload.data, 'error.message');
-        } else if (is500(payload.status)) {
-          return 'There was an internal error. Please try again later';
-        }
+export const getErrorModalContent = createSelector(getErrorModalPayload, payload => {
+  if (payload === undefined) {
+    return undefined;
+  } else if (typeof payload === 'string') {
+    return payload;
+  } else if (typeof payload === 'object') {
+    if (payload.hasOwnProperty('status') && payload.hasOwnProperty('data')) {
+      if (is422(payload.status)) {
+        return 'The was an error processing the request content';
+      } else if (is400(payload.status)) {
+        return get(payload.data, 'error.message');
+      } else if (is500(payload.status)) {
+        return 'There was an internal error. Please try again later';
       }
     }
-    return 'There was an error. Please try again later';
   }
-);
+  return 'There was an error. Please try again later';
+});

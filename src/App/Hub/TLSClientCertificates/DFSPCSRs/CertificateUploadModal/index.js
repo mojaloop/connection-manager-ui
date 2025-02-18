@@ -82,7 +82,4 @@ const CertificateUploadModal = ({
   </Modal>
 );
 
-export default connect(
-  stateProps,
-  actionProps
-)(CertificateUploadModal);
+export default connect(stateProps, actionProps)(CertificateUploadModal);

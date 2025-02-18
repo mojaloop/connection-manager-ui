@@ -24,25 +24,11 @@ const getPreviousDfspJWSModel = createSelector(
   getPreviousDfspJWSIntermediateChain,
   buildDfspJWSModel
 );
-export const getDfspJWSModel = createSelector(
-  getDfspJWSJwsCertificate,
-  getDfspJWSIntermediateChain,
-  buildDfspJWSModel
-);
-const getIsDfspJWSModelChanged = createSelector(
-  getPreviousDfspJWSModel,
-  getDfspJWSModel,
-  testers.isNotEqual
-);
-const getIsDfspJWSJwsCertificateValid = createSelector(
-  getDfspJWSJwsCertificate,
-  testers.isNotNil
-);
+export const getDfspJWSModel = createSelector(getDfspJWSJwsCertificate, getDfspJWSIntermediateChain, buildDfspJWSModel);
+const getIsDfspJWSModelChanged = createSelector(getPreviousDfspJWSModel, getDfspJWSModel, testers.isNotEqual);
+const getIsDfspJWSJwsCertificateValid = createSelector(getDfspJWSJwsCertificate, testers.isNotNil);
 
-export const getIsDfspJWSEditingExisitingModel = createSelector(
-  getPreviousDfspJWSJwsCertificate,
-  testers.isNotNil
-);
+export const getIsDfspJWSEditingExisitingModel = createSelector(getPreviousDfspJWSJwsCertificate, testers.isNotNil);
 export const getIsDfspJWSSubmitEnabled = createSelector(
   getIsDfspJWSJwsCertificateValid,
   getIsDfspJWSModelChanged,

@@ -67,18 +67,14 @@ export const submitHubIngressEndpoints = () => async (dispatch, getState) => {
   const updateUrlsActions = urlsOperations.update.map(url =>
     dispatch(api.hubIngressUrl.update({ urlId: url.id, body: urlToApiModel(url) }))
   );
-  const deleteUrlsActions = urlsOperations.delete.map(url =>
-    dispatch(api.hubIngressUrl.delete({ urlId: url.id }))
-  );
+  const deleteUrlsActions = urlsOperations.delete.map(url => dispatch(api.hubIngressUrl.delete({ urlId: url.id })));
   const createIpsActions = ipsOperations.create.map(ip =>
     dispatch(api.hubIngressIps.create({ body: ipToApiModel(ip) }))
   );
   const updateIpsActions = ipsOperations.update.map(ip =>
     dispatch(api.hubIngressIp.update({ ipId: ip.id, body: ipToApiModel(ip) }))
   );
-  const deleteIpsActions = ipsOperations.delete.map(ip =>
-    dispatch(api.hubIngressIp.delete({ ipId: ip.id }))
-  );
+  const deleteIpsActions = ipsOperations.delete.map(ip => dispatch(api.hubIngressIp.delete({ ipId: ip.id })));
 
   const results = await Promise.all([
     ...createUrlsActions,

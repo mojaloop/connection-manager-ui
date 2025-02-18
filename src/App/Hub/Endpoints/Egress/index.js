@@ -201,7 +201,4 @@ const EgressIp = ({
 
 const MountedEgress = withMount(Egress, 'onMount');
 
-export default connect(
-  stateProps,
-  actionProps
-)(MountedEgress);
+export default connect(stateProps, actionProps)(MountedEgress);

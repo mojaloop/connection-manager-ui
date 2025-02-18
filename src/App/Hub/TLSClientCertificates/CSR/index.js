@@ -325,7 +325,4 @@ const IP = ({ index, value, validation, onChange, onRemove }) => (
   </div>
 );
 
-export default connect(
-  stateProps,
-  actionProps
-)(CSR);
+export default connect(stateProps, actionProps)(CSR);

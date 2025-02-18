@@ -6,19 +6,9 @@ import { getTotpValidation } from './validators';
 export const getIsQrScanAcknowledged = state => state.auth.totp.isQrScanAcknowledged;
 export const getCode = state => state.auth.totp.code;
 
-const getCodeModel = createSelector(
-  getCode,
-  code => ({ code })
-);
-export const getValidationResult = createSelector(
-  getCodeModel,
-  getTotpValidation,
-  toValidationResult
-);
+const getCodeModel = createSelector(getCode, code => ({ code }));
+export const getValidationResult = createSelector(getCodeModel, getTotpValidation, toValidationResult);
 
-export const getIsTotpSubmitEnabled = createSelector(
-  getValidationResult,
-  getIsValid
-);
+export const getIsTotpSubmitEnabled = createSelector(getValidationResult, getIsValid);
 
 export const getIsTotpPending = createPendingSelector('login2step.create');

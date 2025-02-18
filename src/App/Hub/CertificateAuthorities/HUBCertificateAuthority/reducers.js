@@ -82,19 +82,19 @@ const HubCa = handleActions(
       };
     },
     [SET_HUB_CA_ROOT_CERTIFICATE]: (state, action) => {
-      return ({
+      return {
         // the server sends null for a non-existing certificate
         // causing the ui to fail on the fileuploader component
         // so it needs to be stored as an undefined value
         ...state,
         hubCaRootCertificate: action.payload || null,
-      })
+      };
     },
     [SET_HUB_CA_ROOT_CERTIFICATE_INFO]: (state, action) => {
-      return ({
+      return {
         ...state,
         hubCaRootCertificateInfo: action.payload,
-      })
+      };
     },
     [SHOW_HUB_CA_ROOT_CERTIFICATE_MODAL]: (state, action) => ({
       ...state,

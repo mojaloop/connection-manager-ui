@@ -84,7 +84,4 @@ const HubCertificateAuthority = ({
 };
 
 const MountedHubCertificateAuthority = withMount(HubCertificateAuthority, 'onMount');
-export default connect(
-  stateProps,
-  actionProps
-)(MountedHubCertificateAuthority);
+export default connect(stateProps, actionProps)(MountedHubCertificateAuthority);

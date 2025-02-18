@@ -37,9 +37,7 @@ export const setHubDfspsCsrsCertificateUploadModalCaId = createAction(SET_HUB_DF
 
 export const storeHubDfspCsrs = () => async (dispatch, getState) => {
   const dfsps = getDfsps(getState());
-  const results = await Promise.all(
-    dfsps.map(dfsp => dispatch(api.inboundEnrollments.read({ dfspId: dfsp.id })))
-  );
+  const results = await Promise.all(dfsps.map(dfsp => dispatch(api.inboundEnrollments.read({ dfspId: dfsp.id }))));
 
   if (results.every(({ status }) => is200(status) || is404(status))) {
     const certificates = results.reduce(

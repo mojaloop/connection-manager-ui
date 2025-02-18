@@ -47,7 +47,4 @@ const TLSClientCertificates = ({ hasUnsignedCsrs, hasUnvalidatedCsrs }) => (
   </div>
 );
 
-export default connect(
-  stateProps,
-  null
-)(TLSClientCertificates);
+export default connect(stateProps, null)(TLSClientCertificates);

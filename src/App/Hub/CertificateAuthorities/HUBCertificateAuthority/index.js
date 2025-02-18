@@ -257,7 +257,4 @@ const HOST = ({ index, value, validation, onChange, onRemove }) => (
   </div>
 );
 
-export default connect(
-  stateProps,
-  actionProps
-)(HubCertificateAuthority);
+export default connect(stateProps, actionProps)(HubCertificateAuthority);

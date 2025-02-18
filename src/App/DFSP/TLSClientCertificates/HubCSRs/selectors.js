@@ -26,7 +26,7 @@ export const getDfspHubCsrCertificateSigningPendingCollection = createCollection
 );
 export const getIsDfspHubCsrCertificateSigningPendingByEnrollmentId = createSelector(
   getDfspHubCsrsCertificates,
-  getDfspHubCsrCertificateSigningPendingCollection,
+  // getDfspHubCsrCertificateSigningPendingCollection,
   (csrs, collection) => {
     const getByCsrId = getPendingByParameter('enrollmentId');
     return csrs

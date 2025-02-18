@@ -231,7 +231,4 @@ const DFSPsCertificates = ({
 
 const MountedDFSPsJWS = withMount(DFSPsJWS, 'onMount');
 
-export default connect(
-  stateProps,
-  actionProps
-)(MountedDFSPsJWS);
+export default connect(stateProps, actionProps)(MountedDFSPsJWS);

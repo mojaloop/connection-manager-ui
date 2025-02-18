@@ -6,9 +6,6 @@ const setIcon = test => ({
   fill: test ? '#f96' : undefined,
 });
 
-export const getMenuIcons = createSelector(
-  getDfspHasUnsignedHubCsrs,
-  hasUnsignedCsrs => ({
-    csrs: setIcon(hasUnsignedCsrs),
-  })
-);
+export const getMenuIcons = createSelector(getDfspHasUnsignedHubCsrs, hasUnsignedCsrs => ({
+  csrs: setIcon(hasUnsignedCsrs),
+}));
