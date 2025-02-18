@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { push } from 'connected-react-router';
 import find from 'lodash/find';
 import { setDfspId, unsetDfsps } from 'App/actions';
