@@ -34,7 +34,13 @@
     "start": "react-app-rewired start",
     "build": "react-app-rewired build",
     "test": "react-app-rewired test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "lint": "eslint --ext .js,.jsx,.ts,.tsx src --color",
+    "lint:fix": "eslint --ext .js,.jsx,.ts,.tsx src --color --fix",
+    "release": "standard-version --releaseCommitMessageFormat 'chore(release): {{currentTag}} [skip ci]'",
+    "snapshot": "standard-version --no-verify --skip.changelog --prerelease snapshot --releaseCommitMessageFormat 'chore(snapshot): {{currentTag}}'",
+    "test:coverage": "CI=true npx nyc --reporter=lcov --reporter=text  --reporter=text-summary npm run test -- --coverage --watchAll=false",
+    "test:coverage-check": "npm run test:coverage && nyc check-coverage"
   },
   "eslintConfig": {
     "extends": "react-app"
