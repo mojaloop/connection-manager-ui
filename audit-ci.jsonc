@@ -1,0 +1,12 @@
+{
+    "low": false,
+    "moderate": false,
+    "high": true,
+    "critical": true,
+    "skip-dev": true,
+    "report-type": "important",
+    "allowlist": [
+        "GHSA-grv7-fg5c-xmjg",  // braces vulnerability
+        "GHSA-rp65-9cf3-cjxr"   // nth-check vulnerability
+    ]
+}
