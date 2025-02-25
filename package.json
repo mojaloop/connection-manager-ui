@@ -3,7 +3,7 @@
   "version": "1.8.4",
   "private": true,
   "dependencies": {
-    "@pm4ml/mojaloop-payment-manager-ui-components-legacy": "^1.23.1",
+    "@pm4ml/mojaloop-payment-manager-ui-components-legacy": "1.23.1",
     "babel-polyfill": "^6.26.0",
     "babel-preset-react-app": "^10.0.1",
     "connected-react-router": "^6.3.2",
