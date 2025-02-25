@@ -34,7 +34,11 @@
     "start": "react-app-rewired start",
     "build": "react-app-rewired build",
     "test": "react-app-rewired test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "audit:check": "npx audit-ci --config ./audit-ci.jsonc",
+    "test:xunit": "react-app-rewired test --watchAll",
+    "dep:check": "npx ncu -e 2",
+    "dep:update": "npx ncu -u"
   },
   "eslintConfig": {
     "extends": "react-app"
