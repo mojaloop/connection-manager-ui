@@ -23,7 +23,7 @@ In order to keep coding quality and ensure the best development workflow, this p
 
 ### Versioning
 
-The correct way to create release it to use the completely automated `yarn version` command.
+The correct way to create release it to use the completely automated `yarn version` command. 
 
 It will bump the version in `package.json` and create a tag. The tag is useful to track and create releases.
 
