@@ -95,7 +95,7 @@ const HubCsr = handleActions(
         hubCsrDnss: [...state.hubCsrDnss.slice(0, index), value, ...state.hubCsrDnss.slice(index + 1)],
       };
     },
-    [ADD_HUB_CSR_DNS]: (state, action) => ({
+    [ADD_HUB_CSR_DNS]: (state) => ({
       ...state,
       hubCsrDnss: [...state.hubCsrDnss, dnsInitialState],
     }),
@@ -113,7 +113,7 @@ const HubCsr = handleActions(
         hubCsrIps: [...state.hubCsrIps.slice(0, index), value, ...state.hubCsrIps.slice(index + 1)],
       };
     },
-    [ADD_HUB_CSR_IP]: (state, action) => ({
+    [ADD_HUB_CSR_IP]: (state) => ({
       ...state,
       hubCsrIps: [...state.hubCsrIps, ipInitialState],
     }),
@@ -124,11 +124,11 @@ const HubCsr = handleActions(
         hubCsrIps: [...state.hubCsrIps.slice(0, index), ...state.hubCsrIps.slice(index + 1)],
       };
     },
-    [SHOW_HUB_CSR_CERTIFICATE_MODAL]: (state, action) => ({
+    [SHOW_HUB_CSR_CERTIFICATE_MODAL]: (state) => ({
       ...state,
       isHubCsrModalVisible: true,
     }),
-    [HIDE_HUB_CSR_CERTIFICATE_MODAL]: (state, action) => ({
+    [HIDE_HUB_CSR_CERTIFICATE_MODAL]: (state) => ({
       ...state,
       isHubCsrModalVisible: false,
     }),

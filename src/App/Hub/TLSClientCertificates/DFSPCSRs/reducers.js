@@ -50,7 +50,7 @@ const HubDfspCsrs = handleActions(
       hubDfspCsrsCertificateModalContent: action.payload.certificate,
       hubDfspCsrsCertificateModalTitle: action.payload.title,
     }),
-    [HIDE_HUB_DFSP_CSR_CERTIFICATE_MODAL]: (state, action) => ({
+    [HIDE_HUB_DFSP_CSR_CERTIFICATE_MODAL]: (state) => ({
       ...state,
       isHubDfspCsrsCertificateModalVisible: false,
       hubDfspCsrsCertificateModalContent: undefined,
@@ -62,7 +62,7 @@ const HubDfspCsrs = handleActions(
       hubDfspCsrsCertificateUploadModalEnrollmentId: action.payload.enrollmentId,
       isHubDfspCsrsCertificateUploadModalVisible: true,
     }),
-    [HIDE_HUB_DFSP_CSR_CERTIFICATE_UPLOAD_MODAL]: (state, action) => ({
+    [HIDE_HUB_DFSP_CSR_CERTIFICATE_UPLOAD_MODAL]: (state) => ({
       ...state,
       hubDfspCsrsCertificateUploadModalDfspId: undefined,
       hubDfspCsrsCertificateUploadModalEnrollmentId: undefined,

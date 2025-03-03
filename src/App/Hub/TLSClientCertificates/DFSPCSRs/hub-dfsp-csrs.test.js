@@ -21,12 +21,11 @@ import {
   getHubDfspCsrsCertificateModalContent,
   getHubDfspCsrsCertificateModalTitle,
   getIsHubDfspCsrsPending,
-  getFilteredHubDfspCsrsCertificatesByDFSP,
   getIsHubDfspCASigningPendingByEnrollmentId,
   getIsHubDfspCertificateSigningPending,
 } from './selectors';
 
-import { getIsSuccessToastVisible, getIsErrorModalVisible } from 'App/selectors';
+import { getIsSuccessToastVisible } from 'App/selectors';
 import { initialState } from './reducers';
 
 jest.mock('utils/html', () => ({

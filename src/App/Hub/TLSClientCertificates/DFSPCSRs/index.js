@@ -77,20 +77,13 @@ const DFSPCSRsContainer = ({
   csrs,
   isCertificateModalVisible,
   certificateModalContent,
-  certificateModalTitle,
   isHubCaMissing,
   isHubExternalCasMissing,
   isHubDfspCsrsPending,
   isCASigningPendingByEnrollmentId,
   isCertificateSigningPending,
 
-  certificateUploadModalCas,
-  certificateUploadModalcertificate,
-  certificateUploadModalCaId,
-  certificateUploadModalValidation,
   isCertificateUploadModalVisible,
-  isCertificateUploadModalSubmitEnabled,
-  isCertificateUploadModalSubmitPending,
 
   onFilterChange,
   onCASignDfspCsrClick,
@@ -99,8 +92,6 @@ const DFSPCSRsContainer = ({
   onCertificateDownloadClick,
   onCertificateModalCloseClick,
 
-  onCertificateModalUploadSubmitClick,
-  onCertificateModalUploadCloseClick,
 }) => {
   if (error) {
     return (
@@ -149,7 +140,6 @@ const DFSPCSRs = ({
   certificateModalTitle,
   isHubCaMissing,
   isHubExternalCasMissing,
-  isCASigningPending,
   isCASigningPendingByEnrollmentId,
   isCertificateSigningPending,
   onCASignDfspCsrClick,

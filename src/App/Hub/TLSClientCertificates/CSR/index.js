@@ -293,7 +293,7 @@ const CSR = ({
   );
 };
 
-const DNS = ({ index, value, validation, onChange, onRemove }) => (
+const DNS = ({ value, validation, onChange, onRemove }) => (
   <div className="hub__csr__dns__row">
     <ControlIcon
       icon="close-small"
@@ -309,7 +309,7 @@ const DNS = ({ index, value, validation, onChange, onRemove }) => (
   </div>
 );
 
-const IP = ({ index, value, validation, onChange, onRemove }) => (
+const IP = ({ value, validation, onChange, onRemove }) => (
   <div className="hub__csr__ip__row">
     <ControlIcon
       icon="close-small"

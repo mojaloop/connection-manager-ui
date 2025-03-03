@@ -41,7 +41,7 @@ const HubSentCsrs = handleActions(
       hubSentCsrsCertificateModalContent: action.payload.certificate,
       hubSentCsrsCertificateModalTitle: action.payload.title,
     }),
-    [HIDE_HUB_SENT_CSRS_CERTIFICATE_MODAL]: (state, action) => ({
+    [HIDE_HUB_SENT_CSRS_CERTIFICATE_MODAL]: (state) => ({
       ...state,
       isHubSentCsrsCertificateModalVisible: false,
       hubSentCsrsCertificateModalContent: undefined,
