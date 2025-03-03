@@ -113,7 +113,6 @@ const UnprocessedDFSPEndpointsFilter = ({ value, onChange }) => (
 );
 
 const UnprocessedDFSPEndpoints = ({
-  index,
   dfspId,
   dfspName,
   endpoints,
@@ -160,7 +159,7 @@ const UnprocessedDFSPEndpoints = ({
   </div>
 );
 
-const UnprocessedEndpointsSection = ({ title, endpoints, isSubmitEnabled, onChange }) => (
+const UnprocessedEndpointsSection = ({ title, endpoints, onChange }) => (
   <div className="unprocessed-dfsp-endpoints__body__section">
     <div className="unprocessed-dfsp-endpoints__body__section__title">{title}</div>
     <div>
