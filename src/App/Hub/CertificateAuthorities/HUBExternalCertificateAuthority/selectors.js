@@ -42,7 +42,6 @@ const getHubExternalCaNameInUniq = createSelector(
   // TODO: Need to refactor this logic. Since CA's are now overwritten
   //       Since a participant can only have one, just return true.
   //       This used to check that a CA's name was unique.
-  (name, certificates) => true
 );
 
 const getHubExternalCaValidation = createSelector(

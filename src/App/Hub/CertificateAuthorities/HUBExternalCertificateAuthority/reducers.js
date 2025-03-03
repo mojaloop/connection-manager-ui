@@ -48,7 +48,7 @@ const HubExternalCa = handleActions(
       ...state,
       hubExternalCaName: action.payload,
     }),
-    [RESET_HUB_EXTERNAL_CA_FORM]: (state, action) => ({
+    [RESET_HUB_EXTERNAL_CA_FORM]: (state) => ({
       ...state,
       hubExternalCaRootCert: undefined,
       hubExternalCaIntermediateChain: undefined,
@@ -59,7 +59,7 @@ const HubExternalCa = handleActions(
       isHubExternalCaRootCertificateModalVisible: true,
       hubExternalCaRootCertificateModalContent: action.payload,
     }),
-    [HIDE_HUB_EXTERNAL_CA_ROOT_CERTIFICATE_MODAL]: (state, action) => ({
+    [HIDE_HUB_EXTERNAL_CA_ROOT_CERTIFICATE_MODAL]: (state) => ({
       ...state,
       isHubExternalCaRootCertificateModalVisible: false,
       hubExternalCaRootCertificateModalContent: undefined,
@@ -69,7 +69,7 @@ const HubExternalCa = handleActions(
       isHubExternalCaIntermediateChainModalVisible: true,
       hubExternalCaIntermediateChainModalContent: action.payload,
     }),
-    [HIDE_HUB_EXTERNAL_CA_INTERMEDIATE_CHAIN_MODAL]: (state, action) => ({
+    [HIDE_HUB_EXTERNAL_CA_INTERMEDIATE_CHAIN_MODAL]: (state) => ({
       ...state,
       isHubExternalCaIntermediateChainModalVisible: false,
       hubExternalCaIntermediateChainModalContent: undefined,

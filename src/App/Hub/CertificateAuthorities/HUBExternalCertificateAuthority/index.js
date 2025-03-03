@@ -82,7 +82,6 @@ const HubExternalUploadCertificateAuthority = ({
   rootCertificateModalContent,
   intermediateChainModalContent,
   isHubExternalCaReadPending,
-  isHubExternalCaCreatePending,
   isSubmitPending,
   isSubmitEnabled,
   onRootCertificateChange,

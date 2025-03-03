@@ -37,7 +37,7 @@ const HubDfspCas = handleActions(
       isHubDfspCasRootCertificateModalVisible: true,
       hubDfspCasRootCertificateModalContent: action.payload,
     }),
-    [HIDE_HUB_DFSP_CAS_ROOT_CERTIFICATE_MODAL]: (state, action) => ({
+    [HIDE_HUB_DFSP_CAS_ROOT_CERTIFICATE_MODAL]: (state) => ({
       ...state,
       isHubDfspCasRootCertificateModalVisible: false,
       hubDfspCasRootCertificateModalContent: undefined,
@@ -47,7 +47,7 @@ const HubDfspCas = handleActions(
       isHubDfspCasIntermediateChainModalVisible: true,
       hubDfspCasIntermediateChainModalContent: action.payload,
     }),
-    [HIDE_HUB_DFSP_CAS_INTERMEDIATE_CHAIN_MODAL]: (state, action) => ({
+    [HIDE_HUB_DFSP_CAS_INTERMEDIATE_CHAIN_MODAL]: (state) => ({
       ...state,
       isHubDfspCasIntermediateChainModalVisible: false,
       hubDfspCasIntermediateChainModalContent: undefined,

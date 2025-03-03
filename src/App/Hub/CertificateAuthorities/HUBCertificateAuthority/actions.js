@@ -37,7 +37,7 @@ export const setHubCaInfo = createAction(SET_HUB_CA_ROOT_CERTIFICATE_INFO);
 export const showHubCaModal = createAction(SHOW_HUB_CA_ROOT_CERTIFICATE_MODAL);
 export const hideHubCaModal = createAction(HIDE_HUB_CA_ROOT_CERTIFICATE_MODAL);
 
-export const storeHubCa = () => async (dispatch, getState) => {
+export const storeHubCa = () => async (dispatch) => {
   const { data, status } = await dispatch(api.hubCa.read());
   if (is200(status) || is404(status)) {
     if (data.type === 'INTERNAL') {

@@ -241,7 +241,7 @@ const HubCertificateAuthority = ({
   );
 };
 
-const HOST = ({ index, value, validation, onChange, onRemove }) => (
+const HOST = ({ value, validation, onChange, onRemove }) => (
   <div className="hub__ca__host__row">
     <ControlIcon
       icon="close-small"
