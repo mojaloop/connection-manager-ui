@@ -78,7 +78,6 @@ const DFSPSC = ({
   onIntermediateChainViewClick,
   onIntermediateChainDownloadClick,
   onIntermediateChainModalCloseClick,
-  onServerCertificateViewClick,
   onServerCertificateDownloadClick,
   onServerCertificateModalCloseClick,
 }) => {

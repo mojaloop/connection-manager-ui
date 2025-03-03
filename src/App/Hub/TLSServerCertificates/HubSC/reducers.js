@@ -113,27 +113,27 @@ const HubSC = handleActions(
       hubSCValidations: initialState.hubSCValidations,
     }),
 
-    [SHOW_HUB_SC_ROOT_CERTIFICATE_MODAL]: (state, action) => ({
+    [SHOW_HUB_SC_ROOT_CERTIFICATE_MODAL]: (state) => ({
       ...state,
       isHubSCRootCertificateModalVisible: true,
     }),
-    [HIDE_HUB_SC_ROOT_CERTIFICATE_MODAL]: (state, action) => ({
+    [HIDE_HUB_SC_ROOT_CERTIFICATE_MODAL]: (state) => ({
       ...state,
       isHubSCRootCertificateModalVisible: false,
     }),
-    [SHOW_HUB_SC_INTERMEDIATE_CHAIN_MODAL]: (state, action) => ({
+    [SHOW_HUB_SC_INTERMEDIATE_CHAIN_MODAL]: (state) => ({
       ...state,
       isHubSCIntermediateChainModalVisible: true,
     }),
-    [HIDE_HUB_SC_INTERMEDIATE_CHAIN_MODAL]: (state, action) => ({
+    [HIDE_HUB_SC_INTERMEDIATE_CHAIN_MODAL]: (state) => ({
       ...state,
       isHubSCIntermediateChainModalVisible: false,
     }),
-    [SHOW_HUB_SC_SERVER_CERTIFICATE_MODAL]: (state, action) => ({
+    [SHOW_HUB_SC_SERVER_CERTIFICATE_MODAL]: (state) => ({
       ...state,
       isHubSCServerCertificateModalVisible: true,
     }),
-    [HIDE_HUB_SC_SERVER_CERTIFICATE_MODAL]: (state, action) => ({
+    [HIDE_HUB_SC_SERVER_CERTIFICATE_MODAL]: (state) => ({
       ...state,
       isHubSCServerCertificateModalVisible: false,
     }),

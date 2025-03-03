@@ -45,7 +45,7 @@ const HubDfspSC = handleActions(
       isHubDfspSCRootCertificateModalVisible: true,
       hubDfspSCRootCertificateModalContent: action.payload,
     }),
-    [HIDE_HUB_DFSP_SC_ROOT_CERTIFICATE_MODAL]: (state, action) => ({
+    [HIDE_HUB_DFSP_SC_ROOT_CERTIFICATE_MODAL]: (state) => ({
       ...state,
       isHubDfspSCRootCertificateModalVisible: false,
       hubDfspSCRootCertificateModalContent: undefined,
@@ -55,7 +55,7 @@ const HubDfspSC = handleActions(
       isHubDfspSCIntermediateChainModalVisible: true,
       hubDfspSCIntermediateChainModalContent: action.payload,
     }),
-    [HIDE_HUB_DFSP_SC_INTERMEDIATE_CHAIN_MODAL]: (state, action) => ({
+    [HIDE_HUB_DFSP_SC_INTERMEDIATE_CHAIN_MODAL]: (state) => ({
       ...state,
       isHubDfspSCIntermediateChainModalVisible: false,
       hubDfspSCIntermediateChainModalContent: undefined,
@@ -65,7 +65,7 @@ const HubDfspSC = handleActions(
       isHubDfspSCServerCertificateModalVisible: true,
       hubDfspSCServerCertificateModalContent: action.payload,
     }),
-    [HIDE_HUB_DFSP_SC_SERVER_CERTIFICATE_MODAL]: (state, action) => ({
+    [HIDE_HUB_DFSP_SC_SERVER_CERTIFICATE_MODAL]: (state) => ({
       ...state,
       isHubDfspSCServerCertificateModalVisible: false,
       hubDfspSCServerCertificateModalContent: undefined,

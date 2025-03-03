@@ -51,7 +51,7 @@ export const hideHubSCIntermediateChainModal = createAction(HIDE_HUB_SC_INTERMED
 export const showHubSCServerCertificateModal = createAction(SHOW_HUB_SC_SERVER_CERTIFICATE_MODAL);
 export const hideHubSCServerCertificateModal = createAction(HIDE_HUB_SC_SERVER_CERTIFICATE_MODAL);
 
-export const storeHubSCServerCertificate = () => async (dispatch, getState) => {
+export const storeHubSCServerCertificate = () => async (dispatch) => {
   const { data, status } = await dispatch(api.hubServerCerts.read());
 
   if (is200(status) || is404(status)) {
