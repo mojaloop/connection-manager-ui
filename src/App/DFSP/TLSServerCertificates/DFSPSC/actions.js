@@ -97,17 +97,17 @@ export const submitDfspSCServerCertificate = () => async (dispatch, getState) =>
   }
 };
 
-export const downloadDfspSCRootCertificate = () => (dispatch, getState) => {
+export const downloadDfspSCRootCertificate = () => (getState) => {
   const rootCertificate = getDfspSCRootCertificate(getState());
   downloadFile(rootCertificate, `root.pem`);
 };
 
-export const downloadDfspSCIntermediateChain = () => (dispatch, getState) => {
+export const downloadDfspSCIntermediateChain = () => (getState) => {
   const intermediateChain = getDfspSCIntermediateChain(getState());
   downloadFile(intermediateChain, `intermediates.pem`);
 };
 
-export const downloadDfspSCServerCertificate = () => (dispatch, getState) => {
+export const downloadDfspSCServerCertificate = () => ( getState) => {
   const rootCertificate = getDfspSCServerCertificate(getState());
   downloadFile(rootCertificate, `server.pem`);
 };

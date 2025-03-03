@@ -77,12 +77,12 @@ export const submitDfspJWSCertificates = () => async (dispatch, getState) => {
   }
 };
 
-export const downloadDfspJWSJwsCertificate = () => (dispatch, getState) => {
+export const downloadDfspJWSJwsCertificate = () => ( getState) => {
   const jwsCertificate = getDfspJWSJwsCertificate(getState());
   downloadFile(jwsCertificate, `root.pem`);
 };
 
-export const downloadDfspJWSIntermediateChain = () => (dispatch, getState) => {
+export const downloadDfspJWSIntermediateChain = () => (  getState) => {
   const intermediateChain = getDfspJWSIntermediateChain(getState());
   downloadFile(intermediateChain, `intermediates.pem`);
 };

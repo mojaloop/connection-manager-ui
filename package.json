@@ -7,21 +7,20 @@
     "babel-polyfill": "^6.26.0",
     "babel-preset-react-app": "^10.0.1",
     "connected-react-router": "^6.3.2",
-    "fetch-mock": "^12.4.0",
+    "fetch-mock": "^9.11.0",
     "gensync": "^1.0.0-beta.2",
-    "history": "^4.9.0",
+    "history": "^4.7.2",
     "lodash": "^4.17.11",
     "moment": "^2.24.0",
     "moment-timezone": "^0.5.25",
     "prettier": "^1.17.0",
     "qrcode": "^1.4.1",
     "react": "^16.8.5",
-    "react-app-rewired": "^2.1.1",
     "react-dom": "^16.8.5",
     "react-redux": "^6.0.1",
     "react-router-dom": "^5.0.0",
+    "react-scripts": "^4.0.3",
     "redux": "^4.0.1",
-    "react-scripts": "^5.0.1",
     "redux-actions": "^2.6.5",
     "redux-thunk": "^2.3.0",
     "reselect": "^4.0.0",
@@ -65,6 +64,8 @@
     "braces": "^3.0.3"
   },
   "devDependencies": {
-    "jest": "^27.5.1"
+    "jest": "^27.5.1",
+    "node-fetch": "^2.7.0",
+    "react-app-rewired": "^2.1.6"
   }
 }

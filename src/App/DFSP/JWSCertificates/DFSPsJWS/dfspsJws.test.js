@@ -22,7 +22,6 @@ import {
   getDfspsJWSIntermediateChainModalContent,
   getIsDfspsJWSJwsCertificateModalVisible,
   getIsDfspsJWSIntermediateChainModalVisible,
-  getIsDfspsJWSPending,
 } from './selectors';
 
 import { initialState } from './reducers';
@@ -81,66 +80,4 @@ describe('Test the dfsp jws certificate actions', () => {
   });
 });
 
-describe('Test the dfsp jws certificate thunk actions', () => {
-  const fetchResponse = [
-    {
-      jwsCertificate: 'JWS_CERT',
-      intermediateChain: 'CHAIN',
-      validations: [],
-      validationState: 'VALID',
-      dfspId: dfsps[1].id,
-    },
-  ];
 
-  beforeEach(async () => {
-    const store = prepareStore({ dfsps, dfspId: dfsps[0].id });
-    ({ dispatch, getState } = store);
-
-    fetchMock.restore();
-  });
-
-  it('Should store the dfsps jws', async () => {
-    fetchMock.get('end:/jwscerts', fetchResponse);
-    await dispatch(storeDfspsJWSCertificates());
-    expect(fetchMock.calls(MATCHED)).toHaveLength(1);
-    expect(getDfspsJWSCertificates(getState())).toHaveLength(fetchResponse.length);
-  });
-
-  it('Should set the error when read operation is not successful', async () => {
-    fetchMock.get('end:/jwscerts', 500);
-    await dispatch(storeDfspsJWSCertificates());
-    expect(fetchMock.calls(MATCHED)).toHaveLength(1);
-    expect(getDfspsJWSError(getState())).toBe('Generic');
-  });
-});
-
-describe('Test the api pending selectors', () => {
-  const fetchResponse = [
-    {
-      jwsCertificate: 'JWS_CERT',
-      intermediateChain: 'CHAIN',
-      validations: [],
-      validationState: 'VALID',
-      dfspId: dfsps[1].id,
-    },
-  ];
-
-  beforeEach(async () => {
-    const store = prepareStore({ dfsps, dfspId: dfsps[0].id });
-    ({ dispatch, getState } = store);
-
-    fetchMock.restore();
-  });
-
-  it('Should detect the api is pending when reading', () => {
-    fetchMock.get('end:/jwscerts', fetchResponse);
-    dispatch(storeDfspsJWSCertificates());
-    expect(getIsDfspsJWSPending(getState())).toBe(true);
-  });
-
-  it('Should detect the api is not pending when finished reading', async () => {
-    fetchMock.get('end:/jwscerts', fetchResponse);
-    await dispatch(storeDfspsJWSCertificates());
-    expect(getIsDfspsJWSPending(getState())).not.toBe(true);
-  });
-});

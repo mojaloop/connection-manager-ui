@@ -65,19 +65,19 @@ const DfspCa = handleActions(
       dfspCaValidations: initialState.dfspCaValidations,
       dfspCaValidationState: initialState.dfspCaValidationState,
     }),
-    [SHOW_DFSP_CA_ROOT_CERTIFICATE_MODAL]: (state, action) => ({
+    [SHOW_DFSP_CA_ROOT_CERTIFICATE_MODAL]: (state) => ({
       ...state,
       isDfspCaRootCertificateModalVisible: true,
     }),
-    [HIDE_DFSP_CA_ROOT_CERTIFICATE_MODAL]: (state, action) => ({
+    [HIDE_DFSP_CA_ROOT_CERTIFICATE_MODAL]: (state) => ({
       ...state,
       isDfspCaRootCertificateModalVisible: false,
     }),
-    [SHOW_DFSP_CA_INTERMEDIATE_CHAIN_MODAL]: (state, action) => ({
+    [SHOW_DFSP_CA_INTERMEDIATE_CHAIN_MODAL]: (state) => ({
       ...state,
       isDfspCaIntermediateChainModalVisible: true,
     }),
-    [HIDE_DFSP_CA_INTERMEDIATE_CHAIN_MODAL]: (state, action) => ({
+    [HIDE_DFSP_CA_INTERMEDIATE_CHAIN_MODAL]: (state) => ({
       ...state,
       isDfspCaIntermediateChainModalVisible: false,
     }),

@@ -33,10 +33,10 @@ export const storeDfspHubExternalCas = () => async (dispatch, getState) => {
     dispatch(setDfspHubExternalCaError(data));
   }
 };
-export const downloadDfspHubExternalCaRootCertificate = ({ cert, name }) => (dispatch, getState) => {
+export const downloadDfspHubExternalCaRootCertificate = ({ cert, name }) => () => {
   downloadFile(cert, `hub-${name}-root.pem`);
 };
 
-export const downloadDfspHubExternalCaIntermediateChain = ({ cert, name }) => (dispatch, getState) => {
+export const downloadDfspHubExternalCaIntermediateChain = ({ cert, name }) => () => {
   downloadFile(cert, `hub-${name}-intermediates.pem`);
 };

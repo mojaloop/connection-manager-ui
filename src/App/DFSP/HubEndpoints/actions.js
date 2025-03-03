@@ -14,7 +14,7 @@ const apiToUnprocessedModel = item => ({
   ...item,
 });
 
-export const storeDfspHubEndpoints = () => async (dispatch, getState) => {
+export const storeDfspHubEndpoints = () => async (dispatch) => {
   const { data, status } = await dispatch(api.hubEndpoints.read());
   if (is200(status)) {
     const endpoints = data.map(apiToUnprocessedModel);

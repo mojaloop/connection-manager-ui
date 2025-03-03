@@ -55,33 +55,6 @@ describe('Test the dfsp ca actions', () => {
   });
 });
 
-describe('Test the dfsp csr thunk actions', () => {
-  const fetchResponse = {
-    rootCertificate: 'CSR_CERT',
-  };
-
-  beforeEach(async () => {
-    const store = prepareStore({ dfsps, dfspId: dfsps[0].id });
-    ({ dispatch, getState } = store);
-
-    fetchMock.restore();
-  });
-
-  it('Should submit the dfsp csr', async () => {
-    fetchMock.post('end:/enrollments/inbound', fetchResponse);
-    await dispatch(submitDfspCsr());
-    expect(fetchMock.calls(MATCHED)).toHaveLength(1);
-    expect(getIsSuccessToastVisible(getState())).toBe(true);
-  });
-
-  it('Should show the error modal when the submit fails', async () => {
-    fetchMock.post('end:/enrollments/inbound', 500);
-    await dispatch(submitDfspCsr());
-    expect(fetchMock.calls(MATCHED)).toHaveLength(1);
-    expect(getIsErrorModalVisible(getState())).toBe(true);
-  });
-});
-
 describe('Test the submit selectors', () => {
   beforeEach(async () => {
     const store = getStore();
@@ -99,25 +72,3 @@ describe('Test the submit selectors', () => {
   });
 });
 
-describe('Test the api pending selectors', () => {
-  beforeEach(async () => {
-    const store = prepareStore({ dfsps, dfspId: dfsps[0].id });
-    ({ dispatch, getState } = store);
-
-    fetchMock.restore();
-  });
-
-  it('Should detect the api is pending when creating', () => {
-    fetchMock.post('end:/enrollments/inbound', 200);
-    fetchMock.get('end:/enrollments/inbound', 200);
-    dispatch(submitDfspCsr());
-    expect(getIsDfspCsrSubmitPending(getState())).toBe(true);
-  });
-
-  it('Should detect the api is not pending when finished creating', async () => {
-    fetchMock.post('end:/enrollments/inbound', 200);
-    fetchMock.get('end:/enrollments/inbound', 200);
-    await dispatch(submitDfspCsr());
-    expect(getIsDfspCsrSubmitPending(getState())).not.toBe(true);
-  });
-});

@@ -55,7 +55,7 @@ export const storeDfspIngressIps = () => async (dispatch, getState) => {
   }
 };
 
-export const storeDfspEndpoints = () => async (dispatch, getState) => {
+export const storeDfspEndpoints = () => async (dispatch) => {
   return Promise.all([dispatch(storeDfspIngressUrls()), dispatch(storeDfspIngressIps())]);
 };
 

@@ -41,7 +41,7 @@ const DfspSentCsrs = handleActions(
       dfspSentCsrsCertificateModalContent: action.payload.certificate,
       dfspSentCsrsCertificateModalTitle: action.payload.title,
     }),
-    [HIDE_DFSP_SENT_CSRS_CERTIFICATE_MODAL]: (state, action) => ({
+    [HIDE_DFSP_SENT_CSRS_CERTIFICATE_MODAL]: (state) => ({
       ...state,
       isDfspSentCsrsCertificateModalVisible: false,
       dfspSentCsrsCertificateModalContent: undefined,

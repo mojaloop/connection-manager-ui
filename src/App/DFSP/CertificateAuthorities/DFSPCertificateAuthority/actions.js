@@ -66,23 +66,23 @@ export const submitDfspCa = () => async (dispatch, getState) => {
   }
 };
 
-export const changeDfspCaRootCertificateAndSubmit = rootCertificate => (dispatch, getState) => {
+export const changeDfspCaRootCertificateAndSubmit = rootCertificate => (dispatch) => {
   dispatch(changeDfspCaRootCert(rootCertificate));
   dispatch(submitDfspCa());
 };
 
-export const changeDfspCaIntermediateChainAndSubmit = intermediateChain => (dispatch, getState) => {
+export const changeDfspCaIntermediateChainAndSubmit = intermediateChain => (dispatch) => {
   dispatch(changeDfspCaIntermediateChain(intermediateChain));
   dispatch(submitDfspCa());
 };
 
-export const downloadDfspCaRootCertificate = () => (dispatch, getState) => {
+export const downloadDfspCaRootCertificate = () => ( getState) => {
   const dfspName = getDfspName(getState());
   const rootCertificate = getDfspCaRootCertificate(getState());
   downloadFile(rootCertificate, `${dfspName}-root.pem`);
 };
 
-export const downloadDfspCaIntermediateChain = () => (dispatch, getState) => {
+export const downloadDfspCaIntermediateChain = () => ( getState) => {
   const dfspName = getDfspName(getState());
   const intermediateChain = getDfspCaIntermediateChain(getState());
   downloadFile(intermediateChain, `${dfspName}-intermediates.pem`);

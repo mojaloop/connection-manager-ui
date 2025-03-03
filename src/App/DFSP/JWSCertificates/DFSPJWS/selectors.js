@@ -15,7 +15,7 @@ export const getIsDfspJWSJwsCertificateModalVisible = state => state.dfsp.jws.df
 export const getIsDfspJWSIntermediateChainModalVisible = state =>
   state.dfsp.jws.dfsp.isDfspJWSIntermediateChainModalVisible;
 
-const buildDfspJWSModel = (jwsCertificate, intermediateChain, serverCertificate) => ({
+const buildDfspJWSModel = (jwsCertificate, intermediateChain) => ({
   jwsCertificate,
   intermediateChain,
 });

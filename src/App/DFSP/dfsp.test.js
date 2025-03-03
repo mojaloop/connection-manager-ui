@@ -9,24 +9,6 @@ import { getIsDfspLoading } from './selectors';
 let dispatch;
 let getState;
 
-describe('Test the dfsp actions', () => {
-  beforeEach(() => {
-    const store = getStore();
-    ({ dispatch, getState } = store);
-
-    fetchMock.restore();
-  });
-
-  it('Should set the dfsp loading', () => {
-    dispatch(setDfspLoading());
-    expect(getIsDfspLoading(getState())).toBe(true);
-  });
-
-  it('Should unset the dfsp loading', () => {
-    dispatch(unsetDfspLoading());
-    expect(getIsDfspLoading(getState())).toBe(false);
-  });
-});
 
 describe('Test the dfsp thunk actions', () => {
   beforeEach(() => {

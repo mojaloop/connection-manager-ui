@@ -7,11 +7,11 @@ const initialState = {
 
 const Egress = handleActions(
   {
-    [SET_DFSP_LOADING]: (state, action) => ({
+    [SET_DFSP_LOADING]: (state) => ({
       ...state,
       isDfspLoading: true,
     }),
-    [UNSET_DFSP_LOADING]: (state, action) => ({
+    [UNSET_DFSP_LOADING]: (state) => ({
       ...state,
       isDfspLoading: false,
     }),

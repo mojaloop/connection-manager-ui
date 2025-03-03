@@ -35,10 +35,10 @@ export const storeDfspsJWSCertificates = () => async (dispatch, getState) => {
   }
 };
 
-export const downloadDfspsJWSJwsCertificate = ({ cert, dfspName }) => (dispatch, getState) => {
+export const downloadDfspsJWSJwsCertificate = ({ cert, dfspName }) => () => {
   downloadFile(cert, `${dfspName}-root.pem`);
 };
 
-export const downloadDfspsJWSIntermediateChain = ({ cert, dfspName }) => (dispatch, getState) => {
+export const downloadDfspsJWSIntermediateChain = ({ cert, dfspName }) => () => {
   downloadFile(cert, `${dfspName}-intermediates.pem`);
 };
