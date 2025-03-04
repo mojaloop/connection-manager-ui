@@ -9,7 +9,7 @@ const initialState = {
 
 const Auth = handleActions(
   {
-    [RESET_TOTP]: (state, action) => ({
+    [RESET_TOTP]: () => ({
       ...initialState,
     }),
     [ACKNOWLEDGE_QR_SCAN]: (state, action) => ({
@@ -20,7 +20,7 @@ const Auth = handleActions(
       ...state,
       code: action.payload,
     }),
-    [UNSET_TOTP_CODE]: (state, action) => ({
+    [UNSET_TOTP_CODE]: (state) => ({
       ...state,
       code: initialState.code,
     }),
