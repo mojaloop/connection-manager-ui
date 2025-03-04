@@ -65,6 +65,7 @@
   },
   "devDependencies": {
     "jest": "^27.5.1",
+    "jest-junit": "^16.0.0",
     "node-fetch": "^2.7.0",
     "react-app-rewired": "^2.1.6"
   }

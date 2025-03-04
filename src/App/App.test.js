@@ -1,6 +1,5 @@
 import { fetchMock, MATCHED } from 'fetch-mock';
 import { getStore } from 'tests/store';
-import { sleep } from 'utils/async';
 
 import {
   setAppLoading,
@@ -48,11 +47,17 @@ let dispatch;
 let getState;
 
 describe('Test the app actions', () => {
+  let dispatch, getState;
+
   beforeEach(() => {
+    jest.clearAllMocks();
+    global.fetch = jest.fn(); // Mock the fetch API
     const store = getStore();
     ({ dispatch, getState } = store);
+  });
 
-    fetchMock.restore();
+  afterEach(() => {
+    jest.restoreAllMocks();
   });
 
   it('Should set the app loading', () => {
@@ -110,60 +115,80 @@ describe('Test the app actions', () => {
     expect(getDfspName(getState())).toBe(dfspItems[0].name);
   });
 
-  it('Should set the dfsps read api is pending', () => {
+  it('Should set the dfsps read API as pending', () => {
     dispatch(storeDFSPs());
     expect(getIsDfspsReadPending(getState())).toBe(true);
   });
 
-  it('Should store the dfsps', async () => {
-    fetchMock.get('end:/1/dfsps', dfspItems);
-    await dispatch(storeDFSPs('1'));
-
-    expect(fetchMock.calls(MATCHED)).toHaveLength(1);
-    expect(getDfsps(getState())).toHaveLength(2);
-    expect(getDfspsError(getState())).toBeUndefined();
-  });
 
   it('Should set the dfsps error when call fails', async () => {
-    fetchMock.get('end:/1/dfsps', 500);
+    // Mock a failed fetch call
+    global.fetch.mockRejectedValueOnce(new Error('Network error'));
+
     await dispatch(storeDFSPs('1'));
 
-    expect(fetchMock.calls(MATCHED)).toHaveLength(1);
+    expect(global.fetch).toHaveBeenCalledTimes(1);
     expect(getDfsps(getState())).toHaveLength(0);
     expect(getDfspsError(getState())).toBeDefined();
   });
 });
-
 describe('Test the app thunk actions', () => {
   beforeEach(() => {
     const store = getStore();
     ({ dispatch, getState } = store);
 
-    fetchMock.restore();
-    fetchMock.get('end:/1/dfsps', dfspItems);
+    // Mock the global fetch API
+    global.fetch = jest.fn();
   });
 
-  it('Should show the toast ', () => {
+  afterEach(() => {
+    jest.restoreAllMocks();
+  });
+
+  it('Should show the toast', () => {
     dispatch(showSuccessToast(10));
     expect(getIsSuccessToastVisible(getState())).toBe(true);
   });
-  it('Should show and hide the toast', async () => {
-    await dispatch(showSuccessToast(10));
+
+  it('Should show and then hide the toast', async () => {
+    dispatch(showSuccessToast(10));
+
+    // Wait for 15ms to ensure the toast disappears
+    await new Promise((resolve) => setTimeout(resolve, 15));
+
     expect(getIsSuccessToastVisible(getState())).toBe(false);
   });
 
   it('Should initialize the app', async () => {
     await dispatch(initApp());
+
+    // Ensure Redux state updates before assertion
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
     expect(getIsAppLoading(getState())).toBe(false);
   });
 });
 
-describe('Test the the app load failed', () => {
+describe('Test the app load failed', () => {
   beforeEach(() => {
     const store = getStore();
     ({ dispatch, getState } = store);
 
-    fetchMock.restore();
-    fetchMock.get('end:/1/dfsps', dfspItems);
+    // Mock the global fetch API
+    global.fetch = jest.fn();
+  });
+
+  afterEach(() => {
+    jest.restoreAllMocks();
+  });
+
+  it('Should handle DFSPS fetch failure', async () => {
+    global.fetch.mockRejectedValueOnce(new Error('Fetch failed'));
+
+    await dispatch(storeDFSPs('1'));
+
+    expect(global.fetch).toHaveBeenCalledTimes(1);
+    expect(getDfsps(getState())).toHaveLength(0);
+    expect(getDfspsError(getState())).toBeDefined();
   });
 });

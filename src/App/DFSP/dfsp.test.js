@@ -20,14 +20,10 @@ describe('DFSP Thunk Actions', () => {
 
   it('should redirect to root when environment is not set', async () => {
     store = prepareStore({ dfsps, url: '/test' });
-    ({ dispatch, getState } = store);
-
+    ({ dispatch, getState } = store); 
     fetchMock.getOnce('/dfsp-endpoint', { status: 404 });
-
     await dispatch(initDfsp());
-
     console.log('Fetch Calls:', fetchMock.calls()); 
-
     expect(historyMock.push).toHaveBeenCalledWith('/');
     expect(getIsDfspLoading(getState())).toBe(false);
     expect(fetchMock.calls()).toHaveLength(0);
@@ -35,10 +31,7 @@ describe('DFSP Thunk Actions', () => {
   it('should handle error when API request fails', async () => {
     store = prepareStore({ dfsps, dfspId: dfsps[0]?.id });
     ({ dispatch, getState } = store);
-  
-  
     fetchMock.getOnce('/dfsp-endpoint', { status: 500, body: { error: 'Internal Server Error' } });
-  
     await dispatch(initDfsp());
     expect(getIsDfspLoading(getState())).toBe(false);
   
@@ -48,15 +41,10 @@ describe('DFSP Thunk Actions', () => {
   it('should return correct data when API response is successful', async () => {
     store = prepareStore({ dfsps, dfspId: dfsps[0]?.id });
     ({ dispatch, getState } = store);
-  
     fetchMock.getOnce('/dfsp-endpoint', { status: 200, body: { success: true, data: { dfspId: dfsps[0]?.id } } });
-  
-   
     await dispatch(initDfsp());
     expect(getIsDfspLoading(getState())).toBe(false);
-
   });
-
 
   it('should ensure loading state is true when waiting for the API response', async () => {
     store = prepareStore({ dfsps, dfspId: dfsps[0]?.id });
