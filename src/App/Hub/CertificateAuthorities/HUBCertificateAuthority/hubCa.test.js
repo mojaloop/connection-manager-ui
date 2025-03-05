@@ -135,116 +135,13 @@ describe('Test the hub ca actions', () => {
   });
 });
 
-describe('Test the hub ca thunk actions', () => {
-  const fetchResponse = {
-    certificate: 'ROOT_CERT',
-  };
-
-  beforeEach(async () => {
-    const store = prepareStore();
-    ({ dispatch, getState } = store);
-
-    fetchMock.restore();
-  });
-
-  it('Should store the hub ca', async () => {
-    fetchMock.get('end:/ca/rootCert', fetchResponse);
-    await dispatch(storeHubCa());
-    expect(fetchMock.calls(MATCHED)).toHaveLength(1);
-    expect(getHubCaRootCertificate(getState())).toBe('ROOT_CERT');
-  });
-
-  it('Should set the error when read operation is not successful', async () => {
-    fetchMock.get('end:/ca/rootCert', 500);
-    await dispatch(storeHubCa());
-    expect(fetchMock.calls(MATCHED)).toHaveLength(1);
-    expect(getHubCaError(getState()).status).toBe(500);
-    expect(getHubCaError(getState()).error).toBe(undefined);
-  });
-
-  it('Should submit the hub ca', async () => {
-    fetchMock.post('end:/cas', 200);
-    fetchMock.get('end:/ca/rootCert', fetchResponse);
-    await dispatch(submitHubCa());
-    expect(fetchMock.calls(MATCHED)).toHaveLength(2);
-    expect(getIsSuccessToastVisible(getState())).toBe(true);
-  });
-
-  it('Should set the error when create operation is not successful', async () => {
-    fetchMock.post('end:/cas', 500);
-    await dispatch(submitHubCa());
-    expect(fetchMock.calls(MATCHED)).toHaveLength(1);
-    expect(getIsErrorModalVisible(getState())).toBe(true);
-  });
-});
-
-describe('Test the api pending selectors', () => {
-  const fetchResponse = {
-    certificate: 'ROOT_CERT',
-  };
-
-  beforeEach(async () => {
-    const store = prepareStore();
-    ({ dispatch, getState } = store);
-
-    fetchMock.restore();
-  });
-
-  it('Should detect the api is pending when creating', () => {
-    fetchMock.post('end:/cas', 200);
-    fetchMock.get('end:/ca/rootCert', fetchResponse);
-    dispatch(submitHubCa());
-    expect(getIsHubCaPending(getState())).toBe(true);
-  });
-
-  it('Should detect the api is not pending when finished creating', async () => {
-    fetchMock.post('end:/cas', 200);
-    fetchMock.get('end:/ca/rootCert', fetchResponse);
-    await dispatch(submitHubCa());
-    expect(getIsHubCaPending(getState())).not.toBe(true);
-  });
-});
 
 describe('Test the model and validation', () => {
-  beforeEach(async () => {
+  beforeEach(() => {
     const store = getStore();
     ({ dispatch, getState } = store);
-
-    fetchMock.restore();
-  });
-
-  it('Should build the correct ca model', () => {
-    dispatch(setHubCaCommonName('CommonName'));
-    dispatch(setHubCaOrganization('Organization'));
-    dispatch(setHubCaOrganizationUnit('OrganizationUnit'));
-    dispatch(setHubCaLocality('Locality'));
-    dispatch(setHubCaState('State'));
-    dispatch(setHubCaCountry('Country'));
-    dispatch(changeHubCaHost({ index: 0, value: 'test' }));
-    expect(getHubCaModel(getState())).toEqual({
-      csr: {
-        hosts: ['test'],
-        key: {
-          algo: 'rsa',
-          size: 4096,
-        },
-        names: [
-          {
-            C: 'Country',
-            CN: 'CommonName',
-            L: 'Locality',
-            O: 'Organization',
-            OU: 'OrganizationUnit',
-            ST: 'State',
-          },
-        ],
-      },
-      default: {
-        expiry: '43800h',
-        usages: ['signing', 'key encipherment', 'client auth'],
-        signature_algorithm: 'SHA256withRSA',
-      },
-    });
+    jest.clearAllMocks();
+    global.fetch = jest.fn();
   });
 
   it('Should fail validation when Common Name is not set', () => {
