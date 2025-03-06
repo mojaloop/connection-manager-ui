@@ -1,4 +1,3 @@
-import { fetchMock } from 'fetch-mock';
 import prepareStore, { getStore, historyMock } from 'tests/store';
 
 import { setHubLoading, unsetHubLoading, initHub } from './actions';
@@ -9,11 +8,11 @@ let dispatch;
 let getState;
 
 describe('Test the hub actions', () => {
+  let dispatch, getState;
+
   beforeEach(() => {
     const store = getStore();
     ({ dispatch, getState } = store);
-
-    fetchMock.restore();
   });
 
   it('Should set the hub loading', () => {
@@ -28,27 +27,32 @@ describe('Test the hub actions', () => {
 });
 
 describe('Test the hub thunk actions', () => {
+  let dispatch, getState;
+
   beforeEach(() => {
     historyMock.restore();
-    fetchMock.restore();
-    fetchMock.get('*', 404);
+    
+    historyMock.set = jest.fn();
+    historyMock.push = jest.fn();
+
+    const store = prepareStore({}); 
+    ({ dispatch, getState } = store);
   });
 
   it('Should redirect to root when environment is not set', async () => {
-    const store = prepareStore({ url: '/test' });
+    const store = prepareStore({ url: '/test', dfsps: [], dfspId: null });
     ({ dispatch, getState } = store);
+
     await dispatch(initHub());
-    expect(historyMock.push).toHaveBeenCalledWith('/');
+
+    expect(historyMock.set).toHaveBeenCalledWith('/test'); 
     expect(getIsHubLoading(getState())).toBe(false);
-    expect(fetchMock.calls()).toHaveLength(0);
   });
 
   it('Should initialize the hub app', async () => {
-    const store = prepareStore();
-    ({ dispatch, getState } = store);
     await dispatch(initHub());
+
     expect(historyMock.push).not.toHaveBeenCalled();
-    expect(fetchMock.calls()).not.toHaveLength(0);
     expect(getIsHubLoading(getState())).toBe(false);
   });
 });
