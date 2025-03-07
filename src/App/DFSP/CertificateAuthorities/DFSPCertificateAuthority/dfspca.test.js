@@ -30,7 +30,6 @@ import {
   getIsDfspCaPending,
 } from './selectors';
 
-import { getIsSuccessToastVisible, getIsErrorModalVisible } from 'App/selectors';
 
 import { initialState } from './reducers';
 

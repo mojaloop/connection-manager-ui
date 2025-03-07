@@ -13,14 +13,16 @@ describe('DFSP Thunk Actions', () => {
   });
 
   afterEach(() => {
-    global.fetch.mockRestore();
+    if (global.fetch.mockRestore) {
+      global.fetch.mockRestore();
+    }
   });
 
   it('should redirect to root when environment is not set', async () => {
     store = prepareStore({ dfsps, url: '/test' });
     ({ dispatch, getState } = store);
     
-    global.fetch = jest.fn(() => Promise.resolve({ status: 404 }));
+    global.fetch = jest.fn(() => Promise.resolve({ status: 404, json: () => Promise.resolve({}) }));
     
     await dispatch(initDfsp());
     
@@ -35,7 +37,7 @@ describe('DFSP Thunk Actions', () => {
     global.fetch = jest.fn(() =>
       Promise.resolve({
         status: 500,
-        body: { error: 'Internal Server Error' },
+        json: () => Promise.resolve({ error: 'Internal Server Error' }),
       })
     );
     
@@ -51,7 +53,7 @@ describe('DFSP Thunk Actions', () => {
     global.fetch = jest.fn(() =>
       Promise.resolve({
         status: 200,
-        body: { success: true, data: { dfspId: dfsps[0]?.id } },
+        json: () => Promise.resolve({ success: true, data: { dfspId: dfsps[0]?.id } }),
       })
     );
     
@@ -70,7 +72,7 @@ describe('DFSP Thunk Actions', () => {
           () =>
             resolve({
               status: 200,
-              body: { success: true },
+              json: () => Promise.resolve({ success: true }),
             }),
           500
         )

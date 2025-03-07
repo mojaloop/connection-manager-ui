@@ -1,4 +1,3 @@
-import { fetchMock, MATCHED } from 'fetch-mock';
 import prepareStore, { getStore } from 'tests/store';
 import dfsps from 'tests/resources/dfsps.json';
 
@@ -26,9 +25,22 @@ let dispatch;
 let getState;
 
 describe('Test the HUB EXTERNAL CA actions', () => {
-  beforeEach(async () => {
+  beforeEach(() => {
+    // Mocking the fetch API using jest.fn()
+    global.fetch = jest.fn(() =>
+      Promise.resolve({
+        status: 200,
+        json: () => Promise.resolve(dfsps), // Your mock response
+      })
+    );
+
     const store = getStore();
     ({ dispatch, getState } = store);
+  });
+
+  afterEach(() => {
+    // Clear the mock after each test
+    global.fetch.mockClear();
   });
 
   it('Should reset the reducers', () => {
@@ -61,4 +73,3 @@ describe('Test the HUB EXTERNAL CA actions', () => {
     expect(getIsDfspHubExternalCaIntermediateChainModalVisible(getState())).toBe(false);
   });
 });
-

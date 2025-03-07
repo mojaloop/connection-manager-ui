@@ -23,11 +23,11 @@ module.exports = {
     },
   },
   collectCoverageFrom: [
-    'src/**/*.{js,jsx,ts,tsx}',  // Include only files in the src folder
-    '!src/**/*.test.{js,jsx,ts,tsx}',  // Exclude test files
-    '!config-overrides.js', // Exclude config-overrides.js
-    '!node_modules/**' // Exclude node_modules folder
+    'src/**/*.{js,jsx,ts,tsx}',
+    '!src/**/*.test.{js,jsx,ts,tsx}',
+    '!config-overrides.js',
+    '!node_modules/**'
   ],
-  
   transformIgnorePatterns: ['/node_modules/'],
+  setupFilesAfterEnv: ['<rootDir>/jest.setup.js'], // Add this line to specify your setup file
 };
