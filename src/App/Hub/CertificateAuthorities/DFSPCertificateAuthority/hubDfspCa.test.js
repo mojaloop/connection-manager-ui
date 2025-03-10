@@ -73,7 +73,6 @@ describe('Test the hub dfsps ca thunk actions', () => {
     });
 
     await dispatch(storeHubDfspCas());
-    console.log('Fetch Calls:', global.fetch.mock.calls); // Debugging fetch calls
   });
 
   it('Should set the error when read operation fails', async () => {
@@ -84,8 +83,6 @@ describe('Test the hub dfsps ca thunk actions', () => {
     });
 
     await dispatch(storeHubDfspCas());
-
-    console.log('Fetch Calls:', global.fetch.mock.calls);  
     expect(getHubDfspCasError(getState())).toBe('Generic');
   });
 });

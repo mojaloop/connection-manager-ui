@@ -15,7 +15,6 @@ describe('Test the hub actions', () => {
   });
  
   it('Should set the hub loading', () => {
-    console.log("Hello Mataa");
     dispatch(setHubLoading());
     expect(getIsHubLoading(getState())).toBe(true);
   });
