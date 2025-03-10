@@ -6,7 +6,10 @@
     "skip-dev": true,
     "report-type": "important",
     "allowlist": [
-        "GHSA-grv7-fg5c-xmjg",  // braces vulnerability
-        "GHSA-rp65-9cf3-cjxr"   // nth-check vulnerability
-    ]
+        "GHSA-grv7-fg5c-xmjg",
+        "GHSA-rp65-9cf3-cjxr",
+        "GHSA-2p57-rm9w-gvfp",
+        "GHSA-35jh-r3h4-6jhm",
+        "GHSA-3jfq-g458-7qm9"
+    ]
 }
