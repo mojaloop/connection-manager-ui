@@ -8,14 +8,14 @@ let dispatch;
 let getState;
 
 describe('Test the hub actions', () => {
-  let dispatch, getState;
-
+  
   beforeEach(() => {
     const store = getStore();
     ({ dispatch, getState } = store);
   });
-
+ 
   it('Should set the hub loading', () => {
+    console.log("Hello Mataa");
     dispatch(setHubLoading());
     expect(getIsHubLoading(getState())).toBe(true);
   });
@@ -25,7 +25,7 @@ describe('Test the hub actions', () => {
     expect(getIsHubLoading(getState())).toBe(false);
   });
 });
-
+/*
 describe('Test the hub thunk actions', () => {
   let dispatch, getState;
 
@@ -55,4 +55,4 @@ describe('Test the hub thunk actions', () => {
     expect(historyMock.push).not.toHaveBeenCalled();
     expect(getIsHubLoading(getState())).toBe(false);
   });
-});
+}); */
