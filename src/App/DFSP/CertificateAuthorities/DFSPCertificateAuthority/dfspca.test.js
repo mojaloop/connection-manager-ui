@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import prepareStore, { getStore } from 'tests/store';
 import { fetchMock } from 'fetch-mock';
 
@@ -116,5 +117,5 @@ describe('Test the dfsp ca actions', () => {
     expect(getDfspCaValidations(getState())).toEqual(mockApiResponse.validations);
   });
   */
- 
+
 });

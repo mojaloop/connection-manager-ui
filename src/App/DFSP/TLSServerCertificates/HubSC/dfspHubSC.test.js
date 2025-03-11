@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { fetchMock, MATCHED } from 'fetch-mock';
 import prepareStore, { getStore } from 'tests/store';
 import dfsps from 'tests/resources/dfsps.json';

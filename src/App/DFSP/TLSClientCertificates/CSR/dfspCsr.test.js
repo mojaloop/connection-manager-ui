@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import prepareStore, { getStore } from 'tests/store';
 import { initialState } from './reducers';
 import dfsps from 'tests/resources/dfsps.json';

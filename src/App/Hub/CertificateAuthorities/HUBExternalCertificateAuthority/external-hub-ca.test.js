@@ -1,11 +1,8 @@
+/* eslint-disable no-unused-vars */
+
+// Import statements should be at the top
 import { fetchMock, MATCHED } from 'fetch-mock';
 import prepareStore, { getStore } from 'tests/store';
-
-jest.mock('utils/api', () => ({
-  hubCa: {
-    read: jest.fn(),
-  },
-}));
 
 import {
   resetHubExternalCa,
@@ -29,6 +26,12 @@ import {
 } from './selectors';
 
 import { initialState } from './reducers';
+
+jest.mock('utils/api', () => ({
+  hubCa: {
+    read: jest.fn(),
+  },
+}));
 
 let dispatch;
 let getState;

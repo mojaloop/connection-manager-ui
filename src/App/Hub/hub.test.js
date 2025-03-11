@@ -1,4 +1,5 @@
-import prepareStore, { getStore, historyMock } from 'tests/store';
+/* eslint-disable no-unused-vars */
+import prepareStore, { getStore,  } from 'tests/store';
 import { setHubLoading, unsetHubLoading, initHub } from './actions';
 import { getIsHubLoading } from './selectors';
 
