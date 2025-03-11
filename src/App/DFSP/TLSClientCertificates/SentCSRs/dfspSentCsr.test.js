@@ -26,8 +26,6 @@ import {
 import { getIsSuccessToastVisible, getIsErrorModalVisible } from 'App/selectors';
 import { initialState } from './reducers';
 
-// TODO: Test loading a file programmatically
-
 let dispatch;
 let getState;
 
@@ -56,16 +54,6 @@ describe('Test the dfsp ca actions', () => {
     dispatch(setDfspSentCsrsFilter('TEST'));
     expect(getDfspSentCsrsFilter(getState())).toBe('TEST');
   });
-
-  /*it('Should set the validations', () => {
-    dispatch(setDfspSentCsrsValidations([]));
-    expect(getDfspSentCsrsValidations(getState())).toEqual([]);
-  });
-
-  it('Should set the validation state', () => {
-    dispatch(setDfspSentCsrsValidationState('VALID'));
-    expect(getDfspSentCsrsValidationState(getState())).toBe('VALID');
-  });*/
 
   it('Should show the CSR modal', () => {
     dispatch(showDfspSentCsrsCertificateModal({ certificate: 'CERT', title: 'title' }));

@@ -59,7 +59,9 @@ describe('Test the hub dfsp csrs actions', () => {
     expect(getHubDfspCsrsCertificates(getState())).toEqual([]);
   });
 
-  /*it('Should set the validations', () => {
+  // Uncomment and adapt tests if validations are required
+  /*
+  it('Should set the validations', () => {
     dispatch(setHubDfspCsrsValidations([]));
     expect(getHubDfspCsrsValidations(getState())).toEqual([]);
   });
@@ -67,7 +69,8 @@ describe('Test the hub dfsp csrs actions', () => {
   it('Should set the validation state', () => {
     dispatch(setHubDfspCsrsValidationState('VALID'));
     expect(getHubDfspCsrsValidationState(getState())).toBe('VALID');
-  });*/
+  });
+  */
 
   it('Should show the CSR modal', () => {
     dispatch(showHubDfspCsrsCertificateModal({ certificate: 'CERT', title: 'title' }));
@@ -83,5 +86,3 @@ describe('Test the hub dfsp csrs actions', () => {
     expect(getHubDfspCsrsCertificateModalTitle(getState())).toBe(undefined);
   });
 });
-
-

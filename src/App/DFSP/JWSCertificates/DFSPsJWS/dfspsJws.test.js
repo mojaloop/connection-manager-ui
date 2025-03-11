@@ -11,7 +11,6 @@ import {
   hideDfspsJWSIntermediateChainModal,
   showDfspsJWSJwsCertificateModal,
   hideDfspsJWSJwsCertificateModal,
-  storeDfspsJWSCertificates,
 } from './actions';
 
 import {
@@ -29,10 +28,11 @@ import { initialState } from './reducers';
 let dispatch;
 let getState;
 
-describe('Test the dfsp jws certificate actions', () => {
-  beforeEach(async () => {
+describe('Test the dfsp JWS certificate actions', () => {
+  beforeAll(() => {
     const store = getStore();
-    ({ dispatch, getState } = store);
+    dispatch = store.dispatch;
+    getState = store.getState;
   });
 
   it('Should reset the reducers', () => {
@@ -40,44 +40,43 @@ describe('Test the dfsp jws certificate actions', () => {
     expect(getState().dfsp.jws.dfsps).toEqual(initialState);
   });
 
-  it('Should set the error', () => {
+  it('Should set and retrieve the error state', () => {
     dispatch(setDfspsJWSError('ERROR'));
     expect(getDfspsJWSError(getState())).toBe('ERROR');
   });
 
-  it('Should set the filter', () => {
+  it('Should set and retrieve the filter', () => {
     dispatch(setDfspsJWSFilter('FILTER'));
     expect(getDfspsJWSFilter(getState())).toBe('FILTER');
   });
 
-  it('Should set the jws certificates', () => {
-    dispatch(setDfspsJWSCertificates([]));
-    expect(getDfspsJWSCertificates(getState())).toEqual([]);
+  it('Should set and retrieve JWS certificates', () => {
+    const testCertificates = [{ id: 1, cert: 'test-cert' }];
+    dispatch(setDfspsJWSCertificates(testCertificates));
+    expect(getDfspsJWSCertificates(getState())).toEqual(testCertificates);
   });
 
-  it('Should show the jws certificate modal', () => {
+  it('Should toggle the JWS certificate modal', () => {
     dispatch(showDfspsJWSJwsCertificateModal('TEST'));
-    expect(getIsDfspsJWSJwsCertificateModalVisible(getState())).toBe(true);
-    expect(getDfspsJWSJwsCertificateModalContent(getState())).toBe('TEST');
-  });
+    let state = getState();
+    expect(getIsDfspsJWSJwsCertificateModalVisible(state)).toBe(true);
+    expect(getDfspsJWSJwsCertificateModalContent(state)).toBe('TEST');
 
-  it('Should hide the jws certificate modal', () => {
     dispatch(hideDfspsJWSJwsCertificateModal());
-    expect(getIsDfspsJWSJwsCertificateModalVisible(getState())).toBe(false);
-    expect(getDfspsJWSJwsCertificateModalContent(getState())).toBe(undefined);
+    state = getState();
+    expect(getIsDfspsJWSJwsCertificateModalVisible(state)).toBe(false);
+    expect(getDfspsJWSJwsCertificateModalContent(state)).toBeUndefined();
   });
 
-  it('Should show the intermediate chain modal', () => {
+  it('Should toggle the intermediate chain modal', () => {
     dispatch(showDfspsJWSIntermediateChainModal('TEST'));
-    expect(getIsDfspsJWSIntermediateChainModalVisible(getState())).toBe(true);
-    expect(getDfspsJWSIntermediateChainModalContent(getState())).toBe('TEST');
-  });
+    let state = getState();
+    expect(getIsDfspsJWSIntermediateChainModalVisible(state)).toBe(true);
+    expect(getDfspsJWSIntermediateChainModalContent(state)).toBe('TEST');
 
-  it('Should hide the intermediate chain modal', () => {
     dispatch(hideDfspsJWSIntermediateChainModal());
-    expect(getIsDfspsJWSIntermediateChainModalVisible(getState())).toBe(false);
-    expect(getDfspsJWSIntermediateChainModalContent(getState())).toBe(undefined);
+    state = getState();
+    expect(getIsDfspsJWSIntermediateChainModalVisible(state)).toBe(false);
+    expect(getDfspsJWSIntermediateChainModalContent(state)).toBeUndefined();
   });
 });
-
-

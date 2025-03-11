@@ -152,4 +152,3 @@ describe('Test the dfsp server certificate actions', () => {
     expect(getIsDfspSCIntermediateChainModalVisible(getState())).toBe(false);
   });
 });
-

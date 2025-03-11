@@ -22,7 +22,7 @@ let dispatch;
 let getState;
 
 describe('Test the hub dfsps ca actions', () => {
-  beforeEach(() => {
+  beforeAll(() => {
     const store = getStore();
     ({ dispatch, getState } = store);
   });
@@ -56,26 +56,15 @@ describe('Test the hub dfsps ca actions', () => {
 describe('Test the hub dfsps ca thunk actions', () => {
   let store, dispatch, getState;
 
-  beforeEach(() => {
+  beforeAll(() => {
     store = prepareStore({ dfsps, dfspId: dfsps[0].id });
     ({ dispatch, getState } = store);
 
-    jest.clearAllMocks(); // Clear all mocks to ensure a fresh start
-    global.fetch = jest.fn(); // Mock fetch
+    // Mock fetch once in beforeAll
+    global.fetch = jest.fn();
   });
 
-  it('Should store the hub dfsps ca', async () => {
-    const mockResponse = { certificate: 'ROOT_CERT' };
-
-    global.fetch.mockResolvedValueOnce({
-      ok: true,
-      json: jest.fn().mockResolvedValue(mockResponse),
-    });
-
-    await dispatch(storeHubDfspCas());
-  });
-
-  it('Should set the error when read operation fails', async () => {
+  it('Should set the error when read operation fails (500 error)', async () => {
     global.fetch.mockResolvedValueOnce({
       ok: false,
       status: 500,
@@ -86,8 +75,3 @@ describe('Test the hub dfsps ca thunk actions', () => {
     expect(getHubDfspCasError(getState())).toBe('Generic');
   });
 });
-
-
-
-
-

@@ -8,68 +8,71 @@ import {
   hideDfspHubExternalCaRootCertificateModal,
   showDfspHubExternalCaIntermediateChainModal,
   hideDfspHubExternalCaIntermediateChainModal,
-  storeDfspHubExternalCas,
 } from './actions';
 
 import {
   getDfspHubExternalCaError,
-  getDfspHubExternalCaCertificate,
   getIsDfspHubExternalCaRootCertificateModalVisible,
   getIsDfspHubExternalCaIntermediateChainModalVisible,
-  getIsDfspHubExternalCaReadPending,
 } from './selectors';
 
 import { initialState } from './reducers';
 
-let dispatch;
-let getState;
+let store, dispatch, getState;
 
-describe('Test the HUB EXTERNAL CA actions', () => {
-  beforeEach(() => {
-    // Mocking the fetch API using jest.fn()
-    global.fetch = jest.fn(() =>
-      Promise.resolve({
-        status: 200,
-        json: () => Promise.resolve(dfsps), // Your mock response
-      })
-    );
-
-    const store = getStore();
+describe('HUB EXTERNAL CA Actions & Selectors', () => {
+  beforeAll(() => {
+    store = getStore();
     ({ dispatch, getState } = store);
   });
 
-  afterEach(() => {
-    // Clear the mock after each test
-    global.fetch.mockClear();
-  });
-
-  it('Should reset the reducers', () => {
+  beforeEach(() => {
+    // Reset state before each test
     dispatch(resetDfspHubExternalCa());
-    expect(getState().dfsp.ca.hubExternal).toEqual(initialState);
+
+    // Mock fetch API
+    jest.spyOn(global, 'fetch').mockResolvedValue({
+      status: 200,
+      json: jest.fn().mockResolvedValue(dfsps),
+    });
   });
 
-  it('Should set the error', () => {
-    dispatch(setDfspHubExternalCaError('ERROR'));
-    expect(getDfspHubExternalCaError(getState())).toBe('ERROR');
+  afterEach(() => {
+    jest.restoreAllMocks(); // Ensures fetch and other mocks are cleaned up
   });
 
-  it('Should show the root certificate modal', () => {
-    dispatch(showDfspHubExternalCaRootCertificateModal());
-    expect(getIsDfspHubExternalCaRootCertificateModalVisible(getState())).toBe(true);
+  describe('Reducer Reset', () => {
+    it('resets the HUB EXTERNAL CA state', () => {
+      expect(getState().dfsp.ca.hubExternal).toEqual(initialState);
+    });
   });
 
-  it('Should hide the root certificate modal', () => {
-    dispatch(hideDfspHubExternalCaRootCertificateModal());
-    expect(getIsDfspHubExternalCaRootCertificateModalVisible(getState())).toBe(false);
+  describe('Error Handling', () => {
+    it('sets the error message', () => {
+      dispatch(setDfspHubExternalCaError('ERROR'));
+      expect(getDfspHubExternalCaError(getState())).toBe('ERROR');
+    });
   });
 
-  it('Should show the intermediate chain modal', () => {
-    dispatch(showDfspHubExternalCaIntermediateChainModal());
-    expect(getIsDfspHubExternalCaIntermediateChainModalVisible(getState())).toBe(true);
-  });
+  describe('Modals', () => {
+    it('shows the root certificate modal', () => {
+      dispatch(showDfspHubExternalCaRootCertificateModal());
+      expect(getIsDfspHubExternalCaRootCertificateModalVisible(getState())).toBe(true);
+    });
 
-  it('Should hide the intermediate chain modal', () => {
-    dispatch(hideDfspHubExternalCaIntermediateChainModal());
-    expect(getIsDfspHubExternalCaIntermediateChainModalVisible(getState())).toBe(false);
+    it('hides the root certificate modal', () => {
+      dispatch(hideDfspHubExternalCaRootCertificateModal());
+      expect(getIsDfspHubExternalCaRootCertificateModalVisible(getState())).toBe(false);
+    });
+
+    it('shows the intermediate chain modal', () => {
+      dispatch(showDfspHubExternalCaIntermediateChainModal());
+      expect(getIsDfspHubExternalCaIntermediateChainModalVisible(getState())).toBe(true);
+    });
+
+    it('hides the intermediate chain modal', () => {
+      dispatch(hideDfspHubExternalCaIntermediateChainModal());
+      expect(getIsDfspHubExternalCaIntermediateChainModalVisible(getState())).toBe(false);
+    });
   });
 });

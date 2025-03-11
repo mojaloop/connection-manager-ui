@@ -1,4 +1,5 @@
 import prepareStore, { getStore } from 'tests/store';
+import { fetchMock } from 'fetch-mock';
 
 import {
   resetDfspCa,
@@ -13,10 +14,6 @@ import {
   hideDfspCaRootCertificateModal,
   showDfspCaIntermediateChainModal,
   hideDfspCaIntermediateChainModal,
-  storeDfspCa,
-  submitDfspCa,
-  changeDfspCaRootCertificateAndSubmit,
-  changeDfspCaIntermediateChainAndSubmit,
 } from './actions';
 
 import {
@@ -27,9 +24,7 @@ import {
   getDfspCaValidationState,
   getIsDfspCaRootCertificateModalVisible,
   getIsDfspCaIntermediateChainModalVisible,
-  getIsDfspCaPending,
 } from './selectors';
-
 
 import { initialState } from './reducers';
 
@@ -37,7 +32,7 @@ let dispatch;
 let getState;
 
 describe('Test the dfsp ca actions', () => {
-  beforeEach(async () => {
+  beforeEach(() => {
     const store = getStore();
     ({ dispatch, getState } = store);
   });
@@ -101,4 +96,25 @@ describe('Test the dfsp ca actions', () => {
     dispatch(hideDfspCaIntermediateChainModal());
     expect(getIsDfspCaIntermediateChainModalVisible(getState())).toBe(false);
   });
+
+  /* Example of testing an API call action
+  it('Should fetch and handle DFSP CA validations', async () => {
+    // Mocking the API response
+    const mockApiResponse = { success: true, validations: [] };
+    fetchMock.mock('https://api.example.com/dfsp-ca-validations', {
+      body: mockApiResponse,
+      status: 200,
+    });
+
+    // Action that triggers the API call
+    await dispatch(setDfspCaValidations());
+
+    // Verifying the API call was made
+    expect(fetchMock.calls().length).toBe(1);
+
+    // Optionally, assert that the state has been updated based on the mock response
+    expect(getDfspCaValidations(getState())).toEqual(mockApiResponse.validations);
+  });
+  */
+ 
 });
