@@ -1,18 +1,24 @@
-/** @type {import('ts-jest/dist/types').InitialOptionsTsJest} */
 module.exports = {
-  testTimeout: 30000, // 30 seconds per test
   preset: 'ts-jest',
-  moduleNameMapper: {
-    '^@app/(.*)$': '<rootDir>/src/$1',
-  },
+  testEnvironment: 'jsdom',
+  
+  moduleDirectories: [
+    'node_modules',       // Default node_modules folder
+    '<rootDir>/src',      // Look inside the 'src' directory for modules
+  ],
+  
+  moduleFileExtensions: ['js', 'jsx', 'ts', 'tsx', 'json', 'node'],
+
   transform: {
-    '^.+\\.[tj]s$': ['ts-jest', { tsconfig: '<rootDir>/tsconfig.test.json', isolatedModules: true }],
+    '^.+\\.tsx?$': 'ts-jest', // for TypeScript files
+    '^.+\\.js$': 'babel-jest', // for JavaScript files 
   },
-  testEnvironment: 'jest-environment-node',
+  
   reporters: ['default', ['jest-junit', { outputDirectory: './test/results/', outputName: 'xunit.xml' }]],
-  clearMocks: true,
-  collectCoverage: true,
-  coverageDirectory: 'coverage',
+  
+  clearMocks: true,  // Automatically clear mock calls and instances
+  collectCoverage: true,  // Collect test coverage information
+  coverageDirectory: 'coverage',  // Directory to store coverage reports
   coverageProvider: 'v8',
   coverageReporters: ['json', 'text', 'lcov', 'text-summary'],
   coverageThreshold: {
@@ -23,12 +29,17 @@ module.exports = {
       lines: 90,
     },
   },
+  
   collectCoverageFrom: [
-    'src/**/*.{js,jsx,ts,tsx}',
-    '!src/**/*.test.{js,jsx,ts,tsx}',
+    'src/**/*.{js,jsx}', // Include JavaScript and JSX files
+    '!src/**/*.test.{js,jsx}', // Exclude test files
     '!config-overrides.js',
-    '!node_modules/**'
+    '!node_modules/**',
   ],
-  transformIgnorePatterns: ['/node_modules/'],
-  setupFilesAfterEnv: ['<rootDir>/jest.setup.js'], // Add this line to specify your setup file
+  
+  transformIgnorePatterns: [
+    '/node_modules/(?!react-app-rewired|some-other-package-to-transform)/'
+  ],
+  
+  setupFilesAfterEnv: ['<rootDir>/src/setupTests.js'],  // Path to setup files for tests
 };

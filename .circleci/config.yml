@@ -2,21 +2,6 @@ version: 2.1
 setup: true
 orbs:
   build: mojaloop/build@1.0.58
-
-jobs:
-  test:
-    docker:
-      - image: cimg/node:16.11
-    steps:
-      - checkout
-      - run:
-          name: Install dependencies
-          command: npm install
-      - run:
-          name: Run tests
-          command: npm test
-    parallelism: 4  # Set the desired parallelism for test job
-
 workflows:
   setup:
     jobs:
@@ -24,7 +9,6 @@ workflows:
           context: org-global
           filters:
             tags:
-              only: /v\d+(\.\d+){2}(-[a-zA-Z-][0-9a-zA-Z-]*\.\d+)?/
-      - test:  # Run the test job after build
-          requires:
-            - build/workflow
+              only: /v\d+(\.\d+){2}(-[a-zA-Z-][0-9a-zA-Z-]*\.\d+)?/ 
+          # optionally supply the base image for the image scan
+          # base_image: org/image

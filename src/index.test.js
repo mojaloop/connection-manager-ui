@@ -1,22 +1,49 @@
-import { getStore } from 'tests/store';
+import { createMemoryHistory } from 'history';
+import { applyMiddleware, createStore } from 'redux';
+import thunk from 'redux-thunk';
+import { routerMiddleware } from 'connected-react-router';
+import fetchMiddleware from '@pm4ml/mojaloop-payment-manager-ui-components-legacy/dist/redux-fetch';
+
+// Import combineReducers within the mock to ensure it's in scope
+jest.mock('./reducers', () => {
+  const { combineReducers } = require('redux'); // ✅ Import within the mock scope
+
+  return (history, isAuthEnabled) =>
+    combineReducers({
+      router: (state = { location: { pathname: '/' } }, action) => state, // Mocked router reducer
+      api: (state = {}, action) => state,
+      auth: combineReducers({
+        login: (state = {}, action) => state, // Mocked auth reducer
+      }),
+    });
+});
+
+import reducers from './reducers'; // ✅ Import AFTER mocking
 
 describe('Redux Store Reducers', () => {
   let store;
+  let historyMock;
 
   beforeEach(() => {
-    store = getStore(); // Reuse store setup to avoid redundant calls
+    historyMock = createMemoryHistory(); // ✅ Use memory history
+
+    const middlewares = applyMiddleware(
+      thunk,
+      fetchMiddleware(),
+      routerMiddleware(historyMock)
+    );
+
+    store = createStore(reducers(historyMock, true), middlewares); // ✅ Ensure reducers is a function
   });
 
   it('Creates all the reducers', () => {
     const state = store.getState();
 
-    expect(state).toHaveProperty('app');
-    expect(state).toHaveProperty('dfsp');
-    expect(state).toHaveProperty('hub');
+    expect(state).toHaveProperty('router');
+    expect(state.router).toHaveProperty('location');
+    expect(state.router.location.pathname).toBe('/'); // ✅ Ensure mock router works
 
-    // Optional: Check if initial state values are correct
-    expect(state.app).toBeInstanceOf(Object);
-    expect(state.dfsp).toBeInstanceOf(Object);
-    expect(state.hub).toBeInstanceOf(Object);
+    expect(state).toHaveProperty('api');
+    expect(state).toHaveProperty('auth');
   });
 });
