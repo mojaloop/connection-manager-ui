@@ -1,35 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuites name="jest tests" tests="275" failures="0" errors="0" time="27.891">
-  <testsuite name="Test the dfsp ingress endpoints actions" errors="0" failures="0" skipped="0" timestamp="2025-03-11T13:55:52" time="5.104" tests="26">
-    <testcase classname="Test the dfsp ingress endpoints actions Should reset the reducers" name="Test the dfsp ingress endpoints actions Should reset the reducers" time="0.006">
+<testsuites name="jest tests" tests="275" failures="0" errors="0" time="19.411">
+  <testsuite name="Test the dfsp ingress endpoints actions" errors="0" failures="0" skipped="0" timestamp="2025-03-11T15:22:31" time="4.849" tests="26">
+    <testcase classname="Test the dfsp ingress endpoints actions Should reset the reducers" name="Test the dfsp ingress endpoints actions Should reset the reducers" time="0.005">
     </testcase>
-    <testcase classname="Test the dfsp ingress endpoints actions Should set the ips error" name="Test the dfsp ingress endpoints actions Should set the ips error" time="0.002">
+    <testcase classname="Test the dfsp ingress endpoints actions Should set the ips error" name="Test the dfsp ingress endpoints actions Should set the ips error" time="0.001">
     </testcase>
     <testcase classname="Test the dfsp ingress endpoints actions Should set the urls error" name="Test the dfsp ingress endpoints actions Should set the urls error" time="0.002">
     </testcase>
-    <testcase classname="Test the dfsp ingress endpoints actions Should set the ingress ips and previous ingress ips" name="Test the dfsp ingress endpoints actions Should set the ingress ips and previous ingress ips" time="0.003">
+    <testcase classname="Test the dfsp ingress endpoints actions Should set the ingress ips and previous ingress ips" name="Test the dfsp ingress endpoints actions Should set the ingress ips and previous ingress ips" time="0.002">
     </testcase>
-    <testcase classname="Test the dfsp ingress endpoints actions Should set the ingress urls and previous ingress urls" name="Test the dfsp ingress endpoints actions Should set the ingress urls and previous ingress urls" time="0.003">
+    <testcase classname="Test the dfsp ingress endpoints actions Should set the ingress urls and previous ingress urls" name="Test the dfsp ingress endpoints actions Should set the ingress urls and previous ingress urls" time="0.001">
     </testcase>
-    <testcase classname="Test the dfsp ingress endpoints actions Should change the ingress ip address" name="Test the dfsp ingress endpoints actions Should change the ingress ip address" time="0.002">
+    <testcase classname="Test the dfsp ingress endpoints actions Should change the ingress ip address" name="Test the dfsp ingress endpoints actions Should change the ingress ip address" time="0.001">
     </testcase>
-    <testcase classname="Test the dfsp ingress endpoints actions Should change the ingress ip port" name="Test the dfsp ingress endpoints actions Should change the ingress ip port" time="0.007">
+    <testcase classname="Test the dfsp ingress endpoints actions Should change the ingress ip port" name="Test the dfsp ingress endpoints actions Should change the ingress ip port" time="0.003">
     </testcase>
-    <testcase classname="Test the dfsp ingress endpoints actions Should change the ingress url" name="Test the dfsp ingress endpoints actions Should change the ingress url" time="0.003">
+    <testcase classname="Test the dfsp ingress endpoints actions Should change the ingress url" name="Test the dfsp ingress endpoints actions Should change the ingress url" time="0.002">
     </testcase>
-    <testcase classname="Test the dfsp ingress endpoints actions Should add an ip address and port" name="Test the dfsp ingress endpoints actions Should add an ip address and port" time="0.001">
+    <testcase classname="Test the dfsp ingress endpoints actions Should add an ip address and port" name="Test the dfsp ingress endpoints actions Should add an ip address and port" time="0.003">
     </testcase>
     <testcase classname="Test the dfsp ingress endpoints actions Should add a port" name="Test the dfsp ingress endpoints actions Should add a port" time="0.001">
     </testcase>
-    <testcase classname="Test the dfsp ingress endpoints actions Should remove an ip address and port" name="Test the dfsp ingress endpoints actions Should remove an ip address and port" time="0.002">
+    <testcase classname="Test the dfsp ingress endpoints actions Should remove an ip address and port" name="Test the dfsp ingress endpoints actions Should remove an ip address and port" time="0.001">
     </testcase>
-    <testcase classname="Test the dfsp ingress endpoints actions Should remove a port" name="Test the dfsp ingress endpoints actions Should remove a port" time="0.002">
+    <testcase classname="Test the dfsp ingress endpoints actions Should remove a port" name="Test the dfsp ingress endpoints actions Should remove a port" time="0.001">
     </testcase>
     <testcase classname="Test the dfsp ingress endpoints actions Should undo all the changes" name="Test the dfsp ingress endpoints actions Should undo all the changes" time="0.003">
     </testcase>
-    <testcase classname="Test the change detection Should detect nothing changed" name="Test the change detection Should detect nothing changed" time="0.001">
+    <testcase classname="Test the change detection Should detect nothing changed" name="Test the change detection Should detect nothing changed" time="0.012">
     </testcase>
-    <testcase classname="Test the change detection Should detect the change when adding a port" name="Test the change detection Should detect the change when adding a port" time="0.003">
+    <testcase classname="Test the change detection Should detect the change when adding a port" name="Test the change detection Should detect the change when adding a port" time="0.002">
     </testcase>
     <testcase classname="Test the change detection Should detect the change when adding an ip" name="Test the change detection Should detect the change when adding an ip" time="0.001">
     </testcase>
@@ -37,65 +37,11 @@
     </testcase>
     <testcase classname="Test the change detection Should detect the change when changin the ip port" name="Test the change detection Should detect the change when changin the ip port" time="0.001">
     </testcase>
-    <testcase classname="Test the change detection Should detect the change when changin the url" name="Test the change detection Should detect the change when changin the url" time="0.001">
-    </testcase>
-    <testcase classname="Test the change detection Should get ips to create, update, delete" name="Test the change detection Should get ips to create, update, delete" time="0.004">
-    </testcase>
-    <testcase classname="Test the validation Should fail the ips validations when data is missing" name="Test the validation Should fail the ips validations when data is missing" time="0.002">
-    </testcase>
-    <testcase classname="Test the validation Should fail the ips validations when port is missing" name="Test the validation Should fail the ips validations when port is missing" time="0.002">
-    </testcase>
-    <testcase classname="Test the validation Should fail the ips validations when address is missing" name="Test the validation Should fail the ips validations when address is missing" time="0.002">
-    </testcase>
-    <testcase classname="Test the validation Should pass the ips validations when all data is set" name="Test the validation Should pass the ips validations when all data is set" time="0.002">
-    </testcase>
-    <testcase classname="Test the validation Should fail the urls validations when data is missing" name="Test the validation Should fail the urls validations when data is missing" time="0.001">
-    </testcase>
-    <testcase classname="Test the validation Should pass the urls validations when all data is set" name="Test the validation Should pass the urls validations when all data is set" time="0.001">
-    </testcase>
-  </testsuite>
-  <testsuite name="Test the hub ingress endpoints actions" errors="0" failures="0" skipped="0" timestamp="2025-03-11T13:55:57" time="0.426" tests="26">
-    <testcase classname="Test the hub ingress endpoints actions Should reset the reducers" name="Test the hub ingress endpoints actions Should reset the reducers" time="0.003">
-    </testcase>
-    <testcase classname="Test the hub ingress endpoints actions Should set the ips error" name="Test the hub ingress endpoints actions Should set the ips error" time="0.001">
-    </testcase>
-    <testcase classname="Test the hub ingress endpoints actions Should set the urls error" name="Test the hub ingress endpoints actions Should set the urls error" time="0.001">
-    </testcase>
-    <testcase classname="Test the hub ingress endpoints actions Should set the ingress ips and previous ingress ips" name="Test the hub ingress endpoints actions Should set the ingress ips and previous ingress ips" time="0.001">
-    </testcase>
-    <testcase classname="Test the hub ingress endpoints actions Should set the ingress urls and previous ingress urls" name="Test the hub ingress endpoints actions Should set the ingress urls and previous ingress urls" time="0.001">
-    </testcase>
-    <testcase classname="Test the hub ingress endpoints actions Should change the ingress ip address" name="Test the hub ingress endpoints actions Should change the ingress ip address" time="0.001">
-    </testcase>
-    <testcase classname="Test the hub ingress endpoints actions Should change the ingress ip port" name="Test the hub ingress endpoints actions Should change the ingress ip port" time="0.001">
-    </testcase>
-    <testcase classname="Test the hub ingress endpoints actions Should change the ingress url" name="Test the hub ingress endpoints actions Should change the ingress url" time="0.008">
-    </testcase>
-    <testcase classname="Test the hub ingress endpoints actions Should add an ip address and port" name="Test the hub ingress endpoints actions Should add an ip address and port" time="0.001">
-    </testcase>
-    <testcase classname="Test the hub ingress endpoints actions Should add a port" name="Test the hub ingress endpoints actions Should add a port" time="0.001">
-    </testcase>
-    <testcase classname="Test the hub ingress endpoints actions Should remove an ip address and port" name="Test the hub ingress endpoints actions Should remove an ip address and port" time="0.001">
-    </testcase>
-    <testcase classname="Test the hub ingress endpoints actions Should remove a port" name="Test the hub ingress endpoints actions Should remove a port" time="0.001">
-    </testcase>
-    <testcase classname="Test the hub ingress endpoints actions Should undo all the changes" name="Test the hub ingress endpoints actions Should undo all the changes" time="0.003">
-    </testcase>
-    <testcase classname="Test the change detection Should detect nothing changed" name="Test the change detection Should detect nothing changed" time="0.001">
-    </testcase>
-    <testcase classname="Test the change detection Should detect the change when adding a port" name="Test the change detection Should detect the change when adding a port" time="0.002">
-    </testcase>
-    <testcase classname="Test the change detection Should detect the change when adding an ip" name="Test the change detection Should detect the change when adding an ip" time="0.002">
-    </testcase>
-    <testcase classname="Test the change detection Should detect the change when changin the ip address" name="Test the change detection Should detect the change when changin the ip address" time="0.001">
-    </testcase>
-    <testcase classname="Test the change detection Should detect the change when changin the ip port" name="Test the change detection Should detect the change when changin the ip port" time="0.001">
-    </testcase>
-    <testcase classname="Test the change detection Should detect the change when changin the url" name="Test the change detection Should detect the change when changin the url" time="0.003">
+    <testcase classname="Test the change detection Should detect the change when changin the url" name="Test the change detection Should detect the change when changin the url" time="0.002">
     </testcase>
     <testcase classname="Test the change detection Should get ips to create, update, delete" name="Test the change detection Should get ips to create, update, delete" time="0.003">
     </testcase>
-    <testcase classname="Test the validation Should fail the ips validations when data is missing" name="Test the validation Should fail the ips validations when data is missing" time="0.003">
+    <testcase classname="Test the validation Should fail the ips validations when data is missing" name="Test the validation Should fail the ips validations when data is missing" time="0.002">
     </testcase>
     <testcase classname="Test the validation Should fail the ips validations when port is missing" name="Test the validation Should fail the ips validations when port is missing" time="0.001">
     </testcase>
@@ -103,67 +49,79 @@
     </testcase>
     <testcase classname="Test the validation Should pass the ips validations when all data is set" name="Test the validation Should pass the ips validations when all data is set" time="0.002">
     </testcase>
-    <testcase classname="Test the validation Should fail the urls validations when data is missing" name="Test the validation Should fail the urls validations when data is missing" time="0.001">
+    <testcase classname="Test the validation Should fail the urls validations when data is missing" name="Test the validation Should fail the urls validations when data is missing" time="0.004">
     </testcase>
-    <testcase classname="Test the validation Should pass the urls validations when all data is set" name="Test the validation Should pass the urls validations when all data is set" time="0.007">
+    <testcase classname="Test the validation Should pass the urls validations when all data is set" name="Test the validation Should pass the urls validations when all data is set" time="0.002">
     </testcase>
   </testsuite>
-  <testsuite name="Test the dfsp egress endpoints actions" errors="0" failures="0" skipped="0" timestamp="2025-03-11T13:55:58" time="0.428" tests="20">
-    <testcase classname="Test the dfsp egress endpoints actions Should reset the reducers" name="Test the dfsp egress endpoints actions Should reset the reducers" time="0.002">
+  <testsuite name="Test the hub ingress endpoints actions" errors="0" failures="0" skipped="0" timestamp="2025-03-11T15:22:36" time="0.412" tests="26">
+    <testcase classname="Test the hub ingress endpoints actions Should reset the reducers" name="Test the hub ingress endpoints actions Should reset the reducers" time="0.002">
     </testcase>
-    <testcase classname="Test the dfsp egress endpoints actions Should set the error" name="Test the dfsp egress endpoints actions Should set the error" time="0.001">
+    <testcase classname="Test the hub ingress endpoints actions Should set the ips error" name="Test the hub ingress endpoints actions Should set the ips error" time="0.001">
     </testcase>
-    <testcase classname="Test the dfsp egress endpoints actions Should set the egress ips and previous egress ips" name="Test the dfsp egress endpoints actions Should set the egress ips and previous egress ips" time="0.001">
+    <testcase classname="Test the hub ingress endpoints actions Should set the urls error" name="Test the hub ingress endpoints actions Should set the urls error" time="0.001">
     </testcase>
-    <testcase classname="Test the dfsp egress endpoints actions Should change the egress ip address" name="Test the dfsp egress endpoints actions Should change the egress ip address" time="0.001">
+    <testcase classname="Test the hub ingress endpoints actions Should set the ingress ips and previous ingress ips" name="Test the hub ingress endpoints actions Should set the ingress ips and previous ingress ips" time="0.001">
     </testcase>
-    <testcase classname="Test the dfsp egress endpoints actions Should change the egress ip port" name="Test the dfsp egress endpoints actions Should change the egress ip port" time="0.001">
+    <testcase classname="Test the hub ingress endpoints actions Should set the ingress urls and previous ingress urls" name="Test the hub ingress endpoints actions Should set the ingress urls and previous ingress urls" time="0.002">
     </testcase>
-    <testcase classname="Test the dfsp egress endpoints actions Should add an ip address and port" name="Test the dfsp egress endpoints actions Should add an ip address and port" time="0.002">
+    <testcase classname="Test the hub ingress endpoints actions Should change the ingress ip address" name="Test the hub ingress endpoints actions Should change the ingress ip address" time="0.002">
     </testcase>
-    <testcase classname="Test the dfsp egress endpoints actions Should add a port" name="Test the dfsp egress endpoints actions Should add a port" time="0.001">
+    <testcase classname="Test the hub ingress endpoints actions Should change the ingress ip port" name="Test the hub ingress endpoints actions Should change the ingress ip port" time="0.002">
     </testcase>
-    <testcase classname="Test the dfsp egress endpoints actions Should remove an ip address and port" name="Test the dfsp egress endpoints actions Should remove an ip address and port" time="0.001">
+    <testcase classname="Test the hub ingress endpoints actions Should change the ingress url" name="Test the hub ingress endpoints actions Should change the ingress url" time="0.001">
     </testcase>
-    <testcase classname="Test the dfsp egress endpoints actions Should remove a port" name="Test the dfsp egress endpoints actions Should remove a port" time="0.002">
+    <testcase classname="Test the hub ingress endpoints actions Should add an ip address and port" name="Test the hub ingress endpoints actions Should add an ip address and port" time="0.001">
     </testcase>
-    <testcase classname="Test the dfsp egress endpoints actions Should undo all the changes" name="Test the dfsp egress endpoints actions Should undo all the changes" time="0.002">
+    <testcase classname="Test the hub ingress endpoints actions Should add a port" name="Test the hub ingress endpoints actions Should add a port" time="0.003">
+    </testcase>
+    <testcase classname="Test the hub ingress endpoints actions Should remove an ip address and port" name="Test the hub ingress endpoints actions Should remove an ip address and port" time="0.001">
+    </testcase>
+    <testcase classname="Test the hub ingress endpoints actions Should remove a port" name="Test the hub ingress endpoints actions Should remove a port" time="0.008">
+    </testcase>
+    <testcase classname="Test the hub ingress endpoints actions Should undo all the changes" name="Test the hub ingress endpoints actions Should undo all the changes" time="0.003">
     </testcase>
     <testcase classname="Test the change detection Should detect nothing changed" name="Test the change detection Should detect nothing changed" time="0.002">
     </testcase>
     <testcase classname="Test the change detection Should detect the change when adding a port" name="Test the change detection Should detect the change when adding a port" time="0.002">
     </testcase>
-    <testcase classname="Test the change detection Should detect the change when adding an ip" name="Test the change detection Should detect the change when adding an ip" time="0.01">
+    <testcase classname="Test the change detection Should detect the change when adding an ip" name="Test the change detection Should detect the change when adding an ip" time="0.003">
     </testcase>
-    <testcase classname="Test the change detection Should detect the change when changin the ip address" name="Test the change detection Should detect the change when changin the ip address" time="0.002">
+    <testcase classname="Test the change detection Should detect the change when changin the ip address" name="Test the change detection Should detect the change when changin the ip address" time="0.001">
     </testcase>
-    <testcase classname="Test the change detection Should detect the change when changin the ip port" name="Test the change detection Should detect the change when changin the ip port" time="0.001">
+    <testcase classname="Test the change detection Should detect the change when changin the ip port" name="Test the change detection Should detect the change when changin the ip port" time="0">
     </testcase>
-    <testcase classname="Test the change detection Should get ips to create, update, delete" name="Test the change detection Should get ips to create, update, delete" time="0.004">
+    <testcase classname="Test the change detection Should detect the change when changin the url" name="Test the change detection Should detect the change when changin the url" time="0.001">
     </testcase>
-    <testcase classname="Test the validation Should fail the validations when data is missing" name="Test the validation Should fail the validations when data is missing" time="0.002">
+    <testcase classname="Test the change detection Should get ips to create, update, delete" name="Test the change detection Should get ips to create, update, delete" time="0.003">
     </testcase>
-    <testcase classname="Test the validation Should fail the validations when port is missing" name="Test the validation Should fail the validations when port is missing" time="0.001">
+    <testcase classname="Test the validation Should fail the ips validations when data is missing" name="Test the validation Should fail the ips validations when data is missing" time="0.002">
     </testcase>
-    <testcase classname="Test the validation Should fail the validations when address is missing" name="Test the validation Should fail the validations when address is missing" time="0.002">
+    <testcase classname="Test the validation Should fail the ips validations when port is missing" name="Test the validation Should fail the ips validations when port is missing" time="0.002">
     </testcase>
-    <testcase classname="Test the validation Should pass the validations when all data is set" name="Test the validation Should pass the validations when all data is set" time="0.001">
+    <testcase classname="Test the validation Should fail the ips validations when address is missing" name="Test the validation Should fail the ips validations when address is missing" time="0.001">
+    </testcase>
+    <testcase classname="Test the validation Should pass the ips validations when all data is set" name="Test the validation Should pass the ips validations when all data is set" time="0.001">
+    </testcase>
+    <testcase classname="Test the validation Should fail the urls validations when data is missing" name="Test the validation Should fail the urls validations when data is missing" time="0.001">
+    </testcase>
+    <testcase classname="Test the validation Should pass the urls validations when all data is set" name="Test the validation Should pass the urls validations when all data is set" time="0.002">
     </testcase>
   </testsuite>
-  <testsuite name="Test the dfsp egress endpoints actions" errors="0" failures="0" skipped="0" timestamp="2025-03-11T13:55:58" time="0.459" tests="20">
-    <testcase classname="Test the dfsp egress endpoints actions Should reset the reducers" name="Test the dfsp egress endpoints actions Should reset the reducers" time="0.009">
+  <testsuite name="Test the dfsp egress endpoints actions" errors="0" failures="0" skipped="0" timestamp="2025-03-11T15:22:37" time="0.415" tests="20">
+    <testcase classname="Test the dfsp egress endpoints actions Should reset the reducers" name="Test the dfsp egress endpoints actions Should reset the reducers" time="0.002">
     </testcase>
     <testcase classname="Test the dfsp egress endpoints actions Should set the error" name="Test the dfsp egress endpoints actions Should set the error" time="0.001">
     </testcase>
-    <testcase classname="Test the dfsp egress endpoints actions Should set the egress ips and previous egress ips" name="Test the dfsp egress endpoints actions Should set the egress ips and previous egress ips" time="0.001">
+    <testcase classname="Test the dfsp egress endpoints actions Should set the egress ips and previous egress ips" name="Test the dfsp egress endpoints actions Should set the egress ips and previous egress ips" time="0.002">
     </testcase>
     <testcase classname="Test the dfsp egress endpoints actions Should change the egress ip address" name="Test the dfsp egress endpoints actions Should change the egress ip address" time="0.001">
     </testcase>
     <testcase classname="Test the dfsp egress endpoints actions Should change the egress ip port" name="Test the dfsp egress endpoints actions Should change the egress ip port" time="0.002">
     </testcase>
-    <testcase classname="Test the dfsp egress endpoints actions Should add an ip address and port" name="Test the dfsp egress endpoints actions Should add an ip address and port" time="0.002">
+    <testcase classname="Test the dfsp egress endpoints actions Should add an ip address and port" name="Test the dfsp egress endpoints actions Should add an ip address and port" time="0.001">
     </testcase>
-    <testcase classname="Test the dfsp egress endpoints actions Should add a port" name="Test the dfsp egress endpoints actions Should add a port" time="0.002">
+    <testcase classname="Test the dfsp egress endpoints actions Should add a port" name="Test the dfsp egress endpoints actions Should add a port" time="0.001">
     </testcase>
     <testcase classname="Test the dfsp egress endpoints actions Should remove an ip address and port" name="Test the dfsp egress endpoints actions Should remove an ip address and port" time="0.001">
     </testcase>
@@ -173,37 +131,79 @@
     </testcase>
     <testcase classname="Test the change detection Should detect nothing changed" name="Test the change detection Should detect nothing changed" time="0.002">
     </testcase>
-    <testcase classname="Test the change detection Should detect the change when adding a port" name="Test the change detection Should detect the change when adding a port" time="0.002">
+    <testcase classname="Test the change detection Should detect the change when adding a port" name="Test the change detection Should detect the change when adding a port" time="0.003">
     </testcase>
     <testcase classname="Test the change detection Should detect the change when adding an ip" name="Test the change detection Should detect the change when adding an ip" time="0.002">
     </testcase>
-    <testcase classname="Test the change detection Should detect the change when changin the ip address" name="Test the change detection Should detect the change when changin the ip address" time="0.003">
+    <testcase classname="Test the change detection Should detect the change when changin the ip address" name="Test the change detection Should detect the change when changin the ip address" time="0.002">
     </testcase>
-    <testcase classname="Test the change detection Should detect the change when changin the ip port" name="Test the change detection Should detect the change when changin the ip port" time="0.002">
+    <testcase classname="Test the change detection Should detect the change when changin the ip port" name="Test the change detection Should detect the change when changin the ip port" time="0.008">
     </testcase>
     <testcase classname="Test the change detection Should get ips to create, update, delete" name="Test the change detection Should get ips to create, update, delete" time="0.003">
     </testcase>
     <testcase classname="Test the validation Should fail the validations when data is missing" name="Test the validation Should fail the validations when data is missing" time="0.002">
     </testcase>
-    <testcase classname="Test the validation Should fail the validations when port is missing" name="Test the validation Should fail the validations when port is missing" time="0.009">
+    <testcase classname="Test the validation Should fail the validations when port is missing" name="Test the validation Should fail the validations when port is missing" time="0.001">
     </testcase>
     <testcase classname="Test the validation Should fail the validations when address is missing" name="Test the validation Should fail the validations when address is missing" time="0.001">
     </testcase>
-    <testcase classname="Test the validation Should pass the validations when all data is set" name="Test the validation Should pass the validations when all data is set" time="0.003">
+    <testcase classname="Test the validation Should pass the validations when all data is set" name="Test the validation Should pass the validations when all data is set" time="0.001">
     </testcase>
   </testsuite>
-  <testsuite name="Test the hub csr actions" errors="0" failures="0" skipped="0" timestamp="2025-03-11T13:55:59" time="0.463" tests="24">
-    <testcase classname="Test the hub csr actions Should reset the reducers" name="Test the hub csr actions Should reset the reducers" time="0.002">
+  <testsuite name="Test the dfsp egress endpoints actions" errors="0" failures="0" skipped="0" timestamp="2025-03-11T15:22:37" time="0.445" tests="20">
+    <testcase classname="Test the dfsp egress endpoints actions Should reset the reducers" name="Test the dfsp egress endpoints actions Should reset the reducers" time="0.002">
     </testcase>
-    <testcase classname="Test the hub csr actions Should set the CSR" name="Test the hub csr actions Should set the CSR" time="0.002">
+    <testcase classname="Test the dfsp egress endpoints actions Should set the error" name="Test the dfsp egress endpoints actions Should set the error" time="0.002">
+    </testcase>
+    <testcase classname="Test the dfsp egress endpoints actions Should set the egress ips and previous egress ips" name="Test the dfsp egress endpoints actions Should set the egress ips and previous egress ips" time="0.001">
+    </testcase>
+    <testcase classname="Test the dfsp egress endpoints actions Should change the egress ip address" name="Test the dfsp egress endpoints actions Should change the egress ip address" time="0.002">
+    </testcase>
+    <testcase classname="Test the dfsp egress endpoints actions Should change the egress ip port" name="Test the dfsp egress endpoints actions Should change the egress ip port" time="0.001">
+    </testcase>
+    <testcase classname="Test the dfsp egress endpoints actions Should add an ip address and port" name="Test the dfsp egress endpoints actions Should add an ip address and port" time="0.001">
+    </testcase>
+    <testcase classname="Test the dfsp egress endpoints actions Should add a port" name="Test the dfsp egress endpoints actions Should add a port" time="0.007">
+    </testcase>
+    <testcase classname="Test the dfsp egress endpoints actions Should remove an ip address and port" name="Test the dfsp egress endpoints actions Should remove an ip address and port" time="0.002">
+    </testcase>
+    <testcase classname="Test the dfsp egress endpoints actions Should remove a port" name="Test the dfsp egress endpoints actions Should remove a port" time="0.001">
+    </testcase>
+    <testcase classname="Test the dfsp egress endpoints actions Should undo all the changes" name="Test the dfsp egress endpoints actions Should undo all the changes" time="0.002">
+    </testcase>
+    <testcase classname="Test the change detection Should detect nothing changed" name="Test the change detection Should detect nothing changed" time="0.001">
+    </testcase>
+    <testcase classname="Test the change detection Should detect the change when adding a port" name="Test the change detection Should detect the change when adding a port" time="0.002">
+    </testcase>
+    <testcase classname="Test the change detection Should detect the change when adding an ip" name="Test the change detection Should detect the change when adding an ip" time="0.001">
+    </testcase>
+    <testcase classname="Test the change detection Should detect the change when changin the ip address" name="Test the change detection Should detect the change when changin the ip address" time="0.001">
+    </testcase>
+    <testcase classname="Test the change detection Should detect the change when changin the ip port" name="Test the change detection Should detect the change when changin the ip port" time="0.007">
+    </testcase>
+    <testcase classname="Test the change detection Should get ips to create, update, delete" name="Test the change detection Should get ips to create, update, delete" time="0.003">
+    </testcase>
+    <testcase classname="Test the validation Should fail the validations when data is missing" name="Test the validation Should fail the validations when data is missing" time="0.002">
+    </testcase>
+    <testcase classname="Test the validation Should fail the validations when port is missing" name="Test the validation Should fail the validations when port is missing" time="0.001">
+    </testcase>
+    <testcase classname="Test the validation Should fail the validations when address is missing" name="Test the validation Should fail the validations when address is missing" time="0.001">
+    </testcase>
+    <testcase classname="Test the validation Should pass the validations when all data is set" name="Test the validation Should pass the validations when all data is set" time="0.001">
+    </testcase>
+  </testsuite>
+  <testsuite name="Test the hub csr actions" errors="0" failures="0" skipped="0" timestamp="2025-03-11T15:22:38" time="0.455" tests="24">
+    <testcase classname="Test the hub csr actions Should reset the reducers" name="Test the hub csr actions Should reset the reducers" time="0.003">
+    </testcase>
+    <testcase classname="Test the hub csr actions Should set the CSR" name="Test the hub csr actions Should set the CSR" time="0.001">
     </testcase>
     <testcase classname="Test the hub csr actions Should set the dfsp Id" name="Test the hub csr actions Should set the dfsp Id" time="0.001">
     </testcase>
     <testcase classname="Test the hub csr actions Should set the CSR Type" name="Test the hub csr actions Should set the CSR Type" time="0.001">
     </testcase>
-    <testcase classname="Test the hub csr actions Should set the CSR CommonName" name="Test the hub csr actions Should set the CSR CommonName" time="0.001">
+    <testcase classname="Test the hub csr actions Should set the CSR CommonName" name="Test the hub csr actions Should set the CSR CommonName" time="0.002">
     </testcase>
-    <testcase classname="Test the hub csr actions Should set the CSR Organization" name="Test the hub csr actions Should set the CSR Organization" time="0.002">
+    <testcase classname="Test the hub csr actions Should set the CSR Organization" name="Test the hub csr actions Should set the CSR Organization" time="0.001">
     </testcase>
     <testcase classname="Test the hub csr actions Should set the CSR OrganizationUnit" name="Test the hub csr actions Should set the CSR OrganizationUnit" time="0.001">
     </testcase>
@@ -211,21 +211,21 @@
     </testcase>
     <testcase classname="Test the hub csr actions Should set the CSR Locality" name="Test the hub csr actions Should set the CSR Locality" time="0.001">
     </testcase>
-    <testcase classname="Test the hub csr actions Should set the CSR Country" name="Test the hub csr actions Should set the CSR Country" time="0.002">
+    <testcase classname="Test the hub csr actions Should set the CSR Country" name="Test the hub csr actions Should set the CSR Country" time="0.004">
     </testcase>
-    <testcase classname="Test the hub csr actions Should set the CSR State" name="Test the hub csr actions Should set the CSR State" time="0.001">
+    <testcase classname="Test the hub csr actions Should set the CSR State" name="Test the hub csr actions Should set the CSR State" time="0.002">
     </testcase>
     <testcase classname="Test the hub csr actions Should change a Csr Dns" name="Test the hub csr actions Should change a Csr Dns" time="0.002">
     </testcase>
     <testcase classname="Test the hub csr actions Should add a Csr Dns" name="Test the hub csr actions Should add a Csr Dns" time="0.001">
     </testcase>
-    <testcase classname="Test the hub csr actions Should remove a Csr Dns" name="Test the hub csr actions Should remove a Csr Dns" time="0.011">
+    <testcase classname="Test the hub csr actions Should remove a Csr Dns" name="Test the hub csr actions Should remove a Csr Dns" time="0.003">
     </testcase>
     <testcase classname="Test the hub csr actions Should change a Csr Ip" name="Test the hub csr actions Should change a Csr Ip" time="0.001">
     </testcase>
-    <testcase classname="Test the hub csr actions Should add a Csr Ip" name="Test the hub csr actions Should add a Csr Ip" time="0.002">
+    <testcase classname="Test the hub csr actions Should add a Csr Ip" name="Test the hub csr actions Should add a Csr Ip" time="0.011">
     </testcase>
-    <testcase classname="Test the hub csr actions Should remove a Csr Ip" name="Test the hub csr actions Should remove a Csr Ip" time="0.002">
+    <testcase classname="Test the hub csr actions Should remove a Csr Ip" name="Test the hub csr actions Should remove a Csr Ip" time="0.001">
     </testcase>
     <testcase classname="Test the hub csr actions Should show the CSR modal" name="Test the hub csr actions Should show the CSR modal" time="0.001">
     </testcase>
@@ -235,25 +235,25 @@
     </testcase>
     <testcase classname="Test the submit selectors Should not enable the submit button when dfsp is not " name="Test the submit selectors Should not enable the submit button when dfsp is not " time="0.001">
     </testcase>
-    <testcase classname="Test the submit selectors Should enable the submit button when dfsp and certificate are set" name="Test the submit selectors Should enable the submit button when dfsp and certificate are set" time="0.002">
+    <testcase classname="Test the submit selectors Should enable the submit button when dfsp and certificate are set" name="Test the submit selectors Should enable the submit button when dfsp and certificate are set" time="0.001">
     </testcase>
-    <testcase classname="Test the submit selectors Should not enable the submit button when type is manual and form is empty" name="Test the submit selectors Should not enable the submit button when type is manual and form is empty" time="0.001">
+    <testcase classname="Test the submit selectors Should not enable the submit button when type is manual and form is empty" name="Test the submit selectors Should not enable the submit button when type is manual and form is empty" time="0.002">
     </testcase>
-    <testcase classname="Test the submit selectors Should enable the submit button when type is manual and form and dfsp are set" name="Test the submit selectors Should enable the submit button when type is manual and form and dfsp are set" time="0.004">
+    <testcase classname="Test the submit selectors Should enable the submit button when type is manual and form and dfsp are set" name="Test the submit selectors Should enable the submit button when type is manual and form and dfsp are set" time="0.003">
     </testcase>
   </testsuite>
-  <testsuite name="Test the hub ca actions" errors="0" failures="0" skipped="0" timestamp="2025-03-11T13:55:59" time="0.451" tests="22">
+  <testsuite name="Test the hub ca actions" errors="0" failures="0" skipped="0" timestamp="2025-03-11T15:22:38" time="0.435" tests="22">
     <testcase classname="Test the hub ca actions Should reset the reducers" name="Test the hub ca actions Should reset the reducers" time="0.002">
     </testcase>
-    <testcase classname="Test the hub ca actions Should set the error" name="Test the hub ca actions Should set the error" time="0.001">
+    <testcase classname="Test the hub ca actions Should set the error" name="Test the hub ca actions Should set the error" time="0.002">
     </testcase>
-    <testcase classname="Test the hub ca actions Should set the root cert" name="Test the hub ca actions Should set the root cert" time="0.002">
+    <testcase classname="Test the hub ca actions Should set the root cert" name="Test the hub ca actions Should set the root cert" time="0.001">
     </testcase>
     <testcase classname="Test the hub ca actions Should set the root cert info" name="Test the hub ca actions Should set the root cert info" time="0.001">
     </testcase>
     <testcase classname="Test the hub ca actions Should set the common name" name="Test the hub ca actions Should set the common name" time="0.001">
     </testcase>
-    <testcase classname="Test the hub ca actions Should set the country" name="Test the hub ca actions Should set the country" time="0.002">
+    <testcase classname="Test the hub ca actions Should set the country" name="Test the hub ca actions Should set the country" time="0.001">
     </testcase>
     <testcase classname="Test the hub ca actions Should set the organization" name="Test the hub ca actions Should set the organization" time="0.001">
     </testcase>
@@ -261,121 +261,121 @@
     </testcase>
     <testcase classname="Test the hub ca actions Should set the locality" name="Test the hub ca actions Should set the locality" time="0.001">
     </testcase>
-    <testcase classname="Test the hub ca actions Should set the state" name="Test the hub ca actions Should set the state" time="0.001">
+    <testcase classname="Test the hub ca actions Should set the state" name="Test the hub ca actions Should set the state" time="0.008">
     </testcase>
-    <testcase classname="Test the hub ca actions Should change the host" name="Test the hub ca actions Should change the host" time="0.001">
+    <testcase classname="Test the hub ca actions Should change the host" name="Test the hub ca actions Should change the host" time="0.002">
     </testcase>
-    <testcase classname="Test the hub ca actions Should add a host" name="Test the hub ca actions Should add a host" time="0.002">
+    <testcase classname="Test the hub ca actions Should add a host" name="Test the hub ca actions Should add a host" time="0.001">
     </testcase>
     <testcase classname="Test the hub ca actions Should remove a host" name="Test the hub ca actions Should remove a host" time="0.002">
     </testcase>
     <testcase classname="Test the hub ca actions Should show the root certificate modal" name="Test the hub ca actions Should show the root certificate modal" time="0.001">
     </testcase>
-    <testcase classname="Test the hub ca actions Should hide the root certificate modal" name="Test the hub ca actions Should hide the root certificate modal" time="0.002">
+    <testcase classname="Test the hub ca actions Should hide the root certificate modal" name="Test the hub ca actions Should hide the root certificate modal" time="0.001">
     </testcase>
-    <testcase classname="Test the model and validation Should fail validation when Common Name is not set" name="Test the model and validation Should fail validation when Common Name is not set" time="0.002">
+    <testcase classname="Test the model and validation Should fail validation when Common Name is not set" name="Test the model and validation Should fail validation when Common Name is not set" time="0.001">
     </testcase>
     <testcase classname="Test the model and validation Should fail validation when Organization is not set" name="Test the model and validation Should fail validation when Organization is not set" time="0.001">
     </testcase>
     <testcase classname="Test the model and validation Should pass validation when Common Name and Organization are set" name="Test the model and validation Should pass validation when Common Name and Organization are set" time="0.001">
     </testcase>
-    <testcase classname="Test the model and validation Should fail hosts validations when a host is invalid" name="Test the model and validation Should fail hosts validations when a host is invalid" time="0.001">
+    <testcase classname="Test the model and validation Should fail hosts validations when a host is invalid" name="Test the model and validation Should fail hosts validations when a host is invalid" time="0.002">
     </testcase>
-    <testcase classname="Test the model and validation Should pass hosts validations when a host is valid" name="Test the model and validation Should pass hosts validations when a host is valid" time="0.001">
+    <testcase classname="Test the model and validation Should pass hosts validations when a host is valid" name="Test the model and validation Should pass hosts validations when a host is valid" time="0.003">
     </testcase>
-    <testcase classname="Test the model and validation Should not enable submit when there is already a certificate" name="Test the model and validation Should not enable submit when there is already a certificate" time="0.001">
+    <testcase classname="Test the model and validation Should not enable submit when there is already a certificate" name="Test the model and validation Should not enable submit when there is already a certificate" time="0.004">
     </testcase>
-    <testcase classname="Test the model and validation Should allow submit when there is already a certificate" name="Test the model and validation Should allow submit when there is already a certificate" time="0.001">
+    <testcase classname="Test the model and validation Should allow submit when there is already a certificate" name="Test the model and validation Should allow submit when there is already a certificate" time="0.002">
     </testcase>
   </testsuite>
-  <testsuite name="Test the dfsp server certificate actions" errors="0" failures="0" skipped="0" timestamp="2025-03-11T13:56:00" time="0.44" tests="19">
+  <testsuite name="Test the dfsp server certificate actions" errors="0" failures="0" skipped="0" timestamp="2025-03-11T15:22:39" time="0.416" tests="19">
     <testcase classname="Test the dfsp server certificate actions Should reset the reducers" name="Test the dfsp server certificate actions Should reset the reducers" time="0.002">
     </testcase>
     <testcase classname="Test the dfsp server certificate actions Should set the error" name="Test the dfsp server certificate actions Should set the error" time="0.001">
     </testcase>
-    <testcase classname="Test the dfsp server certificate actions Should set the server certificate" name="Test the dfsp server certificate actions Should set the server certificate" time="0.002">
+    <testcase classname="Test the dfsp server certificate actions Should set the server certificate" name="Test the dfsp server certificate actions Should set the server certificate" time="0.001">
     </testcase>
     <testcase classname="Test the dfsp server certificate actions Should set the root certificate" name="Test the dfsp server certificate actions Should set the root certificate" time="0.001">
     </testcase>
-    <testcase classname="Test the dfsp server certificate actions Should set the intermediate chain" name="Test the dfsp server certificate actions Should set the intermediate chain" time="0.001">
+    <testcase classname="Test the dfsp server certificate actions Should set the intermediate chain" name="Test the dfsp server certificate actions Should set the intermediate chain" time="0.002">
     </testcase>
-    <testcase classname="Test the dfsp server certificate actions Should set the server certificate info" name="Test the dfsp server certificate actions Should set the server certificate info" time="0.001">
+    <testcase classname="Test the dfsp server certificate actions Should set the server certificate info" name="Test the dfsp server certificate actions Should set the server certificate info" time="0.002">
     </testcase>
     <testcase classname="Test the dfsp server certificate actions Should set the root certificate info" name="Test the dfsp server certificate actions Should set the root certificate info" time="0.002">
     </testcase>
-    <testcase classname="Test the dfsp server certificate actions Should set the intermediate chain info" name="Test the dfsp server certificate actions Should set the intermediate chain info" time="0.001">
+    <testcase classname="Test the dfsp server certificate actions Should set the intermediate chain info" name="Test the dfsp server certificate actions Should set the intermediate chain info" time="0.002">
     </testcase>
-    <testcase classname="Test the dfsp server certificate actions Should set the validations" name="Test the dfsp server certificate actions Should set the validations" time="0.001">
+    <testcase classname="Test the dfsp server certificate actions Should set the validations" name="Test the dfsp server certificate actions Should set the validations" time="0.002">
     </testcase>
     <testcase classname="Test the dfsp server certificate actions Should set the validation state" name="Test the dfsp server certificate actions Should set the validation state" time="0.001">
     </testcase>
     <testcase classname="Test the dfsp server certificate actions Should change the root cert" name="Test the dfsp server certificate actions Should change the root cert" time="0.001">
     </testcase>
-    <testcase classname="Test the dfsp server certificate actions Should change the root cert" name="Test the dfsp server certificate actions Should change the root cert" time="0.001">
+    <testcase classname="Test the dfsp server certificate actions Should change the root cert" name="Test the dfsp server certificate actions Should change the root cert" time="0.002">
     </testcase>
     <testcase classname="Test the dfsp server certificate actions Should change the intermediate chain" name="Test the dfsp server certificate actions Should change the intermediate chain" time="0.001">
     </testcase>
     <testcase classname="Test the dfsp server certificate actions Should show the server certificate modal" name="Test the dfsp server certificate actions Should show the server certificate modal" time="0.002">
     </testcase>
-    <testcase classname="Test the dfsp server certificate actions Should hide the server certificate modal" name="Test the dfsp server certificate actions Should hide the server certificate modal" time="0.002">
+    <testcase classname="Test the dfsp server certificate actions Should hide the server certificate modal" name="Test the dfsp server certificate actions Should hide the server certificate modal" time="0.001">
     </testcase>
     <testcase classname="Test the dfsp server certificate actions Should show the root certificate modal" name="Test the dfsp server certificate actions Should show the root certificate modal" time="0.002">
     </testcase>
-    <testcase classname="Test the dfsp server certificate actions Should hide the root certificate modal" name="Test the dfsp server certificate actions Should hide the root certificate modal" time="0.002">
+    <testcase classname="Test the dfsp server certificate actions Should hide the root certificate modal" name="Test the dfsp server certificate actions Should hide the root certificate modal" time="0.001">
     </testcase>
-    <testcase classname="Test the dfsp server certificate actions Should show the intermediate chain modal" name="Test the dfsp server certificate actions Should show the intermediate chain modal" time="0.002">
+    <testcase classname="Test the dfsp server certificate actions Should show the intermediate chain modal" name="Test the dfsp server certificate actions Should show the intermediate chain modal" time="0.001">
     </testcase>
-    <testcase classname="Test the dfsp server certificate actions Should hide the intermediate chain modal" name="Test the dfsp server certificate actions Should hide the intermediate chain modal" time="0.004">
+    <testcase classname="Test the dfsp server certificate actions Should hide the intermediate chain modal" name="Test the dfsp server certificate actions Should hide the intermediate chain modal" time="0.001">
     </testcase>
   </testsuite>
-  <testsuite name="Test the app actions" errors="0" failures="0" skipped="0" timestamp="2025-03-11T13:56:00" time="0.477" tests="16">
+  <testsuite name="Test the app actions" errors="0" failures="0" skipped="0" timestamp="2025-03-11T15:22:39" time="0.363" tests="16">
     <testcase classname="Test the app actions Should set the app loading" name="Test the app actions Should set the app loading" time="0.003">
     </testcase>
-    <testcase classname="Test the app actions Should unset the app loading" name="Test the app actions Should unset the app loading" time="0.002">
+    <testcase classname="Test the app actions Should unset the app loading" name="Test the app actions Should unset the app loading" time="0.001">
     </testcase>
-    <testcase classname="Test the app actions Should show the toast" name="Test the app actions Should show the toast" time="0.002">
+    <testcase classname="Test the app actions Should show the toast" name="Test the app actions Should show the toast" time="0.001">
     </testcase>
     <testcase classname="Test the app actions Should hide the toast" name="Test the app actions Should hide the toast" time="0.001">
     </testcase>
-    <testcase classname="Test the app actions Should show the error modal" name="Test the app actions Should show the error modal" time="0.002">
+    <testcase classname="Test the app actions Should show the error modal" name="Test the app actions Should show the error modal" time="0.003">
     </testcase>
     <testcase classname="Test the app actions Should hide the error modal" name="Test the app actions Should hide the error modal" time="0.002">
     </testcase>
-    <testcase classname="Test the app actions Should set the dfsps" name="Test the app actions Should set the dfsps" time="0.002">
+    <testcase classname="Test the app actions Should set the dfsps" name="Test the app actions Should set the dfsps" time="0.001">
     </testcase>
-    <testcase classname="Test the app actions Should set the dfsps error" name="Test the app actions Should set the dfsps error" time="0.004">
+    <testcase classname="Test the app actions Should set the dfsps error" name="Test the app actions Should set the dfsps error" time="0.002">
     </testcase>
-    <testcase classname="Test the app actions Should set the dfsp Id" name="Test the app actions Should set the dfsp Id" time="0.002">
+    <testcase classname="Test the app actions Should set the dfsp Id" name="Test the app actions Should set the dfsp Id" time="0.001">
     </testcase>
-    <testcase classname="Test the app actions Should get the dfsp name" name="Test the app actions Should get the dfsp name" time="0.002">
+    <testcase classname="Test the app actions Should get the dfsp name" name="Test the app actions Should get the dfsp name" time="0.003">
     </testcase>
     <testcase classname="Test the app actions Should set the dfsps read API as pending" name="Test the app actions Should set the dfsps read API as pending" time="0.005">
     </testcase>
     <testcase classname="Test the app actions Should set the dfsps error when call fails" name="Test the app actions Should set the dfsps error when call fails" time="0.007">
     </testcase>
-    <testcase classname="Test the app thunk actions Should show the toast" name="Test the app thunk actions Should show the toast" time="0.003">
+    <testcase classname="Test the app thunk actions Should show the toast" name="Test the app thunk actions Should show the toast" time="0.002">
     </testcase>
     <testcase classname="Test the app thunk actions Should show and then hide the toast" name="Test the app thunk actions Should show and then hide the toast" time="0.017">
     </testcase>
-    <testcase classname="Test the app thunk actions Should initialize the app" name="Test the app thunk actions Should initialize the app" time="0.003">
+    <testcase classname="Test the app thunk actions Should initialize the app" name="Test the app thunk actions Should initialize the app" time="0.004">
     </testcase>
     <testcase classname="Test the app load failed Should handle DFSPS fetch failure" name="Test the app load failed Should handle DFSPS fetch failure" time="0.001">
     </testcase>
   </testsuite>
-  <testsuite name="Test the dfsp server certificate actions" errors="0" failures="0" skipped="0" timestamp="2025-03-11T13:56:01" time="0.36" tests="16">
+  <testsuite name="Test the dfsp server certificate actions" errors="0" failures="0" skipped="0" timestamp="2025-03-11T15:22:39" time="0.375" tests="16">
     <testcase classname="Test the dfsp server certificate actions Should reset the reducers" name="Test the dfsp server certificate actions Should reset the reducers" time="0.002">
     </testcase>
     <testcase classname="Test the dfsp server certificate actions Should set the error" name="Test the dfsp server certificate actions Should set the error" time="0.002">
     </testcase>
     <testcase classname="Test the dfsp server certificate actions Should set the server certificate" name="Test the dfsp server certificate actions Should set the server certificate" time="0.002">
     </testcase>
-    <testcase classname="Test the dfsp server certificate actions Should set the root certificate" name="Test the dfsp server certificate actions Should set the root certificate" time="0.002">
+    <testcase classname="Test the dfsp server certificate actions Should set the root certificate" name="Test the dfsp server certificate actions Should set the root certificate" time="0.001">
     </testcase>
-    <testcase classname="Test the dfsp server certificate actions Should set the intermediate chain" name="Test the dfsp server certificate actions Should set the intermediate chain" time="0.003">
+    <testcase classname="Test the dfsp server certificate actions Should set the intermediate chain" name="Test the dfsp server certificate actions Should set the intermediate chain" time="0.002">
     </testcase>
-    <testcase classname="Test the dfsp server certificate actions Should set the server certificate info" name="Test the dfsp server certificate actions Should set the server certificate info" time="0.002">
+    <testcase classname="Test the dfsp server certificate actions Should set the server certificate info" name="Test the dfsp server certificate actions Should set the server certificate info" time="0.001">
     </testcase>
-    <testcase classname="Test the dfsp server certificate actions Should set the root certificate info" name="Test the dfsp server certificate actions Should set the root certificate info" time="0.002">
+    <testcase classname="Test the dfsp server certificate actions Should set the root certificate info" name="Test the dfsp server certificate actions Should set the root certificate info" time="0.001">
     </testcase>
     <testcase classname="Test the dfsp server certificate actions Should set the intermediate chain info" name="Test the dfsp server certificate actions Should set the intermediate chain info" time="0.001">
     </testcase>
@@ -383,11 +383,11 @@
     </testcase>
     <testcase classname="Test the dfsp server certificate actions Should set the validation state" name="Test the dfsp server certificate actions Should set the validation state" time="0.001">
     </testcase>
-    <testcase classname="Test the dfsp server certificate actions Should show the server certificate modal" name="Test the dfsp server certificate actions Should show the server certificate modal" time="0.002">
+    <testcase classname="Test the dfsp server certificate actions Should show the server certificate modal" name="Test the dfsp server certificate actions Should show the server certificate modal" time="0.001">
     </testcase>
     <testcase classname="Test the dfsp server certificate actions Should hide the server certificate modal" name="Test the dfsp server certificate actions Should hide the server certificate modal" time="0.002">
     </testcase>
-    <testcase classname="Test the dfsp server certificate actions Should show the root certificate modal" name="Test the dfsp server certificate actions Should show the root certificate modal" time="0.002">
+    <testcase classname="Test the dfsp server certificate actions Should show the root certificate modal" name="Test the dfsp server certificate actions Should show the root certificate modal" time="0.003">
     </testcase>
     <testcase classname="Test the dfsp server certificate actions Should hide the root certificate modal" name="Test the dfsp server certificate actions Should hide the root certificate modal" time="0.006">
     </testcase>
@@ -396,22 +396,22 @@
     <testcase classname="Test the dfsp server certificate actions Should hide the intermediate chain modal" name="Test the dfsp server certificate actions Should hide the intermediate chain modal" time="0.001">
     </testcase>
   </testsuite>
-  <testsuite name="Test the dfsp jws certificate actions" errors="0" failures="0" skipped="0" timestamp="2025-03-11T13:56:01" time="0.35" tests="14">
+  <testsuite name="Test the dfsp jws certificate actions" errors="0" failures="0" skipped="0" timestamp="2025-03-11T15:22:40" time="0.343" tests="14">
     <testcase classname="Test the dfsp jws certificate actions Should reset the reducers" name="Test the dfsp jws certificate actions Should reset the reducers" time="0.002">
     </testcase>
     <testcase classname="Test the dfsp jws certificate actions Should set the error" name="Test the dfsp jws certificate actions Should set the error" time="0.001">
     </testcase>
-    <testcase classname="Test the dfsp jws certificate actions Should set the jws certificate" name="Test the dfsp jws certificate actions Should set the jws certificate" time="0.002">
+    <testcase classname="Test the dfsp jws certificate actions Should set the jws certificate" name="Test the dfsp jws certificate actions Should set the jws certificate" time="0.001">
     </testcase>
     <testcase classname="Test the dfsp jws certificate actions Should set the intermediate chain" name="Test the dfsp jws certificate actions Should set the intermediate chain" time="0.001">
     </testcase>
-    <testcase classname="Test the dfsp jws certificate actions Should set the jws certificate info" name="Test the dfsp jws certificate actions Should set the jws certificate info" time="0.001">
+    <testcase classname="Test the dfsp jws certificate actions Should set the jws certificate info" name="Test the dfsp jws certificate actions Should set the jws certificate info" time="0.002">
     </testcase>
-    <testcase classname="Test the dfsp jws certificate actions Should set the intermediate chain info" name="Test the dfsp jws certificate actions Should set the intermediate chain info" time="0.002">
+    <testcase classname="Test the dfsp jws certificate actions Should set the intermediate chain info" name="Test the dfsp jws certificate actions Should set the intermediate chain info" time="0.001">
     </testcase>
     <testcase classname="Test the dfsp jws certificate actions Should set the validations" name="Test the dfsp jws certificate actions Should set the validations" time="0.001">
     </testcase>
-    <testcase classname="Test the dfsp jws certificate actions Should set the validation state" name="Test the dfsp jws certificate actions Should set the validation state" time="0.001">
+    <testcase classname="Test the dfsp jws certificate actions Should set the validation state" name="Test the dfsp jws certificate actions Should set the validation state" time="0.004">
     </testcase>
     <testcase classname="Test the dfsp jws certificate actions Should change the jws cert" name="Test the dfsp jws certificate actions Should change the jws cert" time="0.001">
     </testcase>
@@ -421,17 +421,17 @@
     </testcase>
     <testcase classname="Test the dfsp jws certificate actions Should hide the jws certificate modal" name="Test the dfsp jws certificate actions Should hide the jws certificate modal" time="0.001">
     </testcase>
-    <testcase classname="Test the dfsp jws certificate actions Should show the intermediate chain modal" name="Test the dfsp jws certificate actions Should show the intermediate chain modal" time="0.002">
+    <testcase classname="Test the dfsp jws certificate actions Should show the intermediate chain modal" name="Test the dfsp jws certificate actions Should show the intermediate chain modal" time="0.001">
     </testcase>
     <testcase classname="Test the dfsp jws certificate actions Should hide the intermediate chain modal" name="Test the dfsp jws certificate actions Should hide the intermediate chain modal" time="0.002">
     </testcase>
   </testsuite>
-  <testsuite name="Test the dfsp ca actions" errors="0" failures="0" skipped="0" timestamp="2025-03-11T13:56:02" time="0.346" tests="12">
+  <testsuite name="Test the dfsp ca actions" errors="0" failures="0" skipped="0" timestamp="2025-03-11T15:22:40" time="0.315" tests="12">
     <testcase classname="Test the dfsp ca actions Should reset the reducers" name="Test the dfsp ca actions Should reset the reducers" time="0.002">
     </testcase>
-    <testcase classname="Test the dfsp ca actions Should set the error" name="Test the dfsp ca actions Should set the error" time="0.001">
+    <testcase classname="Test the dfsp ca actions Should set the error" name="Test the dfsp ca actions Should set the error" time="0.002">
     </testcase>
-    <testcase classname="Test the dfsp ca actions Should set the root cert" name="Test the dfsp ca actions Should set the root cert" time="0.006">
+    <testcase classname="Test the dfsp ca actions Should set the root cert" name="Test the dfsp ca actions Should set the root cert" time="0.005">
     </testcase>
     <testcase classname="Test the dfsp ca actions Should set the intermediate chain" name="Test the dfsp ca actions Should set the intermediate chain" time="0.002">
     </testcase>
@@ -441,89 +441,89 @@
     </testcase>
     <testcase classname="Test the dfsp ca actions Should change the root cert" name="Test the dfsp ca actions Should change the root cert" time="0.001">
     </testcase>
-    <testcase classname="Test the dfsp ca actions Should change the intermediate chain" name="Test the dfsp ca actions Should change the intermediate chain" time="0.001">
+    <testcase classname="Test the dfsp ca actions Should change the intermediate chain" name="Test the dfsp ca actions Should change the intermediate chain" time="0.002">
     </testcase>
-    <testcase classname="Test the dfsp ca actions Should show the root certificate modal" name="Test the dfsp ca actions Should show the root certificate modal" time="0.002">
+    <testcase classname="Test the dfsp ca actions Should show the root certificate modal" name="Test the dfsp ca actions Should show the root certificate modal" time="0.001">
     </testcase>
-    <testcase classname="Test the dfsp ca actions Should hide the root certificate modal" name="Test the dfsp ca actions Should hide the root certificate modal" time="0.001">
+    <testcase classname="Test the dfsp ca actions Should hide the root certificate modal" name="Test the dfsp ca actions Should hide the root certificate modal" time="0.003">
     </testcase>
     <testcase classname="Test the dfsp ca actions Should show the intermediate chain modal" name="Test the dfsp ca actions Should show the intermediate chain modal" time="0.001">
     </testcase>
     <testcase classname="Test the dfsp ca actions Should hide the intermediate chain modal" name="Test the dfsp ca actions Should hide the intermediate chain modal" time="0.001">
     </testcase>
   </testsuite>
-  <testsuite name="Test the HUB EXTERNAL CA actions" errors="0" failures="0" skipped="0" timestamp="2025-03-11T13:56:02" time="0.397" tests="8">
-    <testcase classname="Test the HUB EXTERNAL CA actions Should reset the reducers" name="Test the HUB EXTERNAL CA actions Should reset the reducers" time="0.005">
+  <testsuite name="Test the HUB EXTERNAL CA actions" errors="0" failures="0" skipped="0" timestamp="2025-03-11T15:22:41" time="0.308" tests="8">
+    <testcase classname="Test the HUB EXTERNAL CA actions Should reset the reducers" name="Test the HUB EXTERNAL CA actions Should reset the reducers" time="0.003">
     </testcase>
-    <testcase classname="Test the HUB EXTERNAL CA actions Should set the error" name="Test the HUB EXTERNAL CA actions Should set the error" time="0.002">
+    <testcase classname="Test the HUB EXTERNAL CA actions Should set the error" name="Test the HUB EXTERNAL CA actions Should set the error" time="0.001">
     </testcase>
-    <testcase classname="Test the HUB EXTERNAL CA actions Should change the root certificate" name="Test the HUB EXTERNAL CA actions Should change the root certificate" time="0.001">
+    <testcase classname="Test the HUB EXTERNAL CA actions Should change the root certificate" name="Test the HUB EXTERNAL CA actions Should change the root certificate" time="0.002">
     </testcase>
-    <testcase classname="Test the HUB EXTERNAL CA actions Should change the intermediate chain" name="Test the HUB EXTERNAL CA actions Should change the intermediate chain" time="0.002">
+    <testcase classname="Test the HUB EXTERNAL CA actions Should change the intermediate chain" name="Test the HUB EXTERNAL CA actions Should change the intermediate chain" time="0.001">
     </testcase>
     <testcase classname="Test the HUB EXTERNAL CA actions Should show the root certificate modal" name="Test the HUB EXTERNAL CA actions Should show the root certificate modal" time="0.002">
     </testcase>
     <testcase classname="Test the HUB EXTERNAL CA actions Should hide the root certificate modal" name="Test the HUB EXTERNAL CA actions Should hide the root certificate modal" time="0.001">
     </testcase>
-    <testcase classname="Test the HUB EXTERNAL CA actions Should show the intermediate chain modal" name="Test the HUB EXTERNAL CA actions Should show the intermediate chain modal" time="0.001">
+    <testcase classname="Test the HUB EXTERNAL CA actions Should show the intermediate chain modal" name="Test the HUB EXTERNAL CA actions Should show the intermediate chain modal" time="0.002">
     </testcase>
     <testcase classname="Test the HUB EXTERNAL CA actions Should hide the intermediate chain modal" name="Test the HUB EXTERNAL CA actions Should hide the intermediate chain modal" time="0.001">
     </testcase>
   </testsuite>
-  <testsuite name="Test the hub dfsp csrs actions" errors="0" failures="0" skipped="0" timestamp="2025-03-11T13:56:02" time="0.332" tests="5">
+  <testsuite name="Test the hub dfsp csrs actions" errors="0" failures="0" skipped="0" timestamp="2025-03-11T15:22:41" time="0.32" tests="5">
     <testcase classname="Test the hub dfsp csrs actions Should reset the reducers" name="Test the hub dfsp csrs actions Should reset the reducers" time="0.007">
     </testcase>
-    <testcase classname="Test the hub dfsp csrs actions Should set the error" name="Test the hub dfsp csrs actions Should set the error" time="0.001">
+    <testcase classname="Test the hub dfsp csrs actions Should set the error" name="Test the hub dfsp csrs actions Should set the error" time="0.002">
     </testcase>
     <testcase classname="Test the hub dfsp csrs actions Should set the CSR" name="Test the hub dfsp csrs actions Should set the CSR" time="0.001">
     </testcase>
-    <testcase classname="Test the hub dfsp csrs actions Should show the CSR modal" name="Test the hub dfsp csrs actions Should show the CSR modal" time="0.001">
+    <testcase classname="Test the hub dfsp csrs actions Should show the CSR modal" name="Test the hub dfsp csrs actions Should show the CSR modal" time="0.002">
     </testcase>
     <testcase classname="Test the hub dfsp csrs actions Should hide the CSR modal" name="Test the hub dfsp csrs actions Should hide the CSR modal" time="0.001">
     </testcase>
   </testsuite>
-  <testsuite name="Test the dfsp JWS certificate actions" errors="0" failures="0" skipped="0" timestamp="2025-03-11T13:56:03" time="0.36" tests="6">
-    <testcase classname="Test the dfsp JWS certificate actions Should reset the reducers" name="Test the dfsp JWS certificate actions Should reset the reducers" time="0.001">
+  <testsuite name="Test the dfsp JWS certificate actions" errors="0" failures="0" skipped="0" timestamp="2025-03-11T15:22:41" time="0.347" tests="6">
+    <testcase classname="Test the dfsp JWS certificate actions Should reset the reducers" name="Test the dfsp JWS certificate actions Should reset the reducers" time="0">
     </testcase>
     <testcase classname="Test the dfsp JWS certificate actions Should set and retrieve the error state" name="Test the dfsp JWS certificate actions Should set and retrieve the error state" time="0.001">
     </testcase>
-    <testcase classname="Test the dfsp JWS certificate actions Should set and retrieve the filter" name="Test the dfsp JWS certificate actions Should set and retrieve the filter" time="0">
+    <testcase classname="Test the dfsp JWS certificate actions Should set and retrieve the filter" name="Test the dfsp JWS certificate actions Should set and retrieve the filter" time="0.001">
     </testcase>
-    <testcase classname="Test the dfsp JWS certificate actions Should set and retrieve JWS certificates" name="Test the dfsp JWS certificate actions Should set and retrieve JWS certificates" time="0.001">
+    <testcase classname="Test the dfsp JWS certificate actions Should set and retrieve JWS certificates" name="Test the dfsp JWS certificate actions Should set and retrieve JWS certificates" time="0">
     </testcase>
-    <testcase classname="Test the dfsp JWS certificate actions Should toggle the JWS certificate modal" name="Test the dfsp JWS certificate actions Should toggle the JWS certificate modal" time="0">
+    <testcase classname="Test the dfsp JWS certificate actions Should toggle the JWS certificate modal" name="Test the dfsp JWS certificate actions Should toggle the JWS certificate modal" time="0.001">
     </testcase>
-    <testcase classname="Test the dfsp JWS certificate actions Should toggle the intermediate chain modal" name="Test the dfsp JWS certificate actions Should toggle the intermediate chain modal" time="0">
+    <testcase classname="Test the dfsp JWS certificate actions Should toggle the intermediate chain modal" name="Test the dfsp JWS certificate actions Should toggle the intermediate chain modal" time="0.001">
     </testcase>
   </testsuite>
-  <testsuite name="Test the dfsp ca actions" errors="0" failures="0" skipped="0" timestamp="2025-03-11T13:56:03" time="0.388" tests="5">
+  <testsuite name="Test the dfsp ca actions" errors="0" failures="0" skipped="0" timestamp="2025-03-11T15:22:42" time="0.38" tests="5">
     <testcase classname="Test the dfsp ca actions Should reset the reducers" name="Test the dfsp ca actions Should reset the reducers" time="0.002">
     </testcase>
-    <testcase classname="Test the dfsp ca actions Should set the error" name="Test the dfsp ca actions Should set the error" time="0.001">
+    <testcase classname="Test the dfsp ca actions Should set the error" name="Test the dfsp ca actions Should set the error" time="0.002">
     </testcase>
-    <testcase classname="Test the dfsp ca actions Should set the CSR" name="Test the dfsp ca actions Should set the CSR" time="0.002">
+    <testcase classname="Test the dfsp ca actions Should set the CSR" name="Test the dfsp ca actions Should set the CSR" time="0.001">
     </testcase>
-    <testcase classname="Test the dfsp ca actions Should show the CSR modal" name="Test the dfsp ca actions Should show the CSR modal" time="0.002">
+    <testcase classname="Test the dfsp ca actions Should show the CSR modal" name="Test the dfsp ca actions Should show the CSR modal" time="0.001">
     </testcase>
     <testcase classname="Test the dfsp ca actions Should hide the CSR modal" name="Test the dfsp ca actions Should hide the CSR modal" time="0.002">
     </testcase>
   </testsuite>
-  <testsuite name="DFSP Thunk Actions" errors="0" failures="0" skipped="0" timestamp="2025-03-11T13:56:04" time="0.991" tests="4">
-    <testcase classname="DFSP Thunk Actions should redirect to root when environment is not set" name="DFSP Thunk Actions should redirect to root when environment is not set" time="0.004">
+  <testsuite name="DFSP Thunk Actions" errors="0" failures="0" skipped="0" timestamp="2025-03-11T15:22:42" time="0.987" tests="4">
+    <testcase classname="DFSP Thunk Actions should redirect to root when environment is not set" name="DFSP Thunk Actions should redirect to root when environment is not set" time="0.003">
     </testcase>
-    <testcase classname="DFSP Thunk Actions should handle error when API request fails" name="DFSP Thunk Actions should handle error when API request fails" time="0.017">
+    <testcase classname="DFSP Thunk Actions should handle error when API request fails" name="DFSP Thunk Actions should handle error when API request fails" time="0.023">
     </testcase>
-    <testcase classname="DFSP Thunk Actions should return correct data when API response is successful" name="DFSP Thunk Actions should return correct data when API response is successful" time="0.01">
+    <testcase classname="DFSP Thunk Actions should return correct data when API response is successful" name="DFSP Thunk Actions should return correct data when API response is successful" time="0.015">
     </testcase>
     <testcase classname="DFSP Thunk Actions should ensure loading state is true when waiting for the API response" name="DFSP Thunk Actions should ensure loading state is true when waiting for the API response" time="0.605">
     </testcase>
   </testsuite>
-  <testsuite name="HUB EXTERNAL CA Actions &amp; Selectors" errors="0" failures="0" skipped="0" timestamp="2025-03-11T13:56:05" time="0.408" tests="6">
+  <testsuite name="HUB EXTERNAL CA Actions &amp; Selectors" errors="0" failures="0" skipped="0" timestamp="2025-03-11T15:22:43" time="0.377" tests="6">
     <testcase classname="HUB EXTERNAL CA Actions &amp; Selectors Reducer Reset resets the HUB EXTERNAL CA state" name="HUB EXTERNAL CA Actions &amp; Selectors Reducer Reset resets the HUB EXTERNAL CA state" time="0.002">
     </testcase>
-    <testcase classname="HUB EXTERNAL CA Actions &amp; Selectors Error Handling sets the error message" name="HUB EXTERNAL CA Actions &amp; Selectors Error Handling sets the error message" time="0.001">
+    <testcase classname="HUB EXTERNAL CA Actions &amp; Selectors Error Handling sets the error message" name="HUB EXTERNAL CA Actions &amp; Selectors Error Handling sets the error message" time="0">
     </testcase>
-    <testcase classname="HUB EXTERNAL CA Actions &amp; Selectors Modals shows the root certificate modal" name="HUB EXTERNAL CA Actions &amp; Selectors Modals shows the root certificate modal" time="0.001">
+    <testcase classname="HUB EXTERNAL CA Actions &amp; Selectors Modals shows the root certificate modal" name="HUB EXTERNAL CA Actions &amp; Selectors Modals shows the root certificate modal" time="0">
     </testcase>
     <testcase classname="HUB EXTERNAL CA Actions &amp; Selectors Modals hides the root certificate modal" name="HUB EXTERNAL CA Actions &amp; Selectors Modals hides the root certificate modal" time="0.001">
     </testcase>
@@ -532,26 +532,26 @@
     <testcase classname="HUB EXTERNAL CA Actions &amp; Selectors Modals hides the intermediate chain modal" name="HUB EXTERNAL CA Actions &amp; Selectors Modals hides the intermediate chain modal" time="0.001">
     </testcase>
   </testsuite>
-  <testsuite name="Test the dfsp ca actions" errors="0" failures="0" skipped="0" timestamp="2025-03-11T13:56:05" time="0.436" tests="6">
-    <testcase classname="Test the dfsp ca actions Should reset the reducers" name="Test the dfsp ca actions Should reset the reducers" time="0.002">
+  <testsuite name="Test the dfsp ca actions" errors="0" failures="0" skipped="0" timestamp="2025-03-11T15:22:43" time="0.428" tests="6">
+    <testcase classname="Test the dfsp ca actions Should reset the reducers" name="Test the dfsp ca actions Should reset the reducers" time="0.003">
     </testcase>
-    <testcase classname="Test the dfsp ca actions Should set the error" name="Test the dfsp ca actions Should set the error" time="0.001">
+    <testcase classname="Test the dfsp ca actions Should set the error" name="Test the dfsp ca actions Should set the error" time="0.002">
     </testcase>
-    <testcase classname="Test the dfsp ca actions Should set the CSR" name="Test the dfsp ca actions Should set the CSR" time="0.001">
+    <testcase classname="Test the dfsp ca actions Should set the CSR" name="Test the dfsp ca actions Should set the CSR" time="0.003">
     </testcase>
-    <testcase classname="Test the dfsp ca actions Should set the filter" name="Test the dfsp ca actions Should set the filter" time="0.001">
+    <testcase classname="Test the dfsp ca actions Should set the filter" name="Test the dfsp ca actions Should set the filter" time="0.003">
     </testcase>
-    <testcase classname="Test the dfsp ca actions Should show the CSR modal" name="Test the dfsp ca actions Should show the CSR modal" time="0.002">
+    <testcase classname="Test the dfsp ca actions Should show the CSR modal" name="Test the dfsp ca actions Should show the CSR modal" time="0.006">
     </testcase>
     <testcase classname="Test the dfsp ca actions Should hide the CSR modal" name="Test the dfsp ca actions Should hide the CSR modal" time="0.002">
     </testcase>
   </testsuite>
-  <testsuite name="Test the hub dfsps ca actions" errors="0" failures="0" skipped="0" timestamp="2025-03-11T13:56:05" time="0.492" tests="6">
+  <testsuite name="Test the hub dfsps ca actions" errors="0" failures="0" skipped="0" timestamp="2025-03-11T15:22:44" time="0.461" tests="6">
     <testcase classname="Test the hub dfsps ca actions Should reset the reducers" name="Test the hub dfsps ca actions Should reset the reducers" time="0.001">
     </testcase>
-    <testcase classname="Test the hub dfsps ca actions Should set the error" name="Test the hub dfsps ca actions Should set the error" time="0.006">
+    <testcase classname="Test the hub dfsps ca actions Should set the error" name="Test the hub dfsps ca actions Should set the error" time="0.001">
     </testcase>
-    <testcase classname="Test the hub dfsps ca actions Should set the root cert" name="Test the hub dfsps ca actions Should set the root cert" time="0.001">
+    <testcase classname="Test the hub dfsps ca actions Should set the root cert" name="Test the hub dfsps ca actions Should set the root cert" time="0">
     </testcase>
     <testcase classname="Test the hub dfsps ca actions Should show the root certificate modal" name="Test the hub dfsps ca actions Should show the root certificate modal" time="0">
     </testcase>
@@ -560,22 +560,22 @@
     <testcase classname="Test the hub dfsps ca thunk actions Should set the error when read operation fails (500 error)" name="Test the hub dfsps ca thunk actions Should set the error when read operation fails (500 error)" time="0.002">
     </testcase>
   </testsuite>
-  <testsuite name="DFSP CSR Actions &amp; Selectors" errors="0" failures="0" skipped="0" timestamp="2025-03-11T13:56:06" time="0.433" tests="6">
+  <testsuite name="DFSP CSR Actions &amp; Selectors" errors="0" failures="0" skipped="0" timestamp="2025-03-11T15:22:44" time="0.432" tests="6">
     <testcase classname="DFSP CSR Actions &amp; Selectors resets the CSR reducers" name="DFSP CSR Actions &amp; Selectors resets the CSR reducers" time="0.001">
     </testcase>
     <testcase classname="DFSP CSR Actions &amp; Selectors sets the CSR certificate" name="DFSP CSR Actions &amp; Selectors sets the CSR certificate" time="0.001">
     </testcase>
-    <testcase classname="DFSP CSR Actions &amp; Selectors shows the CSR modal" name="DFSP CSR Actions &amp; Selectors shows the CSR modal" time="0.001">
+    <testcase classname="DFSP CSR Actions &amp; Selectors shows the CSR modal" name="DFSP CSR Actions &amp; Selectors shows the CSR modal" time="0">
     </testcase>
-    <testcase classname="DFSP CSR Actions &amp; Selectors hides the CSR modal" name="DFSP CSR Actions &amp; Selectors hides the CSR modal" time="0">
+    <testcase classname="DFSP CSR Actions &amp; Selectors hides the CSR modal" name="DFSP CSR Actions &amp; Selectors hides the CSR modal" time="0.001">
     </testcase>
-    <testcase classname="DFSP CSR Actions &amp; Selectors Submit Button Behavior does not enable submit when certificate is not set" name="DFSP CSR Actions &amp; Selectors Submit Button Behavior does not enable submit when certificate is not set" time="0">
+    <testcase classname="DFSP CSR Actions &amp; Selectors Submit Button Behavior does not enable submit when certificate is not set" name="DFSP CSR Actions &amp; Selectors Submit Button Behavior does not enable submit when certificate is not set" time="0.001">
     </testcase>
     <testcase classname="DFSP CSR Actions &amp; Selectors Submit Button Behavior enables submit when certificate is set" name="DFSP CSR Actions &amp; Selectors Submit Button Behavior enables submit when certificate is set" time="0.001">
     </testcase>
   </testsuite>
-  <testsuite name="DFSP Hub CA Actions &amp; Selectors" errors="0" failures="0" skipped="0" timestamp="2025-03-11T13:56:16" time="0.668" tests="5">
-    <testcase classname="DFSP Hub CA Actions &amp; Selectors Reducer Reset resets the DFSP Hub CA state" name="DFSP Hub CA Actions &amp; Selectors Reducer Reset resets the DFSP Hub CA state" time="0.001">
+  <testsuite name="DFSP Hub CA Actions &amp; Selectors" errors="0" failures="0" skipped="0" timestamp="2025-03-11T15:22:48" time="0.444" tests="5">
+    <testcase classname="DFSP Hub CA Actions &amp; Selectors Reducer Reset resets the DFSP Hub CA state" name="DFSP Hub CA Actions &amp; Selectors Reducer Reset resets the DFSP Hub CA state" time="0.002">
     </testcase>
     <testcase classname="DFSP Hub CA Actions &amp; Selectors Error Handling sets the error message" name="DFSP Hub CA Actions &amp; Selectors Error Handling sets the error message" time="0.001">
     </testcase>
@@ -586,14 +586,14 @@
     <testcase classname="DFSP Hub CA Actions &amp; Selectors Root Certificate Management hides the root certificate modal" name="DFSP Hub CA Actions &amp; Selectors Root Certificate Management hides the root certificate modal" time="0.001">
     </testcase>
   </testsuite>
-  <testsuite name="Redux Store Reducers" errors="0" failures="0" skipped="0" timestamp="2025-03-11T13:56:17" time="0.662" tests="1">
+  <testsuite name="Redux Store Reducers" errors="0" failures="0" skipped="0" timestamp="2025-03-11T15:22:48" time="0.346" tests="1">
     <testcase classname="Redux Store Reducers Creates all the reducers" name="Redux Store Reducers Creates all the reducers" time="0.002">
     </testcase>
   </testsuite>
-  <testsuite name="Test the hub actions" errors="0" failures="0" skipped="0" timestamp="2025-03-11T13:56:18" time="0.696" tests="2">
-    <testcase classname="Test the hub actions Should set the hub loading" name="Test the hub actions Should set the hub loading" time="0.002">
+  <testsuite name="Test the hub actions" errors="0" failures="0" skipped="0" timestamp="2025-03-11T15:22:49" time="0.406" tests="2">
+    <testcase classname="Test the hub actions Should set the hub loading" name="Test the hub actions Should set the hub loading" time="0.001">
     </testcase>
-    <testcase classname="Test the hub actions Should unset the hub loading" name="Test the hub actions Should unset the hub loading" time="0.001">
+    <testcase classname="Test the hub actions Should unset the hub loading" name="Test the hub actions Should unset the hub loading" time="0">
     </testcase>
   </testsuite>
 </testsuites>
