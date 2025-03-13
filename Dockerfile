@@ -54,20 +54,13 @@ ENV PUBLIC_URL=.
 ENV GENERATE_SOURCEMAP=false
 
 # Build the React app using npm
-ENV NODE_VERSION_16=16.20.2
-RUN . $NVM_DIR/nvm.sh \
-    && nvm install $NODE_VERSION_16 \
-    && nvm alias default $NODE_VERSION_16 \
-    && nvm use default \
-    && node --version \
-    && npm run build --verbose
-
+RUN npm run build --verbose
 
 # Second part, copy the build and server the app using a node express server
-# RUN cp -r /app/build /app/server/
+RUN cp -r /app/build /app/server/
 
-# WORKDIR /app/server
-# RUN npm install
+WORKDIR /app/server
+RUN npm install
 
 # Expose port 8080
 EXPOSE 8080
