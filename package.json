@@ -1,6 +1,6 @@
 {
   "name": "connection-manager-ui",
-  "version": "1.8.4",
+  "version": "1.8.5",
   "private": true,
   "dependencies": {
     "@babel/polyfill": "^7.12.1",
@@ -37,6 +37,7 @@
     "prettier": "prettier --write 'src/**/*.{css,js}'",
     "start": "react-app-rewired start",
     "build": "react-app-rewired build",
+    "build:prod": "cross-env GENERATE_SOURCEMAP=false NODE_ENV=production react-app-rewired build",
     "test": "react-app-rewired test",
     "eject": "react-scripts eject",
     "audit:check": "npx audit-ci --config ./audit-ci.jsonc",
@@ -48,7 +49,7 @@
     "snapshot": "standard-version --no-verify --skip.changelog --prerelease snapshot --releaseCommitMessageFormat 'chore(snapshot): {{currentTag}}'",
     "test:xunit": "react-app-rewired test --watchAll=false",
     "test:nowatch": "CI=true react-app-rewired test --env=jsdom",
-    "test:coverage": "CI=true npx nyc --reporter=lcov --reporter=text --reporter=text-summary react-app-rewired test --watchAll=false -- --coverage",
+    "test:coverage": "CI=true npx nyc --reporter=lcov --reporter=text --reporter=text-summary npm run test --watchAll=false -- --coverage",
     "test:coverage-check": "npm run test:coverage && nyc check-coverage"
 
   },
@@ -75,6 +76,7 @@
     "@babel/plugin-transform-runtime": "^7.26.0",
     "@types/chance": "^1.1.6",
     "babel-jest": "^29.7.0",
+    "cross-env": "^7.0.3",
     "dotenv": "^16.4.7",
     "eslint": "^7.32.0",
     "eslint-config-react-app": "^7.0.1",
