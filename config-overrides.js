@@ -7,6 +7,18 @@ module.exports = function override(config, env) {
     };
   }
 
+  // Add resolve configuration
+  config.resolve = {
+    ...config.resolve,
+    modules: [
+      'node_modules',
+      `${process.cwd()}/src`
+    ],
+    alias: {
+      ...config.resolve.alias
+    }
+  };
+
   return config;
 }
 

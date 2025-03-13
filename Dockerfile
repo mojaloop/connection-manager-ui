@@ -1,4 +1,4 @@
-FROM node:14-alpine3.14
+FROM node:16-alpine3.16
 
 # First part, build the app
 WORKDIR /app
@@ -29,8 +29,8 @@ ENV REACT_APP_COMMIT=$REACT_APP_COMMIT
 ENV NODE_ENV=production
 ENV PUBLIC_URL=.
 
-# Build the React app using npm with additional flags
-RUN npm run build -- --prefer-relative
+# Build the React app using npm
+RUN npm run build
 
 # Second part, copy the build and server the app using a node express server
 RUN cp -r /app/build /app/server/
