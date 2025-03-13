@@ -48,7 +48,7 @@
     "snapshot": "standard-version --no-verify --skip.changelog --prerelease snapshot --releaseCommitMessageFormat 'chore(snapshot): {{currentTag}}'",
     "test:xunit": "react-app-rewired test --watchAll=false",
     "test:nowatch": "CI=true react-app-rewired test --env=jsdom",
-    "test:coverage": "CI=true npx nyc --reporter=lcov --reporter=text --watchAll=false --reporter=text-summary npm run test -- --coverage",
+    "test:coverage": "CI=true npx nyc --reporter=lcov --reporter=text --reporter=text-summary react-app-rewired test --watchAll=false -- --coverage",
     "test:coverage-check": "npm run test:coverage && nyc check-coverage"
 
   },
