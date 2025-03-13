@@ -31,7 +31,7 @@ ENV SKIP_PREFLIGHT_CHECK=true
 
 RUN npm config set python python2
 RUN python2 --version
-RUN npm install --legacy-peer-deps --force
+RUN npm install --legacy-peer-deps
 COPY ./ /app/
 
 # Set environment variables
