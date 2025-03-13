@@ -20,7 +20,7 @@ module.exports = {
   collectCoverage: true,  // Collect test coverage information
   coverageDirectory: 'coverage',  // Directory to store coverage reports
   coverageProvider: 'v8',
-  coverageReporters: ['json', 'text', 'lcov', 'text-summary'],
+  coverageReporters: ['json', 'text', 'lcov', 'text-summary', 'clover'],
   coverageThreshold: {
     global: {
       statements: 0,
