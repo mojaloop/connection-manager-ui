@@ -51,7 +51,8 @@
     "test:nowatch": "CI=true react-app-rewired test --env=jsdom",
     "test:coverage": "CI=true npx nyc --reporter=lcov --reporter=text --reporter=text-summary --reporter=clover npm run test --watchAll=false -- --coverage --detectOpenHandles",
     "test:coverage-check": "npm run test:coverage && npx nyc check-coverage",
-    "test:functional": "./test/scripts/test-functional.sh"
+    "test:functional": "./test/scripts/test-functional.sh",
+    "test:integration": "./test/scripts/test-integration.sh"
 
   },
   "eslintConfig": {
