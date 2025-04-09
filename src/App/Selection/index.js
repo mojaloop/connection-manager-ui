@@ -22,6 +22,7 @@ const Selection = ({ dfsps, isDfspsPending, onHubClick, onDFSPClick }) => {
 };
 
 const AppSelection = ({ isPending, dfsps, onHubClick, onDFSPClick }) => {
+  console.log('isPending:', isPending); 
   if (isPending) {
     return <Spinner size={20} center />;
   }
