@@ -16,7 +16,7 @@ jobs:
     - name: Install dependencies in environment
       run: nix-env -if integration_test/default.nix
     - name: Validate integration test manifest
-      run: kustomize build integration_test | kubeconform -strict -kubernetes-version 1.32.0
+      run: kustomize build integration_test | kubeconform -strict -kubernetes-version 1.31.0
 
   integration_test:
     timeout-minutes: 45
@@ -41,7 +41,7 @@ jobs:
         sudo apt-get -f install
 
     - name: Start cluster
-      run: minikube start --driver=docker --kubernetes-version=v1.32.0
+      run: minikube start --driver=docker --kubernetes-version=v1.31.0
 
     - name: Add Vault Helm Repo
       run: helm repo add hashicorp https://helm.releases.hashicorp.com
@@ -90,7 +90,7 @@ jobs:
 
     - name: Archive test report
       if: ${{ always() }}
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v4
       with:
         name: test-report
         path: integration_test/tests/report.html
