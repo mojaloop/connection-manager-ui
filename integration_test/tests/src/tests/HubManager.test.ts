@@ -13,7 +13,7 @@ import { Selector } from 'testcafe';
 fixture `Hub Management Feature`
   .page`${config.connectionManagerEndpoint}`
   .beforeEach(async (t) => {
-    await waitForReact();
+    await waitForReact(60000);
     await t
       .click(LandingMenu.hubButton).wait(1000);
   });
