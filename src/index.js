@@ -1,4 +1,4 @@
-import 'babel-polyfill';
+import 'react-app-polyfill/stable';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
@@ -11,13 +11,13 @@ import configureStore from 'utils/store';
 import getConfig from 'utils/getConfig';
 import { setAppConfig, initApp } from 'App/actions';
 import { setAuthEnabled, setAuthDisabled } from 'Auth/actions';
-import App from 'App/index.js';
-import Auth from 'Auth/index.js';
+import App from 'App';
+import Auth from 'Auth';
 import PasswordChange from 'Auth/PasswordChange';
 import TOTP from 'Auth/TOTP';
-import 'icons/index';
-import 'assets/normalize.css';
-import 'index.css';
+import 'icons';
+import './assets/normalize.css';
+import './index.css';
 
 // setup browser history for client side routing
 const history = createBrowserHistory({
