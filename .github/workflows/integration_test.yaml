@@ -47,7 +47,7 @@ jobs:
       run: helm repo add hashicorp https://helm.releases.hashicorp.com
 
     - name: Install Vault on cluster
-      run: helm install vault hashicorp/vault --values integration_test/manifests/vault/helm-values.yaml
+      run: helm install vault hashicorp/vault
 
     - name: Wait for kube api server to process and create vault
       run: sleep 60s
