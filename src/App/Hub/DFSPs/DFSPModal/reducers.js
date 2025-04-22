@@ -7,20 +7,24 @@ import {
   SET_HUB_DFSP_MODAL_NAME,
   SET_HUB_DFSP_MODAL_ID,
   SET_HUB_DFSP_MODAL_MONETARY_ZONE,
+  SET_HUB_DFSP_MODAL_EMAIL,
 } from './actions';
 
 const initialHubDfspModel = {
   id: undefined,
   name: '',
   monetaryZoneId: undefined,
+  email: '',
 };
 
 const initialState = {
   previousHubDfspMonetaryZoneId: initialHubDfspModel.monetaryZoneId,
   previousHubDfspName: initialHubDfspModel.name,
   previousHubDfspId: initialHubDfspModel.id,
+  previousHubDfspEmail: initialHubDfspModel.email,
   hubDfspMonetaryZoneId: initialHubDfspModel.monetaryZoneId,
   hubDfspName: initialHubDfspModel.name,
+  hubDfspEmail: initialHubDfspModel.email,
   hubDfspOverrideId: initialHubDfspModel.id,
   hubDfspDefaultId: undefined,
   isHubDfspOverrideIdSet: false,
@@ -37,8 +41,10 @@ const HubDfspModal = handleActions(
         previousHubDfspMonetaryZoneId: model.monetaryZoneId,
         previousHubDfspName: model.name,
         previousHubDfspId: model.id,
+        previousHubDfspEmail: model.email,
         hubDfspMonetaryZoneId: model.monetaryZoneId,
         hubDfspName: model.name,
+        hubDfspEmail: model.email || '',
         hubDfspOverrideId: model.id,
         isHubDfspOverrideIdSet: action.payload !== undefined,
       };
@@ -52,6 +58,10 @@ const HubDfspModal = handleActions(
       ...state,
       hubDfspOverrideId: action.payload,
       isHubDfspOverrideIdSet: true,
+    }),
+    [SET_HUB_DFSP_MODAL_EMAIL]: (state, action) => ({
+      ...state,
+      hubDfspEmail: action.payload,
     }),
     [SET_HUB_DFSP_MODAL_MONETARY_ZONE]: (state, action) => ({
       ...state,

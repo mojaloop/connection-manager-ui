@@ -6,9 +6,17 @@ const uniqueNameValidator = (name, isUnique) =>
 const uniqueIdValidator = (id, isUnique) =>
   createValidator('DFSP ID must be unique', () => (id !== undefined ? isUnique : false));
 
-const getHubDfspModalValidators = (name, isNameUnique, id, isIdUnique) => ({
+const emailValidator = (email) =>
+  createValidator('Invalid email format', () => {
+    if (!email) return true;
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  });
+
+const getHubDfspModalValidators = (name, isNameUnique, id, isIdUnique, email) => ({
   name: createValidation([vd.isRequired, uniqueNameValidator(name, isNameUnique)]),
   dfspId: createValidation([vd.isRequired, uniqueIdValidator(id, isIdUnique)]),
+  email: createValidation([emailValidator(email)]),
 });
 
 export { getHubDfspModalValidators };

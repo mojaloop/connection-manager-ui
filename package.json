@@ -1,6 +1,6 @@
 {
   "name": "connection-manager-ui",
-  "version": "1.8.4",
+  "version": "1.9.0",
   "private": true,
   "dependencies": {
     "@pm4ml/mojaloop-payment-manager-ui-components-legacy": "^1.23.1",
