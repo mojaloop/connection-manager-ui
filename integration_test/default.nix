@@ -5,12 +5,12 @@
 
 let
   k3d = nixpkgs.stdenv.mkDerivation rec {
-    version = "5.4.6";  # Updated version
+    version = "5.8.3";  # Updated version
     pname = "k3d";
 
     src = builtins.fetchurl {
-      url = "https://github.com/rancher/k3d/releases/download/v5.4.6/k3d-linux-amd64";  # Updated URL
-      sha256 = "8075d40c74c97d2642f15f535cb48d6d6e82df143f528833a193d87caac6a176";  # Correct SHA256
+      url = "https://github.com/rancher/k3d/releases/download/v5.8.3/k3d-linux-amd64";  # Updated URL
+      sha256 = "dbaa79a76ace7f4ca230a1ff41dc7d8a5036a8ad0309e9c54f9bf3836dbe853e";  # Replace with the correct SHA256
     };
 
     dontUnpack = true;
@@ -25,11 +25,11 @@ let
   };
 
   skaffold = nixpkgs.stdenv.mkDerivation rec {
-    version = "1.35.0";  # Updated version
+    version = "2.15.0";  # Updated version
     pname = "skaffold";
     src = builtins.fetchurl {
-      url = "https://github.com/GoogleContainerTools/skaffold/releases/download/v1.35.0/skaffold-linux-amd64";  # Updated URL
-      sha256 = "f19458e10b199c713ec4d0b8915ed7ecfba199ec9a89ff18e157576faf337ed2";  # Correct SHA256
+      url = "https://github.com/GoogleContainerTools/skaffold/releases/download/v2.15.0/skaffold-linux-amd64";  # Updated URL
+      sha256 = "089d45bca89437ef47739cf01f1d50c50855ccb483bf18b43a8303d12005c8c5";  # Replace with the correct SHA256
     };
     dontUnpack = true;
     installPhase = ''
