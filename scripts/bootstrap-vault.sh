@@ -1,7 +1,6 @@
 set -euxo pipefail
 # Init vault and save keys
-kubectl get pods
-kubectl get pod vault-0 -o yaml
+kubectl wait --for=condition=Ready pod/vault-0
 kubectl exec vault-0 -- vault operator init -key-shares=1 -key-threshold=1 -format=json > cluster-keys.json
 
 # Store key and unseal vault
