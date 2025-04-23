@@ -53,7 +53,7 @@ jobs:
       run: sleep 60s
 
     - name: Wait for vault to be initialized
-      run: timeout 900 kubectl wait --for=condition=Ready pod/vault-0 --timeout=900s
+      run: timeout 900 kubectl wait --for=condition=Initialized pod vault-0 --timeout=900s
 
     - name: Bootstrap Vault
       run: . scripts/bootstrap-vault.sh
