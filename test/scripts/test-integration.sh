@@ -10,6 +10,9 @@ export BROWSER_TCAFE=chrome:headless
 export DISPLAY=:99
 Xvfb :99 -screen 0 1024x768x16 &
 
+# temporarily disable auth for integration tests
+sed -i 's/AUTH_ENABLED=true/AUTH_ENABLED=false/' .env
+
 cd ${PROJECT_ROOT}/tmp
 
 # checkout connection-maanger-api and run docker services
@@ -17,8 +20,6 @@ git clone https://github.com/pm4ml/connection-manager-api.git
 cd connection-manager-api
 git checkout feat/integration-test
 
-# temporarily disable auth for integration tests
-sed -i 's/AUTH_ENABLED=true/AUTH_ENABLED=false/' .env
 
 cd ${PROJECT_ROOT}/connection-manager-api
 
