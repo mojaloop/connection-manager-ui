@@ -13,7 +13,7 @@ Xvfb :99 -screen 0 1024x768x16 &
 cd ${PROJECT_ROOT}/tmp
 
 # checkout connection-maanger-api and run docker services
-git clone https://github.com/finos/connection-manager-api.git
+git clone https://github.com/pm4ml/connection-manager-api.git
 cd connection-manager-api
 git checkout feat/integration-test
 
