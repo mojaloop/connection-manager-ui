@@ -11,7 +11,7 @@ export DISPLAY=:99
 Xvfb :99 -screen 0 1024x768x16 &
 
 # temporarily disable auth for integration tests
-sed -i 's/AUTH_ENABLED=true/AUTH_ENABLED=false/' .env
+sed -i 's/AUTH_ENABLED=true/AUTH_ENABLED=false/' ../../.env
 
 cd ${PROJECT_ROOT}/tmp
 
