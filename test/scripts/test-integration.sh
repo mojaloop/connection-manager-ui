@@ -20,9 +20,6 @@ git clone https://github.com/pm4ml/connection-manager-api.git
 cd connection-manager-api
 git checkout feat/integration-test
 
-
-cd ${PROJECT_ROOT}/connection-manager-api
-
 cat <<EOF >> .env
 PORT=3001
 DATABASE_HOST=localhost
