@@ -15,7 +15,7 @@
     "env-var": "^7.0.1",
     "mojaloop-voodoo-client": "0.7.0",
     "request": "2.88.2",
-    "testcafe": "1.17.0",
+    "testcafe": "1.18.1",
     "testcafe-react-selectors": "4.1.1",
     "testcafe-reporter-allure": "1.0.5",
     "testcafe-reporter-allure-expanded": "^1.1.0",
@@ -29,7 +29,6 @@
     "lint:fix": "eslint . --fix",
     "test": "testcafe ${BROWSER_TCAFE:-chrome}",
     "test:headless": "testcafe ${BROWSER_TCAFE:-chrome:headless}"
-    
   },
   "author": "sridevi.miriyala@modusbox.com",
   "devDependencies": {
