@@ -13,8 +13,7 @@ Xvfb :99 -screen 0 1024x768x16 &
 # temporarily disable auth for integration tests
 sed -i 's/AUTH_ENABLED=true/AUTH_ENABLED=false/' ../../.env
 
-cd ${PROJECT_ROOT}/tmp
-
+cd ..
 # checkout connection-maanger-api and run docker services
 git clone https://github.com/pm4ml/connection-manager-api.git
 cd connection-manager-api
@@ -43,6 +42,7 @@ ls -la
 ls -ls ../../
 sed -i 's|context: ../../connection-manager-ui|context: ../../|' docker-compose.yml
 
+cat docker-compose.yml
 docker compose up -d --wait 
 
 npm run migrate-and-seed &
