@@ -3,17 +3,18 @@ set -xe
 
 # Change to the directory containing this script
 cd "$(dirname "$0")"
+pwd
 # Set Chrome Binary Path
 export CHROME_BIN=/usr/bin/google-chrome
 export CHROME_PATH=/usr/bin/
 export BROWSER_TCAFE=chrome:headless
 export DISPLAY=:99
-Xvfb :99 -screen 0 1024x768x16 &
+# Xvfb :99 -screen 0 1024x768x16 &
 
 # temporarily disable auth for integration tests
 sed -i 's/AUTH_ENABLED=true/AUTH_ENABLED=false/' ../../.env
 
-cd ..
+cd ../../
 # checkout connection-maanger-api and run docker services
 git clone https://github.com/pm4ml/connection-manager-api.git
 cd connection-manager-api
