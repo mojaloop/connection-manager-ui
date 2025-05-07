@@ -61,12 +61,12 @@ npm run test:headless
 
 
 # # cleanup 
-# cd ${PROJECT_ROOT}/tmp/connection-manager-api
-# docker compose down
+cd ${CIRCLE_WORKING_DIRECTORY}/tmp/connection-manager-api/docker
+docker compose down
 # #  kill the npm process
 # pkill -f "npm run migrate-and-seed"
 
-# rm -rf connection-manager-api
+rm -rf connection-manager-api
 
 # # restore auth
-# sed -i 's/AUTH_ENABLED=false/AUTH_ENABLED=true/' ${PROJECT_ROOT}/connection-manager-api/.env
+sed -i 's/AUTH_ENABLED=false/AUTH_ENABLED=true/' ${PROJECT_ROOT}/connection-manager-api/.env
