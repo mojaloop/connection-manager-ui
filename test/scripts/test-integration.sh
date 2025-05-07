@@ -48,11 +48,11 @@ cat docker-compose.yml
 docker compose up -d --wait 
 
 cd ..
-npm ci
-npm run migrate-and-seed &
+# npm ci
+# npm run migrate-and-seed &
 
 cd ../../
-nvm use
+# nvm use
 cd integration_test/tests
 
 npm ci
