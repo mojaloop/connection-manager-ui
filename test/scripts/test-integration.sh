@@ -46,6 +46,8 @@ sed -i 's|context: ../../connection-manager-ui|context: ../../|' docker-compose.
 cat docker-compose.yml
 docker compose up -d --wait 
 
+cd ..
+npm ci
 npm run migrate-and-seed &
 
 cd ../../integration_test/tests
