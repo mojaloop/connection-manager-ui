@@ -70,6 +70,7 @@ ls -la
 cd integration_test/tests
 echo "node --version"
 node --version
+nvm list
 nvm use v18.15.0
 node -v
 npm ci
