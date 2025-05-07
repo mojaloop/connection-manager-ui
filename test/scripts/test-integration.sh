@@ -1,6 +1,19 @@
 #!/bin/bash
 set -xe
 
+# Function to handle errors
+handle_error() {
+    local line_no=$1
+    local error_code=$2
+    local last_command=$3
+    echo "Error occurred in line $line_no, exit code: $error_code"
+    echo "Failed command: $last_command"
+    exit $error_code
+}
+
+# Set error handler
+trap 'handle_error ${LINENO} $? "$BASH_COMMAND"' ERR
+
 # Change to the directory containing this script
 cd "$(dirname "$0")"
 pwd
