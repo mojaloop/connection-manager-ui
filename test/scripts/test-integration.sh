@@ -51,7 +51,9 @@ cd ..
 npm ci
 npm run migrate-and-seed &
 
-cd ../../integration_test/tests
+cd ../../
+nvm use
+cd integration_test/tests
 
 npm ci
 npm run test:headless
