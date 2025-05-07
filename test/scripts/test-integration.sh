@@ -38,6 +38,8 @@ SWITCH_ID=switch
 EOF
 
 # I want to replace docker compose context to be context: ../../../connection-manager-ui  instead of context: ../../connection-manager-ui 
+cd docker
+ls -la
 sed -i 's|context: ../../connection-manager-ui|context: ../../../connection-manager-ui|' docker-compose.yml
 
 docker compose up -d --wait 
