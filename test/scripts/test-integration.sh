@@ -68,7 +68,15 @@ cd ../../
 ls -la
 # nvm use
 cd integration_test/tests
+# Check if node v18.20.8 is installed via nvm
+if ! nvm ls | grep -q "v18.20.8"; then
+  echo "Node v18.20.8 is not installed. Installing now..."
+  nvm install v18.20.8
+else
+  echo "Node v18.20.8 is already installed."
+fi
 
+nvm use v18.20.8
 npm ci
 npm run test:headless
 
