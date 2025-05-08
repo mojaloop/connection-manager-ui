@@ -73,11 +73,15 @@ node --version
 
 # Set NVM_DIR to match CircleCI's setup
 export NVM_DIR="/opt/circleci/.nvm"
+
+set +x
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" >/dev/null 2>&1
 
 nvm list
 nvm install v18.15.0
 nvm use v18.15.0
+
+set -x
 
 node -v
 npm ci
