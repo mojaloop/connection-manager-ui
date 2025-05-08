@@ -17,10 +17,10 @@ trap 'handle_error ${LINENO} $? "$BASH_COMMAND"' ERR
 # Change to the directory containing this script
 cd "$(dirname "$0")"
 pwd
-# Set Chrome Binary Path
-export CHROME_BIN=/usr/bin/google-chrome
-export CHROME_PATH=/usr/bin/
-export BROWSER_TCAFE=chrome:headless
+# Set Firefox Binary Path
+export FIREFOX_BIN=/usr/bin/firefox
+export FIREFOX_PATH=/usr/bin/
+export BROWSER_TCAFE=firefox:headless
 export DISPLAY=:99
 # Xvfb :99 -screen 0 1024x768x16 &
 
@@ -85,7 +85,7 @@ set -x
 
 node -v
 npm ci
-npm run test:headless
+BROWSER_TCAFE=${BROWSER_TCAFE:-firefox} npm run test:headless
 
 
 # # cleanup 
