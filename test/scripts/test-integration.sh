@@ -71,7 +71,8 @@ cd integration_test/tests
 echo "node --version"
 node --version
 
-export NVM_DIR="$HOME/.nvm"
+# Set NVM_DIR to match CircleCI's setup
+export NVM_DIR="/opt/circleci/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" >/dev/null 2>&1
 
 nvm list
