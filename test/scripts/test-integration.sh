@@ -60,17 +60,6 @@ sed -i 's|context: ../../connection-manager-ui|context: ../../|' docker-compose.
 cat docker-compose.yml
 docker compose up -d --wait 
 
-# cd ..
-# npm ci
-# npm run migrate-and-seed &
-
-cd ../../
-ls -la
-# nvm use
-cd integration_test/tests
-echo "node --version"
-node --version
-
 # Set NVM_DIR to match CircleCI's setup
 export NVM_DIR="/opt/circleci/.nvm"
 
@@ -82,6 +71,18 @@ nvm install v18.15.0
 nvm use v18.15.0
 
 set -x
+
+cd ..
+npm ci
+npm run migrate-and-seed
+
+cd ../
+ls -la
+# nvm use
+cd integration_test/tests
+echo "node --version"
+node --version
+
 
 node -v
 npm ci
