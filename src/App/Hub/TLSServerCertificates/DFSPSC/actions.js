@@ -23,7 +23,7 @@ export const hideHubDfspSCIntermediateChainModal = createAction(HIDE_HUB_DFSP_SC
 export const showHubDfspSCServerCertificateModal = createAction(SHOW_HUB_DFSP_SC_SERVER_CERTIFICATE_MODAL);
 export const hideHubDfspSCServerCertificateModal = createAction(HIDE_HUB_DFSP_SC_SERVER_CERTIFICATE_MODAL);
 
-export const storeHubDfspSCServerCertificates = () => async (dispatch, getState) => {
+export const storeHubDfspSCServerCertificates = () => async (dispatch) => {
   const { data, status } = await dispatch(api.dfspsServerCerts.read());
   if (is200(status) || is404(status)) {
     dispatch(setHubDfspSCCertificates(data));
@@ -32,14 +32,14 @@ export const storeHubDfspSCServerCertificates = () => async (dispatch, getState)
   }
 };
 
-export const downloadHubDfspSCRootCertificate = ({ cert, dfspName }) => (dispatch, getState) => {
+export const downloadHubDfspSCRootCertificate = ({ cert, dfspName }) => {
   downloadFile(cert, `${dfspName}-root.pem`);
 };
 
-export const downloadHubDfspSCIntermediateChain = ({ cert, dfspName }) => (dispatch, getState) => {
+export const downloadHubDfspSCIntermediateChain = ({ cert, dfspName }) => {
   downloadFile(cert, `${dfspName}-intermediates.pem`);
 };
 
-export const downloadHubDfspSCServerCertificate = ({ cert, dfspName }) => (dispatch, getState) => {
+export const downloadHubDfspSCServerCertificate = ({ cert, dfspName }) => {
   downloadFile(cert, `${dfspName}-server.pem`);
 };

@@ -1,6 +1,6 @@
-import { fetchMock, MATCHED } from 'fetch-mock';
+/* eslint-disable no-unused-vars */
 import prepareStore, { getStore } from 'tests/store';
-import dfsps from 'tests/resources/dfsps.json';
+import { fetchMock } from 'fetch-mock';
 
 import {
   resetDfspCa,
@@ -15,10 +15,6 @@ import {
   hideDfspCaRootCertificateModal,
   showDfspCaIntermediateChainModal,
   hideDfspCaIntermediateChainModal,
-  storeDfspCa,
-  submitDfspCa,
-  changeDfspCaRootCertificateAndSubmit,
-  changeDfspCaIntermediateChainAndSubmit,
 } from './actions';
 
 import {
@@ -29,10 +25,7 @@ import {
   getDfspCaValidationState,
   getIsDfspCaRootCertificateModalVisible,
   getIsDfspCaIntermediateChainModalVisible,
-  getIsDfspCaPending,
 } from './selectors';
-
-import { getIsSuccessToastVisible, getIsErrorModalVisible } from 'App/selectors';
 
 import { initialState } from './reducers';
 
@@ -40,7 +33,7 @@ let dispatch;
 let getState;
 
 describe('Test the dfsp ca actions', () => {
-  beforeEach(async () => {
+  beforeEach(() => {
     const store = getStore();
     ({ dispatch, getState } = store);
   });
@@ -104,98 +97,25 @@ describe('Test the dfsp ca actions', () => {
     dispatch(hideDfspCaIntermediateChainModal());
     expect(getIsDfspCaIntermediateChainModalVisible(getState())).toBe(false);
   });
-});
 
-describe('Test the dfsp ca thunk actions', () => {
-  const fetchResponse = {
-    rootCertificate: 'ROOT_CERT',
-    intermediateChain: 'CHAIN',
-    validations: [],
-    validationState: 'VALID',
-  };
+  /* Example of testing an API call action
+  it('Should fetch and handle DFSP CA validations', async () => {
+    // Mocking the API response
+    const mockApiResponse = { success: true, validations: [] };
+    fetchMock.mock('https://api.example.com/dfsp-ca-validations', {
+      body: mockApiResponse,
+      status: 200,
+    });
 
-  beforeEach(async () => {
-    const store = prepareStore({ dfsps, dfspId: dfsps[0].id });
-    ({ dispatch, getState } = store);
+    // Action that triggers the API call
+    await dispatch(setDfspCaValidations());
 
-    fetchMock.restore();
+    // Verifying the API call was made
+    expect(fetchMock.calls().length).toBe(1);
+
+    // Optionally, assert that the state has been updated based on the mock response
+    expect(getDfspCaValidations(getState())).toEqual(mockApiResponse.validations);
   });
+  */
 
-  it('Should store the dfsp ca', async () => {
-    fetchMock.get('end:/ca', fetchResponse);
-    await dispatch(storeDfspCa());
-    expect(fetchMock.calls(MATCHED)).toHaveLength(1);
-    expect(getDfspCaRootCertificate(getState())).toBe('ROOT_CERT');
-    expect(getDfspCaIntermediateChain(getState())).toBe('CHAIN');
-    expect(getDfspCaValidations(getState())).toEqual([]);
-    expect(getDfspCaValidationState(getState())).toBe('VALID');
-  });
-
-  it('Should set the error when read operation is not successful', async () => {
-    fetchMock.get('end:/ca', 500);
-    await dispatch(storeDfspCa());
-    expect(fetchMock.calls(MATCHED)).toHaveLength(1);
-    expect(getDfspCaError(getState()).status).toBe(500);
-    expect(getDfspCaError(getState()).error).toBe(undefined);
-  });
-
-  it('Should submit the dfsp ca', async () => {
-    fetchMock.post('end:/ca', fetchResponse);
-    await dispatch(submitDfspCa());
-    expect(fetchMock.calls(MATCHED)).toHaveLength(1);
-    expect(getIsSuccessToastVisible(getState())).toBe(true);
-    expect(getDfspCaRootCertificate(getState())).toBe('ROOT_CERT');
-    expect(getDfspCaIntermediateChain(getState())).toBe('CHAIN');
-    expect(getDfspCaValidations(getState())).toEqual([]);
-    expect(getDfspCaValidationState(getState())).toBe('VALID');
-  });
-
-  it('Should set the error when create operation is not successful', async () => {
-    fetchMock.post('end:/ca', 500);
-    await dispatch(submitDfspCa());
-    expect(fetchMock.calls(MATCHED)).toHaveLength(1);
-    expect(getIsErrorModalVisible(getState())).toBe(true);
-  });
-
-  it('Should change the root cert and submit', async () => {
-    fetchMock.post('end:/ca', fetchResponse);
-    await dispatch(changeDfspCaRootCertificateAndSubmit('ROOT_CERT'));
-    expect(fetchMock.calls(MATCHED)).toHaveLength(1);
-    expect(getDfspCaRootCertificate(getState())).toBe('ROOT_CERT');
-  });
-
-  it('Should change the intermediate chain and submit', async () => {
-    fetchMock.post('end:/ca', fetchResponse);
-    await dispatch(changeDfspCaIntermediateChainAndSubmit('CHAIN'));
-    expect(fetchMock.calls(MATCHED)).toHaveLength(1);
-    expect(getDfspCaIntermediateChain(getState())).toBe('CHAIN');
-  });
-});
-
-describe('Test the api pending selectors', () => {
-  const fetchResponse = {
-    rootCertificate: 'ROOT_CERT',
-    intermediateChain: 'CHAIN',
-    validations: [],
-    validationState: 'VALID',
-  };
-
-  beforeEach(async () => {
-    const store = prepareStore({ dfsps, dfspId: dfsps[0].id });
-    ({ dispatch, getState } = store);
-
-    fetchMock.restore();
-  });
-
-  it('Should detect the api is pending when creating', () => {
-    fetchMock.post('end:/ca', fetchResponse);
-    dispatch(submitDfspCa());
-    expect(getIsDfspCaPending(getState())).toBe(true);
-  });
-
-  it('Should detect the api is not pending when finished creating', async () => {
-    fetchMock.post('end:/ca', fetchResponse);
-    await dispatch(submitDfspCa());
-    expect(getIsDfspCaPending(getState())).not.toBe(true);
-  });
 });

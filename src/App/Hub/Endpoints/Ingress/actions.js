@@ -34,7 +34,7 @@ export const addHubIngressPort = createAction(ADD_HUB_INGRESS_PORT);
 export const removeHubIngressPort = createAction(REMOVE_HUB_INGRESS_PORT);
 export const undoHubIngressChanges = createAction(UNDO_HUB_INGRESS_CHANGES);
 
-export const storeHubIngressUrls = () => async (dispatch, getState) => {
+export const storeHubIngressUrls = () => async (dispatch) => {
   const { data, status } = await dispatch(api.hubIngressUrls.read());
   if (is200(status)) {
     const urls = data.map(apiToUrlModel);
@@ -43,7 +43,7 @@ export const storeHubIngressUrls = () => async (dispatch, getState) => {
     dispatch(setHubIngressUrlsError(data));
   }
 };
-export const storeHubIngressIps = () => async (dispatch, getState) => {
+export const storeHubIngressIps = () => async (dispatch) => {
   const { data, status } = await dispatch(api.hubIngressIps.read());
   if (is200(status)) {
     const ips = data.map(apiToIpModel);
@@ -53,7 +53,7 @@ export const storeHubIngressIps = () => async (dispatch, getState) => {
   }
 };
 
-export const storeHubEndpoints = () => async (dispatch, getState) => {
+export const storeHubEndpoints = () => async (dispatch) => {
   return Promise.all([dispatch(storeHubIngressUrls()), dispatch(storeHubIngressIps())]);
 };
 

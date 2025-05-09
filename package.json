@@ -1,18 +1,22 @@
 {
   "name": "connection-manager-ui",
-  "version": "1.8.4",
+  "version": "1.8.5",
   "private": true,
   "dependencies": {
-    "@pm4ml/mojaloop-payment-manager-ui-components-legacy": "^1.23.1",
+    "@babel/polyfill": "^7.12.1",
+    "@pm4ml/mojaloop-payment-manager-ui-components-legacy": "1.23.1",
+    "ajv": "^8.17.1",
     "babel-polyfill": "^6.26.0",
     "babel-preset-react-app": "^10.0.1",
+    "chance": "^1.1.12",
     "connected-react-router": "^6.3.2",
-    "fetch-mock": "^7.3.3",
+    "fetch-mock": "^12.4.0",
     "gensync": "^1.0.0-beta.2",
     "history": "^4.9.0",
     "lodash": "^4.17.11",
     "moment": "^2.24.0",
     "moment-timezone": "^0.5.25",
+    "node-sass": "^4.14.1",
     "prettier": "^1.17.0",
     "qrcode": "^1.4.1",
     "react": "^16.8.5",
@@ -20,24 +24,40 @@
     "react-dom": "^16.8.5",
     "react-redux": "^6.0.1",
     "react-router-dom": "^5.0.0",
-    "react-scripts": "2.1.8",
+    "react-scripts": "^5.0.1",
     "redux": "^4.0.1",
     "redux-actions": "^2.6.5",
     "redux-thunk": "^2.3.0",
-    "reselect": "^4.0.0",
-    "sass": "^1.83.4",
-    "sass-loader": "^10.5.2",
-    "svg-sprite-loader": "^4.1.3"
+    "reselect": "^4.1.8",
+    "sass": "^1.85.1",
+    "sass-loader": "^7.3.1",
+    "testcafe-react-selectors": "^5.0.3"
   },
   "scripts": {
     "prettier": "prettier --write 'src/**/*.{css,js}'",
     "start": "react-app-rewired start",
     "build": "react-app-rewired build",
+    "build:prod": "cross-env GENERATE_SOURCEMAP=false NODE_ENV=production react-app-rewired build",
     "test": "react-app-rewired test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "audit:check": "npx audit-ci --config ./audit-ci.jsonc",
+    "dep:check": "npx ncu -e 2",
+    "dep:update": "npx ncu -u",
+    "lint": "eslint --ext .js,.jsx,.ts,.tsx src --color",
+    "lint:fix": "eslint --ext .js,.jsx,.ts,.tsx src --color --fix",
+    "release": "standard-version --releaseCommitMessageFormat 'chore(release): {{currentTag}} [skip ci]'",
+    "snapshot": "standard-version --no-verify --skip.changelog --prerelease snapshot --releaseCommitMessageFormat 'chore(snapshot): {{currentTag}}'",
+    "test:xunit": "react-app-rewired test --watchAll=false",
+    "test:nowatch": "CI=true react-app-rewired test --env=jsdom",
+    "test:coverage": "CI=true npx nyc --reporter=lcov --reporter=text --reporter=text-summary --reporter=clover npm run test --watchAll=false -- --coverage --detectOpenHandles",
+    "test:coverage-check": "npm run test:coverage && npx nyc check-coverage",
+    "test:functional": "./test/scripts/test-functional.sh",
+    "test:integration": "./test/scripts/test-integration.sh"
   },
   "eslintConfig": {
-    "extends": "react-app"
+    "extends": [
+      "react-app"
+    ]
   },
   "browserslist": [
     ">0.2%",
@@ -47,6 +67,36 @@
   ],
   "resolutions": {
     "node-sass": "npm:sass",
-    "sass-loader": "^10.5.2"
+    "sass-loader": "^7.3.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.26.9",
+    "@babel/plugin-transform-runtime": "^7.26.0",
+    "@babel/preset-env": "^7.26.9",
+    "@babel/preset-react": "^7.26.3",
+    "@babel/preset-typescript": "^7.26.0",
+    "@types/chance": "^1.1.6",
+    "babel-jest": "^29.7.0",
+    "dotenv": "^16.4.7",
+    "eslint": "^7.32.0",
+    "eslint-config-react-app": "^7.0.1",
+    "eslint-plugin-unused-imports": "^4.1.4",
+    "jest": "^27.5.1",
+    "jest-environment-jsdom": "^27.5.1",
+    "jest-environment-node": "^27.5.1",
+    "jest-junit": "^16.0.0",
+    "jsdom": "^16.7.0",
+    "svg-sprite-loader": "^6.0.11",
+    "testcafe": "^3.7.2",
+    "testcafe-reporter-html": "^1.4.6",
+    "ts-jest": "^27.1.5",
+    "typescript": "^4.9.5"
+  },
+  "nyc": {
+    "check-coverage": true,
+    "lines": 10,
+    "statements": 5,
+    "functions": 0,
+    "branches": 0
   }
 }

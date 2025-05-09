@@ -38,14 +38,14 @@ const auth = isAuthEnabled => {
 
   const Auth = handleActions(
     {
-      [SET_AUTH_ENABLED]: (state, action) => {
+      [SET_AUTH_ENABLED]: (state,) => {
         setItem('auth_disabled', false);
         return {
           ...state,
           isDisabled: false,
         };
       },
-      [SET_AUTH_DISABLED]: (state, action) => {
+      [SET_AUTH_DISABLED]: (state,) => {
         setItem('auth_disabled', true);
         return {
           ...state,
@@ -101,12 +101,12 @@ const auth = isAuthEnabled => {
         password: action.payload,
         isFailed: false,
       }),
-      [RESET_CREDENTIALS]: (state, action) => ({
+      [RESET_CREDENTIALS]: (state,) => ({
         ...state,
         username: initialState.username,
         password: initialState.password,
       }),
-      [UNSET_AUTH_TOKEN]: (state, action) => {
+      [UNSET_AUTH_TOKEN]: (state,) => {
         // remove in the localstorage for refresh purposes
         removeItem('auth_token');
         removeItem('expiration');
@@ -117,7 +117,7 @@ const auth = isAuthEnabled => {
           isFailed: false,
         };
       },
-      [UNSET_AUTH_QR_PROPS]: (state, action) => ({
+      [UNSET_AUTH_QR_PROPS]: (state, ) => ({
         ...state,
         QRProps: initialState.QRProps,
       }),

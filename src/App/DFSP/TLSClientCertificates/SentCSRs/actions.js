@@ -29,7 +29,7 @@ export const storeDfspSentCsrs = () => async (dispatch, getState) => {
   }
 };
 
-export const downloadDfspSentCsrCertificate = (certificate, extension) => (dispatch, getState) => {
+export const downloadDfspSentCsrCertificate = (certificate, extension) => (getState) => {
   const dfspName = getDfspName(getState());
   downloadFile(certificate, `${dfspName}-${extension}`);
 };

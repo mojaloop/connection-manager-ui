@@ -111,27 +111,27 @@ const DfspSC = handleActions(
       dfspSCValidationState: initialState.dfspSCValidationState,
       dfspSCValidations: initialState.dfspSCValidations,
     }),
-    [SHOW_DFSP_SC_ROOT_CERTIFICATE_MODAL]: (state, action) => ({
+    [SHOW_DFSP_SC_ROOT_CERTIFICATE_MODAL]: (state,) => ({
       ...state,
       isDfspSCRootCertificateModalVisible: true,
     }),
-    [HIDE_DFSP_SC_ROOT_CERTIFICATE_MODAL]: (state, action) => ({
+    [HIDE_DFSP_SC_ROOT_CERTIFICATE_MODAL]: (state, ) => ({
       ...state,
       isDfspSCRootCertificateModalVisible: false,
     }),
-    [SHOW_DFSP_SC_INTERMEDIATE_CHAIN_MODAL]: (state, action) => ({
+    [SHOW_DFSP_SC_INTERMEDIATE_CHAIN_MODAL]: (state, ) => ({
       ...state,
       isDfspSCIntermediateChainModalVisible: true,
     }),
-    [HIDE_DFSP_SC_INTERMEDIATE_CHAIN_MODAL]: (state, action) => ({
+    [HIDE_DFSP_SC_INTERMEDIATE_CHAIN_MODAL]: (state,) => ({
       ...state,
       isDfspSCIntermediateChainModalVisible: false,
     }),
-    [SHOW_DFSP_SC_SERVER_CERTIFICATE_MODAL]: (state, action) => ({
+    [SHOW_DFSP_SC_SERVER_CERTIFICATE_MODAL]: (state) => ({
       ...state,
       isDfspSCServerCertificateModalVisible: true,
     }),
-    [HIDE_DFSP_SC_SERVER_CERTIFICATE_MODAL]: (state, action) => ({
+    [HIDE_DFSP_SC_SERVER_CERTIFICATE_MODAL]: (state) => ({
       ...state,
       isDfspSCServerCertificateModalVisible: false,
     }),

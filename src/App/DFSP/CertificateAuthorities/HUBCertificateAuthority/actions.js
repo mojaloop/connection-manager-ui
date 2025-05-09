@@ -17,7 +17,7 @@ export const setDfspHubCaRootCertificate = createAction(SET_DFSP_HUB_CA_ROOT_CER
 export const showDfspHubCaRootCertificateModal = createAction(SHOW_DFSP_HUB_CA_ROOT_CERTIFICATE_MODAL);
 export const hideDfspHubCaRootCertificateModal = createAction(HIDE_DFSP_HUB_CA_ROOT_CERTIFICATE_MODAL);
 
-export const storeDfspHubCa = () => async (dispatch, getState) => {
+export const storeDfspHubCa = () => async (dispatch) => {
   const { data, status } = await dispatch(api.hubCa.read());
   if (is200(status)) {
     const { rootCertificate } = data;
@@ -27,7 +27,7 @@ export const storeDfspHubCa = () => async (dispatch, getState) => {
   }
 };
 
-export const downloadDfspHubCaRootCertificate = () => (dispatch, getState) => {
+export const downloadDfspHubCaRootCertificate = () => (getState) => {
   const dfspName = getDfspName(getState());
   const rootCertificate = getDfspHubCaRootCertificate(getState());
   downloadFile(rootCertificate, `${dfspName}-hub-root.pem`);

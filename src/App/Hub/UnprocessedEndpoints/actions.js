@@ -21,7 +21,7 @@ const apiToUnprocessedModel = item => ({
   ...item,
 });
 
-export const storeUnprocessedEndpoints = () => async (dispatch, getState) => {
+export const storeUnprocessedEndpoints = () => async (dispatch) => {
   const { data, status } = await dispatch(api.unprocessedEndpoints.read());
   if (is200(status)) {
     const endpoints = data.map(apiToUnprocessedModel);
@@ -49,4 +49,4 @@ export const submitUnprocessedEndpoints = selection => async (dispatch, getState
   }
 };
 
-export const toggleConfirmingEndpoint = () => (dispatch, getState) => {};
+export const toggleConfirmingEndpoint = () => {};

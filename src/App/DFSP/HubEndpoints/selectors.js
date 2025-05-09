@@ -7,7 +7,7 @@ import { DIRECTIONS, TYPES } from '../constants';
 export const getDfspHubEndpointsEndpoints = state => state.dfsp.endpoints.hub.dfspHubEndpoints;
 export const getDfspHubEndpointsEndpointsError = state => state.dfsp.endpoints.hub.dfspHubEndpointsError;
 
-export const getDfspHubEndpointsPerDirection = createSelector(getDfspHubEndpointsEndpoints, (endpoints, dfsps) => {
+export const getDfspHubEndpointsPerDirection = createSelector(getDfspHubEndpointsEndpoints, (endpoints) => {
   const hasDirection = direction => endpoint => endpoint.direction === direction;
   const egress = endpoints.filter(hasDirection(DIRECTIONS.EGRESS));
   const ingressEndpoints = endpoints.filter(hasDirection(DIRECTIONS.INGRESS));

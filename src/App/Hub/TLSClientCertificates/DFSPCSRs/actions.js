@@ -58,7 +58,7 @@ export const storeHubDfspCsrs = () => async (dispatch, getState) => {
   }
 };
 
-export const submitCASignHubDfspCsr = (dfspId, enrollmentId) => async (dispatch, getState) => {
+export const submitCASignHubDfspCsr = (dfspId, enrollmentId) => async (dispatch) => {
   const { data, status } = await dispatch(api.inboundEnrollmentSign.create({ dfspId, enrollmentId }));
   if (is200(status)) {
     dispatch(showSuccessToast());
@@ -84,6 +84,6 @@ export const submitCertificateHubDfspCsr = () => async (dispatch, getState) => {
   }
 };
 
-export const downloadHubDfspCsrCertificate = (certificate, dfspName, cn, extension) => (dispatch, getState) => {
+export const downloadHubDfspCsrCertificate = (certificate, dfspName, cn, extension) => {
   downloadFile(certificate, `${dfspName}-${cn}-${extension}`);
 };

@@ -78,7 +78,7 @@ export const logout = () => async (dispatch, getState) => {
   if (logoutUrl) {
     fetch(logoutUrl, { headers: { accept: 'application/json' } })
       .then(response => response.json())
-      .then(({ logout_token, logout_url }) => {
+      .then(({  logout_url }) => {
         window.location.assign(logout_url);
       });
 

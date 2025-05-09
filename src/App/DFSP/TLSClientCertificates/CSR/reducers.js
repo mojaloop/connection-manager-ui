@@ -21,11 +21,11 @@ const DfspCsr = handleActions(
       ...state,
       dfspCsrCertificate: action.payload || null,
     }),
-    [SHOW_DFSP_CSR_CERTIFICATE_MODAL]: (state, action) => ({
+    [SHOW_DFSP_CSR_CERTIFICATE_MODAL]: (state) => ({
       ...state,
       isDfspCsrModalVisible: true,
     }),
-    [HIDE_DFSP_CSR_CERTIFICATE_MODAL]: (state, action) => ({
+    [HIDE_DFSP_CSR_CERTIFICATE_MODAL]: (state) => ({
       ...state,
       isDfspCsrModalVisible: false,
     }),

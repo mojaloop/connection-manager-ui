@@ -68,7 +68,7 @@ const DFSPs = ({ dfsps, monetaryZones, isDfspsPending, onAddClick, onEditClick, 
       key: 'id',
       sortable: false,
       searchable: false,
-      func: (_, dfsp, index) => (
+      func: (_, dfsp) => (
         <ControlIcon
           icon="edit-small"
           size={16}

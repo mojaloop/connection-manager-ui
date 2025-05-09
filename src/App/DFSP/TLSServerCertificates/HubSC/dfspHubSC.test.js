@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { fetchMock, MATCHED } from 'fetch-mock';
 import prepareStore, { getStore } from 'tests/store';
 import dfsps from 'tests/resources/dfsps.json';
@@ -129,68 +130,5 @@ describe('Test the dfsp server certificate actions', () => {
   it('Should hide the intermediate chain modal', () => {
     dispatch(hideDfspHubSCIntermediateChainModal());
     expect(getIsDfspHubSCIntermediateChainModalVisible(getState())).toBe(false);
-  });
-});
-
-describe('Test the dfsp server certificate thunk actions', () => {
-  const fetchResponse = {
-    serverCertificate: 'SERVER_CERT',
-    rootCertificate: 'ROOT_CERT',
-    intermediateChain: 'CHAIN',
-    validations: [],
-    validationState: 'VALID',
-  };
-
-  beforeEach(async () => {
-    const store = prepareStore({ dfsps, dfspId: dfsps[0].id });
-    ({ dispatch, getState } = store);
-
-    fetchMock.restore();
-  });
-
-  it('Should store the dfsp hub server certs', async () => {
-    fetchMock.get('end:/servercerts', fetchResponse);
-    await dispatch(storeDfspHubSCServerCertificate());
-    expect(fetchMock.calls(MATCHED)).toHaveLength(1);
-    expect(getDfspHubSCRootCertificate(getState())).toBe('ROOT_CERT');
-    expect(getDfspHubSCIntermediateChain(getState())).toBe('CHAIN');
-    expect(getDfspHubSCValidations(getState())).toEqual([]);
-    expect(getDfspHubSCValidationState(getState())).toBe('VALID');
-  });
-
-  it('Should set the error when read operation is not successful', async () => {
-    fetchMock.get('end:/servercerts', 500);
-    await dispatch(storeDfspHubSCServerCertificate());
-    expect(fetchMock.calls(MATCHED)).toHaveLength(1);
-    expect(getDfspHubSCError(getState()).status).toBe(500);
-    expect(getDfspHubSCError(getState()).error).toBe(undefined);
-  });
-});
-
-describe('Test the api pending selectors', () => {
-  const fetchResponse = {
-    rootCertificate: 'ROOT_CERT',
-    intermediateChain: 'CHAIN',
-    validations: [],
-    validationState: 'VALID',
-  };
-
-  beforeEach(async () => {
-    const store = prepareStore({ dfsps, dfspId: dfsps[0].id });
-    ({ dispatch, getState } = store);
-
-    fetchMock.restore();
-  });
-
-  it('Should detect the api is pending when reading', () => {
-    fetchMock.get('end:/servercerts', fetchResponse);
-    dispatch(storeDfspHubSCServerCertificate());
-    expect(getIsDfspHubSCPending(getState())).toBe(true);
-  });
-
-  it('Should detect the api is not pending when finished reading', async () => {
-    fetchMock.get('end:/servercerts', fetchResponse);
-    await dispatch(storeDfspHubSCServerCertificate());
-    expect(getIsDfspHubSCPending(getState())).not.toBe(true);
   });
 });

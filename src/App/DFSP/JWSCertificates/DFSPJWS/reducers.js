@@ -83,19 +83,19 @@ const DfspJWS = handleActions(
       dfspJWSValidationState: initialState.dfspJWSValidationState,
       dfspJWSValidations: initialState.dfspJWSValidations,
     }),
-    [SHOW_DFSP_JWS_JWS_CERTIFICATE_MODAL]: (state, action) => ({
+    [SHOW_DFSP_JWS_JWS_CERTIFICATE_MODAL]: (state) => ({
       ...state,
       isDfspJWSJwsCertificateModalVisible: true,
     }),
-    [HIDE_DFSP_JWS_JWS_CERTIFICATE_MODAL]: (state, action) => ({
+    [HIDE_DFSP_JWS_JWS_CERTIFICATE_MODAL]: (state) => ({
       ...state,
       isDfspJWSJwsCertificateModalVisible: false,
     }),
-    [SHOW_DFSP_JWS_INTERMEDIATE_CHAIN_MODAL]: (state, action) => ({
+    [SHOW_DFSP_JWS_INTERMEDIATE_CHAIN_MODAL]: (state) => ({
       ...state,
       isDfspJWSIntermediateChainModalVisible: true,
     }),
-    [HIDE_DFSP_JWS_INTERMEDIATE_CHAIN_MODAL]: (state, action) => ({
+    [HIDE_DFSP_JWS_INTERMEDIATE_CHAIN_MODAL]: (state) => ({
       ...state,
       isDfspJWSIntermediateChainModalVisible: false,
     }),

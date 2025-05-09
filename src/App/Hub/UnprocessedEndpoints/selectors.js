@@ -22,7 +22,7 @@ export const getHubUnprocessedEndpointsByDFSP = createSelector(
   getConfirming,
   (endpoints, filter, dfsps, confirming) => {
     const hasDirection = direction => endpoint => endpoint.direction === direction;
-    const addConfirmingFlag = flags => endpoint => ({
+    const addConfirmingFlag = endpoint => ({
       // every endpoint can be checked singularly
       // and they start all checked by default
       ...endpoint,
@@ -63,8 +63,8 @@ export const getHubUnprocessedEndpointsByDFSP = createSelector(
   }
 );
 
-export const getDfspNamesByDFSP = createSelector(getHubUnprocessedEndpointsByDFSP, getDfsps, (dfspEndpoints, dfsps) =>
-  dfspEndpoints.map(endpoints => null)
+export const getDfspNamesByDFSP = createSelector(getHubUnprocessedEndpointsByDFSP, getDfsps, (dfspEndpoints) =>
+  dfspEndpoints.map(null)
 );
 
 const getIsunprocessedEndpointsReadPending = createPendingSelector('unprocessedEndpoints.read');

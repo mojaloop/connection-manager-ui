@@ -20,7 +20,7 @@ export const setHubDfspModalName = createAction(SET_HUB_DFSP_MODAL_NAME);
 export const setHubDfspModalId = createAction(SET_HUB_DFSP_MODAL_ID);
 export const setHubDfspModalMonetaryZone = createAction(SET_HUB_DFSP_MODAL_MONETARY_ZONE);
 
-export const closeHubDfspModal = () => (dispatch, getState) => {
+export const closeHubDfspModal = () => (dispatch) => {
   dispatch(hideHubDfspModal());
   dispatch(resetHubDfspModal());
 };
@@ -42,12 +42,12 @@ export const submitHubDfspModal = () => async (dispatch, getState) => {
   }
 };
 
-export const openNewHubDfspModal = () => async (dispatch, getState) => {
+export const openNewHubDfspModal = () => async (dispatch) => {
   dispatch(setHubDfspModel());
   dispatch(showHubDfspModal());
 };
 
-export const openExistingHubDfspModal = dfspModel => async (dispatch, getState) => {
+export const openExistingHubDfspModal = dfspModel => async (dispatch) => {
   dispatch(setHubDfspModel(dfspModel));
   dispatch(showHubDfspModal());
 };

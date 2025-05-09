@@ -70,7 +70,7 @@ const HubCa = handleActions(
         hubCaHosts: [...state.hubCaHosts.slice(0, index), value, ...state.hubCaHosts.slice(index + 1)],
       };
     },
-    [ADD_HUB_CA_HOST]: (state, action) => ({
+    [ADD_HUB_CA_HOST]: (state) => ({
       ...state,
       hubCaHosts: [...state.hubCaHosts, hostInitialState],
     }),
@@ -96,11 +96,11 @@ const HubCa = handleActions(
         hubCaRootCertificateInfo: action.payload,
       };
     },
-    [SHOW_HUB_CA_ROOT_CERTIFICATE_MODAL]: (state, action) => ({
+    [SHOW_HUB_CA_ROOT_CERTIFICATE_MODAL]: (state) => ({
       ...state,
       isHubCaModalVisible: true,
     }),
-    [HIDE_HUB_CA_ROOT_CERTIFICATE_MODAL]: (state, action) => ({
+    [HIDE_HUB_CA_ROOT_CERTIFICATE_MODAL]: (state) => ({
       ...state,
       isHubCaModalVisible: false,
     }),

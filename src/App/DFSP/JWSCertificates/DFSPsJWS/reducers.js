@@ -53,7 +53,7 @@ const DfspsJWS = handleActions(
       isDfspsJWSJwsCertificateModalVisible: true,
       dfspsJWSJwsCertificateModalContent: action.payload,
     }),
-    [HIDE_DFSPS_JWS_JWS_CERTIFICATE_MODAL]: (state, action) => ({
+    [HIDE_DFSPS_JWS_JWS_CERTIFICATE_MODAL]: (state, ) => ({
       ...state,
       isDfspsJWSJwsCertificateModalVisible: false,
       dfspsJWSJwsCertificateModalContent: undefined,
@@ -63,7 +63,7 @@ const DfspsJWS = handleActions(
       isDfspsJWSIntermediateChainModalVisible: true,
       dfspsJWSIntermediateChainModalContent: action.payload,
     }),
-    [HIDE_DFSPS_JWS_INTERMEDIATE_CHAIN_MODAL]: (state, action) => ({
+    [HIDE_DFSPS_JWS_INTERMEDIATE_CHAIN_MODAL]: (state) => ({
       ...state,
       isDfspsJWSIntermediateChainModalVisible: false,
       dfspsJWSIntermediateChainModalContent: undefined,

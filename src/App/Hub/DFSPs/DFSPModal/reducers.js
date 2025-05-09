@@ -57,11 +57,11 @@ const HubDfspModal = handleActions(
       ...state,
       hubDfspMonetaryZoneId: action.payload,
     }),
-    [SHOW_HUB_DFSP_MODAL]: (state, action) => ({
+    [SHOW_HUB_DFSP_MODAL]: (state) => ({
       ...state,
       isHubDfspModalVisible: true,
     }),
-    [HIDE_HUB_DFSP_MODAL]: (state, action) => ({
+    [HIDE_HUB_DFSP_MODAL]: (state) => ({
       ...state,
       isHubDfspModalVisible: false,
     }),

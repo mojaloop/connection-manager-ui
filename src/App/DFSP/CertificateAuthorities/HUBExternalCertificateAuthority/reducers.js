@@ -37,7 +37,7 @@ const DfspHubExternalCa = handleActions(
       isDfspHubExternalCaRootCertificateModalVisible: true,
       dfspHubExternalCaRootCertificateModalContent: action.payload,
     }),
-    [HIDE_DFSP_HUB_EXTERNAL_CA_ROOT_CERTIFICATE_MODAL]: (state, action) => ({
+    [HIDE_DFSP_HUB_EXTERNAL_CA_ROOT_CERTIFICATE_MODAL]: (state) => ({
       ...state,
       isDfspHubExternalCaRootCertificateModalVisible: false,
       dfspHubExternalCaRootCertificateModalContent: undefined,
@@ -47,7 +47,7 @@ const DfspHubExternalCa = handleActions(
       isDfspHubExternalCaIntermediateChainModalVisible: true,
       dfspHubExternalCaIntermediateChainModalContent: action.payload,
     }),
-    [HIDE_DFSP_HUB_EXTERNAL_CA_INTERMEDIATE_CHAIN_MODAL]: (state, action) => ({
+    [HIDE_DFSP_HUB_EXTERNAL_CA_INTERMEDIATE_CHAIN_MODAL]: (state) => ({
       ...state,
       isDfspHubExternalCaIntermediateChainModalVisible: false,
       dfspHubExternalCaIntermediateChainModalContent: undefined,

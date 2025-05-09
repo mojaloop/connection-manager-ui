@@ -164,7 +164,6 @@ const SentCSR = ({
   dfspName,
   certificate,
   certInfo,
-  csr,
   csrInfo,
   state,
   validations,

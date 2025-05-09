@@ -35,7 +35,7 @@ const DfspHubCsrs = handleActions(
       dfspHubCsrsCertificateModalContent: action.payload.certificate,
       dfspHubCsrsCertificateModalTitle: action.payload.title,
     }),
-    [HIDE_DFSP_HUB_CSR_CERTIFICATE_MODAL]: (state, action) => ({
+    [HIDE_DFSP_HUB_CSR_CERTIFICATE_MODAL]: (state) => ({
       ...state,
       isDfspHubCsrsCertificateModalVisible: false,
       dfspHubCsrsCertificateModalContent: undefined,

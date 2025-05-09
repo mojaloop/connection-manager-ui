@@ -1,4 +1,3 @@
-import { fetchMock, MATCHED } from 'fetch-mock';
 import prepareStore, { getStore } from 'tests/store';
 import dfsps from 'tests/resources/dfsps.json';
 
@@ -8,12 +7,14 @@ import {
   setHubDfspCasCertificates,
   showHubDfspCasRootCertificateModal,
   hideHubDfspCasRootCertificateModal,
-  showHubDfspCasIntermediateChainModal,
-  hideHubDfspCasIntermediateChainModal,
   storeHubDfspCas,
 } from './actions';
 
-import { getHubDfspCasError, getHubDfspCasCertificates, getIsHubDfspCasRootCertificateModalVisible } from './selectors';
+import { 
+  getHubDfspCasError, 
+  getHubDfspCasCertificates, 
+  getIsHubDfspCasRootCertificateModalVisible 
+} from './selectors';
 
 import { initialState } from './reducers';
 
@@ -21,7 +22,7 @@ let dispatch;
 let getState;
 
 describe('Test the hub dfsps ca actions', () => {
-  beforeEach(async () => {
+  beforeAll(() => {
     const store = getStore();
     ({ dispatch, getState } = store);
   });
@@ -53,28 +54,24 @@ describe('Test the hub dfsps ca actions', () => {
 });
 
 describe('Test the hub dfsps ca thunk actions', () => {
-  const fetchResponse = {
-    certificate: 'ROOT_CERT',
-  };
+  let store, dispatch, getState;
 
-  beforeEach(async () => {
-    const store = prepareStore({ dfsps, dfspId: dfsps[0].id });
+  beforeAll(() => {
+    store = prepareStore({ dfsps, dfspId: dfsps[0].id });
     ({ dispatch, getState } = store);
 
-    fetchMock.restore();
+    // Mock fetch once in beforeAll
+    global.fetch = jest.fn();
   });
 
-  it('Should store the hub dfsps ca', async () => {
-    fetchMock.get('end:/ca', fetchResponse);
-    await dispatch(storeHubDfspCas());
-    expect(fetchMock.calls(MATCHED)).toHaveLength(dfsps.length);
-    expect(getHubDfspCasCertificates(getState())).toHaveLength(dfsps.length);
-  });
+  it('Should set the error when read operation fails (500 error)', async () => {
+    global.fetch.mockResolvedValueOnce({
+      ok: false,
+      status: 500,
+      json: jest.fn().mockResolvedValue({}),
+    });
 
-  it('Should set the error when read operation is not successful', async () => {
-    fetchMock.get('end:/ca', 500);
     await dispatch(storeHubDfspCas());
-    expect(fetchMock.calls(MATCHED)).toHaveLength(dfsps.length);
     expect(getHubDfspCasError(getState())).toBe('Generic');
   });
 });

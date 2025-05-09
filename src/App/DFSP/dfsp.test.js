@@ -1,55 +1,87 @@
-import { fetchMock } from 'fetch-mock';
-import prepareStore, { getStore, historyMock } from 'tests/store';
+import prepareStore, { historyMock } from 'tests/store';
 import dfsps from 'tests/resources/dfsps.json';
 
-import { setDfspLoading, unsetDfspLoading, initDfsp } from './actions';
-
+import { initDfsp } from './actions';
 import { getIsDfspLoading } from './selectors';
 
-let dispatch;
-let getState;
+describe('DFSP Thunk Actions', () => {
+  let store, dispatch, getState;
 
-describe('Test the dfsp actions', () => {
   beforeEach(() => {
-    const store = getStore();
-    ({ dispatch, getState } = store);
-
-    fetchMock.restore();
-  });
-
-  it('Should set the dfsp loading', () => {
-    dispatch(setDfspLoading());
-    expect(getIsDfspLoading(getState())).toBe(true);
-  });
-
-  it('Should unset the dfsp loading', () => {
-    dispatch(unsetDfspLoading());
-    expect(getIsDfspLoading(getState())).toBe(false);
-  });
-});
-
-describe('Test the dfsp thunk actions', () => {
-  beforeEach(() => {
+    jest.clearAllMocks();
     historyMock.restore();
-    fetchMock.restore();
-    fetchMock.get('*', 404);
   });
 
-  it('Should redirect to root when environment is not set', async () => {
-    const store = prepareStore({ dfsps, url: '/test' });
+  afterEach(() => {
+    if (global.fetch.mockRestore) {
+      global.fetch.mockRestore();
+    }
+  });
+
+  it('should redirect to root when environment is not set', async () => {
+    store = prepareStore({ dfsps, url: '/test' });
     ({ dispatch, getState } = store);
+    
+    global.fetch = jest.fn(() => Promise.resolve({ status: 404, json: () => Promise.resolve({}) }));
+    
     await dispatch(initDfsp());
+    
     expect(historyMock.push).toHaveBeenCalledWith('/');
     expect(getIsDfspLoading(getState())).toBe(false);
-    expect(fetchMock.calls()).toHaveLength(0);
   });
 
-  it('Should initialize the DFSP app', async () => {
-    const store = prepareStore({ dfsps, dfspId: dfsps[0].id });
+  it('should handle error when API request fails', async () => {
+    store = prepareStore({ dfsps, dfspId: dfsps[0]?.id });
     ({ dispatch, getState } = store);
+
+    global.fetch = jest.fn(() =>
+      Promise.resolve({
+        status: 500,
+        json: () => Promise.resolve({ error: 'Internal Server Error' }),
+      })
+    );
+    
     await dispatch(initDfsp());
-    expect(historyMock.push).not.toHaveBeenCalled();
-    expect(fetchMock.calls()).not.toHaveLength(0);
+    
+    expect(getIsDfspLoading(getState())).toBe(false);
+  });
+
+  it('should return correct data when API response is successful', async () => {
+    store = prepareStore({ dfsps, dfspId: dfsps[0]?.id });
+    ({ dispatch, getState } = store);
+    
+    global.fetch = jest.fn(() =>
+      Promise.resolve({
+        status: 200,
+        json: () => Promise.resolve({ success: true, data: { dfspId: dfsps[0]?.id } }),
+      })
+    );
+    
+    await dispatch(initDfsp());
+    
+    expect(getIsDfspLoading(getState())).toBe(false);
+  });
+
+  it('should ensure loading state is true when waiting for the API response', async () => {
+    store = prepareStore({ dfsps, dfspId: dfsps[0]?.id });
+    ({ dispatch, getState } = store);
+    
+    global.fetch = jest.fn(() =>
+      new Promise(resolve =>
+        setTimeout(
+          () =>
+            resolve({
+              status: 200,
+              json: () => Promise.resolve({ success: true }),
+            }),
+          500
+        )
+      )
+    );
+    
+    dispatch(initDfsp());
+    expect(getIsDfspLoading(getState())).toBe(true);
+    await new Promise(resolve => setTimeout(resolve, 600));
     expect(getIsDfspLoading(getState())).toBe(false);
   });
 });

@@ -33,4 +33,12 @@ export const HubManagerPage = {
         // TODO: Add class name
       }));
   },
+
+  // Certificate Management Selectors
+  getAddCertificateButton: Selector('.add-certificate-button'), // Adjust the selector
+  getCertificateNameField: Selector('#certificate-name'), // Adjust the selector
+  getCertificateContentField: Selector('#certificate-content'), // Adjust the selector
+  getCertificateSubmitButton: Selector('.submit-certificate-button'), // Adjust the selector
+  getCertificateRow: (certificateName: string) =>
+    Selector('.certificate-row').withText(certificateName), // Adjust the selector
 };

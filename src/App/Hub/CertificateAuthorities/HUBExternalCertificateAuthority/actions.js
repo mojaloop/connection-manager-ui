@@ -29,7 +29,7 @@ export const hideHubExternalCaRootCertificateModal = createAction(HIDE_HUB_EXTER
 export const showHubExternalCaIntermediateChainModal = createAction(SHOW_HUB_EXTERNAL_CA_INTERMEDIATE_CHAIN_MODAL);
 export const hideHubExternalCaIntermediateChainModal = createAction(HIDE_HUB_EXTERNAL_CA_INTERMEDIATE_CHAIN_MODAL);
 
-export const storeHubExternalCa = () => async (dispatch, getState) => {
+export const storeHubExternalCa = () => async (dispatch) => {
   const { data, status } = await dispatch(api.hubCa.read());
   if (is200(status) || is404(status)) {
     if (data.type === 'EXTERNAL') {
@@ -60,12 +60,12 @@ export const submitHubExternalCa = () => async (dispatch, getState) => {
   }
 };
 
-export const downloadHubExternalCaRootCertificate = (rootCertificate, name) => (dispatch, getState) => {
+export const downloadHubExternalCaRootCertificate = (rootCertificate, name) => {
   const filename = `${name ? `${name}-` : ''}hub-root.pem`;
   downloadFile(rootCertificate, filename);
 };
 
-export const downloadHubExternalCaIntermediateChain = (intermediateChain, name) => (dispatch, getState) => {
+export const downloadHubExternalCaIntermediateChain = (intermediateChain, name) => {
   const filename = `${name ? `${name}-` : ''}hub-intermediates.pem`;
   downloadFile(intermediateChain, filename);
 };

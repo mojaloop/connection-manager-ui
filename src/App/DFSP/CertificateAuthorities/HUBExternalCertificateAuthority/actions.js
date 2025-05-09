@@ -25,7 +25,7 @@ export const hideDfspHubExternalCaIntermediateChainModal = createAction(
   HIDE_DFSP_HUB_EXTERNAL_CA_INTERMEDIATE_CHAIN_MODAL
 );
 
-export const storeDfspHubExternalCas = () => async (dispatch, getState) => {
+export const storeDfspHubExternalCas = () => async (dispatch) => {
   const { data, status } = await dispatch(api.hubCa.read());
   if (is200(status) || is404(status)) {
     dispatch(setDfspHubExternalCaCertificate(data));
@@ -33,10 +33,10 @@ export const storeDfspHubExternalCas = () => async (dispatch, getState) => {
     dispatch(setDfspHubExternalCaError(data));
   }
 };
-export const downloadDfspHubExternalCaRootCertificate = ({ cert, name }) => (dispatch, getState) => {
+export const downloadDfspHubExternalCaRootCertificate = ({ cert, name }) => () => {
   downloadFile(cert, `hub-${name}-root.pem`);
 };
 
-export const downloadDfspHubExternalCaIntermediateChain = ({ cert, name }) => (dispatch, getState) => {
+export const downloadDfspHubExternalCaIntermediateChain = ({ cert, name }) => () => {
   downloadFile(cert, `hub-${name}-intermediates.pem`);
 };

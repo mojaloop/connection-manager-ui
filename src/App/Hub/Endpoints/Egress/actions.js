@@ -27,7 +27,7 @@ export const addHubEgressPort = createAction(ADD_HUB_EGRESS_PORT);
 export const removeHubEgressPort = createAction(REMOVE_HUB_EGRESS_PORT);
 export const undoHubEgressChanges = createAction(UNDO_HUB_EGRESS_CHANGES);
 
-export const storeHubEgressIps = () => async (dispatch, getState) => {
+export const storeHubEgressIps = () => async (dispatch) => {
   const { data, status } = await dispatch(api.hubEgressIps.read());
   if (is200(status)) {
     const ips = data.map(apiToIpModel);

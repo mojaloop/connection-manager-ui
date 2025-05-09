@@ -55,6 +55,6 @@ export const submitCertificateDfspHubCsr = enrollmentId => async (dispatch, getS
   }
 };
 
-export const downloadDfspSentCsrCertificate = (certificate, cn, extension) => (dispatch, getState) => {
+export const downloadDfspSentCsrCertificate = (certificate, cn, extension) => () => {
   downloadFile(certificate, `${cn}${extension}`);
 };

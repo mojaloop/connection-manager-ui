@@ -44,10 +44,10 @@ export const storeHubDfspCas = () => async (dispatch, getState) => {
   }
 };
 
-export const downloadHubDfspCaRootCertificate = ({ cert, dfspName }) => (dispatch, getState) => {
+export const downloadHubDfspCaRootCertificate = ({ cert, dfspName }) => {
   downloadFile(cert, `${dfspName}-root.pem`);
 };
 
-export const downloadHubDfspCaIntermediateChain = ({ cert, dfspName }) => (dispatch, getState) => {
+export const downloadHubDfspCaIntermediateChain = ({ cert, dfspName }) => {
   downloadFile(cert, `${dfspName}-intermediates.pem`);
 };

@@ -8,7 +8,7 @@ const stateProps = state => ({
   icons: getMenuIcons(state),
 });
 
-const MenuStructure = ({ companyId, pathname, icons, onChange }) => {
+const MenuStructure = ({ pathname, icons, onChange }) => {
   const { unprocessed, csrs, ca } = icons;
   return (
     <Menu path="/hub" pathname={pathname} onChange={onChange}>

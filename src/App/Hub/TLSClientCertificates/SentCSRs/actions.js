@@ -40,7 +40,7 @@ export const storeHubSentCsrs = () => async (dispatch, getState) => {
   }
 };
 
-export const validateHubSentCsrCertificate = (dfspId, enrollmentId) => async (dispatch, getState) => {
+export const validateHubSentCsrCertificate = (dfspId, enrollmentId) => async (dispatch) => {
   const { status } = await dispatch(api.outboundEnrollmentValidate.create({ dfspId, enrollmentId }));
   if (is200(status)) {
     dispatch(showSuccessToast());
@@ -50,6 +50,6 @@ export const validateHubSentCsrCertificate = (dfspId, enrollmentId) => async (di
   }
 };
 
-export const downloadHubSentCsrCertificate = (certificate, dfspName = undefined, extension) => (dispatch, getState) => {
+export const downloadHubSentCsrCertificate = (certificate, dfspName = undefined, extension) => {
   downloadFile(certificate, `${dfspName || ''}${extension}`);
 };
