@@ -27,8 +27,8 @@
     "compile": "./node_modules/ts4/bin/tsc --noemit",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "test": "testcafe ${BROWSER_TCAFE:-firefox}",
-    "test:headless": "testcafe ${BROWSER_TCAFE:-firefox:headless}"
+    "test": "npx testcafe ${BROWSER_TCAFE:-firefox}",
+    "test:headless": "npx testcafe ${BROWSER_TCAFE:-firefox:headless}"
   },
   "author": "sridevi.miriyala@modusbox.com",
   "devDependencies": {

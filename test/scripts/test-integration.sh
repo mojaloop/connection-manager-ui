@@ -85,6 +85,7 @@ set -x
 
 node -v
 npm ci
+npx testcafe --version
 npm run test:headless
 
 
