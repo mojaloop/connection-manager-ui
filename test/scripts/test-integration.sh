@@ -85,7 +85,7 @@ set -x
 
 node -v
 npm ci
-BROWSER_TCAFE=${BROWSER_TCAFE:-firefox} npm run test:headless
+npm run test:headless
 
 
 # # cleanup 
