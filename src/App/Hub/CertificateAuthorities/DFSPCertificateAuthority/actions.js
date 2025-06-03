@@ -1,7 +1,7 @@
 import { createAction } from 'redux-actions';
 import get from 'lodash/get';
 import api from 'utils/api';
-import { is200, is404 } from 'utils/http';
+import { is200, is404, is500 } from 'utils/http';
 import { downloadFile } from 'utils/html';
 import { getDfsps } from 'App/selectors';
 
@@ -25,16 +25,28 @@ export const hideHubDfspCasIntermediateChainModal = createAction(HIDE_HUB_DFSP_C
 export const storeHubDfspCas = () => async (dispatch, getState) => {
   const dfsps = getDfsps(getState());
   const results = await Promise.all(dfsps.map(dfsp => dispatch(api.dfspCa.read({ dfspId: dfsp.id }))));
-  if (results.every(({ status }) => is200(status) || is404(status))) {
+  if (results.every(({ status }) => is200(status) || is404(status) || is500(status))) {
     const certificates = results.reduce((prev, curr, index) => {
-      prev.push({
-        dfspId: dfsps[index].id, // the dfsp ID could not be in the response
-        error: !is200(curr.status) && !is404(curr.status),
-        rootCertificate: get(curr.data, 'rootCertificate'),
-        intermediateChain: get(curr.data, 'intermediateChain'),
-        validations: get(curr.data, 'validations'),
-        validationState: get(curr.data, 'validationState'),
-      });
+      // If 500, mark as error and skip certificate fields
+      if (is500(curr.status)) {
+        prev.push({
+          dfspId: dfsps[index].id,
+          error: true,
+          rootCertificate: null,
+          intermediateChain: null,
+          validations: null,
+          validationState: null,
+        });
+      } else {
+        prev.push({
+          dfspId: dfsps[index].id,
+          error: !is200(curr.status) && !is404(curr.status),
+          rootCertificate: get(curr.data, 'rootCertificate'),
+          intermediateChain: get(curr.data, 'intermediateChain'),
+          validations: get(curr.data, 'validations'),
+          validationState: get(curr.data, 'validationState'),
+        });
+      }
       return prev;
     }, []);
 
