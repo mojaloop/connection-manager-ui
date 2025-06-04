@@ -35,6 +35,15 @@ export const storeHubDfspCas = () => async (dispatch, getState) => {
         validations: get(curr.data, 'validations'),
         validationState: get(curr.data, 'validationState'),
       });
+    } else {
+      prev.push({
+        dfspId: dfsps[index].id,
+        error: true,
+        rootCertificate: null,
+        intermediateChain: null,
+        validations: null,
+        validationState: null,
+      });
     }
     return prev;
   }, []);
