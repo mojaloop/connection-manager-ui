@@ -37,31 +37,28 @@ export const setHubDfspsCsrsCertificateUploadModalCaId = createAction(SET_HUB_DF
 
 export const storeHubDfspCsrs = () => async (dispatch, getState) => {
   const dfsps = getDfsps(getState());
-  const results = await Promise.all(dfsps.map(dfsp => dispatch(api.inboundEnrollments.read({ dfspId: dfsp.id }))));
+  let certificates = [];
+  let hasError = false;
 
-  const certificates = results.reduce((prev, curr, index) => {
-    if (is200(curr.status) || is404(curr.status)) {
-      return [
-        ...prev,
-        ...curr.data.map(certificate => ({
-          dfspId: dfsps[index].id,
-          error: false,
-          ...certificate,
-        })),
-      ];
-    } else {
-      // status is not 200 or 404, just skip this dfsp
-      return [
-        ...prev,
-      ];
-    }
-  }, []);
-
-  if (certificates.length > 0) {
-    dispatch(setHubDfspCsrsCertificates(certificates));
-  } else {
-    dispatch(setHubDfspCsrsError('Generic'));
-  }
+  await Promise.all(
+    dfsps.map(async (dfsp, index) => {
+      try {
+        const result = await dispatch(api.inboundEnrollments.read({ dfspId: dfsp.id }));
+        if (is200(result.status) || is404(result.status)) {
+          const newCertificates = result.data.map(certificate => ({
+            dfspId: dfsp.id,
+            error: false,
+            ...certificate,
+          }));
+          certificates = [...certificates, ...newCertificates];
+          dispatch(setHubDfspCsrsCertificates(certificates));
+        }
+      } catch (error) {
+        // eslint-disable-next-line no-console
+        console.error(error);
+      }
+    })
+  );
 };
 
 export const submitCASignHubDfspCsr = (dfspId, enrollmentId) => async (dispatch, getState) => {
