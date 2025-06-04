@@ -48,6 +48,10 @@ export const storeHubDfspCas = () => async (dispatch, getState) => {
     return prev;
   }, []);
 
+  if (certificates.length === 0) {
+    dispatch(setHubDfspCasError('Generic'));
+  }
+
   dispatch(setHubDfspCasCertificates(certificates));
 };
 
