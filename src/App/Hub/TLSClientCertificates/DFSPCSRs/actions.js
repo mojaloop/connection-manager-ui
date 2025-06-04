@@ -50,13 +50,9 @@ export const storeHubDfspCsrs = () => async (dispatch, getState) => {
         })),
       ];
     } else {
-      // status is not 200 or 404, just add dfspId and error: true
+      // status is not 200 or 404, just skip this dfsp
       return [
         ...prev,
-        {
-          dfspId: dfsps[index].id,
-          error: true,
-        },
       ];
     }
   }, []);
