@@ -39,19 +39,29 @@ export const storeHubDfspCsrs = () => async (dispatch, getState) => {
   const dfsps = getDfsps(getState());
   const results = await Promise.all(dfsps.map(dfsp => dispatch(api.inboundEnrollments.read({ dfspId: dfsp.id }))));
 
-  if (results.every(({ status }) => is200(status) || is404(status))) {
-    const certificates = results.reduce(
-      (prev, curr, index) => [
+  const certificates = results.reduce((prev, curr, index) => {
+    if (is200(curr.status) || is404(curr.status)) {
+      return [
         ...prev,
         ...curr.data.map(certificate => ({
-          dfspId: dfsps[index].id, // the dfsp ID could not be in the response
-          error: !is200(curr.status) && !is404(curr.status),
+          dfspId: dfsps[index].id,
+          error: false,
           ...certificate,
         })),
-      ],
-      []
-    );
+      ];
+    } else {
+      // status is not 200 or 404, just add dfspId and error: true
+      return [
+        ...prev,
+        {
+          dfspId: dfsps[index].id,
+          error: true,
+        },
+      ];
+    }
+  }, []);
 
+  if (certificates.length > 0) {
     dispatch(setHubDfspCsrsCertificates(certificates));
   } else {
     dispatch(setHubDfspCsrsError('Generic'));
