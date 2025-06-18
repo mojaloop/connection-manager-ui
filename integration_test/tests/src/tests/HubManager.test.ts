@@ -28,8 +28,10 @@ test.meta({
   await t.click(HubManagerPage.hubPageAdministrationDfspSubMenuAddDfspButton).wait(1000);
 
   const randomDfspName = chance().company();
+  const randomDfspEmail = chance().email();
   await t.typeText(HubManagerPage.getAddDfspModalNameField, randomDfspName)
   // The UI automatically types out the ID when entering the name
+  await t.typeText(HubManagerPage.getAddDfspModalEmailField, randomDfspEmail)
   await t.click(HubManagerPage.getAddDfspModalMonetaryZoneField)
         .wait(1000)
         .click(Selector('.input-select__options-item__label').withText('Euro'))

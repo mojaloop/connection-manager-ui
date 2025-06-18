@@ -16,6 +16,7 @@ export const HubManagerPage = {
     .parent().parent('.el-modal__container'),
   getAddDfspModalNameField: Selector('.dfsp-modal__dfsp-name input'),
   getAddDfspModalIdField: Selector('.dfsp-modal__dfsp-id input'),
+  getAddDfspModalEmailField: Selector('.dfsp-modal__dfsp-email input'),
   getAddDfspModalMonetaryZoneField: Selector('.dfsp-modal__dfsp-monetary-zone input'),
   getAddDfspModalSubmit: Selector('.el-modal__submit'),
 
