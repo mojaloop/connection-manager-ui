@@ -1,6 +1,17 @@
+// Load environment variables from parent directory .env file
+require('dotenv').config({ path: '../.env' });
+
 const express = require('express');
 const path = require('path');
+const cors = require('cors');
 const app = express();
+
+const PORT = process.env.REACT_APP_CONFIG_PORT || 8080;
+const isProduction = process.env.NODE_ENV === 'production';
+
+if (!isProduction) {
+  app.use(cors({ origin: true, credentials: true }));
+}
 
 app.use(express.static(path.join(__dirname, 'build')));
 
@@ -21,4 +32,5 @@ app.get('/*', function (req, res) {
   res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
 
-app.listen(8080);
+console.log(`Starting connection-manager-ui server on port ${PORT}...`);
+app.listen(PORT);

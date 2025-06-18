@@ -3,7 +3,7 @@ import { checkSession } from 'App/selectors';
 
 const handleError = (error, status, state) => {
   if (status === 401) {
-    window.location.assign(state.app.config.loginUrl);
+    window.location.assign(`${state.app.config.loginUrl}?return_to=${encodeURIComponent(window.location.href)}`);
     // should exit the execution of the function
     // otherwise the non-authenticated response will be
     // treater as a regular response error, causing the UI
@@ -19,12 +19,7 @@ const services = {
     getApplicationHeaders: () => {
       return undefined;
     },
-    credentials: state => {
-      if (state.auth.login.isDisabled) {
-        return undefined;
-      }
-      return 'include';
-    },
+    credentials: () => 'include',
     sendAsJson: true,
     parseAsJson: true,
     handleError: handleError,
@@ -36,6 +31,12 @@ const services = {
   },
   checkSession: {
     getApplicationUrl: checkSession,
+    getApplicationHeaders: () => {
+      return undefined;
+    },
+    credentials: () => 'include',
+    sendAsJson: true,
+    parseAsJson: true,
   },
 };
 
@@ -143,6 +144,10 @@ const endpoints = {
   onboard: {
     service: services.connectionManager,
     url: ({ dfspId }) => `/dfsps/${dfspId}/onboard`,
+  },
+  dfspCredentials: {
+    service: services.connectionManager,
+    url: ({ dfspId }) => `/dfsps/${dfspId}/credentials`,
   },
   inboundEnrollments: {
     service: services.connectionManager,

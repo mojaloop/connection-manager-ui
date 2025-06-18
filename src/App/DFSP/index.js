@@ -9,15 +9,18 @@ import CertificateAuthorities from './CertificateAuthorities';
 import TLSClientCertificates from './TLSClientCertificates';
 import TLSServerCertificates from './TLSServerCertificates';
 import JWSCertificates from './JWSCertificates';
+import PM4MLCredentials from './PM4MLCredentials';
 import './DFSP.css';
 
 import { getDfspName } from 'App/selectors';
 import { getIsDfspLoading } from './selectors';
 import { initDfsp } from './actions';
+import { getIsCurrentUserDfspUser } from 'Auth/selectors';
 
 const stateProps = state => ({
   dfspName: getDfspName(state),
   isDfspLoading: getIsDfspLoading(state),
+  isCurrentUserDfspUser: getIsCurrentUserDfspUser(state),
 });
 
 const actionProps = dispatch => ({
@@ -30,9 +33,12 @@ class DFSPWrapper extends PureComponent {
     this.props.initDfsp();
   }
   componentDidUpdate(prevProps) {
-    const { isDfspLoading, history } = this.props;
+    const { isDfspLoading, history, location } = this.props;
     if (!isDfspLoading && isDfspLoading !== prevProps.isDfspLoading) {
-      history.replace('/dfsp/endpoints');
+      // Only redirect to default route if user is at the base /dfsp path
+      if (location.pathname === '/dfsp' || location.pathname === '/dfsp/') {
+        history.replace('/dfsp/endpoints');
+      }
     }
   }
   render() {
@@ -45,7 +51,7 @@ class DFSPWrapper extends PureComponent {
 
 const DFSPLoader = () => <Spinner center size="m" />;
 
-const DFSP = ({ dfspName }) => (
+const DFSP = ({ dfspName, isCurrentUserDfspUser }) => (
   <div id="dfsp">
     <div id="dfsp__menu">
       <Menu />
@@ -55,6 +61,9 @@ const DFSP = ({ dfspName }) => (
         <Heading size="3">{dfspName}</Heading>
         <Route path="/dfsp/endpoints" component={Endpoints} />
         <Route path="/dfsp/hubEndpoints" component={HubEndpoints} />
+        {isCurrentUserDfspUser && (
+          <Route path="/dfsp/pm4ml-credentials" component={PM4MLCredentials} />
+        )}
         <Route path="/dfsp/ca" component={CertificateAuthorities} />
         <Route path="/dfsp/tls/client" component={TLSClientCertificates} />
         <Route path="/dfsp/tls/server" component={TLSServerCertificates} />

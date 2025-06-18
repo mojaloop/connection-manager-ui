@@ -3,7 +3,7 @@ import { push } from 'connected-react-router';
 import find from 'lodash/find';
 import { setDfspId, unsetDfsps } from 'App/actions';
 import { getDfsps } from 'App/selectors';
-import { getJwt, getIsHubUser, getLoggedDfspId } from 'Auth/selectors';
+import { getJwt, getLoggedDfspId } from 'Auth/selectors';
 
 export const selectHub = () => dispatch => dispatch(push('/hub'));
 

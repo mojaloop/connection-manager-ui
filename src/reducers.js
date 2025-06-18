@@ -36,6 +36,7 @@ import dfspSC from 'App/DFSP/TLSServerCertificates/DFSPSC/reducers';
 import dfspHubSC from 'App/DFSP/TLSServerCertificates/HubSC/reducers';
 import dfspJWS from 'App/DFSP/JWSCertificates/DFSPJWS/reducers';
 import dfspsJWS from 'App/DFSP/JWSCertificates/DFSPsJWS/reducers';
+import pm4mlCredentials from 'App/DFSP/PM4MLCredentials/reducers';
 
 const reducers = (history, isAuthEnabled) =>
   combineReducers({
@@ -50,6 +51,7 @@ const reducers = (history, isAuthEnabled) =>
     monetaryZones,
     dfsp: combineReducers({
       dfsp,
+      pm4mlCredentials,
       endpoints: combineReducers({
         dfsp: combineReducers({
           egress: dfspEgress,

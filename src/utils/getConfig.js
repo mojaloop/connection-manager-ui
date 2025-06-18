@@ -1,6 +1,10 @@
 const getConfig = async () => {
-  const { REACT_APP_API_BASE_URL } = process.env;
-  const { protocol, host } = window.location;
+  const { REACT_APP_API_BASE_URL, REACT_APP_CONFIG_PORT } = process.env;
+  const { protocol, hostname } = window.location;
+
+  // Configure the config server URL
+  const configPort = REACT_APP_CONFIG_PORT || '3004';
+  const configUrl = `${protocol}//${hostname}:${configPort}/config`;
 
   // Using the same protocol as we've been loaded from to avoid Mixed Content error.
   let apiBaseUrl = REACT_APP_API_BASE_URL ? REACT_APP_API_BASE_URL : `${protocol}//localhost:3001`;
@@ -9,10 +13,10 @@ const getConfig = async () => {
   let loginUrl;
   let loginProvider;
   let logoutUrl;
-  const infos = [`fetching ${protocol}//${host}/config`];
+  const infos = [`fetching config from ${configUrl}`];
 
   try {
-    const response = await fetch(`${protocol}//${host}/config`);
+    const response = await fetch(configUrl);
     const {
       AUTH_ENABLED,
       API_BASE_URL,
