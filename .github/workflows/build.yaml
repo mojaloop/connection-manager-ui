@@ -38,6 +38,7 @@ jobs:
           type=match,pattern=v(\d+\.\d+)\.\d+,enable=${{ github.event_name == 'release' }},group=1
           type=match,pattern=v(\d+)\.\d+\.\d+,group=1,enable=${{ !startsWith(github.ref, 'refs/tags/v0.') && github.event_name == 'release' }}
           type=sha,event=push,value={{sha}},format=long,enable=${{ github.event_name != 'release' }}
+          type=ref,event=branch
         labels: |
           org.opencontainers.image.source=https://github.com/${{ github.repository }}/tree/${{ github.sha }}
     -
