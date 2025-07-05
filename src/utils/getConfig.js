@@ -1,6 +1,6 @@
 const getConfig = async () => {
   const { REACT_APP_API_BASE_URL, REACT_APP_CONFIG_PORT } = process.env;
-  const { protocol, hostname } = window.location;
+  const { protocol, host, hostname } = window.location;
 
   // Configure the config server URL
   const configPort = REACT_APP_CONFIG_PORT;
