@@ -3,8 +3,8 @@ const getConfig = async () => {
   const { protocol, hostname } = window.location;
 
   // Configure the config server URL
-  const configPort = REACT_APP_CONFIG_PORT || '3004';
-  const configUrl = `${protocol}//${hostname}:${configPort}/config`;
+  const configPort = REACT_APP_CONFIG_PORT;
+  const configUrl = configPort ? `${protocol}//${hostname}:${configPort}/config` : `${protocol}//${host}/config`;
 
   // Using the same protocol as we've been loaded from to avoid Mixed Content error.
   let apiBaseUrl = REACT_APP_API_BASE_URL ? REACT_APP_API_BASE_URL : `${protocol}//localhost:3001`;
