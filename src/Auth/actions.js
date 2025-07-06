@@ -75,15 +75,23 @@ export const login = () => async (dispatch, getState) => {
 
 export const logout = () => async (dispatch, getState) => {
   const state = getState();
+  const loginProvider = getLoginProvider(state);
   let logoutUrl = getLogoutUrl(state);
-  
+
   // Clear DFSP selection on logout for clean user experience
   dispatch(unsetDfsps());
-  
+
   if (logoutUrl) {
-    logoutUrl = logoutUrl + '?return_to=' + encodeURIComponent(window.location.href);
-    window.location.assign(logoutUrl);
-    return;
+    if (loginProvider) {
+      fetch(logoutUrl, { headers: { accept: 'application/json' } })
+        .then(response => response.json())
+        .then(({ logout_token, logout_url }) => {
+          window.location.assign(logout_url);
+        });
+    } else {
+      logoutUrl = logoutUrl + '?return_to=' + encodeURIComponent(window.location.href);
+      window.location.assign(logoutUrl);
+    }
   } else {
     await dispatch(api.logout.create());
     dispatch(unsetAuthToken());
@@ -103,7 +111,7 @@ export const check = () => async (dispatch, getState) => {
       window.location.assign(loginUrl);
       return;
     }
-    fetch(loginUrl, { 
+    fetch(loginUrl, {
       headers: { accept: 'application/json' },
       credentials: 'include'
     })
