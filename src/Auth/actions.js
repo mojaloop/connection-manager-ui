@@ -102,7 +102,7 @@ export const logout = () => async (dispatch, getState) => {
 export const check = () => async (dispatch, getState) => {
   const { data, status } = await dispatch(api.checkSession.read({}));
   if (is20x(status)) {
-    dispatch(setSession(data));
+    dispatch(setSession(data?.identity?.traits || data));
   } else {
     const state = getState();
     const loginUrl = getLoginUrl(state) + '?return_to=' + encodeURIComponent(window.location.href);
