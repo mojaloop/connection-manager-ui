@@ -40,7 +40,7 @@ export const getIsSessionHubUser = createSelector(getSessionUserRoles, roles => 
 export const getIsSessionDfspUser = createSelector(getSessionUserRoles, roles => {
   if (!roles || !Array.isArray(roles)) return false;
   // Check for DFSP user roles (e.g., 'Application/DFSP:MTN CI')
-  return roles.some(role => role.startsWith('Application/DFSP'));
+  return roles.some(role => role.startsWith('Application/DFSP:') || role.startsWith('dfsp:'));
 });
 
 // Universal selectors that work with both JWT and session
