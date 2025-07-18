@@ -29,14 +29,16 @@ const AppSelection = ({ isPending, dfsps, isCurrentUserDfspUser, onHubClick, onD
   return (
     <div className="selection">
       {!isCurrentUserDfspUser && (
-        <div className="selection__row">
+        <div className="selection__hub-row">
           <SelectionItem className="selection__item--hub" onClick={onHubClick} type="HUB" label="HUB" />
         </div>
       )}
-      <div className="selection__row">
-        {dfsps.map((dfsp, index) => (
-          <SelectionItem key={index} onClick={() => onDFSPClick(dfsp.id)} type="DFSP" label={dfsp.name} />
-        ))}
+      <div className="selection__dfsps-container">
+        <div className="selection__dfsps-grid">
+          {dfsps.map((dfsp, index) => (
+            <SelectionItem key={index} onClick={() => onDFSPClick(dfsp.id)} type="DFSP" label={dfsp.name} />
+          ))}
+        </div>
       </div>
     </div>
   );
