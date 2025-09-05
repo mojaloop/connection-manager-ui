@@ -6,6 +6,7 @@ import {
   getHubDfspModalName,
   getHubDfspModalId,
   getHubDfspModalMonetaryZoneId,
+  getHubDfspModalEmail,
   getHubDfspModalValidationResult,
   getIsHubDfspModalVisible,
   getIsExistingDfsp,
@@ -18,6 +19,7 @@ import {
   setHubDfspModalName,
   setHubDfspModalId,
   setHubDfspModalMonetaryZone,
+  setHubDfspModalEmail,
 } from './actions';
 
 import './index.css';
@@ -26,6 +28,7 @@ const stateProps = state => ({
   dfspName: getHubDfspModalName(state),
   dfspId: getHubDfspModalId(state),
   dfspMonetaryZoneId: getHubDfspModalMonetaryZoneId(state),
+  dfspEmail: getHubDfspModalEmail(state),
   monetaryZoneOptions: getMonetaryZoneOptions(state),
   validation: getHubDfspModalValidationResult(state),
   isVisible: getIsHubDfspModalVisible(state),
@@ -40,12 +43,14 @@ const actionProps = dispatch => ({
   onNameChange: name => dispatch(setHubDfspModalName(name)),
   onIdChange: id => dispatch(setHubDfspModalId(id)),
   onMonetaryZoneChange: zone => dispatch(setHubDfspModalMonetaryZone(zone)),
+  onEmailChange: email => dispatch(setHubDfspModalEmail(email)),
 });
 
 const DFSPModal = ({
   dfspName,
   dfspId,
   dfspMonetaryZoneId,
+  dfspEmail,
   monetaryZoneOptions,
   validation,
   isExistingDfsp,
@@ -55,6 +60,7 @@ const DFSPModal = ({
   onNameChange,
   onIdChange,
   onMonetaryZoneChange,
+  onEmailChange,
   onClose,
   onSubmit,
 }) => {
@@ -90,6 +96,15 @@ const DFSPModal = ({
             onChange={onIdChange}
             value={dfspId}
             validation={validation.fields.dfspId}
+          />
+        </div>
+        <div className="dfsp-modal__dfsp-email">
+          <FormInput
+            type="text"
+            label="Email"
+            onChange={onEmailChange}
+            value={dfspEmail}
+            validation={validation.fields.email}
           />
         </div>
         <div className="dfsp-modal__dfsp-monetary-zone">

@@ -3,6 +3,7 @@ import { push } from 'connected-react-router';
 import api from 'utils/api';
 import { is200, is401, is500, is20x } from 'utils/http';
 import { getLoginUrl, getLoginProvider, getLogoutUrl } from 'App/selectors';
+import { unsetDfsps } from 'App/actions';
 import { getUsername, getPassword } from './selectors';
 import { AUTH_MESSAGES } from './constants';
 
@@ -74,15 +75,23 @@ export const login = () => async (dispatch, getState) => {
 
 export const logout = () => async (dispatch, getState) => {
   const state = getState();
-  const logoutUrl = getLogoutUrl(state);
-  if (logoutUrl) {
-    fetch(logoutUrl, { headers: { accept: 'application/json' } })
-      .then(response => response.json())
-      .then(({ logout_token, logout_url }) => {
-        window.location.assign(logout_url);
-      });
+  const loginProvider = getLoginProvider(state);
+  let logoutUrl = getLogoutUrl(state);
 
-    return;
+  // Clear DFSP selection on logout for clean user experience
+  dispatch(unsetDfsps());
+
+  if (logoutUrl) {
+    if (loginProvider) {
+      fetch(logoutUrl, { headers: { accept: 'application/json' } })
+        .then(response => response.json())
+        .then(({ logout_token, logout_url }) => {
+          window.location.assign(logout_url);
+        });
+    } else {
+      logoutUrl = logoutUrl + '?return_to=' + encodeURIComponent(window.location.href);
+      window.location.assign(logoutUrl);
+    }
   } else {
     await dispatch(api.logout.create());
     dispatch(unsetAuthToken());
@@ -91,18 +100,21 @@ export const logout = () => async (dispatch, getState) => {
 };
 
 export const check = () => async (dispatch, getState) => {
-  const { status } = await dispatch(api.checkSession.read({}));
+  const { data, status } = await dispatch(api.checkSession.read({}));
   if (is20x(status)) {
-    dispatch(setSession(true));
+    dispatch(setSession(data?.identity?.traits || data));
   } else {
     const state = getState();
-    const loginUrl = getLoginUrl(state) + '?return_to=' + window.location.href;
+    const loginUrl = getLoginUrl(state) + '?return_to=' + encodeURIComponent(window.location.href);
     const loginProvider = getLoginProvider(state);
     if (!loginProvider) {
       window.location.assign(loginUrl);
       return;
     }
-    fetch(loginUrl, { headers: { accept: 'application/json' } })
+    fetch(loginUrl, {
+      headers: { accept: 'application/json' },
+      credentials: 'include'
+    })
       .then(response => response.json())
       .then(({ ui: { method, action, nodes }, ui }) => {
         const form = document.createElement('form');

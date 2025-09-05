@@ -1,5 +1,5 @@
 resources:
-- github.com/partiallyordered/mojaloop-kustomize/base/nginx-ingress-controller?ref=ee2ffcc2588dcefda74ed6b4f2e47a7388f67f4e
+- github.com/kubernetes/ingress-nginx/deploy/static/provider/cloud?ref=controller-v1.12.1
 - ing.yaml
 
 configMapGenerator: []

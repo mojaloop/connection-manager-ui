@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { Spinner } from 'components';
-import { getIsAuthDisabled, getJwt, getSession, getExpiration, getLoggedUsername } from 'Auth/selectors';
+import { getIsAuthDisabled, getJwt, getSession, getExpiration, getCurrentUsername } from 'Auth/selectors';
 import { logout, check } from 'Auth/actions';
 import { getLoginUrl, checkSession } from 'App/selectors';
 
@@ -12,7 +12,7 @@ const stateProps = state => ({
   session: getSession(state),
   expiration: getExpiration(state),
   loginUrl: getLoginUrl(state),
-  username: getLoggedUsername(state),
+  username: getCurrentUsername(state),
 });
 
 const actionProps = dispatch => ({

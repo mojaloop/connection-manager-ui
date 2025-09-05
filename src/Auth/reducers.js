@@ -67,6 +67,7 @@ const auth = isAuthEnabled => {
         const { iat, exp } = action.payload;
         const expiration = utc + (exp - iat) * 1000;
 
+        // FIXME: this is not secure!!!
         // store in the localstorage for refresh purposes
         setItem('auth_token', action.payload);
         setItem('expiration', expiration);

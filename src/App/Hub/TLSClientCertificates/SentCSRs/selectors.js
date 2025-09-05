@@ -44,7 +44,7 @@ export const getIsHubSentCsrsValidateCertificatePendingCollection = createCollec
 );
 export const getIsHubSentCsrsValidateCertificatePendingByDfspId = createSelector(
   getFilteredHubSentCsrsCertificatesByDFSP,
-  // getIsHubSentCsrsValidateCertificatePendingCollection,
+  getIsHubSentCsrsValidateCertificatePendingCollection,
   (csrs, collection) => {
     const getByCsrId = getPendingByParameter('enrollmentId');
     return csrs

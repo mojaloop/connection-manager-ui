@@ -1,4 +1,4 @@
-FROM node:14-alpine
+FROM node:lts-alpine
 # First part, build the app
 WORKDIR /app
 COPY package.json /app/

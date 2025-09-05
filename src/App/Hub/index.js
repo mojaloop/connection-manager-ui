@@ -29,9 +29,12 @@ class HubWrapper extends PureComponent {
     this.props.initHub();
   }
   componentDidUpdate(prevProps) {
-    const { isHubLoading, history } = this.props;
+    const { isHubLoading, history, location } = this.props;
     if (!isHubLoading && isHubLoading !== prevProps.isHubLoading) {
-      history.replace('/hub/unprocessed');
+      // Only redirect to default route if user is at the base /hub path
+      if (location.pathname === '/hub' || location.pathname === '/hub/') {
+        history.replace('/hub/unprocessed');
+      }
     }
   }
   render() {
