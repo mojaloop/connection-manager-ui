@@ -20,10 +20,7 @@ import {
   getDfspSentCsrsCertificateModalContent,
   getDfspSentCsrsCertificateModalTitle,
   getIsDfspSentCsrsPending,
-  getFilteredDfspSentCsrsCertificates,
 } from './selectors';
-
-import { getIsSuccessToastVisible, getIsErrorModalVisible } from 'App/selectors';
 import { initialState } from './reducers';
 
 // TODO: Test loading a file programmatically

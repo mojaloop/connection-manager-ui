@@ -1,6 +1,5 @@
 import { fetchMock, MATCHED } from 'fetch-mock';
 import { getStore } from 'tests/store';
-import { sleep } from 'utils/async';
 
 import {
   setAppLoading,

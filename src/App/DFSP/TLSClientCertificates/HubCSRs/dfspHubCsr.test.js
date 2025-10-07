@@ -19,8 +19,6 @@ import {
   getDfspHubCsrsCertificateModalContent,
   getDfspHubCsrsCertificateModalTitle,
   getIsDfspHubCsrsPending,
-  getDfspHubCsrCertificateSigningPendingCollection,
-  getIsDfspHubCsrCertificateSigningPendingByEnrollmentId,
 } from './selectors';
 
 import { getIsSuccessToastVisible, getIsErrorModalVisible } from 'App/selectors';
@@ -105,7 +103,7 @@ describe('Test the dfsp csr thunk actions', () => {
     expect(getDfspHubCsrsError(getState())).toBe('Generic');
   });
 
-  /*it('Should submit the dfsp csr', async () => {
+  it.skip('Should submit the dfsp csr', async () => {
     fetchMock.post('glob:*/dfsps/*/enrollments/inbound', response);
     fetchMock.get('glob:*/dfsps/*/enrollments/inbound', 200);
     await dispatch(submitCertificateDfspHubCsr());
@@ -113,12 +111,12 @@ describe('Test the dfsp csr thunk actions', () => {
     expect(getIsSuccessToastVisible(getState())).toBe(true);
   });
 
-  it('Should show the error modal when the submit fails', async () => {
+  it.skip('Should show the error modal when the submit fails', async () => {
     fetchMock.post('glob:*/dfsps/*/enrollments/inbound', 500);
     await dispatch(submitCertificateDfspHubCsr());
     expect(fetchMock.calls(MATCHED)).toHaveLength(1);
     expect(getIsErrorModalVisible(getState())).toBe(true);
-  });*/
+  });
 });
 
 describe('Test the api pending selectors', () => {

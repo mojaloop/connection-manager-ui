@@ -38,8 +38,6 @@ import {
   getIsDfspHubSCPending,
 } from './selectors';
 
-import { getIsSuccessToastVisible, getIsErrorModalVisible } from 'App/selectors';
-
 import { initialState } from './reducers';
 
 let dispatch;

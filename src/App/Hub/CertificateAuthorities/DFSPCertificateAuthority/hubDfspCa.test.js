@@ -8,8 +8,6 @@ import {
   setHubDfspCasCertificates,
   showHubDfspCasRootCertificateModal,
   hideHubDfspCasRootCertificateModal,
-  showHubDfspCasIntermediateChainModal,
-  hideHubDfspCasIntermediateChainModal,
   storeHubDfspCas,
 } from './actions';
 

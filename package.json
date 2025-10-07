@@ -36,6 +36,7 @@
     "test:functional": "echo 'No functional tests for UI'",
     "test:integration": "./scripts/run-integration-tests.sh",
     "lint": "eslint src",
+    "lint:fix": "eslint src --fix",
     "dep:check": "npx ncu -e 2",
     "audit:check": "npx audit-ci --config ./audit-ci.jsonc",
     "eject": "react-scripts eject"
