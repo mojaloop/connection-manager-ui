@@ -11,3 +11,9 @@ window.location = {
   host: 'localhost',
   hostname: 'localhost'
 };
+
+// Clean up open handles after all tests
+afterAll(() => {
+  // Allow pending promises to resolve
+  return new Promise(resolve => setImmediate(resolve));
+});
