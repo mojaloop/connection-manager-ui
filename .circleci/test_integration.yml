@@ -1,0 +1,127 @@
+description: >
+  This job executes Kubernetes integration tests with Minikube, Vault, and Skaffold.
+
+executor: machine
+
+parameters:
+  kubernetes_version:
+    type: string
+    default: "v1.31.0"
+
+steps:
+  - checkout
+
+  # Install Nix for dependency management
+  - run:
+      name: Install Nix
+      command: |
+        sh <(curl -L https://nixos.org/nix/install) --daemon
+        echo 'export NIX_PATH=nixpkgs=channel:nixos-24.11' >> $BASH_ENV
+        source $BASH_ENV
+
+  - run:
+      name: Install dependencies from Nix
+      command: |
+        . /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
+        nix-env -if integration_test/default.nix
+
+  # Manifest validation job
+  - run:
+      name: Validate integration test manifest
+      command: |
+        . /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
+        kustomize build integration_test | kubeconform -strict -kubernetes-version 1.31.0
+
+  - run:
+      name: Install Helm
+      command: |
+        curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
+
+  - run:
+      name: Download and install Google Chrome
+      command: |
+        wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+        sudo dpkg -i google-chrome-stable_current_amd64.deb || sudo apt-get -f install -y
+
+  - run:
+      name: Start Minikube cluster
+      command: |
+        minikube start --driver=docker --kubernetes-version=<< parameters.kubernetes_version >>
+      no_output_timeout: 10m
+
+  - run:
+      name: Add Vault Helm Repo
+      command: helm repo add hashicorp https://helm.releases.hashicorp.com
+
+  - run:
+      name: Install Vault on cluster
+      command: helm install vault hashicorp/vault
+
+  - run:
+      name: Wait for kube api server to process and create vault
+      command: sleep 60s
+
+  - run:
+      name: Wait for vault to be initialized
+      command: kubectl wait --for=condition=Initialized pod vault-0 --timeout=900s
+      no_output_timeout: 15m
+
+  - run:
+      name: Bootstrap Vault
+      command: . scripts/bootstrap-vault.sh
+
+  - run:
+      name: Deploy with Skaffold
+      command: |
+        . /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
+        skaffold run -p integration-test
+      no_output_timeout: 15m
+
+  - run:
+      name: Wait for kube api server to process and create all resources
+      command: sleep 30s
+
+  - run:
+      name: Wait for deployment readiness
+      command: kubectl wait --for=condition=Ready pod --all --timeout=900s
+      no_output_timeout: 15m
+
+  - run:
+      name: Port-forward the portal frontend ingress
+      command: kubectl port-forward -n ingress-nginx --address 0.0.0.0 svc/ingress-nginx-controller 3000:80
+      background: true
+
+  - run:
+      name: Install test dependencies
+      command: npm ci
+      working_directory: integration_test/tests
+
+  - run:
+      name: Run integration tests
+      command: CONNECTION_MANAGER_ENDPOINT="http://127.0.0.1:3000" npm run test:headless
+      working_directory: integration_test/tests
+
+  - store_artifacts:
+      path: integration_test/tests/report.html
+      destination: test-report
+
+  - run:
+      name: Print docker containers on failure
+      command: docker ps
+      when: on_fail
+
+  - run:
+      name: Print Kubernetes resources
+      command: kubectl get svc,deploy,sts,pv,pvc,configmap,job,pod -A
+      when: always
+
+  - run:
+      name: Describe Kubernetes resources
+      command: kubectl describe svc,deploy,sts,pv,pvc,configmap,job,pod -A
+      when: always
+
+  - run:
+      name: Print secret values
+      command: |
+        kubectl get secrets -o json | jq -r '.items[] | { name: .metadata.name, data: .data | map_values(@base64d) }'
+      when: always
