@@ -1,4 +1,0 @@
-resources:
-- manifests/connection-manager-ui
-- manifests/backend
-- manifests/connection-manager-api

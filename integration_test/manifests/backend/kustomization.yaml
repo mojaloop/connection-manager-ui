@@ -1,7 +1,0 @@
-resources:
-- github.com/kubernetes/ingress-nginx/deploy/static/provider/cloud?ref=controller-v1.12.1
-- ing.yaml
-
-configMapGenerator: []
-
-patches: []
