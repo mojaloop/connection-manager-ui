@@ -190,13 +190,16 @@ describe('Test the api pending selectors', () => {
   });
 
   it('Should detect the api is pending when signin with certificate', async () => {
-    fetchMock.post('glob:*/dfsps/*/enrollments/inbound/*/certificate', sleep(100).then(() => 200));
+    let resolveFetch;
+    const fetchPromise = new Promise(resolve => { resolveFetch = resolve; });
+    fetchMock.post('glob:*/dfsps/*/enrollments/inbound/*/certificate', fetchPromise);
     fetchMock.get('glob:*/dfsps/*/enrollments/inbound?state=CSR_LOADED', response);
     dispatch(setHubDfspCsrsCertificates([{ id: 1, dfspId: dfsps[0].id }]));
     const promise = dispatch(submitCertificateHubDfspCsr(1, 1));
     await sleep(10);
     const pendingRequests = getIsHubDfspCertificateSigningPending(getState());
     expect(pendingRequests).toBe(true);
+    resolveFetch(200);
     await promise;
   });
 
