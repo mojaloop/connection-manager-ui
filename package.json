@@ -37,7 +37,7 @@
     "test:integration": "./scripts/run-integration-tests.sh",
     "lint": "eslint src",
     "dep:check": "npx ncu -e 2",
-    "audit:check": "yarn audit --level moderate",
+    "audit:check": "npx audit-ci --config ./audit-ci.jsonc",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -58,5 +58,8 @@
     "svg-sprite-loader": "^6.0.11",
     "webpack": "^5.89.0",
     "webpack-dev-server": "^4.15.1"
+  },
+  "resolutions": {
+    "axe-core": "4.4.3"
   }
 }

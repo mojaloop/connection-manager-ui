@@ -1,4 +1,3 @@
-import 'react-app-polyfill/stable';
 import raf from './tests/dummy/polyfill';
 import localstorage from './tests/dummy/localStorage';
 
@@ -11,9 +10,3 @@ window.location = {
   host: 'localhost',
   hostname: 'localhost'
 };
-
-// Clean up open handles after all tests
-afterAll(() => {
-  // Allow pending promises to resolve
-  return new Promise(resolve => setImmediate(resolve));
-});
