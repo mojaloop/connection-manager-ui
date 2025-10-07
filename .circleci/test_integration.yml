@@ -15,21 +15,21 @@ steps:
   - run:
       name: Install Nix
       command: |
-        sh <(curl -L https://nixos.org/nix/install) --daemon
+        sh <(curl -L https://nixos.org/nix/install) --no-daemon
+        echo '. ~/.nix-profile/etc/profile.d/nix.sh' >> $BASH_ENV
         echo 'export NIX_PATH=nixpkgs=channel:nixos-24.11' >> $BASH_ENV
-        source $BASH_ENV
 
   - run:
       name: Install dependencies from Nix
       command: |
-        . /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
+        . ~/.nix-profile/etc/profile.d/nix.sh
         nix-env -if integration_test/default.nix
 
   # Manifest validation job
   - run:
       name: Validate integration test manifest
       command: |
-        . /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
+        . ~/.nix-profile/etc/profile.d/nix.sh
         kustomize build integration_test | kubeconform -strict -kubernetes-version 1.31.0
 
   - run:
@@ -63,7 +63,7 @@ steps:
 
   - run:
       name: Wait for vault to be initialized
-      command: kubectl wait --for=condition=Initialized pod vault-0 --timeout=900s
+      command: timeout 900 kubectl wait --for=condition=Initialized pod vault-0 --timeout=900s
       no_output_timeout: 15m
 
   - run:
@@ -73,7 +73,7 @@ steps:
   - run:
       name: Deploy with Skaffold
       command: |
-        . /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
+        . ~/.nix-profile/etc/profile.d/nix.sh
         skaffold run -p integration-test
       no_output_timeout: 15m
 
@@ -83,7 +83,7 @@ steps:
 
   - run:
       name: Wait for deployment readiness
-      command: kubectl wait --for=condition=Ready pod --all --timeout=900s
+      command: timeout 900 kubectl wait --for=condition=Ready pod --all --timeout=900s
       no_output_timeout: 15m
 
   - run:
@@ -104,6 +104,7 @@ steps:
   - store_artifacts:
       path: integration_test/tests/report.html
       destination: test-report
+      when: always
 
   - run:
       name: Print docker containers on failure
