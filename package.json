@@ -37,7 +37,7 @@
     "test:integration": "./scripts/run-integration-tests.sh",
     "lint": "eslint src",
     "dep:check": "npx ncu -e 2",
-    "audit:check": "npm audit --audit-level=moderate",
+    "audit:check": "yarn audit --level moderate",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
