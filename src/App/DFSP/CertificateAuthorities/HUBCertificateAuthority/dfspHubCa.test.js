@@ -52,7 +52,7 @@ describe('Test the dfsp hub ca actions', () => {
 
 describe('Test the dfsp ca thunk actions', () => {
   const fetchResponse = {
-    certificate: 'ROOT_CERT',
+    rootCertificate: 'ROOT_CERT',
   };
 
   beforeEach(async () => {
@@ -63,17 +63,17 @@ describe('Test the dfsp ca thunk actions', () => {
   });
 
   it('Should store the dfsp ca', async () => {
-    fetchMock.get('end:/ca/rootCert', fetchResponse);
+    fetchMock.get('end:/hub/ca', fetchResponse);
     await dispatch(storeDfspHubCa());
     expect(fetchMock.calls(MATCHED)).toHaveLength(1);
     expect(getDfspHubCaRootCertificate(getState())).toBe('ROOT_CERT');
   });
 
   it('Should set the error when read operation is not successful', async () => {
-    fetchMock.get('end:/ca/rootCert', 500);
+    fetchMock.get('end:/hub/ca', 500);
     await dispatch(storeDfspHubCa());
     expect(fetchMock.calls(MATCHED)).toHaveLength(1);
     expect(getDfspHubCaError(getState()).status).toBe(500);
-    expect(getDfspHubCaError(getState()).error).toBe(undefined);
+    expect(getDfspHubCaError(getState()).error).toBeNull();
   });
 });

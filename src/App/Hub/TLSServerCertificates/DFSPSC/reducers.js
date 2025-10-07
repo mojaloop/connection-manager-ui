@@ -35,7 +35,7 @@ const HubDfspSC = handleActions(
       // so it needs to be stored as an undefined value
       ...state,
       hubDfspSCCertificates:
-        action.payload.map(({ intermediateChainInfo, ...certData }) => ({
+        action.payload?.map(({ intermediateChainInfo, ...certData }) => ({
           ...certData,
           intermediateChainInfo: intermediateChainInfo && intermediateChainInfo[0],
         })) || [],

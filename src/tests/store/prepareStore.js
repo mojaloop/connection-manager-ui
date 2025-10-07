@@ -2,7 +2,7 @@ import getStore, { historyMock } from './getStore';
 
 import { setDfsps, setDfspId } from 'App/actions';
 
-const prepareStore = ({ url, dfsps, dfspId }) => {
+const prepareStore = ({ url, dfsps, dfspId } = {}) => {
   // Create the store
   const store = getStore();
 

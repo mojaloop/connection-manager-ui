@@ -80,30 +80,29 @@ describe('Test the HUB EXTERNAL CA actions', () => {
 });
 
 describe('Test the HUB EXTERNAL CA thunk actions', () => {
-  const fetchResponse = [
-    {
-      rootCertificate: 'ROOT_CERT',
-      intermediateChain: 'CHAIN',
-      name: 'test',
-      validations: [],
-      validationState: 'VALID',
-    },
-  ];
+  const fetchResponse = {
+    rootCertificate: 'ROOT_CERT',
+    intermediateChain: 'CHAIN',
+    name: 'test',
+    validations: [],
+    validationState: 'VALID',
+    type: 'EXTERNAL',
+  };
 
   beforeEach(async () => {
-    const store = prepareStore();
+    const store = prepareStore({});
     ({ dispatch, getState } = store);
 
     fetchMock.restore();
   });
 
   it('Should store the HUB EXTERNAL CA', async () => {
-    fetchMock.get('end:/cas', fetchResponse);
+    fetchMock.get('end:/hub/ca', fetchResponse);
     await dispatch(storeHubExternalCa());
     expect(fetchMock.calls(MATCHED)).toHaveLength(1);
     expect(getHubExternalCaCertificate(getState())).not.toBe(undefined);
 
-    const [certificate] = getHubExternalCaCertificate(getState());
+    const certificate = getHubExternalCaCertificate(getState());
     expect(certificate.rootCertificate).toBe('ROOT_CERT');
     expect(certificate.intermediateChain).toBe('CHAIN');
     expect(certificate.name).toBe('test');
@@ -112,16 +111,16 @@ describe('Test the HUB EXTERNAL CA thunk actions', () => {
   });
 
   it('Should set the error when read operation is not successful', async () => {
-    fetchMock.get('end:/cas', 500);
+    fetchMock.get('end:/hub/ca', 500);
     await dispatch(storeHubExternalCa());
     expect(fetchMock.calls(MATCHED)).toHaveLength(1);
     expect(getHubExternalCaError(getState()).status).toBe(500);
-    expect(getHubExternalCaError(getState()).error).toBe(undefined);
+    expect(getHubExternalCaError(getState()).error).toBeNull();
   });
 
   it('Should submit the HUB EXTERNAL CA', async () => {
-    fetchMock.post('end:/cas', fetchResponse);
-    fetchMock.get('end:/cas', []);
+    fetchMock.post('end:/hub/ca', fetchResponse);
+    fetchMock.get('end:/hub/ca', []);
     await dispatch(submitHubExternalCa());
     expect(fetchMock.calls(MATCHED)).toHaveLength(2);
     expect(getIsSuccessToastVisible(getState())).toBe(true);
@@ -131,7 +130,7 @@ describe('Test the HUB EXTERNAL CA thunk actions', () => {
   });
 
   it('Should set the error when create operation is not successful', async () => {
-    fetchMock.post('end:/cas', 500);
+    fetchMock.post('end:/hub/ca', 500);
     await dispatch(submitHubExternalCa());
     expect(fetchMock.calls(MATCHED)).toHaveLength(1);
     expect(getIsErrorModalVisible(getState())).toBe(true);
@@ -147,22 +146,22 @@ describe('Test the api pending selectors', () => {
   };
 
   beforeEach(async () => {
-    const store = prepareStore();
+    const store = prepareStore({});
     ({ dispatch, getState } = store);
 
     fetchMock.restore();
   });
 
   it('Should detect the api is pending when creating', () => {
-    fetchMock.post('end:/cas', fetchResponse);
-    fetchMock.get('end:/cas', []);
+    fetchMock.post('end:/hub/ca', fetchResponse);
+    fetchMock.get('end:/hub/ca', []);
     dispatch(submitHubExternalCa());
     expect(getIsHubExternalCaCreatePending(getState())).toBe(true);
   });
 
   it('Should detect the api is not pending when finished creating', async () => {
-    fetchMock.post('end:/cas', fetchResponse);
-    fetchMock.get('end:/cas', []);
+    fetchMock.post('end:/hub/ca', fetchResponse);
+    fetchMock.get('end:/hub/ca', []);
     await dispatch(submitHubExternalCa());
     expect(getIsHubExternalCaCreatePending(getState())).not.toBe(true);
   });

@@ -65,17 +65,18 @@ describe('Test the dfsp csr thunk actions', () => {
     ({ dispatch, getState } = store);
 
     fetchMock.restore();
+    dispatch(setDfspCsrCertificate('CSR_CERT'));
   });
 
   it('Should submit the dfsp csr', async () => {
-    fetchMock.post('end:/enrollments/inbound', fetchResponse);
+    fetchMock.post('glob:*/dfsps/*/enrollments/inbound?state=CSR_LOADED', fetchResponse);
     await dispatch(submitDfspCsr());
     expect(fetchMock.calls(MATCHED)).toHaveLength(1);
     expect(getIsSuccessToastVisible(getState())).toBe(true);
   });
 
   it('Should show the error modal when the submit fails', async () => {
-    fetchMock.post('end:/enrollments/inbound', 500);
+    fetchMock.post('glob:*/dfsps/*/enrollments/inbound?state=CSR_LOADED', 500);
     await dispatch(submitDfspCsr());
     expect(fetchMock.calls(MATCHED)).toHaveLength(1);
     expect(getIsErrorModalVisible(getState())).toBe(true);
@@ -105,18 +106,17 @@ describe('Test the api pending selectors', () => {
     ({ dispatch, getState } = store);
 
     fetchMock.restore();
+    dispatch(setDfspCsrCertificate('CSR_CERT'));
   });
 
   it('Should detect the api is pending when creating', () => {
-    fetchMock.post('end:/enrollments/inbound', 200);
-    fetchMock.get('end:/enrollments/inbound', 200);
+    fetchMock.post('glob:*/dfsps/*/enrollments/inbound?state=CSR_LOADED', 200);
     dispatch(submitDfspCsr());
     expect(getIsDfspCsrSubmitPending(getState())).toBe(true);
   });
 
   it('Should detect the api is not pending when finished creating', async () => {
-    fetchMock.post('end:/enrollments/inbound', 200);
-    fetchMock.get('end:/enrollments/inbound', 200);
+    fetchMock.post('glob:*/dfsps/*/enrollments/inbound?state=CSR_LOADED', 200);
     await dispatch(submitDfspCsr());
     expect(getIsDfspCsrSubmitPending(getState())).not.toBe(true);
   });

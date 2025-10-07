@@ -97,14 +97,14 @@ describe('Test the dfsp csr thunk actions', () => {
   });
 
   it('Should submit the dfsp csr', async () => {
-    fetchMock.get('end:/enrollments/inbound', response);
+    fetchMock.get('glob:*/dfsps/*/enrollments/inbound?state=CSR_LOADED', response);
     await dispatch(storeDfspSentCsrs());
     expect(fetchMock.calls(MATCHED)).toHaveLength(1);
     expect(getDfspSentCsrsCertificates(getState())).toEqual(response);
   });
 
   it('Should show the error modal when the submit fails', async () => {
-    fetchMock.get('end:/enrollments/inbound', 500);
+    fetchMock.get('glob:*/dfsps/*/enrollments/inbound?state=CSR_LOADED', 500);
     await dispatch(storeDfspSentCsrs());
     expect(fetchMock.calls(MATCHED)).toHaveLength(1);
     expect(getDfspSentCsrsError(getState())).toBe('Generic');
@@ -126,13 +126,13 @@ describe('Test the api pending selectors', () => {
   });
 
   it('Should detect the api is pending when reading', () => {
-    fetchMock.get('end:/enrollments/inbound', response);
+    fetchMock.get('glob:*/dfsps/*/enrollments/inbound?state=CSR_LOADED', response);
     dispatch(storeDfspSentCsrs());
     expect(getIsDfspSentCsrsPending(getState())).toBe(true);
   });
 
   it('Should detect the api is not pending when finished reading', async () => {
-    fetchMock.get('end:/enrollments/inbound', response);
+    fetchMock.get('glob:*/dfsps/*/enrollments/inbound?state=CSR_LOADED', response);
     await dispatch(storeDfspSentCsrs());
     expect(getIsDfspSentCsrsPending(getState())).not.toBe(true);
   });

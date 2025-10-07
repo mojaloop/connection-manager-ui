@@ -170,7 +170,7 @@ describe('Test the dfsp server certificate thunk actions', () => {
   });
 
   it('Should store the dfsp ca', async () => {
-    fetchMock.get('end:/servercerts', fetchResponse);
+    fetchMock.get('glob:*/dfsps/*/servercerts', fetchResponse);
     await dispatch(storeDfspSCServerCertificate());
     expect(fetchMock.calls(MATCHED)).toHaveLength(1);
     expect(getDfspSCRootCertificate(getState())).toBe('ROOT_CERT');
@@ -180,15 +180,15 @@ describe('Test the dfsp server certificate thunk actions', () => {
   });
 
   it('Should set the error when read operation is not successful', async () => {
-    fetchMock.get('end:/servercerts', 500);
+    fetchMock.get('glob:*/dfsps/*/servercerts', 500);
     await dispatch(storeDfspSCServerCertificate());
     expect(fetchMock.calls(MATCHED)).toHaveLength(1);
     expect(getDfspSCError(getState()).status).toBe(500);
-    expect(getDfspSCError(getState()).error).toBe(undefined);
+    expect(getDfspSCError(getState()).error).toBeNull();
   });
 
   it('Should create the dfsp server certs', async () => {
-    fetchMock.post('end:/servercerts', fetchResponse);
+    fetchMock.post('glob:*/dfsps/*/servercerts', fetchResponse);
     await dispatch(submitDfspSCServerCertificate());
     expect(fetchMock.calls(MATCHED)).toHaveLength(1);
     expect(getIsSuccessToastVisible(getState())).toBe(true);
@@ -200,14 +200,14 @@ describe('Test the dfsp server certificate thunk actions', () => {
   });
 
   it('Should set the error when create operation is not successful', async () => {
-    fetchMock.post('end:/servercerts', 500);
+    fetchMock.post('glob:*/dfsps/*/servercerts', 500);
     await dispatch(submitDfspSCServerCertificate());
     expect(fetchMock.calls(MATCHED)).toHaveLength(1);
     expect(getIsErrorModalVisible(getState())).toBe(true);
   });
 
   it('Should update the dfsp server certs', async () => {
-    fetchMock.put('end:/servercerts', fetchResponse);
+    fetchMock.put('glob:*/dfsps/*/servercerts', fetchResponse);
     dispatch(setDfspSCServerCertificate('OLD_SERVER_CERT'));
     dispatch(changeDfspSCServerCertificate('SERVER_CERT'));
     await dispatch(submitDfspSCServerCertificate());
@@ -221,7 +221,7 @@ describe('Test the dfsp server certificate thunk actions', () => {
   });
 
   it('Should not set the error when update operation is not successful', async () => {
-    fetchMock.put('end:/servercerts', 500);
+    fetchMock.put('glob:*/dfsps/*/servercerts', 500);
     dispatch(setDfspSCServerCertificate('OLD_SERVER_CERT'));
     dispatch(changeDfspSCServerCertificate('SERVER_CERT'));
     await dispatch(submitDfspSCServerCertificate());
@@ -246,31 +246,31 @@ describe('Test the api pending selectors', () => {
   });
 
   it('Should detect the api is pending when reading', () => {
-    fetchMock.get('end:/servercerts', fetchResponse);
+    fetchMock.get('glob:*/dfsps/*/servercerts', fetchResponse);
     dispatch(storeDfspSCServerCertificate());
     expect(getIsDfspSCReadPending(getState())).toBe(true);
   });
 
   it('Should detect the api is not pending when finished reading', async () => {
-    fetchMock.get('end:/servercerts', fetchResponse);
+    fetchMock.get('glob:*/dfsps/*/servercerts', fetchResponse);
     await dispatch(storeDfspSCServerCertificate());
     expect(getIsDfspSCReadPending(getState())).not.toBe(true);
   });
 
   it('Should detect the api is pending when creating', () => {
-    fetchMock.post('end:/servercerts', fetchResponse);
+    fetchMock.post('glob:*/dfsps/*/servercerts', fetchResponse);
     dispatch(submitDfspSCServerCertificate());
     expect(getIsDfspSCCreatePending(getState())).toBe(true);
   });
 
   it('Should detect the api is not pending when finished creating', async () => {
-    fetchMock.post('end:/servercerts', fetchResponse);
+    fetchMock.post('glob:*/dfsps/*/servercerts', fetchResponse);
     await dispatch(submitDfspSCServerCertificate());
     expect(getIsDfspSCCreatePending(getState())).not.toBe(true);
   });
 
   it('Should detect the api is pending when updating', () => {
-    fetchMock.put('end:/servercerts', fetchResponse);
+    fetchMock.put('glob:*/dfsps/*/servercerts', fetchResponse);
     dispatch(setDfspSCServerCertificate('SERVER_CERT'));
     dispatch(changeDfspSCServerCertificate('NEW_SERVER_CERT'));
     dispatch(submitDfspSCServerCertificate());
@@ -278,7 +278,7 @@ describe('Test the api pending selectors', () => {
   });
 
   it('Should detect the api is not pending when finished updating', async () => {
-    fetchMock.put('end:/servercerts', fetchResponse);
+    fetchMock.put('glob:*/dfsps/*/servercerts', fetchResponse);
     dispatch(setDfspSCServerCertificate('SERVER_CERT'));
     dispatch(changeDfspSCServerCertificate('NEW_SERVER_CERT'));
     await dispatch(submitDfspSCServerCertificate());

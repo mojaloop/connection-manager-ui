@@ -52,6 +52,7 @@
   "devDependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "css-loader": "^6.10.0",
+    "node-fetch": "^2.7.0",
     "sass": "^1.87.0",
     "sass-loader": "^13.3.3",
     "svg-sprite-loader": "^6.0.11",

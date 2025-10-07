@@ -92,29 +92,29 @@ describe('Test the dfsp csr thunk actions', () => {
   });
 
   it('Should submit the dfsp csr', async () => {
-    fetchMock.get('end:/enrollments/outbound', response);
+    fetchMock.get('glob:*/dfsps/*/enrollments/outbound', response);
     await dispatch(storeDfspHubCsrs());
     expect(fetchMock.calls(MATCHED)).toHaveLength(1);
     expect(getDfspHubCsrsCertificates(getState())).toEqual(response);
   });
 
   it('Should show the error modal when the submit fails', async () => {
-    fetchMock.get('end:/enrollments/outbound', 500);
+    fetchMock.get('glob:*/dfsps/*/enrollments/outbound', 500);
     await dispatch(storeDfspHubCsrs());
     expect(fetchMock.calls(MATCHED)).toHaveLength(1);
     expect(getDfspHubCsrsError(getState())).toBe('Generic');
   });
 
   /*it('Should submit the dfsp csr', async () => {
-    fetchMock.post('end:/enrollments/inbound', response);
-    fetchMock.get('end:/enrollments/inbound', 200);
+    fetchMock.post('glob:*/dfsps/*/enrollments/inbound', response);
+    fetchMock.get('glob:*/dfsps/*/enrollments/inbound', 200);
     await dispatch(submitCertificateDfspHubCsr());
     expect(fetchMock.calls(MATCHED)).toHaveLength(2);
     expect(getIsSuccessToastVisible(getState())).toBe(true);
   });
 
   it('Should show the error modal when the submit fails', async () => {
-    fetchMock.post('end:/enrollments/inbound', 500);
+    fetchMock.post('glob:*/dfsps/*/enrollments/inbound', 500);
     await dispatch(submitCertificateDfspHubCsr());
     expect(fetchMock.calls(MATCHED)).toHaveLength(1);
     expect(getIsErrorModalVisible(getState())).toBe(true);
@@ -136,13 +136,13 @@ describe('Test the api pending selectors', () => {
   });
 
   it('Should detect the api is pending when reading', () => {
-    fetchMock.get('end:/enrollments/outbound', response);
+    fetchMock.get('glob:*/dfsps/*/enrollments/outbound', response);
     dispatch(storeDfspHubCsrs());
     expect(getIsDfspHubCsrsPending(getState())).toBe(true);
   });
 
   it('Should detect the api is not pending when finished reading', async () => {
-    fetchMock.get('end:/enrollments/outbound', response);
+    fetchMock.get('glob:*/dfsps/*/enrollments/outbound', response);
     await dispatch(storeDfspHubCsrs());
     expect(getIsDfspHubCsrsPending(getState())).not.toBe(true);
   });

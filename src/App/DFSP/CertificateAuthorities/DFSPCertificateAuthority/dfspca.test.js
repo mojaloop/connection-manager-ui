@@ -122,7 +122,7 @@ describe('Test the dfsp ca thunk actions', () => {
   });
 
   it('Should store the dfsp ca', async () => {
-    fetchMock.get('end:/ca', fetchResponse);
+    fetchMock.get('glob:*/dfsps/*/ca', fetchResponse);
     await dispatch(storeDfspCa());
     expect(fetchMock.calls(MATCHED)).toHaveLength(1);
     expect(getDfspCaRootCertificate(getState())).toBe('ROOT_CERT');
@@ -132,15 +132,15 @@ describe('Test the dfsp ca thunk actions', () => {
   });
 
   it('Should set the error when read operation is not successful', async () => {
-    fetchMock.get('end:/ca', 500);
+    fetchMock.get('glob:*/dfsps/*/ca', 500);
     await dispatch(storeDfspCa());
     expect(fetchMock.calls(MATCHED)).toHaveLength(1);
     expect(getDfspCaError(getState()).status).toBe(500);
-    expect(getDfspCaError(getState()).error).toBe(undefined);
+    expect(getDfspCaError(getState()).error).toBeNull();
   });
 
   it('Should submit the dfsp ca', async () => {
-    fetchMock.post('end:/ca', fetchResponse);
+    fetchMock.post('glob:*/dfsps/*/ca', fetchResponse);
     await dispatch(submitDfspCa());
     expect(fetchMock.calls(MATCHED)).toHaveLength(1);
     expect(getIsSuccessToastVisible(getState())).toBe(true);
@@ -151,21 +151,21 @@ describe('Test the dfsp ca thunk actions', () => {
   });
 
   it('Should set the error when create operation is not successful', async () => {
-    fetchMock.post('end:/ca', 500);
+    fetchMock.post('glob:*/dfsps/*/ca', 500);
     await dispatch(submitDfspCa());
     expect(fetchMock.calls(MATCHED)).toHaveLength(1);
     expect(getIsErrorModalVisible(getState())).toBe(true);
   });
 
   it('Should change the root cert and submit', async () => {
-    fetchMock.post('end:/ca', fetchResponse);
+    fetchMock.post('glob:*/dfsps/*/ca', fetchResponse);
     await dispatch(changeDfspCaRootCertificateAndSubmit('ROOT_CERT'));
     expect(fetchMock.calls(MATCHED)).toHaveLength(1);
     expect(getDfspCaRootCertificate(getState())).toBe('ROOT_CERT');
   });
 
   it('Should change the intermediate chain and submit', async () => {
-    fetchMock.post('end:/ca', fetchResponse);
+    fetchMock.post('glob:*/dfsps/*/ca', fetchResponse);
     await dispatch(changeDfspCaIntermediateChainAndSubmit('CHAIN'));
     expect(fetchMock.calls(MATCHED)).toHaveLength(1);
     expect(getDfspCaIntermediateChain(getState())).toBe('CHAIN');
@@ -188,13 +188,13 @@ describe('Test the api pending selectors', () => {
   });
 
   it('Should detect the api is pending when creating', () => {
-    fetchMock.post('end:/ca', fetchResponse);
+    fetchMock.post('glob:*/dfsps/*/ca', fetchResponse);
     dispatch(submitDfspCa());
     expect(getIsDfspCaPending(getState())).toBe(true);
   });
 
   it('Should detect the api is not pending when finished creating', async () => {
-    fetchMock.post('end:/ca', fetchResponse);
+    fetchMock.post('glob:*/dfsps/*/ca', fetchResponse);
     await dispatch(submitDfspCa());
     expect(getIsDfspCaPending(getState())).not.toBe(true);
   });
