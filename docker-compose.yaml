@@ -1,0 +1,101 @@
+version: '3.8'
+
+services:
+  vault-dev:
+    image: hashicorp/vault:1.19
+    container_name: vault-dev
+    ports:
+      - "8233:8233"
+    environment:
+      VAULT_DEV_ROOT_TOKEN_ID: myroot
+      VAULT_DEV_LISTEN_ADDRESS: 0.0.0.0:8233
+    cap_add:
+      - IPC_LOCK
+    command: server -dev
+    healthcheck:
+      test: ["CMD", "vault", "status"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  connection-manager-db:
+    image: mysql:9
+    container_name: connection-manager-db
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-modus123}
+      MYSQL_DATABASE: ${MYSQL_DATABASE:-mcm}
+      MYSQL_USER: ${MYSQL_USER:-mcm}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD:-mcm}
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "${MYSQL_USER:-mcm}", "-p${MYSQL_PASSWORD:-mcm}"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+
+  connection-manager-migration:
+    image: infitx/connection-manager-api:latest
+    container_name: connection-manager-migration
+    environment:
+      DATABASE_HOST: connection-manager-db
+      DATABASE_PORT: 3306
+      DATABASE_USER: ${MYSQL_USER:-mcm}
+      DATABASE_PASSWORD: ${MYSQL_PASSWORD:-mcm}
+      DATABASE_SCHEMA: ${MYSQL_DATABASE:-mcm}
+    depends_on:
+      connection-manager-db:
+        condition: service_healthy
+    command: npm run migrate
+    restart: "no"
+
+  connection-manager-api:
+    image: infitx/connection-manager-api:latest
+    container_name: connection-manager-api
+    ports:
+      - "3001:3001"
+    environment:
+      DATABASE_HOST: connection-manager-db
+      DATABASE_PORT: 3306
+      DATABASE_USER: ${MYSQL_USER:-mcm}
+      DATABASE_PASSWORD: ${MYSQL_PASSWORD:-mcm}
+      DATABASE_SCHEMA: ${MYSQL_DATABASE:-mcm}
+      PORT: 3001
+      SWITCH_ID: switch
+      VAULT_ENDPOINT: http://vault-dev:8233
+      VAULT_AUTH_METHOD: TOKEN
+      VAULT_TOKEN: myroot
+      OPENID_ENABLED: ${OPENID_ENABLED:-false}
+    depends_on:
+      connection-manager-db:
+        condition: service_healthy
+      vault-dev:
+        condition: service_healthy
+      connection-manager-migration:
+        condition: service_completed_successfully
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:3001/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 30
+
+  connection-manager-ui:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        REACT_APP_API_BASE_URL: http://localhost:3001
+        AUTH_ENABLED: "false"
+        REACT_APP_VERSION: "integration-test"
+        REACT_APP_COMMIT: "test"
+    container_name: connection-manager-ui
+    ports:
+      - "3000:8080"
+    depends_on:
+      connection-manager-api:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:8080"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
