@@ -2,7 +2,7 @@
 set -e
 
 # Start services and wait for them to be healthy
-docker-compose up -d --wait
+docker compose up -d --wait
 
 # Run the integration tests
 cd integration_test/tests
@@ -11,6 +11,6 @@ TEST_STATUS=$?
 
 # Cleanup
 cd ../..
-docker-compose down -v
+docker compose down -v
 
 exit $TEST_STATUS

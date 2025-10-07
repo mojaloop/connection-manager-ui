@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   vault-dev:
     image: hashicorp/vault:1.19
@@ -13,7 +11,7 @@ services:
       - IPC_LOCK
     command: server -dev
     healthcheck:
-      test: ["CMD", "vault", "status"]
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://127.0.0.1:8233/v1/sys/health"]
       interval: 5s
       timeout: 3s
       retries: 10
