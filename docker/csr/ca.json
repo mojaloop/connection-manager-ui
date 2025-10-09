@@ -1,0 +1,16 @@
+{
+  "subject": {
+    "CN": "ca.example.com",
+    "emailAddress": "connection-manager@example.com",
+    "O": "Example",
+    "OU": "Certificate Authority"
+  },
+  "extensions": {
+    "subjectAltName": {
+      "dns": [
+        "ca.example.com"
+      ],
+      "ips": []
+    }
+  }
+}
