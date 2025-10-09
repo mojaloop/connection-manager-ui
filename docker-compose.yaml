@@ -99,6 +99,9 @@ services:
     container_name: connection-manager-ui
     ports:
       - "3000:8080"
+    environment:
+      AUTH_ENABLED: "FALSE"
+      API_BASE_URL: http://localhost:3001
     depends_on:
       connection-manager-api:
         condition: service_healthy
