@@ -79,10 +79,6 @@ services:
 
   connection-manager-ui:
     image: infitx/connection-manager-ui:local
-    pull_policy: if_not_present
-    build:
-      context: .
-      dockerfile: Dockerfile
     container_name: connection-manager-ui
     ports:
       - "3000:8080"
