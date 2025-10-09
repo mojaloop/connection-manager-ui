@@ -26,3 +26,6 @@ cluster-keys.json
 # Playwright
 playwright-report/
 test-results/
+
+# Lock files - use yarn.lock only
+package-lock.json
