@@ -1,4 +1,0 @@
-# prevents the result of:
-#   kustomize build . -o output
-# from being committed
-output

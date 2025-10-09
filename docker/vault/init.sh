@@ -10,9 +10,22 @@ until vault status >/dev/null 2>&1; do
   sleep 1
 done
 
-# Enable and configure APP_ROLE
+# Create a policy that allows full access to secrets and pki
+vault policy write app-policy - <<EOF
+path "secrets/*" {
+  capabilities = ["create", "read", "update", "delete", "list"]
+}
+path "pki/*" {
+  capabilities = ["create", "read", "update", "delete", "list"]
+}
+EOF
+
+# Enable and configure APP_ROLE with the policy
 vault auth enable approle
-vault write auth/approle/role/my-role token_ttl=1h token_max_ttl=2h
+vault write auth/approle/role/my-role \
+  token_ttl=1h \
+  token_max_ttl=2h \
+  token_policies=app-policy
 
 # Generate role-id and secret-id files
 vault read -field=role_id auth/approle/role/my-role/role-id > /vault/tmp/role-id
