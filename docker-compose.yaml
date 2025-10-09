@@ -78,6 +78,8 @@ services:
       retries: 10
 
   connection-manager-ui:
+    image: infitx/connection-manager-ui:local
+    pull_policy: if_not_present
     build:
       context: .
       dockerfile: Dockerfile
