@@ -30,10 +30,11 @@ services:
       MYSQL_USER: ${MYSQL_USER:-mcm}
       MYSQL_PASSWORD: ${MYSQL_PASSWORD:-mcm}
     healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "${MYSQL_USER:-mcm}", "-p${MYSQL_PASSWORD:-mcm}"]
+      test: ["CMD-SHELL", "mysql -u mcm -pmcm -e 'SELECT 1' mcm || exit 1"]
       interval: 5s
-      timeout: 3s
+      timeout: 5s
       retries: 20
+      start_period: 10s
 
   connection-manager-migration:
     image: infitx/connection-manager-api:latest
