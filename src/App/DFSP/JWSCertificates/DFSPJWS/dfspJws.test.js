@@ -148,7 +148,7 @@ describe('Test the dfsp jws certificate thunk actions', () => {
     await dispatch(storeDfspJWSCertificates());
     expect(fetchMock.calls(MATCHED)).toHaveLength(1);
     expect(getDfspJWSError(getState()).status).toBe(500);
-    expect(getDfspJWSError(getState()).error).toBe(undefined);
+    expect(getDfspJWSError(getState()).error).toBeNull();
   });
 
   it('Should create the dfsp server certs', async () => {

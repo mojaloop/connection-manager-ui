@@ -170,14 +170,14 @@ describe('Test the hub csr thunk actions', () => {
   });
 
   it('Should submit the hub csr', async () => {
-    fetchMock.post('end:/enrollments/outbound', fetchResponse);
+    fetchMock.post('glob:*/dfsps/*/enrollments/outbound', fetchResponse);
     await dispatch(submitHubCsr());
     expect(fetchMock.calls(MATCHED)).toHaveLength(1);
     expect(getIsSuccessToastVisible(getState())).toBe(true);
   });
 
   it('Should show the error modal when the submit fails', async () => {
-    fetchMock.post('end:/enrollments/outbound', 500);
+    fetchMock.post('glob:*/dfsps/*/enrollments/outbound', 500);
     await dispatch(submitHubCsr());
     expect(fetchMock.calls(MATCHED)).toHaveLength(1);
     expect(getIsErrorModalVisible(getState())).toBe(true);
@@ -235,27 +235,27 @@ describe('Test the api pending selectors', () => {
   });
 
   it('Should detect the api is pending when creating with certificate file', () => {
-    fetchMock.post('end:/enrollments/outbound', 200);
+    fetchMock.post('glob:*/dfsps/*/enrollments/outbound', 200);
     dispatch(submitHubCsr());
     expect(getIsHubCsrSubmitPending(getState())).toBe(true);
   });
 
   it('Should detect the api is pending when creating manually', () => {
-    fetchMock.post('end:/enrollments/outbound/csr', 200);
+    fetchMock.post('glob:*/dfsps/*/enrollments/outbound/csr', 200);
     dispatch(setHubCsrCsrType(CSR_TYPES.MANUAL));
     dispatch(submitHubCsr());
     expect(getIsHubCsrSubmitPending(getState())).toBe(true);
   });
 
   it('Should detect the api is not pending when finished creating with certificate file', async () => {
-    fetchMock.post('end:/enrollments/outbound', 200);
+    fetchMock.post('glob:*/dfsps/*/enrollments/outbound', 200);
     await dispatch(submitHubCsr());
     expect(getIsHubCsrSubmitPending(getState())).not.toBe(true);
   });
 
   it('Should detect the api is not pending when finished creating manually', async () => {
     dispatch(setHubCsrCsrType(CSR_TYPES.MANUAL));
-    fetchMock.post('end:/enrollments/outbound/csr', 200);
+    fetchMock.post('glob:*/dfsps/*/enrollments/outbound/csr', 200);
     await dispatch(submitHubCsr());
     expect(getIsHubCsrSubmitPending(getState())).not.toBe(true);
   });

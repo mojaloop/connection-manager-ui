@@ -8,8 +8,6 @@ import {
   setHubDfspCasCertificates,
   showHubDfspCasRootCertificateModal,
   hideHubDfspCasRootCertificateModal,
-  showHubDfspCasIntermediateChainModal,
-  hideHubDfspCasIntermediateChainModal,
   storeHubDfspCas,
 } from './actions';
 
@@ -65,14 +63,14 @@ describe('Test the hub dfsps ca thunk actions', () => {
   });
 
   it('Should store the hub dfsps ca', async () => {
-    fetchMock.get('end:/ca', fetchResponse);
+    fetchMock.get('glob:*/dfsps/*/ca', fetchResponse);
     await dispatch(storeHubDfspCas());
     expect(fetchMock.calls(MATCHED)).toHaveLength(dfsps.length);
     expect(getHubDfspCasCertificates(getState())).toHaveLength(dfsps.length);
   });
 
   it('Should set the error when read operation is not successful', async () => {
-    fetchMock.get('end:/ca', 500);
+    fetchMock.get('glob:*/dfsps/*/ca', 500);
     await dispatch(storeHubDfspCas());
     expect(fetchMock.calls(MATCHED)).toHaveLength(dfsps.length);
     expect(getHubDfspCasError(getState())).toBe('Generic');

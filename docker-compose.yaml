@@ -1,0 +1,116 @@
+services:
+  vault-dev:
+    image: hashicorp/vault:1.19
+    container_name: vault-dev
+    ports:
+      - "8233:8233"
+    environment:
+      VAULT_ADDR: http://127.0.0.1:8233
+      VAULT_TOKEN: myroot
+    cap_add:
+      - IPC_LOCK
+    volumes:
+      - vault-tmp:/vault/tmp
+      - ./docker/vault/init.sh:/init.sh
+    command: sh /init.sh
+    healthcheck:
+      test: ["CMD", "test", "-f", "/tmp/ready"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  connection-manager-db:
+    image: mysql:9
+    container_name: connection-manager-db
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-modus123}
+      MYSQL_DATABASE: ${MYSQL_DATABASE:-mcm}
+      MYSQL_USER: ${MYSQL_USER:-mcm}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD:-mcm}
+    healthcheck:
+      test: ["CMD-SHELL", "mysql -u mcm -pmcm -e 'SELECT 1' mcm || exit 1"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+      start_period: 10s
+
+  connection-manager-migration:
+    image: infitx/connection-manager-api:latest
+    container_name: connection-manager-migration
+    environment:
+      DATABASE_HOST: connection-manager-db
+      DATABASE_PORT: 3306
+      DATABASE_USER: ${MYSQL_USER:-mcm}
+      DATABASE_PASSWORD: ${MYSQL_PASSWORD:-mcm}
+      DATABASE_SCHEMA: ${MYSQL_DATABASE:-mcm}
+    depends_on:
+      connection-manager-db:
+        condition: service_healthy
+    command: npm run migrate
+    restart: "no"
+
+  connection-manager-api:
+    image: infitx/connection-manager-api:latest
+    container_name: connection-manager-api
+    ports:
+      - "3001:3001"
+    environment:
+      DATABASE_HOST: connection-manager-db
+      DATABASE_PORT: 3306
+      DATABASE_USER: ${MYSQL_USER:-mcm}
+      DATABASE_PASSWORD: ${MYSQL_PASSWORD:-mcm}
+      DATABASE_SCHEMA: ${MYSQL_DATABASE:-mcm}
+      PORT: 3001
+      SWITCH_ID: switch
+      VAULT_ENDPOINT: http://vault-dev:8233
+      VAULT_AUTH_METHOD: APP_ROLE
+      VAULT_ROLE_ID_FILE: /vault/tmp/role-id
+      VAULT_ROLE_SECRET_ID_FILE: /vault/tmp/secret-id
+      VAULT_PKI_SERVER_ROLE: example.com
+      VAULT_PKI_CLIENT_ROLE: example.com
+      CLIENT_CSR_PARAMETERS: /config/csr/client.json
+      SERVER_CSR_PARAMETERS: /config/csr/server.json
+      CA_CSR_PARAMETERS: /config/csr/ca.json
+      AUTH_ENABLED: false
+      OPENID_ENABLED: ${OPENID_ENABLED:-false}
+    volumes:
+      - vault-tmp:/vault/tmp
+      - ./docker/csr:/config/csr
+    depends_on:
+      connection-manager-db:
+        condition: service_healthy
+      vault-dev:
+        condition: service_healthy
+      connection-manager-migration:
+        condition: service_completed_successfully
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:3001/api/dfsps"]
+      interval: 15s
+      timeout: 20s
+      retries: 10
+
+  connection-manager-ui:
+    image: infitx/connection-manager-ui:local
+    pull_policy: if_not_present
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: connection-manager-ui
+    ports:
+      - "3000:8080"
+    environment:
+      AUTH_ENABLED: "FALSE"
+      API_BASE_URL: http://localhost:3001
+    depends_on:
+      connection-manager-api:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:8080"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+volumes:
+  vault-tmp:

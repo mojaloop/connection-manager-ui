@@ -16,6 +16,9 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
     - [Full build](#full-build)
   - [Deploying Application](#deploying-application)
   - [Authentication](#authentication)
+  - [Testing](#testing)
+    - [Unit Tests](#unit-tests)
+    - [Integration Tests](#integration-tests)
 
 ## Coding Approach
 
@@ -161,3 +164,83 @@ These will override the in-app login form and redirect to the provided URL.
 
 :warning: **NOTE**
 It is suggested to clear local storage and cookies after enabling and disabling authentication. It will help starting a fresh session.
+
+## Testing
+
+The project includes unit tests and end-to-end integration tests.
+
+### Unit Tests
+
+Unit tests use Jest and React Testing Library:
+
+```bash
+npm test                # Run tests in watch mode
+npm run test:unit       # Run tests once
+npm run test:coverage   # Run tests with coverage report
+```
+
+### Integration Tests
+
+Integration tests use Playwright and test the full application stack (UI + API + Database + Vault).
+
+#### Prerequisites
+
+First, install Playwright browsers (one-time setup):
+
+```bash
+npm run test:integration:install
+```
+
+#### Running Tests
+
+**Full test suite with automated setup/cleanup (recommended for CI):**
+
+```bash
+npm run test:integration
+```
+
+This will:
+1. Install Playwright browsers if needed
+2. Start all services with `docker compose up -d --wait`
+3. Run the integration tests
+4. Clean up with `docker compose down -v`
+
+**Quick test run (when services are already running):**
+
+```bash
+npm run test:integration:run
+```
+
+**Interactive debugging:**
+
+```bash
+npm run test:integration:ui      # Run with Playwright UI mode
+npm run test:integration:debug   # Run with step-by-step debugger
+```
+
+**View test report:**
+
+```bash
+npm run test:integration:report  # Open the last HTML report
+```
+
+#### Test Configuration
+
+- Tests are located in `tests/e2e/`
+- Playwright config: `playwright.config.ts`
+- The config automatically starts docker compose services when running locally
+
+#### Manual Testing
+
+For development, you can also start services manually and run tests:
+
+```bash
+# Terminal 1: Start services
+docker compose up -d --wait
+
+# Terminal 2: Run tests
+npm run test:integration:run
+
+# When done
+docker compose down -v
+```

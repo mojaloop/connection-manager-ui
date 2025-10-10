@@ -25,8 +25,10 @@ export const hideHubDfspSCServerCertificateModal = createAction(HIDE_HUB_DFSP_SC
 
 export const storeHubDfspSCServerCertificates = () => async (dispatch, getState) => {
   const { data, status } = await dispatch(api.dfspsServerCerts.read());
-  if (is200(status) || is404(status)) {
+  if (is200(status)) {
     dispatch(setHubDfspSCCertificates(data));
+  } else if (is404(status)) {
+    dispatch(setHubDfspSCCertificates([]));
   } else {
     dispatch(setHubDfspSCError('Generic'));
   }

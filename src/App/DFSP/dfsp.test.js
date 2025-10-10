@@ -35,7 +35,7 @@ describe('Test the dfsp thunk actions', () => {
     fetchMock.get('*', 404);
   });
 
-  it('Should redirect to root when environment is not set', async () => {
+  it('Should redirect to root when dfspId is not set', async () => {
     const store = prepareStore({ dfsps, url: '/test' });
     ({ dispatch, getState } = store);
     await dispatch(initDfsp());

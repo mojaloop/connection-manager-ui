@@ -1,6 +1,5 @@
 import { fetchMock, MATCHED } from 'fetch-mock';
 import { getStore } from 'tests/store';
-import { sleep } from 'utils/async';
 
 import {
   setAppLoading,
@@ -32,13 +31,11 @@ import {
 const dfspItems = [
   {
     id: 'MTN CI',
-    envId: 1,
     name: 'MTN CI',
     securityGroup: 'Application/DFSP:MTN CI',
   },
   {
     id: 'Orange CI',
-    envId: 1,
     name: 'Orange CI',
     securityGroup: 'Application/DFSP:Orange CI',
   },
@@ -116,8 +113,8 @@ describe('Test the app actions', () => {
   });
 
   it('Should store the dfsps', async () => {
-    fetchMock.get('end:/1/dfsps', dfspItems);
-    await dispatch(storeDFSPs('1'));
+    fetchMock.get('end:/dfsps', dfspItems);
+    await dispatch(storeDFSPs());
 
     expect(fetchMock.calls(MATCHED)).toHaveLength(1);
     expect(getDfsps(getState())).toHaveLength(2);
@@ -125,8 +122,8 @@ describe('Test the app actions', () => {
   });
 
   it('Should set the dfsps error when call fails', async () => {
-    fetchMock.get('end:/1/dfsps', 500);
-    await dispatch(storeDFSPs('1'));
+    fetchMock.get('end:/dfsps', 500);
+    await dispatch(storeDFSPs());
 
     expect(fetchMock.calls(MATCHED)).toHaveLength(1);
     expect(getDfsps(getState())).toHaveLength(0);
@@ -140,7 +137,7 @@ describe('Test the app thunk actions', () => {
     ({ dispatch, getState } = store);
 
     fetchMock.restore();
-    fetchMock.get('end:/1/dfsps', dfspItems);
+    fetchMock.get('end:/dfsps', dfspItems);
   });
 
   it('Should show the toast ', () => {
@@ -155,15 +152,5 @@ describe('Test the app thunk actions', () => {
   it('Should initialize the app', async () => {
     await dispatch(initApp());
     expect(getIsAppLoading(getState())).toBe(false);
-  });
-});
-
-describe('Test the the app load failed', () => {
-  beforeEach(() => {
-    const store = getStore();
-    ({ dispatch, getState } = store);
-
-    fetchMock.restore();
-    fetchMock.get('end:/1/dfsps', dfspItems);
   });
 });

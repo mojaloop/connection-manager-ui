@@ -1,7 +1,7 @@
 import { createPendingSelector } from '@pm4ml/mojaloop-payment-manager-ui-components-legacy/dist/redux-fetch';
 
 export const getDfspHubExternalCaError = state => state.dfsp.ca.hubExternal.dfspHubExternalCaError;
-export const getDfspHubExternalCaCertificate = state => state.dfsp.ca.hubExternal.dfspHubExternalCertificate;
+export const getDfspHubExternalCaCertificate = state => state.dfsp.ca.hubExternal.dfspHubExternalCertificates;
 export const getIsDfspHubExternalCaRootCertificateModalVisible = state =>
   state.dfsp.ca.hubExternal.isDfspHubExternalCaRootCertificateModalVisible;
 export const getIsDfspHubExternalCaIntermediateChainModalVisible = state =>
@@ -11,4 +11,4 @@ export const getDfspHubExternalCaRootCertificateModalContent = state =>
 export const getDfspHubExternalCaIntermediateChainModalContent = state =>
   state.dfsp.ca.hubExternal.dfspHubExternalCaIntermediateChainModalContent;
 
-export const getIsDfspHubExternalCaReadPending = createPendingSelector('hubExternalCas.read');
+export const getIsDfspHubExternalCaReadPending = createPendingSelector('hubCa.read');

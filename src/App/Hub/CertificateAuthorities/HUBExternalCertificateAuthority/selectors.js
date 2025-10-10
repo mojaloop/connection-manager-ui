@@ -61,8 +61,8 @@ export const getHubExternalCaValidationResult = createSelector(
 
 const getIsHubCaModelValid = createSelector(getHubExternalCaValidationResult, getIsValid);
 
-export const getIsHubExternalCaReadPending = createPendingSelector('hubExternalCas.read');
-export const getIsHubExternalCaCreatePending = createPendingSelector('hubExternalCas.create');
+export const getIsHubExternalCaReadPending = createPendingSelector('hubCa.read');
+export const getIsHubExternalCaCreatePending = createPendingSelector('hubCa.create');
 
 export const getIsSubmitPending = createSelector(getIsHubExternalCaCreatePending, testers.getAllAre(true));
 export const getIsSubmitEnabled = createSelector(

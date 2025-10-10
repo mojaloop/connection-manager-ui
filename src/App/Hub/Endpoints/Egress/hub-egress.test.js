@@ -132,24 +132,24 @@ describe('Test the dfsp egress endpoints thunk actions', () => {
   });
 
   it('Should store the dfsp egress endpoints', async () => {
-    fetchMock.get('end:/egress/ips', fetchResponse);
+    fetchMock.get('end:/hub/endpoints/egress/ips', fetchResponse);
     await dispatch(storeHubEgressIps());
     expect(fetchMock.calls(MATCHED)).toHaveLength(1);
     expect(getEgressIps(getState())).toEqual(fetchResponse.map(apiToIpModel));
   });
 
   it('Should set the error when read operation is not successful', async () => {
-    fetchMock.get('end:/egress/ips', 500);
+    fetchMock.get('end:/hub/endpoints/egress/ips', 500);
     await dispatch(storeHubEgressIps());
     expect(fetchMock.calls(MATCHED)).toHaveLength(1);
     expect(getEgressError(getState()).status).toBe(500);
   });
 
   it('Should submit the endpoints', async () => {
-    fetchMock.post('end:/egress/ips', 200);
-    fetchMock.put('end:/egress/ips/*', 200);
-    fetchMock.delete('end:/egress/ips/*', 200);
-    fetchMock.get('end:/egress/ips', 200);
+    fetchMock.post('glob:*/hub/endpoints/egress/ips', 200);
+    fetchMock.put('glob:*/hub/endpoints/egress/ips/*', 200);
+    fetchMock.delete('glob:*/hub/endpoints/egress/ips/*', 200);
+    fetchMock.get('glob:*/hub/endpoints/egress/ips', []);
 
     dispatch(addHubEgressIp());
     dispatch(addHubEgressIp());
@@ -175,7 +175,7 @@ describe('Test the dfsp egress endpoints thunk actions', () => {
   });
 
   it('Should set the error when create operation is not successful', async () => {
-    fetchMock.post('end:/egress/ips', 500);
+    fetchMock.post('end:/hub/endpoints/egress/ips', 500);
 
     dispatch(changeHubEgressAddress({ address: '192.0.12.23', index: 0 }));
 
@@ -208,10 +208,10 @@ describe('Test the api pending selectors', () => {
 
     fetchMock.restore();
 
-    fetchMock.post('end:/egress/ips', 200);
-    fetchMock.put('end:/egress/ips/*', 200);
-    fetchMock.delete('end:/egress/ips/*', 200);
-    fetchMock.get('end:/egress/ips', fetchResponse);
+    fetchMock.post('end:/hub/endpoints/egress/ips', 200);
+    fetchMock.put('end:/hub/endpoints/egress/ips/*', 200);
+    fetchMock.delete('end:/hub/endpoints/egress/ips/*', 200);
+    fetchMock.get('end:/hub/endpoints/egress/ips', fetchResponse);
   });
 
   it('Should detect the api is pending when reading', () => {

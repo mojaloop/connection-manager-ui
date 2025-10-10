@@ -1,0 +1,100 @@
+ignore:
+  # Vulnerabilities in dev dependencies only
+  - vulnerability: GHSA-9wv6-86v2-598j
+    package:
+      name: path-to-regexp
+  - vulnerability: GHSA-v6h2-p8h4-qcjw
+    package:
+      name: brace-expansion
+  - vulnerability: GHSA-9jgg-88mc-972h
+    package:
+      name: webpack-dev-server
+  - vulnerability: GHSA-4v9v-hfq4-rm2v
+    package:
+      name: webpack-dev-server
+  - vulnerability: GHSA-fjxv-7rqg-78g4
+    package:
+      name: form-data
+  - vulnerability: GHSA-76c9-3jph-rj3q
+    package:
+      name: postcss
+  - vulnerability: GHSA-7wwv-vh3v-89cq
+    package:
+      name: postcss
+  - vulnerability: GHSA-7wwv-vh3v-89cq
+    package:
+      name: highlight.js
+  - vulnerability: GHSA-566m-qj78-rww5
+    package:
+      name: nth-check
+  - vulnerability: GHSA-566m-qj78-rww5
+    package:
+      name: postcss
+  - vulnerability: GHSA-7fh5-64p2-3v2j
+    package:
+      name: braces
+  - vulnerability: GHSA-7fh5-64p2-3v2j
+    package:
+      name: postcss
+  - vulnerability: GHSA-rp65-9cf3-cjxr
+    package:
+      name: micromatch
+  - vulnerability: GHSA-rp65-9cf3-cjxr
+    package:
+      name: nth-check
+  - vulnerability: GHSA-grv7-fg5c-xmjg
+    package:
+      name: highlight.js
+  - vulnerability: GHSA-grv7-fg5c-xmjg
+    package:
+      name: braces
+  - vulnerability: GHSA-952p-6rrq-rcjv
+    package:
+      name: webpack-dev-server
+  - vulnerability: GHSA-952p-6rrq-rcjv
+    package:
+      name: micromatch
+  - vulnerability: GHSA-rx8g-88g5-qh64
+    package:
+      name: webpack
+  - vulnerability: GHSA-hrpp-h998-j3pp
+    package:
+      name: qs
+  - vulnerability: GHSA-qwcr-r2fm-qrc7
+    package:
+      name: body-parser
+  - vulnerability: GHSA-rhx6-c78j-4q9w
+    package:
+      name: path-to-regexp
+  - vulnerability: GHSA-rv95-896h-c2vc
+    package:
+      name: express
+  - vulnerability: CVE-2025-9230
+    package:
+      name: libcrypto3
+  - vulnerability: CVE-2025-9230
+    package:
+      name: libssl3
+  - vulnerability: CVE-2025-9232
+    package:
+      name: libcrypto3
+  - vulnerability: CVE-2025-9232
+    package:
+      name: libssl3
+  - vulnerability: CVE-2025-9231
+    package:
+      name: libcrypto3
+  - vulnerability: CVE-2025-9231
+    package:
+      name: libssl3
+
+# Set output format defaults
+output:
+  - "table"
+  - "json"
+
+# Modify your CircleCI job to check critical count
+search:
+  scope: "squashed"
+quiet: false
+check-for-app-update: false

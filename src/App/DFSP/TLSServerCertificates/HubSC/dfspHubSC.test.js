@@ -38,8 +38,6 @@ import {
   getIsDfspHubSCPending,
 } from './selectors';
 
-import { getIsSuccessToastVisible, getIsErrorModalVisible } from 'App/selectors';
-
 import { initialState } from './reducers';
 
 let dispatch;
@@ -149,7 +147,7 @@ describe('Test the dfsp server certificate thunk actions', () => {
   });
 
   it('Should store the dfsp hub server certs', async () => {
-    fetchMock.get('end:/servercerts', fetchResponse);
+    fetchMock.get('end:/hub/servercerts', fetchResponse);
     await dispatch(storeDfspHubSCServerCertificate());
     expect(fetchMock.calls(MATCHED)).toHaveLength(1);
     expect(getDfspHubSCRootCertificate(getState())).toBe('ROOT_CERT');
@@ -159,11 +157,11 @@ describe('Test the dfsp server certificate thunk actions', () => {
   });
 
   it('Should set the error when read operation is not successful', async () => {
-    fetchMock.get('end:/servercerts', 500);
+    fetchMock.get('end:/hub/servercerts', 500);
     await dispatch(storeDfspHubSCServerCertificate());
     expect(fetchMock.calls(MATCHED)).toHaveLength(1);
     expect(getDfspHubSCError(getState()).status).toBe(500);
-    expect(getDfspHubSCError(getState()).error).toBe(undefined);
+    expect(getDfspHubSCError(getState()).error).toBeNull();
   });
 });
 
@@ -183,13 +181,13 @@ describe('Test the api pending selectors', () => {
   });
 
   it('Should detect the api is pending when reading', () => {
-    fetchMock.get('end:/servercerts', fetchResponse);
+    fetchMock.get('end:/hub/servercerts', fetchResponse);
     dispatch(storeDfspHubSCServerCertificate());
     expect(getIsDfspHubSCPending(getState())).toBe(true);
   });
 
   it('Should detect the api is not pending when finished reading', async () => {
-    fetchMock.get('end:/servercerts', fetchResponse);
+    fetchMock.get('end:/hub/servercerts', fetchResponse);
     await dispatch(storeDfspHubSCServerCertificate());
     expect(getIsDfspHubSCPending(getState())).not.toBe(true);
   });

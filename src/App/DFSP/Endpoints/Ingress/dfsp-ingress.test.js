@@ -172,49 +172,49 @@ describe('Test the dfsp ingress endpoints thunk actions', () => {
   });
 
   it('Should store the dfsp ingress ips', async () => {
-    fetchMock.get('end:/ingress/ips', ipFetchResponse);
+    fetchMock.get('glob:*/dfsps/*/endpoints/ingress/ips', ipFetchResponse);
     await dispatch(storeDfspIngressIps());
     expect(fetchMock.calls(MATCHED)).toHaveLength(1);
     expect(getIngressIps(getState())).toEqual(ipFetchResponse.map(apiToIpModel));
   });
 
   it('Should set the error when read operation is not successful', async () => {
-    fetchMock.get('end:/ingress/ips', 500);
+    fetchMock.get('glob:*/dfsps/*/endpoints/ingress/ips', 500);
     await dispatch(storeDfspIngressIps());
     expect(fetchMock.calls(MATCHED)).toHaveLength(1);
     expect(getIngressIpsError(getState()).status).toBe(500);
   });
 
   it('Should store the dfsp ingress urls', async () => {
-    fetchMock.get('end:/ingress/urls', urlFetchResponse);
+    fetchMock.get('glob:*/dfsps/*/endpoints/ingress/urls', urlFetchResponse);
     await dispatch(storeDfspIngressUrls());
     expect(fetchMock.calls(MATCHED)).toHaveLength(1);
     expect(getIngressUrls(getState())).toEqual(urlFetchResponse.map(apiToUrlModel));
   });
 
   it('Should set the ips error when read operation is not successful', async () => {
-    fetchMock.get('end:/ingress/ips', 500);
+    fetchMock.get('glob:*/dfsps/*/endpoints/ingress/ips', 500);
     await dispatch(storeDfspIngressIps());
     expect(fetchMock.calls(MATCHED)).toHaveLength(1);
     expect(getIngressIpsError(getState()).status).toBe(500);
   });
 
   it('Should set the urls error when read operation is not successful', async () => {
-    fetchMock.get('end:/ingress/urls', 500);
+    fetchMock.get('glob:*/dfsps/*/endpoints/ingress/urls', 500);
     await dispatch(storeDfspIngressUrls());
     expect(fetchMock.calls(MATCHED)).toHaveLength(1);
     expect(getIngressUrlsError(getState()).status).toBe(500);
   });
 
   it('Should submit the endpoints', async () => {
-    fetchMock.post('end:/ingress/ips', 200);
-    fetchMock.put('end:/ingress/ips/*', 200);
-    fetchMock.delete('end:/ingress/ips/*', 200);
-    fetchMock.get('end:/ingress/ips', 200);
-    fetchMock.post('end:/ingress/urls', 200);
-    fetchMock.put('end:/ingress/urls/*', 200);
-    fetchMock.delete('end:/ingress/urls/*', 200);
-    fetchMock.get('end:/ingress/urls', 200);
+    fetchMock.post('glob:*/dfsps/*/endpoints/ingress/ips', 200);
+    fetchMock.put('glob:*/dfsps/*/endpoints/ingress/ips/*', 200);
+    fetchMock.delete('glob:*/dfsps/*/endpoints/ingress/ips/*', 200);
+    fetchMock.get('glob:*/dfsps/*/endpoints/ingress/ips', []);
+    fetchMock.post('glob:*/dfsps/*/endpoints/ingress/urls', 200);
+    fetchMock.put('glob:*/dfsps/*/endpoints/ingress/urls/*', 200);
+    fetchMock.delete('glob:*/dfsps/*/endpoints/ingress/urls/*', 200);
+    fetchMock.get('glob:*/dfsps/*/endpoints/ingress/urls', []);
 
     dispatch(addDfspIngressIp());
     dispatch(addDfspIngressIp());
@@ -248,8 +248,8 @@ describe('Test the dfsp ingress endpoints thunk actions', () => {
   });
 
   it('Should set the error when create operation is not successful', async () => {
-    fetchMock.post('end:/ingress/ips', 500);
-    fetchMock.post('end:/ingress/urls', 500);
+    fetchMock.post('glob:*/dfsps/*/endpoints/ingress/ips', 500);
+    fetchMock.post('glob:*/dfsps/*/endpoints/ingress/urls', 500);
 
     dispatch(changeDfspIngressAddress({ address: '192.0.12.23', index: 0 }));
     dispatch(changeDfspIngressUrl({ url: 'https://test.com', index: 0 }));
@@ -298,15 +298,15 @@ describe('Test the api pending selectors', () => {
 
     fetchMock.restore();
 
-    fetchMock.post('end:/ingress/ips', 200);
-    fetchMock.put('end:/ingress/ips/*', 200);
-    fetchMock.delete('end:/ingress/ips/*', 200);
-    fetchMock.get('end:/ingress/ips', ipFetchResponse);
+    fetchMock.post('glob:*/dfsps/*/endpoints/ingress/ips', 200);
+    fetchMock.put('glob:*/dfsps/*/endpoints/ingress/ips/*', 200);
+    fetchMock.delete('glob:*/dfsps/*/endpoints/ingress/ips/*', 200);
+    fetchMock.get('glob:*/dfsps/*/endpoints/ingress/ips', ipFetchResponse);
 
-    fetchMock.post('end:/ingress/urls', 200);
-    fetchMock.put('end:/ingress/urls/*', 200);
-    fetchMock.delete('end:/ingress/urls/*', 200);
-    fetchMock.get('end:/ingress/urls', urlFetchResponse);
+    fetchMock.post('glob:*/dfsps/*/endpoints/ingress/urls', 200);
+    fetchMock.put('glob:*/dfsps/*/endpoints/ingress/urls/*', 200);
+    fetchMock.delete('glob:*/dfsps/*/endpoints/ingress/urls/*', 200);
+    fetchMock.get('glob:*/dfsps/*/endpoints/ingress/urls', urlFetchResponse);
   });
 
   it('Should detect the api is pending when reading', () => {

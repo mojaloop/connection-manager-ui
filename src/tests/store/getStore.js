@@ -11,8 +11,18 @@ const ReduxRouter = routerMiddleware(historyMock);
 const ReduxFetch = fetchMiddleware();
 
 const getStore = (initialState = undefined) => {
+  const defaultState = initialState ? {
+    ...initialState,
+    app: {
+      config: {
+        apiUrl: 'http://localhost:3001',
+        ...initialState?.app?.config
+      },
+      ...initialState?.app
+    }
+  } : undefined;
   const middlewares = applyMiddleware(ReduxThunk, ReduxFetch, ReduxRouter);
-  return createStore(reducer(historyMock), initialState, middlewares);
+  return createStore(reducer(historyMock), defaultState, middlewares);
 };
 
 export default getStore;

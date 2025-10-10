@@ -63,15 +63,14 @@ describe('Test the HUB EXTERNAL CA actions', () => {
 });
 
 describe('Test the HUB EXTERNAL CA thunk actions', () => {
-  const fetchResponse = [
-    {
-      rootCertificate: 'ROOT_CERT',
-      intermediateChain: 'CHAIN',
-      name: 'test',
-      validations: [],
-      validationState: 'VALID',
-    },
-  ];
+  const fetchResponse = {
+    rootCertificate: 'ROOT_CERT',
+    intermediateChain: 'CHAIN',
+    name: 'test',
+    validations: [],
+    validationState: 'VALID',
+    type: 'EXTERNAL',
+  };
 
   beforeEach(async () => {
     const store = prepareStore({ dfsps, dfspId: dfsps[0].id });
@@ -81,12 +80,12 @@ describe('Test the HUB EXTERNAL CA thunk actions', () => {
   });
 
   it('Should store the HUB EXTERNAL CA', async () => {
-    fetchMock.get('end:/cas', fetchResponse);
+    fetchMock.get('glob:*/hub/ca', fetchResponse);
     await dispatch(storeDfspHubExternalCas());
     expect(fetchMock.calls(MATCHED)).toHaveLength(1);
-    expect(getDfspHubExternalCaCertificate(getState())).toHaveLength(1);
+    expect(getDfspHubExternalCaCertificate(getState())).not.toBe(undefined);
 
-    const [certificate] = getDfspHubExternalCaCertificate(getState());
+    const certificate = getDfspHubExternalCaCertificate(getState());
     expect(certificate.rootCertificate).toBe('ROOT_CERT');
     expect(certificate.intermediateChain).toBe('CHAIN');
     expect(certificate.name).toBe('test');
@@ -95,11 +94,11 @@ describe('Test the HUB EXTERNAL CA thunk actions', () => {
   });
 
   it('Should set the error when read operation is not successful', async () => {
-    fetchMock.get('end:/cas', 500);
+    fetchMock.get('glob:*/hub/ca', 500);
     await dispatch(storeDfspHubExternalCas());
     expect(fetchMock.calls(MATCHED)).toHaveLength(1);
     expect(getDfspHubExternalCaError(getState()).status).toBe(500);
-    expect(getDfspHubExternalCaError(getState()).error).toBe(undefined);
+    expect(getDfspHubExternalCaError(getState()).error).toBeNull();
   });
 });
 
@@ -109,6 +108,7 @@ describe('Test the api pending selectors', () => {
     intermediateChain: 'CHAIN',
     validations: [],
     validationState: 'VALID',
+    type: 'EXTERNAL',
   };
 
   beforeEach(async () => {
@@ -119,13 +119,13 @@ describe('Test the api pending selectors', () => {
   });
 
   it('Should detect the api is pending when creating', () => {
-    fetchMock.get('end:/cas', fetchResponse);
+    fetchMock.get('glob:*/hub/ca', fetchResponse);
     dispatch(storeDfspHubExternalCas());
     expect(getIsDfspHubExternalCaReadPending(getState())).toBe(true);
   });
 
   it('Should detect the api is not pending when finished creating', async () => {
-    fetchMock.get('end:/cas', fetchResponse);
+    fetchMock.get('glob:*/hub/ca', fetchResponse);
     await dispatch(storeDfspHubExternalCas());
     expect(getIsDfspHubExternalCaReadPending(getState())).not.toBe(true);
   });

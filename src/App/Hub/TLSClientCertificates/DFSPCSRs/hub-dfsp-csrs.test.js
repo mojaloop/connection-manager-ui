@@ -21,12 +21,11 @@ import {
   getHubDfspCsrsCertificateModalContent,
   getHubDfspCsrsCertificateModalTitle,
   getIsHubDfspCsrsPending,
-  getFilteredHubDfspCsrsCertificatesByDFSP,
   getIsHubDfspCASigningPendingByEnrollmentId,
   getIsHubDfspCertificateSigningPending,
 } from './selectors';
 
-import { getIsSuccessToastVisible, getIsErrorModalVisible } from 'App/selectors';
+import { getIsSuccessToastVisible } from 'App/selectors';
 import { initialState } from './reducers';
 
 jest.mock('utils/html', () => ({
@@ -100,48 +99,48 @@ describe('Test the hub dfsp csrs thunk actions', () => {
   });
 
   it('Should store the dfsp csr', async () => {
-    fetchMock.get('end:/enrollments/inbound', response);
+    fetchMock.get('glob:*/dfsps/*/enrollments/inbound?state=CSR_LOADED', response);
     await dispatch(storeHubDfspCsrs());
     expect(fetchMock.calls(MATCHED)).toHaveLength(dfsps.length);
     expect(getHubDfspCsrsCertificates(getState())).toHaveLength(dfsps.length);
   });
 
   it('Should set the error when storing fails', async () => {
-    fetchMock.get('end:/enrollments/inbound', 500);
+    fetchMock.get('glob:*/dfsps/*/enrollments/inbound?state=CSR_LOADED', 500);
     await dispatch(storeHubDfspCsrs());
     expect(fetchMock.calls(MATCHED)).toHaveLength(dfsps.length);
     expect(getHubDfspCsrsError(getState())).toBe('Generic');
   });
 
   it('Should submit the CA sign on a csr', async () => {
-    fetchMock.post('end:/sign', 200);
-    fetchMock.get('end:/enrollments/inbound', response);
+    fetchMock.post('glob:*/dfsps/*/enrollments/inbound/*/sign', 200);
+    fetchMock.get('glob:*/dfsps/*/enrollments/inbound?state=CSR_LOADED', response);
     await dispatch(submitCASignHubDfspCsr(1, 1));
-    expect(fetchMock.called('end:/sign')).toBe(true);
+    expect(fetchMock.called('glob:*/dfsps/*/enrollments/inbound/*/sign')).toBe(true);
     expect(getIsSuccessToastVisible(getState())).toBe(true);
   });
 
   it('Should show the error modal when the sign submit fails', async () => {
-    fetchMock.post('end:/sign', 200);
-    fetchMock.get('end:/enrollments/inbound', response);
+    fetchMock.post('glob:*/dfsps/*/enrollments/inbound/*/sign', 200);
+    fetchMock.get('glob:*/dfsps/*/enrollments/inbound?state=CSR_LOADED', response);
     await dispatch(submitCASignHubDfspCsr(1, 1));
-    expect(fetchMock.called('end:/sign')).toBe(true);
+    expect(fetchMock.called('glob:*/dfsps/*/enrollments/inbound/*/sign')).toBe(true);
     expect(getIsSuccessToastVisible(getState())).toBe(true);
   });
 
   it('Should submit the certificate on a csr', async () => {
-    fetchMock.post('end:/certificate', 200);
-    fetchMock.get('end:/enrollments/inbound', response);
+    fetchMock.post('glob:*/dfsps/*/enrollments/inbound/*/certificate', 200);
+    fetchMock.get('glob:*/dfsps/*/enrollments/inbound?state=CSR_LOADED', response);
     await dispatch(submitCertificateHubDfspCsr(1, 1));
-    expect(fetchMock.called('end:/certificate')).toBe(true);
+    expect(fetchMock.called('glob:*/dfsps/*/enrollments/inbound/*/certificate')).toBe(true);
     expect(getIsSuccessToastVisible(getState())).toBe(true);
   });
 
   it('Should show the error modal when the certificate submit fails', async () => {
-    fetchMock.post('end:/certificate', 200);
-    fetchMock.get('end:/enrollments/inbound', response);
+    fetchMock.post('glob:*/dfsps/*/enrollments/inbound/*/certificate', 200);
+    fetchMock.get('glob:*/dfsps/*/enrollments/inbound?state=CSR_LOADED', response);
     await dispatch(submitCertificateHubDfspCsr(1, 1));
-    expect(fetchMock.called('end:/certificate')).toBe(true);
+    expect(fetchMock.called('glob:*/dfsps/*/enrollments/inbound/*/certificate')).toBe(true);
     expect(getIsSuccessToastVisible(getState())).toBe(true);
   });
 });
@@ -161,20 +160,20 @@ describe('Test the api pending selectors', () => {
   });
 
   it('Should detect the api is pending when reading', () => {
-    fetchMock.get('end:/enrollments/inbound', response);
+    fetchMock.get('glob:*/dfsps/*/enrollments/inbound?state=CSR_LOADED', response);
     dispatch(storeHubDfspCsrs());
     expect(getIsHubDfspCsrsPending(getState())).toBe(true);
   });
 
   it('Should detect the api is not pending when finished reading', async () => {
-    fetchMock.get('end:/enrollments/inbound', response);
+    fetchMock.get('glob:*/dfsps/*/enrollments/inbound?state=CSR_LOADED', response);
     await dispatch(storeHubDfspCsrs());
     expect(getIsHubDfspCsrsPending(getState())).not.toBe(true);
   });
 
   it('Should detect the api is pending when signin with ca', () => {
-    fetchMock.post('end:/sign', 200);
-    fetchMock.get('end:/enrollments/inbound', response);
+    fetchMock.post('glob:*/dfsps/*/enrollments/inbound/*/sign', 200);
+    fetchMock.get('glob:*/dfsps/*/enrollments/inbound?state=CSR_LOADED', response);
     dispatch(setHubDfspCsrsCertificates([{ id: 1, dfspId: dfsps[0].id }]));
     dispatch(submitCASignHubDfspCsr(1, 1));
     const pendingRequests = getIsHubDfspCASigningPendingByEnrollmentId(getState());
@@ -182,8 +181,8 @@ describe('Test the api pending selectors', () => {
   });
 
   it('Should detect the api is not pending when finished signin with ca', async () => {
-    fetchMock.post('end:/sign', 200);
-    fetchMock.get('end:/enrollments/inbound', response);
+    fetchMock.post('glob:*/dfsps/*/enrollments/inbound/*/sign', 200);
+    fetchMock.get('glob:*/dfsps/*/enrollments/inbound?state=CSR_LOADED', response);
     dispatch(setHubDfspCsrsCertificates([{ id: 1, dfspId: dfsps[0].id }]));
     await dispatch(submitCASignHubDfspCsr(1, 1));
     const pendingRequests = getIsHubDfspCASigningPendingByEnrollmentId(getState());
@@ -191,18 +190,22 @@ describe('Test the api pending selectors', () => {
   });
 
   it('Should detect the api is pending when signin with certificate', async () => {
-    fetchMock.post('end:/certificate', sleep(10).then(200));
-    fetchMock.get('end:/enrollments/inbound', response);
+    let resolveFetch;
+    const fetchPromise = new Promise(resolve => { resolveFetch = resolve; });
+    fetchMock.post('glob:*/dfsps/*/enrollments/inbound/*/certificate', fetchPromise);
+    fetchMock.get('glob:*/dfsps/*/enrollments/inbound?state=CSR_LOADED', response);
     dispatch(setHubDfspCsrsCertificates([{ id: 1, dfspId: dfsps[0].id }]));
-    dispatch(submitCertificateHubDfspCsr(1, 1));
-    await sleep(1);
+    const promise = dispatch(submitCertificateHubDfspCsr(1, 1));
+    await sleep(10);
     const pendingRequests = getIsHubDfspCertificateSigningPending(getState());
     expect(pendingRequests).toBe(true);
+    resolveFetch(200);
+    await promise;
   });
 
   it('Should detect the api is not pending when finished signin with certificate', async () => {
-    fetchMock.post('end:/certificate', 200);
-    fetchMock.get('end:/enrollments/inbound', response);
+    fetchMock.post('glob:*/dfsps/*/enrollments/inbound/*/certificate', 200);
+    fetchMock.get('glob:*/dfsps/*/enrollments/inbound?state=CSR_LOADED', response);
     dispatch(setHubDfspCsrsCertificates([{ id: 1, dfspId: dfsps[0].id }]));
     await dispatch(submitCertificateHubDfspCsr(1, 1));
     const pendingRequests = getIsHubDfspCertificateSigningPending(getState());
