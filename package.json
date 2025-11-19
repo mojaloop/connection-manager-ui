@@ -1,5 +1,5 @@
 {
-  "name": "connection-manager-ui",
+  "name": "@mojaloop/connection-manager-ui",
   "version": "1.10.0-snapshot.0",
   "private": true,
   "dependencies": {
