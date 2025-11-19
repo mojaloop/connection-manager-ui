@@ -37,7 +37,7 @@ services:
       start_period: 10s
 
   connection-manager-migration:
-    image: infitx/connection-manager-api:latest
+    image: mojaloop/connection-manager-api:latest
     container_name: connection-manager-migration
     environment:
       DATABASE_HOST: connection-manager-db
@@ -52,7 +52,7 @@ services:
     restart: "no"
 
   connection-manager-api:
-    image: infitx/connection-manager-api:latest
+    image: mojaloop/connection-manager-api:latest
     container_name: connection-manager-api
     ports:
       - "3001:3001"
@@ -92,8 +92,7 @@ services:
       retries: 10
 
   connection-manager-ui:
-    image: infitx/connection-manager-ui:local
-    pull_policy: if_not_present
+    image: mojaloop/connection-manager-ui:local
     build:
       context: .
       dockerfile: Dockerfile
