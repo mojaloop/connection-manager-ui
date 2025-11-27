@@ -19,7 +19,7 @@ import {
 
 const auth = isAuthEnabled => {
   const initialState = {
-    isDisabled: isDevelopment ? !!getItem('auth_disabled') : !isAuthEnabled,
+    isDisabled: true,
     isPending: false,
     username: undefined,
     password: undefined,

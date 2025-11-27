@@ -181,6 +181,10 @@ const endpoints = {
     service: services.connectionManager,
     url: () => `/hub/servercerts`,
   },
+  hubRotateJWSCerts: {
+    service: services.connectionManager,
+    url: () => `/hub/jwscerts/rotate`,
+  },
   dfspsServerCerts: {
     service: services.connectionManager,
     url: ({ dfspId }) => `/dfsps/servercerts`,

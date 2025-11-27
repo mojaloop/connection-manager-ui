@@ -37,13 +37,14 @@ import dfspHubSC from 'App/DFSP/TLSServerCertificates/HubSC/reducers';
 import dfspJWS from 'App/DFSP/JWSCertificates/DFSPJWS/reducers';
 import dfspsJWS from 'App/DFSP/JWSCertificates/DFSPsJWS/reducers';
 import pm4mlCredentials from 'App/DFSP/PM4MLCredentials/reducers';
+import hubJwsCertsRotate from 'App/Hub/HubJwsCerts/Rotate/reducers';
 
 const reducers = (history, isAuthEnabled) =>
   combineReducers({
     router: connectRouter(history),
     api,
     auth: combineReducers({
-      login: auth(isAuthEnabled),
+      login: auth(false),
       totp,
       password: passwordChange,
     }),
@@ -102,6 +103,9 @@ const reducers = (history, isAuthEnabled) =>
           hub: hubSC,
           dfsps: hubDfspSc,
         }),
+      }),
+      jws: combineReducers({
+        rotate: hubJwsCertsRotate,
       }),
       dfspModal: hubDfspModal,
     }),
