@@ -44,7 +44,7 @@ const reducers = (history, isAuthEnabled) =>
     router: connectRouter(history),
     api,
     auth: combineReducers({
-      login: auth(false),
+      login: auth(isAuthEnabled),
       totp,
       password: passwordChange,
     }),
