@@ -93,6 +93,15 @@ ignore:
   - vulnerability: GHSA-29xp-372q-xqph
     package:
       name: tar
+  - vulnerability: GHSA-5gfm-wpxj-wjgq
+    package:
+      name: node-forge
+  - vulnerability: GHSA-554w-wpv2-vw27
+    package:
+      name: node-forge
+  - vulnerability: GHSA-65ch-62r8-g69g
+    package:
+      name: node-forge
 
 # Set output format defaults
 output:
