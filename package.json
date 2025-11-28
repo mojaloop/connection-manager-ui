@@ -46,6 +46,7 @@
     "release": "npx standard-version --no-verify --releaseCommitMessageFormat 'ci(release): {{currentTag}} [skip ci]'",
     "snapshot": "npx standard-version --no-verify --skip.changelog --prerelease snapshot --releaseCommitMessageFormat 'ci(snapshot): {{currentTag}}'",
     "audit:check": "npx audit-ci --config ./audit-ci.jsonc",
+    "audit:fix": "npx yarn-audit-fix",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -60,11 +61,13 @@
   "devDependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@playwright/test": "^1.56.0",
+    "audit-ci": "^7.1.0",
     "css-loader": "^6.10.0",
     "node-fetch": "^2.7.0",
     "sass": "^1.87.0",
     "sass-loader": "^13.3.3",
     "svg-sprite-loader": "^6.0.11",
+    "yarn-audit-fix": "^10.1.1",
     "webpack": "^5.89.0",
     "webpack-dev-server": "^4.15.1"
   },

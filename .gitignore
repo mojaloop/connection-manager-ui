@@ -29,3 +29,6 @@ test-results/
 
 # Lock files - use yarn.lock only
 package-lock.json
+
+# Vault files
+docker/vault/tmp/

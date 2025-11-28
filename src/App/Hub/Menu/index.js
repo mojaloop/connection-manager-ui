@@ -27,6 +27,9 @@ const MenuStructure = ({ companyId, pathname, icons, onChange }) => {
         <MenuItem path="/hub/tls/client" label="TLS Client Certificates" icon={csrs.icon} fill={csrs.fill} size={8} />
         <MenuItem path="/hub/tls/server" label="TLS Server Certificates" />
       </MenuSection>
+      <MenuSection label="JWS Certificates">
+        <MenuItem path="/hub/jws-certs" label="JWS Certificates" />
+      </MenuSection>
       <MenuSection label="Administration">
         <MenuItem path="/hub/dfsps" label="DFSPs" />
       </MenuSection>

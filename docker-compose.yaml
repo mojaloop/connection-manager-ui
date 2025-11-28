@@ -10,7 +10,7 @@ services:
     cap_add:
       - IPC_LOCK
     volumes:
-      - vault-tmp:/vault/tmp
+      - ./docker/vault/tmp:/vault/tmp
       - ./docker/vault/init.sh:/init.sh
     command: sh /init.sh
     healthcheck:
@@ -39,12 +39,19 @@ services:
   connection-manager-migration:
     image: mojaloop/connection-manager-api:latest
     container_name: connection-manager-migration
+    env_file: ./tests/.env-func
     environment:
       DATABASE_HOST: connection-manager-db
       DATABASE_PORT: 3306
       DATABASE_USER: ${MYSQL_USER:-mcm}
       DATABASE_PASSWORD: ${MYSQL_PASSWORD:-mcm}
       DATABASE_SCHEMA: ${MYSQL_DATABASE:-mcm}
+      VAULT_AUTH_METHOD: APP_ROLE
+      VAULT_ENDPOINT: http://vault-dev:8233
+      VAULT_ROLE_ID_FILE: /vault/tmp/role-id
+      VAULT_ROLE_SECRET_ID_FILE: /vault/tmp/secret-id
+    volumes:
+      - ./docker/vault/tmp:/vault/tmp
     depends_on:
       connection-manager-db:
         condition: service_healthy
@@ -56,6 +63,7 @@ services:
     container_name: connection-manager-api
     ports:
       - "3001:3001"
+    env_file: ./tests/.env-func
     environment:
       DATABASE_HOST: connection-manager-db
       DATABASE_PORT: 3306
@@ -76,7 +84,7 @@ services:
       AUTH_ENABLED: false
       OPENID_ENABLED: ${OPENID_ENABLED:-false}
     volumes:
-      - vault-tmp:/vault/tmp
+      - ./docker/vault/tmp:/vault/tmp
       - ./docker/csr:/config/csr
     depends_on:
       connection-manager-db:
