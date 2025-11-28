@@ -69,7 +69,7 @@
     "svg-sprite-loader": "^6.0.11",
     "yarn-audit-fix": "^10.1.1",
     "webpack": "^5.89.0",
-    "webpack-dev-server": "^4.15.1"
+    "webpack-dev-server": "^5.2.1"
   },
   "resolutions": {
     "axe-core": "4.4.3"
