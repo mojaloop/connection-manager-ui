@@ -9,7 +9,7 @@ export const RESET_HUB_JWS_CERTS_ROTATE_FINISHED = 'HUB JWS Certs Rotate / Reset
 export const resetHubJwsCertsRotate = createAction(RESET_HUB_JWS_CERTS_ROTATE);
 export const resetHubJwsCertsRotateFinished = createAction(RESET_HUB_JWS_CERTS_ROTATE_FINISHED);
 
-export const rotateJwsCerts = () => async (dispatch, getState) => {
+export const rotateJwsCerts = () => async (dispatch) => {
   dispatch(resetHubJwsCertsRotate());
   const { data, status } = await dispatch(api.hubRotateJWSCerts.update({}));
 
