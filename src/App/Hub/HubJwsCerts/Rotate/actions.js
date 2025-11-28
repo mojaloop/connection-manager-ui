@@ -3,14 +3,14 @@ import api from 'utils/api';
 import { is200, is204 } from 'utils/http';
 import { showSuccessToast, showErrorModal } from 'App/actions';
 
-export const RESET_HUB_JWS_CERTS_ROTATE = 'HUB JWS Certs Rotate / Reset';
-export const RESET_HUB_JWS_CERTS_ROTATE_FINISHED = 'HUB JWS Certs Rotate / Reset Finished';
+export const ROTATE_HUB_JWS_CERTS = 'HUB JWS Certs Rotate / Reset';
+export const ROTATE_HUB_JWS_CERTS_FINISHED = 'HUB JWS Certs Rotate / Reset Finished';
 
-export const resetHubJwsCertsRotate = createAction(RESET_HUB_JWS_CERTS_ROTATE);
-export const resetHubJwsCertsRotateFinished = createAction(RESET_HUB_JWS_CERTS_ROTATE_FINISHED);
+export const rotateHubJwsCerts = createAction(ROTATE_HUB_JWS_CERTS);
+export const rotateHubJwsCertsFinished = createAction(ROTATE_HUB_JWS_CERTS_FINISHED);
 
 export const rotateJwsCerts = () => async (dispatch, getState) => {
-  dispatch(resetHubJwsCertsRotate());
+  dispatch(rotateHubJwsCerts());
   const { data, status } = await dispatch(api.hubRotateJWSCerts.update({}));
 
   if (is200(status) || is204(status)) {
@@ -18,5 +18,5 @@ export const rotateJwsCerts = () => async (dispatch, getState) => {
   } else {
     dispatch(showErrorModal(data?.error?.message || 'An error occurred while rotating JWS certificates.'));
   }
-  dispatch(resetHubJwsCertsRotateFinished());
+  dispatch(rotateHubJwsCertsFinished());
 };

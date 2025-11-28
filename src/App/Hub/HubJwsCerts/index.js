@@ -2,7 +2,7 @@ import React from 'react';
 import { Tab, Tabs, TabList, TabPanel, TabPanels } from 'components';
 import RotateHubJwsCerts from './Rotate';
 
-const Endpoints = () => (
+const HubJwsCerts = () => (
   <div>
     <Tabs>
       <TabList>
@@ -16,4 +16,4 @@ const Endpoints = () => (
     </Tabs>
   </div>
 );
-export default Endpoints;
+export default HubJwsCerts;

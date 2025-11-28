@@ -5,7 +5,6 @@ import { rotateJwsCerts } from './actions';
 import {
   getRotateJWSCertsPending
 } from './selectors';
-import { withMount } from 'utils/hocs';
 
 const HubJwsCertsRotate = ({
   isLoading,
@@ -36,5 +35,4 @@ const mapDispatchToProps = (dispatch) => ({
   onRotate: () => dispatch(rotateJwsCerts()),
 });
 
-const MountedHubJwsCertsRotate = withMount(HubJwsCertsRotate, 'onMount');
-export default connect(mapStateToProps, mapDispatchToProps)(MountedHubJwsCertsRotate);
+export default connect(mapStateToProps, mapDispatchToProps)(HubJwsCertsRotate);

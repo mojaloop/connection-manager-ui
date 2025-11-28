@@ -1,21 +1,20 @@
 import { handleActions } from 'redux-actions';
 import {
-  RESET_HUB_JWS_CERTS_ROTATE,
-  RESET_HUB_JWS_CERTS_ROTATE_FINISHED
+  ROTATE_HUB_JWS_CERTS,
+  ROTATE_HUB_JWS_CERTS_FINISHED
 } from './actions';
 
 const initialState = {
-  rotateJWSCertsError: null,
   rotateJWSCertsPending: false,
 };
 
 const HubJwsCertsRotate = handleActions(
   {
-    [RESET_HUB_JWS_CERTS_ROTATE]: (state, action) => ({
+    [ROTATE_HUB_JWS_CERTS]: (state, action) => ({
       ...state,
       rotateJWSCertsPending: true,
     }),
-    [RESET_HUB_JWS_CERTS_ROTATE_FINISHED]: (state, action) => ({
+    [ROTATE_HUB_JWS_CERTS_FINISHED]: (state, action) => ({
       ...state,
       rotateJWSCertsPending: false,
     })

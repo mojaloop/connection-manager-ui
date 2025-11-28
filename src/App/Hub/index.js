@@ -12,7 +12,7 @@ import Endpoints from './Endpoints';
 import CertificateAuthorities from './CertificateAuthorities';
 import TLSClientCertificates from './TLSClientCertificates';
 import TLSServerCertificates from './TLSServerCertificates';
-import HubJwsEndpoints from './HubJwsCerts';
+import HubJwsCerts from './HubJwsCerts';
 import DFSPs from './DFSPs';
 import './Hub.css';
 
@@ -61,7 +61,7 @@ const Hub = () => (
         <Route path="/hub/tls/client" component={TLSClientCertificates} />
         <Route path="/hub/tls/server" component={TLSServerCertificates} />
         <Route path="/hub/dfsps" component={DFSPs} />
-        <Route path="/hub/jws-certs" component={HubJwsEndpoints} />
+        <Route path="/hub/jws-certs" component={HubJwsCerts} />
       </div>
     </ScrollBox>
   </div>
