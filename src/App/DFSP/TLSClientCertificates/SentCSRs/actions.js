@@ -20,7 +20,7 @@ export const hideDfspSentCsrsCertificateModal = createAction(HIDE_DFSP_SENT_CSRS
 
 export const storeDfspSentCsrs = () => async (dispatch, getState) => {
   const dfspId = getDfspId(getState());
-  const { data, status } = await dispatch(api.inboundEnrollments.read({ dfspId }));
+  const { data, status } = await dispatch(api.outboundEnrollments.read({ dfspId }));
 
   if (is200(status)) {
     dispatch(setDfspSentCsrsCertificates(data));

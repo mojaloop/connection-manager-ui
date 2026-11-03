@@ -15,6 +15,7 @@ export const getLoginUrl = state => state.app.config.loginUrl;
 export const getLogoutUrl = state => state.app.config.logoutUrl;
 export const getLoginProvider = state => state.app.config.loginProvider;
 export const checkSession = state => state.app.config.checkSession;
+export const getApiService = state => state.app.config.apiService;
 
 const getDfsp = createSelector(getDfsps, getDfspId, (dfsps, id) => find(dfsps, { id }));
 

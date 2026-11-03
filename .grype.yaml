@@ -1,5 +1,23 @@
 ignore:
   # Vulnerabilities in dev dependencies only
+  - vulnerability: GHSA-mx8g-39q3-5c79
+    package:
+      name: webpack-dev-server
+  - vulnerability: GHSA-64mm-vxmg-q3vj
+    package:
+      name: http-proxy-middleware
+  - vulnerability: GHSA-79cf-xcqc-c78w
+    package:
+      name: webpack-dev-server
+  - vulnerability: GHSA-qx2v-qp2m-jg93
+    package:
+      name: postcss
+  - vulnerability: GHSA-w5hq-g745-h8pq
+    package:
+      name: uuid
+  - vulnerability: GHSA-h67p-54hq-rp68
+    package:
+      name: js-yaml
   - vulnerability: GHSA-9wv6-86v2-598j
     package:
       name: path-to-regexp

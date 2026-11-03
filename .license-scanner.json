@@ -1,0 +1,14 @@
+{
+  "exceptions": {
+    "@apideck/better-ajv-errors@0.3.7": { "reason": "MIT (package.json); Syft emitted no license in the SBOM", "expires": "2027-06-30" },
+    "ajv-formats@2.1.1": { "reason": "MIT (package.json); Syft emitted no license in the SBOM", "expires": "2027-06-30" },
+    "component-indexof@0.0.3": { "reason": "MIT (README/LICENSE); no license field on the npm release", "expires": "2027-06-30" },
+    "fdir@6.5.0": { "reason": "MIT (package.json); Syft emitted no license in the SBOM", "expires": "2027-06-30" },
+    "fsevents@2.3.2": { "reason": "MIT (package.json); Syft emitted no license in the SBOM", "expires": "2027-06-30" },
+    "fsevents@2.3.3": { "reason": "MIT (package.json); Syft emitted no license in the SBOM", "expires": "2027-06-30" },
+    "react-day-picker@7.1.9": { "reason": "MIT (package.json); Syft emitted no license in the SBOM", "expires": "2027-06-30" },
+    "react-hot-loader@4.12.13": { "reason": "MIT (package.json); Syft emitted no license in the SBOM", "expires": "2027-06-30" },
+    "react-resize-detector@5.0.4": { "reason": "MIT (package.json); Syft emitted no license in the SBOM", "expires": "2027-06-30" },
+    "thirty-two@1.0.2": { "reason": "MIT (LICENSE file/GitHub); no license field on the npm release", "expires": "2027-06-30" }
+  }
+}

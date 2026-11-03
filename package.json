@@ -1,28 +1,28 @@
 {
   "name": "@mojaloop/connection-manager-ui",
-  "version": "1.11.0",
+  "version": "1.11.1-snapshot.2",
   "private": true,
   "dependencies": {
     "@pm4ml/mojaloop-payment-manager-ui-components-legacy": "^1.23.1",
     "connected-react-router": "^6.9.3",
-    "fetch-mock": "^7.3.3",
-    "history": "^4.9.0",
-    "lodash": "^4.17.11",
+    "fetch-mock": "^7.7.3",
+    "history": "^4.10.1",
+    "lodash": "^4.18.1",
     "moment": "^2.30.1",
-    "moment-timezone": "^0.5.48",
-    "prettier": "^1.17.0",
-    "qrcode": "^1.4.1",
+    "moment-timezone": "^0.6.2",
+    "prettier": "^1.19.1",
+    "qrcode": "^1.5.4",
     "react": "^16.14.0",
     "react-app-polyfill": "^3.0.0",
-    "react-app-rewired": "^2.1.1",
+    "react-app-rewired": "^2.2.1",
     "react-dom": "^16.14.0",
     "react-redux": "^7.2.9",
     "react-router-dom": "^5.3.4",
     "react-scripts": "^5.0.1",
-    "redux": "^4.0.1",
+    "redux": "^4.2.1",
     "redux-actions": "^2.6.5",
-    "redux-thunk": "^2.3.0",
-    "reselect": "^4.0.0"
+    "redux-thunk": "^2.4.2",
+    "reselect": "^4.1.8"
   },
   "scripts": {
     "prettier": "prettier --write 'src/**/*.{css,js}'",
@@ -60,18 +60,22 @@
   ],
   "devDependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
-    "@playwright/test": "^1.56.0",
+    "@playwright/test": "^1.61.0",
     "audit-ci": "^7.1.0",
-    "css-loader": "^6.10.0",
+    "css-loader": "^6.11.0",
     "node-fetch": "^2.7.0",
-    "sass": "^1.87.0",
+    "sass": "^1.101.0",
     "sass-loader": "^13.3.3",
     "svg-sprite-loader": "^6.0.11",
-    "yarn-audit-fix": "^10.1.1",
-    "webpack": "^5.89.0",
-    "webpack-dev-server": "^4.15.1"
+    "webpack": "^5.107.2",
+    "webpack-dev-server": "^4.15.2",
+    "yarn-audit-fix": "^10.1.1"
   },
   "resolutions": {
-    "axe-core": "4.4.3"
+    "axe-core": "4.4.3",
+    "lodash": "^4.18.1",
+    "underscore": "^1.13.8",
+    "serialize-javascript": "^7.0.5",
+    "@tootallnate/once": "^2.0.1"
   }
 }

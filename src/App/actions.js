@@ -2,6 +2,7 @@ import { createAction } from 'redux-actions';
 import api from 'utils/api';
 import { is200 } from 'utils/http';
 import { sleep } from 'utils/async';
+import { storeHoldings } from 'Auth/actions';
 
 export const SET_APP_CONFIG = 'App / Set Config';
 export const SET_APP_LOADING = 'App / Set Is Loading';
@@ -38,7 +39,7 @@ export const storeDFSPs = () => async dispatch => {
 
 export const initApp = () => async (dispatch, getState) => {
   dispatch(setAppLoading());
-  await dispatch(storeDFSPs());
+  await Promise.all([dispatch(storeDFSPs()), dispatch(storeHoldings())]);
   dispatch(unsetAppLoading());
 };
 

@@ -50,12 +50,13 @@ const boot = async () => {
     loginProvider,
     loginUrl = `${window.location.protocol}//${window.location.host}/login`,
     logoutUrl,
+    apiService,
   } = await getConfig();
   const apiUrl = `${apiBaseUrl}/api`;
 
   const store = configureStore(history, { isDevelopment, isAuthEnabled });
 
-  store.dispatch(setAppConfig({ apiUrl, loginProvider, loginUrl, logoutUrl, checkSession }));
+  store.dispatch(setAppConfig({ apiUrl, loginProvider, loginUrl, logoutUrl, checkSession, apiService }));
 
   ReactDOM.render(<Root store={store} />, document.getElementById('root'));
 

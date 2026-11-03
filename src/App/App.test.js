@@ -32,12 +32,10 @@ const dfspItems = [
   {
     id: 'MTN CI',
     name: 'MTN CI',
-    securityGroup: 'Application/DFSP:MTN CI',
   },
   {
     id: 'Orange CI',
     name: 'Orange CI',
-    securityGroup: 'Application/DFSP:Orange CI',
   },
 ];
 

@@ -82,7 +82,7 @@ const HubCSRs = ({
       <MessageBox
         icon="info-small"
         kind="default"
-        message="There are no unprocessed Hub CSRs"
+        message="There are no CSRs to sign"
         size={30}
         fontSize={17}
         center
@@ -141,14 +141,14 @@ const HubCSR = ({
   <CertificateCard.Box delay={index * 50}>
     <CertificateCard.Header>
       <CertificateCard.Details>
-        <CertificateCard.PrimaryDetail>{csrInfo.subject.CN || 'Common Name'}</CertificateCard.PrimaryDetail>
+        <CertificateCard.PrimaryDetail>{csrInfo?.subject?.CN || 'Common Name'}</CertificateCard.PrimaryDetail>
         <Status.CSR state={state} />
       </CertificateCard.Details>
       <CertificateCard.Controls>
         <CertificateCard.ControlButton
           disabled={isNotNil(certificate) || validationState === VALIDATION_STATES.INVALID}
-          label="Upload Certificate"
-          icon="upload-small"
+          label="Sign CSR"
+          icon="check-small"
           onClick={() => onSignCSRClick(enrollmentId)}
           pending={isCertificateSigningPending}
         />
@@ -174,7 +174,7 @@ const HubCSR = ({
         icon="download-small"
         label="Download CSR"
         noFill
-        onClick={() => onDownloadClick(csr, csrInfo.subject.CN, '.csr')}
+        onClick={() => onDownloadClick(csr, csrInfo?.subject?.CN || 'certificate', '.csr')}
       />
       <CertificateCard.FooterButton
         icon="studio-project-small"
@@ -188,7 +188,7 @@ const HubCSR = ({
         icon="download-small"
         label="Download Certificate"
         noFill
-        onClick={() => onDownloadClick(certificate, certInfo.subject.CN, '.cer')}
+        onClick={() => onDownloadClick(certificate, certInfo?.subject?.CN || 'certificate', '.cer')}
         disabled={isNil(certificate)}
       />
     </CertificateCard.Footer>

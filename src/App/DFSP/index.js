@@ -15,12 +15,12 @@ import './DFSP.css';
 import { getDfspName } from 'App/selectors';
 import { getIsDfspLoading } from './selectors';
 import { initDfsp } from './actions';
-import { getIsCurrentUserDfspUser } from 'Auth/selectors';
+import { getMayManageCredentials } from 'Auth/selectors';
 
 const stateProps = state => ({
   dfspName: getDfspName(state),
   isDfspLoading: getIsDfspLoading(state),
-  isCurrentUserDfspUser: getIsCurrentUserDfspUser(state),
+  mayManageCredentials: getMayManageCredentials(state),
 });
 
 const actionProps = dispatch => ({
@@ -51,7 +51,7 @@ class DFSPWrapper extends PureComponent {
 
 const DFSPLoader = () => <Spinner center size="m" />;
 
-const DFSP = ({ dfspName, isCurrentUserDfspUser }) => (
+const DFSP = ({ dfspName, mayManageCredentials }) => (
   <div id="dfsp">
     <div id="dfsp__menu">
       <Menu />
@@ -61,7 +61,7 @@ const DFSP = ({ dfspName, isCurrentUserDfspUser }) => (
         <Heading size="3">{dfspName}</Heading>
         <Route path="/dfsp/endpoints" component={Endpoints} />
         <Route path="/dfsp/hubEndpoints" component={HubEndpoints} />
-        {isCurrentUserDfspUser && (
+        {mayManageCredentials && (
           <Route path="/dfsp/pm4ml-credentials" component={PM4MLCredentials} />
         )}
         <Route path="/dfsp/ca" component={CertificateAuthorities} />

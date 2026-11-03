@@ -20,10 +20,8 @@ export const getDfspHasUnsignedHubCsrs = createSelector(
   csrs => csrs.filter(csr => [STATES.CSR_LOADED].includes(csr.state)).length > 0
 );
 
-export const getIsDfspHubCsrsPending = createPendingSelector('outboundEnrollments.read');
-export const getDfspHubCsrCertificateSigningPendingCollection = createCollectionSelector(
-  'outboundEnrollmentCertificate.create'
-);
+export const getIsDfspHubCsrsPending = createPendingSelector('inboundEnrollments.read');
+export const getDfspHubCsrCertificateSigningPendingCollection = createCollectionSelector('inboundEnrollmentSign.create');
 export const getIsDfspHubCsrCertificateSigningPendingByEnrollmentId = createSelector(
   getDfspHubCsrsCertificates,
   getDfspHubCsrCertificateSigningPendingCollection,

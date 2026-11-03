@@ -1,12 +1,10 @@
 [
   {
     "id": "mtn-ci",
-    "name": "MTN CI",
-    "securityGroup": "Application/DFSP:mtn-ci"
+    "name": "MTN CI"
   },
   {
     "id": "orange-ci",
-    "name": "Orange CI",
-    "securityGroup": "Application/DFSP:orange-ci"
+    "name": "Orange CI"
   }
 ]

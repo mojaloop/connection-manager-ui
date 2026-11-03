@@ -3,14 +3,14 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { Menu, MenuItem, MenuSection } from 'components';
 import { getMenuIcons } from './selectors';
-import { getIsCurrentUserDfspUser } from 'Auth/selectors';
+import { getMayManageCredentials } from 'Auth/selectors';
 
 const stateProps = state => ({
   icons: getMenuIcons(state),
-  isCurrentUserDfspUser: getIsCurrentUserDfspUser(state),
+  mayManageCredentials: getMayManageCredentials(state),
 });
 
-const MenuStructure = ({ pathname, onChange, icons, isCurrentUserDfspUser }) => {
+const MenuStructure = ({ pathname, onChange, icons, mayManageCredentials }) => {
   const { csrs } = icons;
   return (
     <Menu path="/dfsp" pathname={pathname} onChange={onChange}>
@@ -18,7 +18,7 @@ const MenuStructure = ({ pathname, onChange, icons, isCurrentUserDfspUser }) => 
         <MenuItem path="/dfsp/hubEndpoints" label="Hub Endpoints" />
         <MenuItem path="/dfsp/endpoints" label="Endpoint Configuration" />
       </MenuSection>
-      {isCurrentUserDfspUser && (
+      {mayManageCredentials && (
         <MenuSection label="Integration">
           <MenuItem path="/dfsp/pm4ml-credentials" label="PM4ML Credentials" />
         </MenuSection>
@@ -33,8 +33,8 @@ const MenuStructure = ({ pathname, onChange, icons, isCurrentUserDfspUser }) => 
   );
 };
 
-const RouterMenu = ({ icons, isCurrentUserDfspUser, location, history }) => (
-  <MenuStructure pathname={location.pathname} onChange={history.push} icons={icons} isCurrentUserDfspUser={isCurrentUserDfspUser} />
+const RouterMenu = ({ icons, mayManageCredentials, location, history }) => (
+  <MenuStructure pathname={location.pathname} onChange={history.push} icons={icons} mayManageCredentials={mayManageCredentials} />
 );
 const ConnectedRouter = connect(stateProps, null)(RouterMenu);
 export default withRouter(ConnectedRouter);

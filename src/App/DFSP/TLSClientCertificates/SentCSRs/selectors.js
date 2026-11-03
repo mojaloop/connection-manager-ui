@@ -26,8 +26,8 @@ export const getFilteredDfspSentCsrsCertificates = createSelector(
         ...csr,
         externalCa: findCaById(csr.hubCAId, cas),
       }))
-      .filter(csr => csr.csrInfo.subject.CN.toLowerCase().includes(lowerCaseFilter));
+      .filter(csr => (csr.csrInfo?.subject?.CN ?? '').toLowerCase().includes(lowerCaseFilter));
   }
 );
 
-export const getIsDfspSentCsrsPending = createPendingSelector('inboundEnrollments.read');
+export const getIsDfspSentCsrsPending = createPendingSelector('outboundEnrollments.read');

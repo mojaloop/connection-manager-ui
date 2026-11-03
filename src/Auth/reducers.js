@@ -15,6 +15,8 @@ import {
   RESET_CREDENTIALS,
   UNSET_AUTH_TOKEN,
   UNSET_AUTH_QR_PROPS,
+  SET_HOLDINGS,
+  SET_HOLDINGS_ERROR,
 } from './actions';
 
 const auth = isAuthEnabled => {
@@ -27,6 +29,8 @@ const auth = isAuthEnabled => {
     expiration: getItem('expiration'),
     jwt: getItem('auth_token'),
     session: undefined,
+    holdings: undefined,
+    holdingsError: undefined,
     QRProps: {
       secret: undefined,
       issuer: undefined,
@@ -61,6 +65,16 @@ const auth = isAuthEnabled => {
         ...state,
         session: action.payload,
         isFailed: false,
+      }),
+      [SET_HOLDINGS]: (state, action) => ({
+        ...state,
+        holdings: action.payload,
+        holdingsError: undefined,
+      }),
+      [SET_HOLDINGS_ERROR]: (state, action) => ({
+        ...state,
+        holdings: undefined,
+        holdingsError: action.payload,
       }),
       [SET_AUTH_TOKEN]: (state, action) => {
         const utc = new Date().getTime();
