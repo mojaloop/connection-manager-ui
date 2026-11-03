@@ -1,4 +1,7 @@
 /node_modules
+/build
+/test-results
+/docker/vault/tmp
 
 # misc
 .DS_Store
