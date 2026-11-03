@@ -162,6 +162,20 @@ Set the environment variables, before running the server (or Docker image):
 
 These will override the in-app login form and redirect to the provided URL.
 
+## What the signed-in user is offered
+
+With authentication on, the app reads which of the API's permissions the user
+holds from their session (`CHECK_SESSION_URL`, its `metadata_public.permissions`)
+and offers the hub view, the DFSPs and the PM4ML credentials from it:
+
+- `API_AUTHZ_SERVICE`: the name the IAM knows the connection manager API by; a
+  permission is `<API_AUTHZ_SERVICE>.<operationId>`
+
+`getDFSPs` held over every DFSP offers the hub, over some offers those DFSPs
+only, and not held offers nothing. `getCredentials` held over the DFSP in view
+offers its PM4ML credentials. When the session cannot be read, the app says so
+and offers no view.
+
 :warning: **NOTE**
 It is suggested to clear local storage and cookies after enabling and disabling authentication. It will help starting a fresh session.
 

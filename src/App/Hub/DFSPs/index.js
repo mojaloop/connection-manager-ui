@@ -32,11 +32,6 @@ const DFSPs = ({ dfsps, monetaryZones, isDfspsPending, onAddClick, onEditClick, 
       className: 'hub__dfsps__name',
     },
     {
-      label: 'Security Group',
-      key: 'securityGroup',
-      className: 'hub__dfsps__security-group',
-    },
-    {
       label: 'Monetary Zone',
       key: 'monetaryZoneId',
       func: id => {

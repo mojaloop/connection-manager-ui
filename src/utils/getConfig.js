@@ -13,6 +13,7 @@ const getConfig = async () => {
   let loginUrl;
   let loginProvider;
   let logoutUrl;
+  let apiService;
   const infos = [`fetching config from ${configUrl}`];
 
   try {
@@ -24,6 +25,7 @@ const getConfig = async () => {
       LOGIN_URL,
       LOGIN_PROVIDER,
       LOGOUT_URL,
+      API_AUTHZ_SERVICE,
     } = await response.json();
 
     isAuthEnabled = AUTH_ENABLED ? AUTH_ENABLED !== 'FALSE' : isAuthEnabled;
@@ -32,6 +34,7 @@ const getConfig = async () => {
     loginUrl = LOGIN_URL;
     logoutUrl = LOGOUT_URL;
     loginProvider = LOGIN_PROVIDER;
+    apiService = API_AUTHZ_SERVICE;
 
     infos.push({ AUTH_ENABLED, API_BASE_URL });
     infos.push(`- after processing config, apiBaseUrl: ${apiBaseUrl}`);
@@ -43,7 +46,7 @@ const getConfig = async () => {
 
   console.info(...infos);
 
-  return { apiBaseUrl, isAuthEnabled, checkSession, loginUrl, loginProvider, logoutUrl };
+  return { apiBaseUrl, isAuthEnabled, checkSession, loginUrl, loginProvider, logoutUrl, apiService };
 };
 
 export default getConfig;

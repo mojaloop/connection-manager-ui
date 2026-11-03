@@ -2,10 +2,10 @@ import { createAction } from 'redux-actions';
 import { push } from 'connected-react-router';
 import api from 'utils/api';
 import { is200, is401, is500, is20x } from 'utils/http';
-import { getLoginUrl, getLoginProvider, getLogoutUrl } from 'App/selectors';
+import { getLoginUrl, getLoginProvider, getLogoutUrl, getApiService } from 'App/selectors';
 import { unsetDfsps } from 'App/actions';
-import { getUsername, getPassword } from './selectors';
-import { AUTH_MESSAGES } from './constants';
+import { getUsername, getPassword, getIsAuthDisabled } from './selectors';
+import { AUTH_MESSAGES, Operation, ALL, HOLDINGS_MESSAGES } from './constants';
 
 export const SET_AUTH_ENABLED = 'Auth / Enable';
 export const SET_AUTH_DISABLED = 'Auth / Disable';
@@ -19,6 +19,8 @@ export const CHANGE_PASSWORD = 'Auth / Change Password';
 export const RESET_CREDENTIALS = 'Auth / Reset Credentials';
 export const UNSET_AUTH_TOKEN = 'Auth / Unset Token';
 export const UNSET_AUTH_QR_PROPS = 'Auth / Unset Auth QR Props';
+export const SET_HOLDINGS = 'Auth / Set Holdings';
+export const SET_HOLDINGS_ERROR = 'Auth / Set Holdings Error';
 
 export const setAuthEnabled = createAction(SET_AUTH_ENABLED);
 export const setAuthDisabled = createAction(SET_AUTH_DISABLED);
@@ -32,6 +34,46 @@ export const changePassword = createAction(CHANGE_PASSWORD);
 export const resetCredentials = createAction(RESET_CREDENTIALS);
 export const unsetAuthToken = createAction(UNSET_AUTH_TOKEN);
 export const unsetAuthQRProps = createAction(UNSET_AUTH_QR_PROPS);
+export const setHoldings = createAction(SET_HOLDINGS);
+export const setHoldingsError = createAction(SET_HOLDINGS_ERROR);
+
+const isReach = scope => scope === ALL || (Array.isArray(scope) && scope.every(id => typeof id === 'string'));
+
+// The DFSPs a held permission reaches: every operation asked about is scoped
+// by the DFSP alone, so a held one names exactly one resource.
+const reachOf = resources => {
+  if (resources === undefined) {
+    return [];
+  }
+  const scopes = Object.values(resources);
+  return scopes.length === 1 && isReach(scopes[0]) ? scopes[0] : undefined;
+};
+
+export const storeHoldings = () => async (dispatch, getState) => {
+  const state = getState();
+  if (getIsAuthDisabled(state)) {
+    return;
+  }
+  const service = getApiService(state);
+  if (!service) {
+    dispatch(setHoldingsError(HOLDINGS_MESSAGES.NOT_CONFIGURED));
+    return;
+  }
+  const operations = Object.values(Operation);
+  const permissionOf = operationId => `${service}.${operationId}`;
+  const { data, status } = await dispatch(api.checkSession.read({}));
+  if (!is20x(status)) {
+    dispatch(setHoldingsError(HOLDINGS_MESSAGES.UNREADABLE));
+    return;
+  }
+  const held = data?.identity?.metadata_public?.permissions || {};
+  const reaches = operations.map(operationId => reachOf(held[permissionOf(operationId)]));
+  if (reaches.includes(undefined)) {
+    dispatch(setHoldingsError(HOLDINGS_MESSAGES.UNEXPECTED));
+    return;
+  }
+  dispatch(setHoldings(Object.fromEntries(operations.map((operationId, index) => [operationId, reaches[index]]))));
+};
 
 export const login = () => async (dispatch, getState) => {
   const body = {
@@ -75,23 +117,20 @@ export const login = () => async (dispatch, getState) => {
 
 export const logout = () => async (dispatch, getState) => {
   const state = getState();
-  const loginProvider = getLoginProvider(state);
-  let logoutUrl = getLogoutUrl(state);
+  const logoutUrl = getLogoutUrl(state);
 
   // Clear DFSP selection on logout for clean user experience
   dispatch(unsetDfsps());
 
   if (logoutUrl) {
-    if (loginProvider) {
-      fetch(logoutUrl, { headers: { accept: 'application/json' }, credentials: 'include' })
-        .then(response => response.json())
-        .then(({ logout_token, logout_url }) => {
-          window.location.assign(logout_url);
-        });
-    } else {
-      logoutUrl = logoutUrl + '?return_to=' + encodeURIComponent(window.location.href);
-      window.location.assign(logoutUrl);
-    }
+    // Browser logout is two-step, the endpoint returns the flow as json and
+    // navigating to its tokenized logout_url completes it
+    const flowUrl = logoutUrl + '?return_to=' + encodeURIComponent(window.location.href);
+    fetch(flowUrl, { headers: { accept: 'application/json' }, credentials: 'include' })
+      .then(response => response.json())
+      .then(({ logout_url }) => {
+        window.location.assign(logout_url);
+      });
   } else {
     await dispatch(api.logout.create());
     dispatch(unsetAuthToken());

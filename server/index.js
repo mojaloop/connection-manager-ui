@@ -23,6 +23,7 @@ app.get('/config', function (req, res) {
     LOGIN_URL: process.env.LOGIN_URL,
     LOGIN_PROVIDER: process.env.LOGIN_PROVIDER,
     LOGOUT_URL: process.env.LOGOUT_URL,
+    API_AUTHZ_SERVICE: process.env.API_AUTHZ_SERVICE,
   };
   console.log('connection-manager-ui server: /config called, returning: ', config);
   res.send(config);

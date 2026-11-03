@@ -1,8 +1,7 @@
 import { createAction } from 'redux-actions';
 import api from 'utils/api';
 import { is200 } from 'utils/http';
-import { downloadFile, loadFile } from 'utils/html';
-import { isCertificate } from 'utils/certificate';
+import { downloadFile } from 'utils/html';
 import { showSuccessToast, showErrorModal } from 'App/actions';
 import { getDfspId } from 'App/selectors';
 
@@ -20,7 +19,7 @@ export const hideDfspHubCsrsCertificateModal = createAction(HIDE_DFSP_HUB_CSR_CE
 
 export const storeDfspHubCsrs = () => async (dispatch, getState) => {
   const dfspId = getDfspId(getState());
-  const { data, status } = await dispatch(api.outboundEnrollments.read({ dfspId }));
+  const { data, status } = await dispatch(api.inboundEnrollments.read({ dfspId }));
 
   if (is200(status)) {
     dispatch(setDfspHubCsrsCertificates(data));
@@ -30,23 +29,9 @@ export const storeDfspHubCsrs = () => async (dispatch, getState) => {
 };
 
 export const submitCertificateDfspHubCsr = enrollmentId => async (dispatch, getState) => {
-  let certificate = null;
-  let invalid = true;
-  try {
-    certificate = await loadFile('.cer');
-    invalid = !isCertificate(certificate);
-  } catch (e) {
-    invalid = true;
-  }
-
-  if (invalid) {
-    dispatch(showErrorModal('The file selected is not a valid certificate'));
-    return;
-  }
-
   const dfspId = getDfspId(getState());
-  const body = { certificate };
-  const { data, status } = await dispatch(api.outboundEnrollmentCertificate.create({ dfspId, enrollmentId, body }));
+  const { data, status } = await dispatch(api.inboundEnrollmentSign.create({ dfspId, enrollmentId }));
+
   if (is200(status)) {
     dispatch(showSuccessToast());
     dispatch(storeDfspHubCsrs(data));

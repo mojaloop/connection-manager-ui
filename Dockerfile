@@ -1,4 +1,4 @@
-FROM node:lts-alpine
+FROM node:24.19.0-alpine3.24
 # First part, build the app
 WORKDIR /app
 COPY package.json /app/
@@ -26,6 +26,10 @@ RUN yarn run build
 # Second part, copy the build and server the app using a node express server
 
 RUN cp -r /app/build /app/server/
+
+# The document the platform composes this service's authorization from, at the
+# path a deployment names it by
+RUN mkdir -p /opt/app/src && cp -r /app/src/api /opt/app/src/api
 
 WORKDIR /app/server
 RUN npm install

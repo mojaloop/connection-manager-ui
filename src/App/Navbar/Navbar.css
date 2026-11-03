@@ -30,6 +30,21 @@
   justify-content: flex-end;
   align-items: center;
   padding-right: 20px;
+  position: relative;
+}
+#navbar__user__button {
+  display: flex;
+  align-items: center;
+  background: none;
+  border: none;
+  padding: 4px 8px 4px 0;
+  border-radius: 4px;
+  cursor: pointer;
+  font: inherit;
+}
+#navbar__user__button:hover,
+#navbar__user__button[aria-expanded='true'] {
+  background: rgba(255, 255, 255, 0.1);
 }
 #navbar__user__icon {
   align-items: center;
@@ -43,5 +58,36 @@
 }
 #navbar__user__name {
   color: #fff;
+}
+#navbar__user__caret {
+  margin-left: 8px;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-top: 5px solid #fff;
+}
+#navbar__user__menu {
+  position: absolute;
+  top: calc(100% + 6px);
+  right: 20px;
+  min-width: 160px;
+  background: #fff;
+  border-radius: 4px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  padding: 4px 0;
+  z-index: 1031;
+}
+#navbar__user__menu__logout {
+  display: block;
+  width: 100%;
+  background: none;
+  border: none;
+  padding: 8px 16px;
+  text-align: left;
+  font: inherit;
+  font-size: 14px;
+  color: #333;
   cursor: pointer;
+}
+#navbar__user__menu__logout:hover {
+  background: #f0f4f8;
 }

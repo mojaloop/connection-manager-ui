@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { connect } from 'react-redux';
 import { Button, FormInput, MessageBox, Modal, Spinner } from 'components';
 import { getDfspId, getDfspName } from 'App/selectors';
-import { getIsCurrentUserDfspUser } from 'Auth/selectors';
+import { getMayManageCredentials } from 'Auth/selectors';
 import { 
   checkDfspCredentials, 
   fetchDfspCredentials, 
@@ -22,7 +22,7 @@ const stateProps = state => ({
   credentialsExist: getDoCredentialsExist(state),
   isPending: getIsDfspCredentialsPending(state),
   error: getDfspCredentialsError(state),
-  isCurrentUserDfspUser: getIsCurrentUserDfspUser(state),
+  mayManageCredentials: getMayManageCredentials(state),
 });
 
 const actionProps = dispatch => ({
@@ -38,7 +38,7 @@ const PM4MLCredentials = ({
   credentialsExist,
   isPending,
   error,
-  isCurrentUserDfspUser,
+  mayManageCredentials,
   onCheckCredentials,
   onFetchCredentials,
   onCreateCredentials,
@@ -333,8 +333,7 @@ const PM4MLCredentials = ({
     return null;
   };
 
-  // Only render for application/DFSP users
-  if (!isCurrentUserDfspUser) {
+  if (!mayManageCredentials) {
     return null;
   }
 
